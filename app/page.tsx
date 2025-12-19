@@ -42,6 +42,37 @@ export default function Home() {
     message: ''
   })
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0)
+  const [titleAnimation, setTitleAnimation] = useState('fadeIn')
+
+  // Lista de títulos rotativos para el carrusel
+  const rotatingTitles = [
+    {
+      line1: 'TODO LO QUE NECESITAS',
+      line2: 'EN VIDRIOS, ALUMINIO',
+      line3: 'Y ACERO INOXIDABLE'
+    },
+    {
+      line1: 'VIDRIOS TEMPLADOS',
+      line2: 'DE ALTA CALIDAD',
+      line3: 'PARA TU HOGAR'
+    },
+    {
+      line1: 'ESPEJOS Y CRISTALES',
+      line2: 'DECORATIVOS',
+      line3: 'QUE TRANSFORMAN ESPACIOS'
+    },
+    {
+      line1: 'INSTALACIÓN PROFESIONAL',
+      line2: 'Y REPARACIÓN',
+      line3: 'CON LA MEJOR CALIDAD'
+    },
+    {
+      line1: 'SOLUCIONES INTEGRALES',
+      line2: 'EN VIDRIOS Y ALUMINIO',
+      line3: 'PARA TU PROYECTO'
+    }
+  ]
 
   // Lista de imágenes del carrusel
   const images = [
@@ -68,7 +99,7 @@ export default function Home() {
   // Número de WhatsApp - puede configurarse mediante variable de entorno
   const numeroWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '584122176537'
 
-  // Carrusel automático
+  // Carrusel automático de imágenes
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
@@ -76,6 +107,20 @@ export default function Home() {
 
     return () => clearInterval(interval)
   }, [images.length])
+
+  // Carrusel automático de títulos
+  useEffect(() => {
+    const titleInterval = setInterval(() => {
+      setTitleAnimation('fadeOut')
+      
+      setTimeout(() => {
+        setCurrentTitleIndex((prevIndex) => (prevIndex + 1) % rotatingTitles.length)
+        setTitleAnimation('fadeIn')
+      }, 300) // Delay para la transición
+    }, 3500) // Cambia de título cada 3.5 segundos
+
+    return () => clearInterval(titleInterval)
+  }, [rotatingTitles.length])
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
@@ -203,24 +248,71 @@ _Generado desde el formulario de contacto de Vidrios Premium_`
                   ⭐ Expertos en Vidrios desde 2010
                 </Badge>
                 
-                <Heading
-                  as="h1"
-                  size={{ base: "3xl", md: "4xl", lg: "5xl" }}
-                  fontWeight="900"
-                  lineHeight="1.1"
-                  color="gray.900"
-                  letterSpacing="-0.02em"
-                >
-                  <Text as="span" display="block" mb="3">
-                    TODO LO QUE NECESITAS
-                  </Text>
-                  <Text as="span" display="block" color="blue.500" mb="3">
-                    EN VIDRIOS, ALUMINIO
-                  </Text>
-                  <Text as="span" display="block">
-                    Y ACERO INOXIDABLE
-                  </Text>
-                </Heading>
+                <Box position="relative" minH={{ base: "140px", md: "180px", lg: "200px" }}>
+                  <Heading
+                    as="h1"
+                    size={{ base: "3xl", md: "4xl", lg: "5xl" }}
+                    fontWeight="900"
+                    lineHeight="1.1"
+                    color="gray.900"
+                    letterSpacing="-0.02em"
+                    position="relative"
+                  >
+                    <Box
+                      key={currentTitleIndex}
+                      opacity={titleAnimation === 'fadeIn' ? 1 : 0}
+                      transform={titleAnimation === 'fadeIn' ? 'translateY(0)' : 'translateY(20px)'}
+                      transition="all 0.5s ease-in-out"
+                      position="absolute"
+                      width="100%"
+                      top="0"
+                      left="0"
+                    >
+                      <Text as="span" display="block" mb="3">
+                        {rotatingTitles[currentTitleIndex].line1}
+                      </Text>
+                      <Text as="span" display="block" color="blue.500" mb="3">
+                        {rotatingTitles[currentTitleIndex].line2}
+                      </Text>
+                      <Text as="span" display="block">
+                        {rotatingTitles[currentTitleIndex].line3}
+                      </Text>
+                    </Box>
+                  </Heading>
+                  
+                  {/* Indicadores del carrusel de títulos */}
+                  <HStack
+                    spacing="3"
+                    mt="8"
+                    position="absolute"
+                    bottom="-12"
+                    left="0"
+                  >
+                    {rotatingTitles.map((_, index) => (
+                      <Box
+                        key={index}
+                        width={index === currentTitleIndex ? "40px" : "10px"}
+                        height="10px"
+                        borderRadius="full"
+                        bg={index === currentTitleIndex ? 'blue.500' : 'gray.300'}
+                        transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                        cursor="pointer"
+                        onClick={() => {
+                          setTitleAnimation('fadeOut')
+                          setTimeout(() => {
+                            setCurrentTitleIndex(index)
+                            setTitleAnimation('fadeIn')
+                          }, 300)
+                        }}
+                        _hover={{ 
+                          bg: index === currentTitleIndex ? 'blue.600' : 'gray.400',
+                          transform: 'scale(1.1)'
+                        }}
+                        boxShadow={index === currentTitleIndex ? "0 2px 8px rgba(66, 153, 225, 0.4)" : "none"}
+                      />
+                    ))}
+                  </HStack>
+                </Box>
                 
                 <Text
                   fontSize={{ base: "md", md: "lg" }}
