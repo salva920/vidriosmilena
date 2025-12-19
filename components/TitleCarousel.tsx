@@ -40,7 +40,7 @@ export default function TitleCarousel({ titles }: TitleCarouselProps) {
   }
 
   return (
-    <Box position="relative" minH={{ base: "140px", md: "180px", lg: "200px" }}>
+    <Box position="relative" minH={{ base: "140px", md: "180px", lg: "200px" }} width="100%">
       <Heading
         as="h1"
         size={{ base: "3xl", md: "4xl", lg: "5xl" }}
@@ -49,6 +49,10 @@ export default function TitleCarousel({ titles }: TitleCarouselProps) {
         color="gray.900"
         letterSpacing="-0.02em"
         position="relative"
+        width="100%"
+        display="block"
+        whiteSpace="normal"
+        style={{ writingMode: 'horizontal-tb', textOrientation: 'mixed' }}
       >
         <Box
           key={currentTitleIndex}
@@ -59,14 +63,15 @@ export default function TitleCarousel({ titles }: TitleCarouselProps) {
           width="100%"
           top="0"
           left="0"
+          whiteSpace="normal"
         >
-          <Text as="span" display="block" mb="3">
+          <Text as="div" display="block" mb="3" whiteSpace="normal">
             {titles[currentTitleIndex].line1}
           </Text>
-          <Text as="span" display="block" color="blue.500" mb="3">
+          <Text as="div" display="block" color="blue.500" mb="3" whiteSpace="normal">
             {titles[currentTitleIndex].line2}
           </Text>
-          <Text as="span" display="block">
+          <Text as="div" display="block" whiteSpace="normal">
             {titles[currentTitleIndex].line3}
           </Text>
         </Box>
