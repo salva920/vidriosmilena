@@ -42,6 +42,8 @@ export default function Home() {
   })
 
   // Configuración de EmailJS desde archivo externo
+  // Número de WhatsApp - puede configurarse mediante variable de entorno
+  const numeroWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '584122176537'
 
   const onOpen = () => setIsOpen(true)
   const onClose = () => setIsOpen(false)
@@ -85,6 +87,27 @@ export default function Home() {
         EMAILJS_CONFIG.TEMPLATE_ID,
         templateParams
       )
+
+      // Formatear el mensaje para WhatsApp
+      const mensaje = `🏠 *Nueva Solicitud de Cotización - Vidrios Premium*
+
+👤 *Información del Cliente:*
+• Nombre: ${formData.name}
+• Teléfono: ${formData.phone}
+
+🔧 *Servicio Solicitado:*
+• ${formData.service}
+
+${formData.message ? `📝 *Mensaje:*\n${formData.message}\n\n` : ''}⏰ *Fecha:* ${new Date().toLocaleString('es-VE', { dateStyle: 'long', timeStyle: 'short' })}
+
+_Generado desde el formulario de contacto de Vidrios Premium_`
+
+      // Codificar el mensaje para la URL de WhatsApp
+      const mensajeCodificado = encodeURIComponent(mensaje)
+      const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`
+
+      // Abrir WhatsApp en una nueva ventana
+      window.open(urlWhatsApp, '_blank')
 
       setSubmitStatus('success')
       setFormData({
@@ -671,7 +694,7 @@ export default function Home() {
                           <AlertIcon />
                           <AlertTitle>¡Mensaje enviado exitosamente!</AlertTitle>
                           <AlertDescription>
-                            Te contactaremos pronto para brindarte la mejor cotización.
+                            Tu mensaje ha sido enviado por correo y se abrió WhatsApp para que puedas contactarnos directamente.
                           </AlertDescription>
                         </Alert>
                       )}
@@ -698,7 +721,7 @@ export default function Home() {
                         loadingText="Enviando..."
                         disabled={isSubmitting}
                       >
-                        Enviar Mensaje
+                        💬 Enviar Mensaje y Abrir WhatsApp
                       </Button>
                     </VStack>
                   </form>
