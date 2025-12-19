@@ -187,52 +187,75 @@ _Generado desde el formulario de contacto de Vidrios Premium_`
             py="20"
           >
             <Box flex="1">
-              <VStack align="start" spacing="6">
+              <VStack align="start" spacing="8">
                 <Badge
-                  colorScheme="blue"
-                  variant="subtle"
-                  px="4"
-                  py="2"
+                  bg="blue.500"
+                  color="white"
+                  px="5"
+                  py="2.5"
                   borderRadius="full"
                   fontSize="sm"
-                  fontWeight="semibold"
+                  fontWeight="bold"
+                  letterSpacing="wide"
+                  textTransform="uppercase"
+                  boxShadow="sm"
                 >
-                  ✨ Calidad Premium Garantizada
+                  ⭐ Expertos en Vidrios desde 2010
                 </Badge>
                 
                 <Heading
                   as="h1"
-                  size="4xl"
-                  fontWeight="800"
-                  lineHeight="1.2"
-                  color="gray.800"
+                  size={{ base: "3xl", md: "4xl", lg: "5xl" }}
+                  fontWeight="900"
+                  lineHeight="1.1"
+                  color="gray.900"
+                  letterSpacing="-0.02em"
                 >
-                  Vidrios de{' '}
-                  <Text as="span" color="blue.500">
-                    Alta Calidad
+                  <Text as="span" display="block" mb="3">
+                    TODO LO QUE NECESITAS
                   </Text>
-                  {' '}para tu Hogar
+                  <Text as="span" display="block" color="blue.500" mb="3">
+                    EN VIDRIOS, ALUMINIO
+                  </Text>
+                  <Text as="span" display="block">
+                    Y ACERO INOXIDABLE
+                  </Text>
                 </Heading>
                 
                 <Text
-                  fontSize="xl"
-                  color="gray.600"
-                  lineHeight="1.6"
+                  fontSize={{ base: "md", md: "lg" }}
+                  color="gray.700"
+                  lineHeight="1.8"
                   maxW="600px"
+                  fontWeight="500"
+                  pt="1"
                 >
-                  Especialistas en venta e instalación de vidrios templados, 
-                  laminados, espejos y cristales de seguridad. 
-                  Transformamos tu espacio con la mejor calidad del mercado.
+                  Soluciones integrales para tu hogar y negocio. 
+                  <Text as="span" color="blue.600" fontWeight="semibold">
+                    Vidrios templados, laminados, espejos decorativos
+                  </Text>
+                  {' '}y más. Calidad profesional que transforma espacios.
                 </Text>
                 
-                <HStack spacing="4" pt="4">
+                <HStack spacing="4" pt="6">
                   <Button
                     size="lg"
-                    colorScheme="blue"
-                    px="8"
-                    py="6"
-                    fontSize="lg"
-                    fontWeight="semibold"
+                    bg="blue.600"
+                    color="white"
+                    px="10"
+                    py="7"
+                    fontSize="md"
+                    fontWeight="bold"
+                    borderRadius="md"
+                    _hover={{ 
+                      bg: 'blue.700',
+                      transform: 'translateY(-2px)',
+                      boxShadow: 'xl'
+                    }}
+                    transition="all 0.3s"
+                    boxShadow="lg"
+                    letterSpacing="wide"
+                    textTransform="uppercase"
                     onClick={scrollToContact}
                   >
                     Solicitar Cotización
@@ -240,10 +263,23 @@ _Generado desde el formulario de contacto de Vidrios Premium_`
                   <Button
                     size="lg"
                     variant="outline"
-                    px="8"
-                    py="6"
-                    fontSize="lg"
-                    fontWeight="semibold"
+                    borderWidth="2px"
+                    borderColor="gray.300"
+                    color="gray.700"
+                    px="10"
+                    py="7"
+                    fontSize="md"
+                    fontWeight="bold"
+                    borderRadius="md"
+                    _hover={{ 
+                      bg: 'gray.50',
+                      borderColor: 'blue.500',
+                      color: 'blue.600',
+                      transform: 'translateY(-2px)'
+                    }}
+                    transition="all 0.3s"
+                    letterSpacing="wide"
+                    textTransform="uppercase"
                     onClick={onOpen}
                   >
                     Llamar Ahora
