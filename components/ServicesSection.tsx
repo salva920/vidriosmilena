@@ -47,7 +47,7 @@ interface ServicesSectionProps {
 
 export default function ServicesSection({ onScrollToContact }: ServicesSectionProps) {
   return (
-    <Box py="20" bg="gray.50">
+    <Box id="servicios" py="20" bg="gray.50">
       <Container maxW="container.xl">
         <VStack spacing="16">
           <Box textAlign="center">

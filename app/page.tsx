@@ -2,6 +2,7 @@
 
 import { Box } from '@chakra-ui/react'
 import { useState } from 'react'
+import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/HeroSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import ServicesSection from '@/components/ServicesSection'
@@ -77,7 +78,9 @@ export default function Home() {
 
   return (
     <Box>
-      <HeroSection
+      <Navbar />
+      <Box pt="120px">
+        <HeroSection
         rotatingTitles={rotatingTitles}
         images={images}
         onScrollToContact={scrollToContact}
@@ -96,6 +99,7 @@ export default function Home() {
       <Footer />
 
       <ContactModal isOpen={isOpen} onClose={onClose} />
+      </Box>
     </Box>
   )
 }

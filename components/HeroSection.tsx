@@ -25,6 +25,7 @@ export default function HeroSection({
 }: HeroSectionProps) {
   return (
     <Box
+      id="inicio"
       bg="linear(to-br, blue.50, gray.50)"
       minH="100vh"
       display="flex"

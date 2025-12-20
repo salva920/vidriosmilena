@@ -33,7 +33,7 @@ const features: Feature[] = [
 
 export default function FeaturesSection() {
   return (
-    <Box py="20" bg="white">
+    <Box id="nosotros" py="20" bg="white">
       <Container maxW="container.xl">
         <VStack spacing="16">
           <Box textAlign="center">
