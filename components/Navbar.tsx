@@ -18,7 +18,7 @@ import { useState } from 'react'
 
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeLink, setActiveLink] = useState('INICIO')
+  const [activeLink, setActiveLink] = useState('')
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -27,10 +27,20 @@ export default function Navbar() {
   }
 
   const scrollToSection = (id: string) => {
-    const sectionId = id === 'INICIO' ? 'inicio' : id.toLowerCase()
+    // Mapear los IDs correctamente según las secciones existentes
+    const sectionMap: Record<string, string> = {
+      'NOSOTROS': 'nosotros',
+      'SERVICIOS': 'servicios',
+      'CONTACTO': 'contact'
+    }
+    
+    const sectionId = sectionMap[id] || id.toLowerCase()
     const section = document.getElementById(sectionId)
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' })
+      // Ajustar el scroll para compensar el navbar fijo
+      const yOffset = -120
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset
+      window.scrollTo({ top: y, behavior: 'smooth' })
     }
     setActiveLink(id)
   }
@@ -115,7 +125,7 @@ export default function Navbar() {
                 letterSpacing="tight"
                 textTransform="uppercase"
               >
-                <Text as="span" color="blue.600">VITRI</Text>
+                <Text as="span" color="blue.600">MILE</Text>
                 <Text as="span" color="gray.900">GLASS</Text>
               </Heading>
             </HStack>
@@ -126,17 +136,17 @@ export default function Navbar() {
               display={{ base: 'none', md: 'flex' }}
             >
               <Link
-                onClick={() => scrollToSection('INICIO')}
+                onClick={() => scrollToSection('NOSOTROS')}
                 fontWeight="semibold"
-                color={activeLink === 'INICIO' ? 'gray.900' : 'gray.600'}
+                color={activeLink === 'NOSOTROS' ? 'gray.900' : 'gray.600'}
                 position="relative"
                 _hover={{ color: 'gray.900' }}
                 cursor="pointer"
                 textTransform="uppercase"
                 fontSize="sm"
               >
-                INICIO
-                {activeLink === 'INICIO' && (
+                NOSOTROS
+                {activeLink === 'NOSOTROS' && (
                   <Box
                     position="absolute"
                     bottom="-8px"
@@ -148,59 +158,48 @@ export default function Navbar() {
                 )}
               </Link>
               <Link
-                onClick={() => scrollToSection('NOSOTROS')}
-                fontWeight="semibold"
-                color={activeLink === 'NOSOTROS' ? 'gray.900' : 'gray.600'}
-                _hover={{ color: 'gray.900' }}
-                cursor="pointer"
-                textTransform="uppercase"
-                fontSize="sm"
-              >
-                NOSOTROS
-              </Link>
-              <Link
                 onClick={() => scrollToSection('SERVICIOS')}
                 fontWeight="semibold"
                 color={activeLink === 'SERVICIOS' ? 'gray.900' : 'gray.600'}
+                position="relative"
                 _hover={{ color: 'gray.900' }}
                 cursor="pointer"
                 textTransform="uppercase"
                 fontSize="sm"
               >
                 ¿QUÉ HACEMOS?
-              </Link>
-              <Link
-                onClick={() => scrollToSection('GALERIA')}
-                fontWeight="semibold"
-                color={activeLink === 'GALERIA' ? 'gray.900' : 'gray.600'}
-                _hover={{ color: 'gray.900' }}
-                cursor="pointer"
-                textTransform="uppercase"
-                fontSize="sm"
-              >
-                GALERÍA
-              </Link>
-              <Link
-                onClick={() => scrollToSection('GALERIA')}
-                fontWeight="semibold"
-                color={activeLink === 'GALERIA' ? 'gray.900' : 'gray.600'}
-                _hover={{ color: 'gray.900' }}
-                cursor="pointer"
-                textTransform="uppercase"
-                fontSize="sm"
-              >
-                GALERÍA
+                {activeLink === 'SERVICIOS' && (
+                  <Box
+                    position="absolute"
+                    bottom="-8px"
+                    left="0"
+                    right="0"
+                    h="2px"
+                    bg="red.500"
+                  />
+                )}
               </Link>
               <Link
                 onClick={() => scrollToSection('CONTACTO')}
                 fontWeight="semibold"
                 color={activeLink === 'CONTACTO' ? 'gray.900' : 'gray.600'}
+                position="relative"
                 _hover={{ color: 'gray.900' }}
                 cursor="pointer"
                 textTransform="uppercase"
                 fontSize="sm"
               >
                 CONTACTO
+                {activeLink === 'CONTACTO' && (
+                  <Box
+                    position="absolute"
+                    bottom="-8px"
+                    left="0"
+                    right="0"
+                    h="2px"
+                    bg="red.500"
+                  />
+                )}
               </Link>
             </HStack>
 
@@ -211,7 +210,7 @@ export default function Navbar() {
                   <Input
                     placeholder="Type and hit enter..."
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
                     borderRadius="md"
                     borderColor="gray.300"
                     _focus={{ borderColor: 'blue.500', boxShadow: 'none' }}
