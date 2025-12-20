@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Container, Text, Button, VStack, HStack, Flex, Badge } from '@chakra-ui/react'
+import { Box, Container, Button, VStack, Heading } from '@chakra-ui/react'
 import TitleCarousel from './TitleCarousel'
 import ImageCarousel from './ImageCarousel'
 
@@ -26,109 +26,92 @@ export default function HeroSection({
   return (
     <Box
       id="inicio"
-      bg="linear(to-br, blue.50, gray.50)"
       minH="100vh"
       display="flex"
       alignItems="center"
+      justifyContent="center"
       position="relative"
       overflow="hidden"
     >
-      <Container maxW="container.xl">
-        <Flex
-          direction={{ base: 'column', lg: 'row' }}
+      {/* Imagen de fondo con carrusel */}
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        width="100%"
+        height="100%"
+        zIndex={1}
+      >
+        <ImageCarousel images={images} />
+      </Box>
+      
+      {/* Overlay oscuro para mejorar legibilidad */}
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        width="100%"
+        height="100%"
+        bg="blackAlpha.400"
+        zIndex={2}
+      />
+      
+      {/* Contenido centrado sobre la imagen */}
+      <Container maxW="container.xl" position="relative" zIndex={3}>
+        <VStack
+          spacing="8"
           align="center"
-          gap="8"
+          textAlign="center"
           py="20"
         >
-          <Box flex="1">
-            <VStack align="start" spacing="8">
-              <Badge
-                bg="blue.500"
-                color="white"
-                px="5"
-                py="2.5"
-                borderRadius="full"
-                fontSize="sm"
-                fontWeight="bold"
-                letterSpacing="wide"
-                textTransform="uppercase"
-                boxShadow="sm"
-              >
-                ⭐ Expertos en Vidrios desde 2010
-              </Badge>
-              
+          {/* Títulos centrados */}
+          <Box
+            position="relative"
+            minH={{ base: "200px", md: "280px", lg: "320px" }}
+            width="100%"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Heading
+              as="h1"
+              fontSize={{ base: "3xl", md: "5xl", lg: "6xl", xl: "7xl" }}
+              fontWeight="900"
+              lineHeight="1.1"
+              color="white"
+              letterSpacing={{ base: "-0.01em", md: "-0.02em" }}
+              textTransform="uppercase"
+              fontFamily="sans-serif"
+              width="100%"
+            >
               <TitleCarousel titles={rotatingTitles} />
-              
-              <Text
-                fontSize={{ base: "md", md: "lg" }}
-                color="gray.700"
-                lineHeight="1.8"
-                maxW="600px"
-                fontWeight="500"
-                pt="1"
-              >
-                Soluciones integrales para tu hogar y negocio. 
-                <Text as="span" color="blue.600" fontWeight="semibold">
-                  Vidrios templados, laminados, espejos decorativos
-                </Text>
-                {' '}y más. Calidad profesional que transforma espacios.
-              </Text>
-              
-              <HStack spacing="4" pt="6">
-                <Button
-                  size="lg"
-                  bg="blue.600"
-                  color="white"
-                  px="10"
-                  py="7"
-                  fontSize="md"
-                  fontWeight="bold"
-                  borderRadius="md"
-                  _hover={{ 
-                    bg: 'blue.700',
-                    transform: 'translateY(-2px)',
-                    boxShadow: 'xl'
-                  }}
-                  transition="all 0.3s"
-                  boxShadow="lg"
-                  letterSpacing="wide"
-                  textTransform="uppercase"
-                  onClick={onScrollToContact}
-                >
-                  Solicitar Cotización
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  borderWidth="2px"
-                  borderColor="gray.300"
-                  color="gray.700"
-                  px="10"
-                  py="7"
-                  fontSize="md"
-                  fontWeight="bold"
-                  borderRadius="md"
-                  _hover={{ 
-                    bg: 'gray.50',
-                    borderColor: 'blue.500',
-                    color: 'blue.600',
-                    transform: 'translateY(-2px)'
-                  }}
-                  transition="all 0.3s"
-                  letterSpacing="wide"
-                  textTransform="uppercase"
-                  onClick={onOpenModal}
-                >
-                  Llamar Ahora
-                </Button>
-              </HStack>
-            </VStack>
+            </Heading>
           </Box>
           
-          <Box flex="1">
-            <ImageCarousel images={images} />
-          </Box>
-        </Flex>
+          {/* Botón CTA */}
+          <Button
+            size="lg"
+            bg="red.600"
+            color="white"
+            px={{ base: "8", md: "12" }}
+            py={{ base: "6", md: "8" }}
+            fontSize={{ base: "md", md: "lg" }}
+            fontWeight="bold"
+            borderRadius="md"
+            _hover={{ 
+              bg: 'red.700',
+              transform: 'translateY(-2px)',
+              boxShadow: 'xl'
+            }}
+            transition="all 0.3s"
+            boxShadow="2xl"
+            letterSpacing="wide"
+            textTransform="uppercase"
+            onClick={onScrollToContact}
+          >
+            Solicitar Cotización
+          </Button>
+        </VStack>
       </Container>
     </Box>
   )

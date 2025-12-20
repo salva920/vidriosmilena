@@ -33,42 +33,42 @@ export default function TitleCarousel({ titles }: TitleCarouselProps) {
 
 
   return (
-    <Box position="relative" minH={{ base: "140px", md: "180px", lg: "200px" }} width="100%">
-      <Heading
-        as="h1"
-        size={{ base: "3xl", md: "4xl", lg: "5xl" }}
-        fontWeight="900"
-        lineHeight="1.1"
-        color="gray.900"
-        letterSpacing="-0.02em"
+    <Box 
+      position="relative" 
+      width="100%"
+    >
+      <Box
+        key={currentTitleIndex}
+        opacity={titleAnimation === 'fadeIn' ? 1 : 0}
+        transform={titleAnimation === 'fadeIn' ? 'translateY(0)' : 'translateY(20px)'}
+        transition="all 0.5s ease-in-out"
         position="relative"
         width="100%"
-        display="block"
-        whiteSpace="normal"
-        style={{ writingMode: 'horizontal-tb', textOrientation: 'mixed' }}
       >
-        <Box
-          key={currentTitleIndex}
-          opacity={titleAnimation === 'fadeIn' ? 1 : 0}
-          transform={titleAnimation === 'fadeIn' ? 'translateY(0)' : 'translateY(20px)'}
-          transition="all 0.5s ease-in-out"
-          position="absolute"
-          width="100%"
-          top="0"
-          left="0"
+        <Text 
+          as="div" 
+          display="block" 
+          mb={{ base: "2", md: "4" }}
           whiteSpace="normal"
         >
-          <Text as="div" display="block" mb="3" whiteSpace="normal">
-            {titles[currentTitleIndex].line1}
-          </Text>
-          <Text as="div" display="block" color="blue.500" mb="3" whiteSpace="normal">
-            {titles[currentTitleIndex].line2}
-          </Text>
-          <Text as="div" display="block" whiteSpace="normal">
-            {titles[currentTitleIndex].line3}
-          </Text>
-        </Box>
-      </Heading>
+          {titles[currentTitleIndex].line1}
+        </Text>
+        <Text 
+          as="div" 
+          display="block" 
+          mb={{ base: "2", md: "4" }}
+          whiteSpace="normal"
+        >
+          {titles[currentTitleIndex].line2}
+        </Text>
+        <Text 
+          as="div" 
+          display="block"
+          whiteSpace="normal"
+        >
+          {titles[currentTitleIndex].line3}
+        </Text>
+      </Box>
     </Box>
   )
 }
