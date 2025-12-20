@@ -13,7 +13,7 @@ import {
   Link,
   Heading,
 } from '@chakra-ui/react'
-import { SearchIcon } from '@chakra-ui/icons'
+import { FiSearch } from 'react-icons/fi'
 import { useState } from 'react'
 
 export default function Navbar() {
@@ -219,7 +219,7 @@ export default function Navbar() {
                   <InputRightElement>
                     <IconButton
                       aria-label="Buscar"
-                      icon={<SearchIcon />}
+                      icon={<FiSearch />}
                       size="sm"
                       variant="ghost"
                       type="submit"
