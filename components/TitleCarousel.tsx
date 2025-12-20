@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Heading, Text, HStack } from '@chakra-ui/react'
+import { Box, Heading, Text } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 
 interface RotatingTitle {
@@ -31,13 +31,6 @@ export default function TitleCarousel({ titles }: TitleCarouselProps) {
     return () => clearInterval(titleInterval)
   }, [titles.length])
 
-  const goToTitle = (index: number) => {
-    setTitleAnimation('fadeOut')
-    setTimeout(() => {
-      setCurrentTitleIndex(index)
-      setTitleAnimation('fadeIn')
-    }, 300)
-  }
 
   return (
     <Box position="relative" minH={{ base: "140px", md: "180px", lg: "200px" }} width="100%">
@@ -76,33 +69,6 @@ export default function TitleCarousel({ titles }: TitleCarouselProps) {
           </Text>
         </Box>
       </Heading>
-      
-      {/* Indicadores del carrusel de títulos */}
-      <HStack
-        spacing="3"
-        mt="8"
-        position="absolute"
-        bottom="-12"
-        left="0"
-      >
-        {titles.map((_, index) => (
-          <Box
-            key={index}
-            width={index === currentTitleIndex ? "40px" : "10px"}
-            height="10px"
-            borderRadius="full"
-            bg={index === currentTitleIndex ? 'blue.500' : 'gray.300'}
-            transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
-            cursor="pointer"
-            onClick={() => goToTitle(index)}
-            _hover={{ 
-              bg: index === currentTitleIndex ? 'blue.600' : 'gray.400',
-              transform: 'scale(1.1)'
-            }}
-            boxShadow={index === currentTitleIndex ? "0 2px 8px rgba(66, 153, 225, 0.4)" : "none"}
-          />
-        ))}
-      </HStack>
     </Box>
   )
 }
