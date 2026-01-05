@@ -211,22 +211,20 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
               w="100%"
               mx="auto"
             >
-              <Flex
+              <Box
+                display="flex"
                 transform={`translateX(-${currentIndex * 100}%)`}
                 transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
                 w={`${services.length * 100}%`}
-                minW={`${services.length * 100}%`}
-                style={{ willChange: 'transform' }}
               >
                 {services.map((service, index) => (
                   <Box
                     key={index}
                     flex="0 0 100%"
-                    minW="100%"
-                    maxW="100%"
                     w="100%"
                     px={{ base: '0', md: '4' }}
                     position="relative"
+                    boxSizing="border-box"
                   >
                     <Card 
                       bg="white" 
@@ -235,7 +233,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                       border="1px solid"
                       borderColor="gray.100"
                       overflow="hidden"
-                      h="100%"
+                      h="auto"
                       w="100%"
                       display="flex"
                       flexDirection="column"
@@ -266,6 +264,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                             objectFit="cover"
                             objectPosition="center"
                             loading="lazy"
+                            display="block"
                           />
                         )}
                         <Box
@@ -276,6 +275,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                           h="60px"
                           bgGradient="linear(to-t, rgba(0,0,0,0.3), transparent)"
                           pointerEvents="none"
+                          zIndex={1}
                         />
                       </Box>
                       
@@ -309,7 +309,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                     </Card>
                   </Box>
                 ))}
-              </Flex>
+              </Box>
             </Box>
 
             {/* Dots Indicator */}
