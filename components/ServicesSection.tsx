@@ -49,46 +49,76 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
   return (
     <Box id="servicios" py="20" bg="gray.50">
       <Container maxW="container.xl">
-        <VStack spacing="16">
-          <VStack spacing="6" align="center" maxW="900px" mx="auto">
+        <VStack spacing="20">
+          <Box 
+            textAlign="center" 
+            maxW="850px" 
+            mx="auto"
+            px={{ base: '4', md: '6' }}
+          >
             <Heading 
-              size="2xl" 
-              color="gray.800"
-              fontWeight="700"
-              letterSpacing="tight"
+              fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
+              color="gray.900"
+              fontWeight="800"
+              letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
               textTransform="uppercase"
+              mb={{ base: '4', md: '6' }}
+              lineHeight="1.1"
             >
               PRODUCTOS Y SERVICIOS
             </Heading>
+            
             <Box
-              w="80px"
+              w={{ base: '60px', md: '80px' }}
               h="4px"
-              bg="red.500"
+              bgGradient="linear(to-r, red.400, red.600)"
               borderRadius="full"
+              mx="auto"
+              mb={{ base: '8', md: '10' }}
+              boxShadow="0 2px 8px rgba(229, 62, 62, 0.3)"
             />
-            <VStack spacing="4" align="center" mt="2">
-              <Text 
-                fontSize={{ base: 'md', md: 'lg' }}
-                color="gray.700"
-                lineHeight="1.8"
-                textAlign="center"
-                fontWeight="400"
-                letterSpacing="0.01em"
-              >
-                Nos caracterizamos por nuestro <Text as="span" fontWeight="600" color="gray.800">diseño tecnológico, innovador y funcional</Text>. Nuestra línea de maquinarias modernas nos ha permitido dar un paso más en la fabricación de vidrio templado y laminado.
-              </Text>
-              <Text 
-                fontSize={{ base: 'md', md: 'lg' }}
-                color="gray.600"
-                lineHeight="1.8"
-                textAlign="center"
-                fontWeight="400"
-                letterSpacing="0.01em"
-              >
-                Brindamos una <Text as="span" fontWeight="600" color="gray.800">amplia y moderna selección de productos</Text> que se adaptan a las necesidades de tu proyecto. Si necesitas más información, no dudes en contactarnos y solicitar un presupuesto sin compromiso.
-              </Text>
-            </VStack>
-          </VStack>
+            
+            <Box
+              bg="white"
+              p={{ base: '6', md: '8', lg: '10' }}
+              borderRadius="xl"
+              boxShadow="0 4px 20px rgba(0, 0, 0, 0.08)"
+              border="1px solid"
+              borderColor="gray.100"
+            >
+              <VStack spacing={{ base: '5', md: '6' }} align="stretch">
+                <Text 
+                  fontSize={{ base: '16px', md: '18px', lg: '20px' }}
+                  color="gray.700"
+                  lineHeight={{ base: '1.7', md: '1.8' }}
+                  textAlign="center"
+                  fontWeight="400"
+                  letterSpacing="0.01em"
+                >
+                  Nos caracterizamos por nuestro <Text as="span" fontWeight="700" color="gray.900" fontSize="inherit">diseño tecnológico, innovador y funcional</Text>. Nuestra línea de maquinarias modernas nos ha permitido dar un paso más en la fabricación de vidrio templado y laminado.
+                </Text>
+                
+                <Box
+                  w="40px"
+                  h="2px"
+                  bg="gray.200"
+                  mx="auto"
+                  borderRadius="full"
+                />
+                
+                <Text 
+                  fontSize={{ base: '16px', md: '18px', lg: '20px' }}
+                  color="gray.600"
+                  lineHeight={{ base: '1.7', md: '1.8' }}
+                  textAlign="center"
+                  fontWeight="400"
+                  letterSpacing="0.01em"
+                >
+                  Brindamos una <Text as="span" fontWeight="700" color="gray.900" fontSize="inherit">amplia y moderna selección de productos</Text> que se adaptan a las necesidades de tu proyecto. Si necesitas más información, no dudes en contactarnos y solicitar un presupuesto sin compromiso.
+                </Text>
+              </VStack>
+            </Box>
+          </Box>
           
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="8">
             {services.map((service, index) => (
