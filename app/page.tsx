@@ -88,11 +88,11 @@ export default function Home() {
         onOpenModal={onOpen}
       />
 
+      <ServicesSection onScrollToContact={scrollToContact} />
+
       <FeaturesSection />
 
       <StatsSection />
-
-      <ServicesSection onScrollToContact={scrollToContact} />
 
       <ContactSection
         numeroWhatsApp={numeroWhatsApp}
