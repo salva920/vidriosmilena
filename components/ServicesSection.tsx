@@ -1,6 +1,8 @@
 'use client'
 
-import { Box, Container, Heading, Text, VStack, SimpleGrid, Card, CardBody, Image } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, Card, CardBody, Image, HStack, IconButton, Flex } from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 interface Service {
   image: string
@@ -46,6 +48,45 @@ interface ServicesSectionProps {
 }
 
 export default function ServicesSection({ onScrollToContact }: ServicesSectionProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [cardsPerView, setCardsPerView] = useState(3)
+
+  // Ajustar número de tarjetas visibles según el tamaño de pantalla
+  useEffect(() => {
+    const updateCardsPerView = () => {
+      if (window.innerWidth < 768) {
+        setCardsPerView(1)
+      } else if (window.innerWidth < 1024) {
+        setCardsPerView(2)
+      } else {
+        setCardsPerView(3)
+      }
+    }
+
+    updateCardsPerView()
+    window.addEventListener('resize', updateCardsPerView)
+    return () => window.removeEventListener('resize', updateCardsPerView)
+  }, [])
+
+  const maxIndex = Math.max(0, services.length - cardsPerView)
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
+  }
+
+  // Auto-play del carrusel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide()
+    }, 5000) // Cambia cada 5 segundos
+
+    return () => clearInterval(interval)
+  }, [currentIndex, maxIndex])
+
   return (
     <Box id="servicios" py="20" bg="white">
       <Container maxW="container.xl">
@@ -85,76 +126,161 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
             </Text>
           </Box>
           
-          {/* Services Grid */}
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={{ base: '6', md: '8' }} w="100%">
-            {services.map((service, index) => (
-              <Card 
-                key={index} 
-                bg="white" 
-                boxShadow="xl" 
-                borderRadius="xl"
-                border="1px solid"
-                borderColor="gray.100"
-                overflow="hidden"
-                _hover={{
-                  transform: 'translateY(-4px)',
-                  boxShadow: '2xl',
-                  transition: 'all 0.3s'
-                }}
-                transition="all 0.3s"
+          {/* Services Carousel */}
+          <Box w="100%" position="relative" px={{ base: '0', md: '12' }}>
+            {/* Navigation Buttons */}
+            <IconButton
+              aria-label="Anterior"
+              icon={<FiChevronLeft />}
+              position="absolute"
+              left={{ base: '2', md: '-4' }}
+              top="50%"
+              transform="translateY(-50%)"
+              zIndex={2}
+              bg="white"
+              color="gray.700"
+              boxShadow="xl"
+              borderRadius="full"
+              size="lg"
+              onClick={prevSlide}
+              _hover={{
+                bg: 'red.600',
+                color: 'white',
+                transform: 'translateY(-50%) scale(1.1)'
+              }}
+              transition="all 0.3s"
+              display={{ base: 'none', md: 'flex' }}
+            />
+            
+            <IconButton
+              aria-label="Siguiente"
+              icon={<FiChevronRight />}
+              position="absolute"
+              right={{ base: '2', md: '-4' }}
+              top="50%"
+              transform="translateY(-50%)"
+              zIndex={2}
+              bg="white"
+              color="gray.700"
+              boxShadow="xl"
+              borderRadius="full"
+              size="lg"
+              onClick={nextSlide}
+              _hover={{
+                bg: 'red.600',
+                color: 'white',
+                transform: 'translateY(-50%) scale(1.1)'
+              }}
+              transition="all 0.3s"
+              display={{ base: 'none', md: 'flex' }}
+            />
+
+            {/* Carousel Container */}
+            <Box
+              overflow="hidden"
+              position="relative"
+              w="100%"
+            >
+              <Flex
+                transform={`translateX(-${currentIndex * (100 / cardsPerView)}%)`}
+                transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+                gap={{ base: '4', md: '6', lg: '8' }}
+                w={`${(services.length / cardsPerView) * 100}%`}
               >
-                {/* Image Section */}
-                <Box
-                  position="relative"
-                  h={{ base: '200px', md: '240px' }}
-                  overflow="hidden"
-                  bg="gray.100"
-                >
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    w="100%"
-                    h="100%"
-                    objectFit="cover"
-                    transition="transform 0.5s ease"
-                    _groupHover={{
-                      transform: 'scale(1.05)'
-                    }}
-                  />
-                  {/* Gradient overlay for better text readability */}
+                {services.map((service, index) => (
                   <Box
-                    position="absolute"
-                    bottom="0"
-                    left="0"
-                    right="0"
-                    h="60px"
-                    bgGradient="linear(to-t, rgba(0,0,0,0.3), transparent)"
-                    pointerEvents="none"
-                  />
-                </Box>
-                
-                <CardBody textAlign="center" p={{ base: '6', md: '8' }}>
-                  <Heading 
-                    size="md" 
-                    mb="3" 
-                    color="gray.800"
-                    fontWeight="700"
-                    fontSize={{ base: 'lg', md: 'xl' }}
+                    key={index}
+                    flex={`0 0 ${100 / cardsPerView}%`}
+                    px={{ base: '2', md: '0' }}
                   >
-                    {service.title}
-                  </Heading>
-                  
-                  <Text 
-                    color="gray.600" 
-                    fontSize={{ base: 'sm', md: 'md' }}
-                    lineHeight="1.6"
-                  >
-                    {service.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
-          </SimpleGrid>
+                    <Card 
+                      bg="white" 
+                      boxShadow="xl" 
+                      borderRadius="xl"
+                      border="1px solid"
+                      borderColor="gray.100"
+                      overflow="hidden"
+                      h="100%"
+                      _hover={{
+                        transform: 'translateY(-4px)',
+                        boxShadow: '2xl',
+                        transition: 'all 0.3s'
+                      }}
+                      transition="all 0.3s"
+                    >
+                      {/* Image Section */}
+                      <Box
+                        position="relative"
+                        h={{ base: '200px', md: '240px' }}
+                        overflow="hidden"
+                        bg="gray.100"
+                      >
+                        <Image
+                          src={service.image}
+                          alt={service.title}
+                          w="100%"
+                          h="100%"
+                          objectFit="cover"
+                          transition="transform 0.5s ease"
+                          _hover={{
+                            transform: 'scale(1.05)'
+                          }}
+                        />
+                        <Box
+                          position="absolute"
+                          bottom="0"
+                          left="0"
+                          right="0"
+                          h="60px"
+                          bgGradient="linear(to-t, rgba(0,0,0,0.3), transparent)"
+                          pointerEvents="none"
+                        />
+                      </Box>
+                      
+                      <CardBody textAlign="center" p={{ base: '6', md: '8' }}>
+                        <Heading 
+                          size="md" 
+                          mb="3" 
+                          color="gray.800"
+                          fontWeight="700"
+                          fontSize={{ base: 'lg', md: 'xl' }}
+                        >
+                          {service.title}
+                        </Heading>
+                        
+                        <Text 
+                          color="gray.600" 
+                          fontSize={{ base: 'sm', md: 'md' }}
+                          lineHeight="1.6"
+                        >
+                          {service.description}
+                        </Text>
+                      </CardBody>
+                    </Card>
+                  </Box>
+                ))}
+              </Flex>
+            </Box>
+
+            {/* Dots Indicator */}
+            <HStack spacing="2" justify="center" mt="8">
+              {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                <Box
+                  key={index}
+                  w={currentIndex === index ? '32px' : '8px'}
+                  h="8px"
+                  borderRadius="full"
+                  bg={currentIndex === index ? 'red.600' : 'gray.300'}
+                  transition="all 0.3s"
+                  cursor="pointer"
+                  onClick={() => setCurrentIndex(index)}
+                  _hover={{
+                    bg: currentIndex === index ? 'red.700' : 'gray.400'
+                  }}
+                />
+              ))}
+            </HStack>
+          </Box>
         </VStack>
       </Container>
     </Box>
