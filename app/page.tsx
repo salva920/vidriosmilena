@@ -66,7 +66,7 @@ export default function Home() {
   ]
 
   // Número de WhatsApp - puede configurarse mediante variable de entorno
-  const numeroWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '584122176537'
+  const numeroWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '56940665690'
 
   const onOpen = () => setIsOpen(true)
   const onClose = () => setIsOpen(false)
