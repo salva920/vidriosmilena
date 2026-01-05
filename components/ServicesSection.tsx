@@ -49,14 +49,14 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
   return (
     <Box id="servicios" py="20" bg="gray.50">
       <Container maxW="container.xl">
-        <VStack spacing="12">
+        <VStack spacing="8">
           {/* Header Section */}
           <Box 
             textAlign="center" 
             maxW="850px" 
             mx="auto"
             px={{ base: '4', md: '6' }}
-            mb="4"
+            w="100%"
           >
             <Heading 
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
@@ -64,7 +64,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
               fontWeight="800"
               letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
               textTransform="uppercase"
-              mb={{ base: '4', md: '6' }}
+              mb={{ base: '3', md: '4' }}
               lineHeight="1.1"
             >
               PRODUCTOS Y SERVICIOS
@@ -76,7 +76,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
               bgGradient="linear(to-r, red.400, red.600)"
               borderRadius="full"
               mx="auto"
-              mb={{ base: '8', md: '10' }}
+              mb={{ base: '6', md: '8' }}
               boxShadow="0 2px 8px rgba(229, 62, 62, 0.3)"
             />
           </Box>
