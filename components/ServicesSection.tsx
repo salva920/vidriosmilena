@@ -4,8 +4,44 @@ import { Box, Container, Heading, Text, VStack, Card, CardBody, Image, HStack, I
 import { useState, useEffect } from 'react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
+// Componente para carrusel interno de imágenes
+function ImageCarousel({ images, title }: { images: string[], title: string }) {
+  const [currentImgIndex, setCurrentImgIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImgIndex((prev) => (prev + 1) % images.length)
+    }, 3000) // Cambia cada 3 segundos
+
+    return () => clearInterval(interval)
+  }, [images.length])
+
+  return (
+    <Box position="relative" w="100%" h="100%">
+      {images.map((img, index) => (
+        <Image
+          key={index}
+          src={img}
+          alt={`${title} ${index + 1}`}
+          position="absolute"
+          top="0"
+          left="0"
+          w="100%"
+          h="100%"
+          objectFit="cover"
+          objectPosition="center"
+          opacity={index === currentImgIndex ? 1 : 0}
+          transition="opacity 0.8s ease-in-out"
+          pointerEvents="none"
+        />
+      ))}
+    </Box>
+  )
+}
+
 interface Service {
   image: string
+  images?: string[] // Para carrusel interno de múltiples imágenes
   title: string
   description: string
 }
@@ -22,7 +58,12 @@ const services: Service[] = [
     description: 'Protección adicional contra impactos y ruido, ideales para zonas de alto tráfico.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: '/img/espejo decorativo.jpg',
+    images: [
+      '/img/espejo decorativo.jpg',
+      '/img/espejo decorativo2.jpg',
+      '/img/espejo decorativo3.jpg'
+    ],
     title: 'Espejos Decorativos',
     description: 'Espejos de diferentes tamaños y formas para decorar y ampliar visualmente tu espacio.'
   },
@@ -220,22 +261,26 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                         overflow="hidden"
                         bg="gray.100"
                       >
-                        <Image
-                          src={service.image}
-                          alt={service.title}
-                          w="100%"
-                          h="100%"
-                          objectFit="cover"
-                          objectPosition="center"
-                          minH="100%"
-                          minW="100%"
-                          transition="transform 0.5s ease"
-                          sx={{
-                            '&:hover': {
-                              transform: 'scale(1.05)'
-                            }
-                          }}
-                        />
+                        {service.images && service.images.length > 1 ? (
+                          <ImageCarousel images={service.images} title={service.title} />
+                        ) : (
+                          <Image
+                            src={service.image}
+                            alt={service.title}
+                            w="100%"
+                            h="100%"
+                            objectFit="cover"
+                            objectPosition="center"
+                            minH="100%"
+                            minW="100%"
+                            transition="transform 0.5s ease"
+                            sx={{
+                              '&:hover': {
+                                transform: 'scale(1.05)'
+                              }
+                            }}
+                          />
+                        )}
                         <Box
                           position="absolute"
                           bottom="0"
