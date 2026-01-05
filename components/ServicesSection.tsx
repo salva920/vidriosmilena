@@ -49,12 +49,14 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
   return (
     <Box id="servicios" py="20" bg="gray.50">
       <Container maxW="container.xl">
-        <VStack spacing="20">
+        <VStack spacing="12">
+          {/* Header Section */}
           <Box 
             textAlign="center" 
             maxW="850px" 
             mx="auto"
             px={{ base: '4', md: '6' }}
+            mb="4"
           >
             <Heading 
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
@@ -77,14 +79,19 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
               mb={{ base: '8', md: '10' }}
               boxShadow="0 2px 8px rgba(229, 62, 62, 0.3)"
             />
-            
+          </Box>
+
+          {/* Integrated Content: Description Card + Service Cards */}
+          <VStack spacing="8" w="100%">
+            {/* Description Card - Same style as service cards */}
             <Box
               bg="white"
               p={{ base: '6', md: '8', lg: '10' }}
               borderRadius="xl"
-              boxShadow="0 4px 20px rgba(0, 0, 0, 0.08)"
-              border="1px solid"
-              borderColor="gray.100"
+              boxShadow="xl"
+              w="100%"
+              maxW="1200px"
+              mx="auto"
             >
               <VStack spacing={{ base: '5', md: '6' }} align="stretch">
                 <Text 
@@ -118,9 +125,9 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                 </Text>
               </VStack>
             </Box>
-          </Box>
-          
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="8">
+
+            {/* Service Cards Grid */}
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="8" w="100%">
             {services.map((service, index) => (
               <Card key={index} bg="white" overflow="hidden" boxShadow="xl" borderRadius="xl">
                 <Image
@@ -148,7 +155,8 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                 </CardBody>
               </Card>
             ))}
-          </SimpleGrid>
+            </SimpleGrid>
+          </VStack>
         </VStack>
       </Container>
     </Box>
