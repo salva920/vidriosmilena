@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <Box>
       <Navbar />
-      <Box pt="120px">
+      <Box pt={{ base: '80px', md: '120px' }}>
         <HeroSection
         rotatingTitles={rotatingTitles}
         images={images}

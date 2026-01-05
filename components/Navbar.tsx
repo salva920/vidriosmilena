@@ -12,13 +12,23 @@ import {
   IconButton,
   Link,
   Heading,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  VStack,
+  useDisclosure,
+  Button,
 } from '@chakra-ui/react'
-import { FiSearch } from 'react-icons/fi'
+import { FiSearch, FiMenu } from 'react-icons/fi'
 import { useState } from 'react'
 
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState('')
   const [activeLink, setActiveLink] = useState('')
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -43,12 +53,13 @@ export default function Navbar() {
       window.scrollTo({ top: y, behavior: 'smooth' })
     }
     setActiveLink(id)
+    onClose() // Cerrar el drawer en mobile después de hacer clic
   }
 
   return (
     <Box position="fixed" top="0" left="0" right="0" zIndex="1000" bg="white">
       {/* Top Bar - Dark Blue */}
-      <Box bg="blue.900" py="2">
+      <Box bg="blue.900" py={{ base: '1', md: '2' }} display={{ base: 'none', md: 'block' }}>
         <Container maxW="container.xl">
           <Flex
             justify="space-between"
@@ -94,20 +105,20 @@ export default function Navbar() {
       </Box>
 
       {/* Bottom Bar - White */}
-      <Box bg="white" borderBottom="1px solid" borderColor="gray.200" py="4">
+      <Box bg="white" borderBottom="1px solid" borderColor="gray.200" py={{ base: '3', md: '4' }}>
         <Container maxW="container.xl">
           <Flex
             justify="space-between"
             align="center"
-            flexWrap="wrap"
+            flexWrap="nowrap"
             gap="4"
           >
             {/* Logo */}
-            <HStack spacing="3">
+            <HStack spacing={{ base: '2', md: '3' }} flexShrink={0}>
               <Box
                 position="relative"
-                w="40px"
-                h="40px"
+                w={{ base: '32px', md: '40px' }}
+                h={{ base: '32px', md: '40px' }}
               >
                 {/* Logo geométrico rojo y azul */}
                 <Box
@@ -120,20 +131,23 @@ export default function Navbar() {
                 />
               </Box>
               <Heading
-                size="lg"
+                size={{ base: 'md', md: 'lg' }}
                 fontWeight="bold"
                 letterSpacing="tight"
                 textTransform="uppercase"
+                display={{ base: 'none', sm: 'block' }}
               >
                 <Text as="span" color="blue.600">MILE</Text>
                 <Text as="span" color="gray.900">GLASS</Text>
               </Heading>
             </HStack>
 
-            {/* Navigation Links */}
+            {/* Navigation Links - Desktop */}
             <HStack
               spacing="8"
               display={{ base: 'none', md: 'flex' }}
+              flex="1"
+              justify="center"
             >
               <Link
                 onClick={() => scrollToSection('NOSOTROS')}
@@ -203,7 +217,7 @@ export default function Navbar() {
               </Link>
             </HStack>
 
-            {/* Search Bar */}
+            {/* Search Bar - Desktop */}
             <Box flex="1" maxW="300px" display={{ base: 'none', lg: 'block' }}>
               <form onSubmit={handleSearch}>
                 <InputGroup size="sm">
@@ -229,9 +243,131 @@ export default function Navbar() {
                 </InputGroup>
               </form>
             </Box>
+
+            {/* Mobile Menu Button */}
+            <IconButton
+              aria-label="Abrir menú"
+              icon={<FiMenu />}
+              variant="ghost"
+              size="md"
+              display={{ base: 'flex', md: 'none' }}
+              onClick={onOpen}
+              color="gray.700"
+            />
           </Flex>
         </Container>
       </Box>
+
+      {/* Mobile Drawer Menu */}
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader borderBottomWidth="1px">
+            <HStack spacing="2">
+              <Box
+                position="relative"
+                w="32px"
+                h="32px"
+              >
+                <Box
+                  position="absolute"
+                  w="100%"
+                  h="100%"
+                  bgGradient="linear(to-br, red.500, blue.500)"
+                  clipPath="polygon(0 0, 100% 0, 50% 100%)"
+                  borderRadius="sm"
+                />
+              </Box>
+              <Heading size="md" fontWeight="bold" letterSpacing="tight" textTransform="uppercase">
+                <Text as="span" color="blue.600">MILE</Text>
+                <Text as="span" color="gray.900">GLASS</Text>
+              </Heading>
+            </HStack>
+          </DrawerHeader>
+
+          <DrawerBody pt="6">
+            <VStack spacing="4" align="stretch">
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                fontWeight="semibold"
+                color={activeLink === 'NOSOTROS' ? 'blue.600' : 'gray.700'}
+                onClick={() => scrollToSection('NOSOTROS')}
+                textTransform="uppercase"
+                fontSize="sm"
+                _hover={{ bg: 'gray.100', color: 'blue.600' }}
+              >
+                NOSOTROS
+              </Button>
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                fontWeight="semibold"
+                color={activeLink === 'SERVICIOS' ? 'blue.600' : 'gray.700'}
+                onClick={() => scrollToSection('SERVICIOS')}
+                textTransform="uppercase"
+                fontSize="sm"
+                _hover={{ bg: 'gray.100', color: 'blue.600' }}
+              >
+                ¿QUÉ HACEMOS?
+              </Button>
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                fontWeight="semibold"
+                color={activeLink === 'CONTACTO' ? 'blue.600' : 'gray.700'}
+                onClick={() => scrollToSection('CONTACTO')}
+                textTransform="uppercase"
+                fontSize="sm"
+                _hover={{ bg: 'gray.100', color: 'blue.600' }}
+              >
+                CONTACTO
+              </Button>
+
+              {/* Contact Info in Mobile Menu */}
+              <Box pt="6" borderTopWidth="1px" borderColor="gray.200">
+                <VStack spacing="3" align="stretch">
+                  <HStack spacing="2">
+                    <Text fontSize="lg" color="red.500">📍</Text>
+                    <Text fontSize="sm" color="gray.600">
+                      Paracotos 1201, Miranda, Venezuela
+                    </Text>
+                  </HStack>
+                  <HStack spacing="2">
+                    <Text fontSize="lg" color="red.500">📞</Text>
+                    <Text fontSize="sm" color="gray.600">
+                      +58 (412) 239 0689
+                    </Text>
+                  </HStack>
+                  <HStack spacing="4" pt="2">
+                    <Link
+                      href="https://facebook.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      fontSize="xl"
+                      color="blue.600"
+                      _hover={{ color: 'blue.700' }}
+                    >
+                      f
+                    </Link>
+                    <Link
+                      href="https://instagram.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      fontSize="xl"
+                      color="blue.600"
+                      _hover={{ color: 'blue.700' }}
+                    >
+                      📷
+                    </Link>
+                  </HStack>
+                </VStack>
+              </Box>
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Box>
   )
 }
