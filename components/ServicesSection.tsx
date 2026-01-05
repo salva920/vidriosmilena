@@ -48,7 +48,12 @@ interface Service {
 
 const services: Service[] = [
   {
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: '/img/vidrioT.jpg',
+    images: [
+      '/img/vidrioT.jpg',
+      '/img/vidriot2.jpg',
+      '/img/vidriot3.jpg'
+    ],
     title: 'Vidrios Templados',
     description: 'Cristales de seguridad resistentes y duraderos para ventanas, puertas y divisiones.'
   },
