@@ -72,7 +72,7 @@ export default function Navbar() {
             <HStack spacing="6">
               <HStack spacing="2">
                 <Text fontSize="lg" color="red.500">📍</Text>
-                <Text>Paracotos 1201, Miranda, Venezuela</Text>
+                <Text>Maipu, Santiago, Chile</Text>
               </HStack>
               <HStack spacing="2">
                 <Text fontSize="lg" color="red.500">📞</Text>
