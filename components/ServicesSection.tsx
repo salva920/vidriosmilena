@@ -1,41 +1,41 @@
 'use client'
 
-import { Box, Container, Heading, Text, VStack, SimpleGrid, Card, CardBody } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, SimpleGrid, Card, CardBody, Image } from '@chakra-ui/react'
 
 interface Service {
-  icon: string
+  image: string
   title: string
   description: string
 }
 
 const services: Service[] = [
   {
-    icon: '🔲',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     title: 'Vidrios Templados',
     description: 'Cristales de seguridad resistentes y duraderos para ventanas, puertas y divisiones.'
   },
   {
-    icon: '🪟',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     title: 'Vidrios Laminados',
     description: 'Protección adicional contra impactos y ruido, ideales para zonas de alto tráfico.'
   },
   {
-    icon: '🪞',
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     title: 'Espejos Decorativos',
     description: 'Espejos de diferentes tamaños y formas para decorar y ampliar visualmente tu espacio.'
   },
   {
-    icon: '🪑',
+    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     title: 'Cristales para Muebles',
     description: 'Vidrios especializados para estanterías, mesas, vitrinas y muebles modernos.'
   },
   {
-    icon: '🔧',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     title: 'Instalación Profesional',
     description: 'Servicio de instalación con técnicos especializados y herramientas profesionales.'
   },
   {
-    icon: '🛠️',
+    image: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     title: 'Reparación y Mantenimiento',
     description: 'Servicio de reparación de vidrios dañados y mantenimiento preventivo.'
   }
@@ -95,6 +95,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                 borderRadius="xl"
                 border="1px solid"
                 borderColor="gray.100"
+                overflow="hidden"
                 _hover={{
                   transform: 'translateY(-4px)',
                   boxShadow: '2xl',
@@ -102,25 +103,37 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                 }}
                 transition="all 0.3s"
               >
-                <CardBody textAlign="center" p={{ base: '6', md: '8' }}>
-                  {/* Icon in red square */}
+                {/* Image Section */}
+                <Box
+                  position="relative"
+                  h={{ base: '200px', md: '240px' }}
+                  overflow="hidden"
+                  bg="gray.100"
+                >
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    w="100%"
+                    h="100%"
+                    objectFit="cover"
+                    transition="transform 0.5s ease"
+                    _groupHover={{
+                      transform: 'scale(1.05)'
+                    }}
+                  />
+                  {/* Gradient overlay for better text readability */}
                   <Box
-                    w={{ base: '14', md: '16' }}
-                    h={{ base: '14', md: '16' }}
-                    bg="red.600"
-                    borderRadius="lg"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    mb="5"
-                    mx="auto"
-                    boxShadow="0 4px 12px rgba(229, 62, 62, 0.3)"
-                  >
-                    <Text color="white" fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold">
-                      {service.icon}
-                    </Text>
-                  </Box>
-                  
+                    position="absolute"
+                    bottom="0"
+                    left="0"
+                    right="0"
+                    h="60px"
+                    bgGradient="linear(to-t, rgba(0,0,0,0.3), transparent)"
+                    pointerEvents="none"
+                  />
+                </Box>
+                
+                <CardBody textAlign="center" p={{ base: '6', md: '8' }}>
                   <Heading 
                     size="md" 
                     mb="3" 
