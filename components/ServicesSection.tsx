@@ -158,7 +158,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
           </Box>
           
           {/* Services Carousel */}
-          <Box w="100%" position="relative" px={{ base: '12', md: '20', lg: '32' }}>
+          <Box w="100%" position="relative" px={{ base: '0', md: '16', lg: '20' }}>
             {/* Navigation Buttons */}
             <IconButton
               aria-label="Anterior"
@@ -209,7 +209,6 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
               position="relative"
               w="100%"
               mx="auto"
-              maxW={{ base: '100%', md: '600px', lg: '700px' }}
             >
               <Box
                 position="relative"
