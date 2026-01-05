@@ -95,26 +95,9 @@ interface ServicesSectionProps {
 
 export default function ServicesSection({ onScrollToContact }: ServicesSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [cardsPerView, setCardsPerView] = useState(3)
+  const cardsPerView = 1 // Siempre mostrar solo una tarjeta centrada
 
-  // Ajustar número de tarjetas visibles según el tamaño de pantalla
-  useEffect(() => {
-    const updateCardsPerView = () => {
-      if (window.innerWidth < 768) {
-        setCardsPerView(1)
-      } else if (window.innerWidth < 1024) {
-        setCardsPerView(2)
-      } else {
-        setCardsPerView(3)
-      }
-    }
-
-    updateCardsPerView()
-    window.addEventListener('resize', updateCardsPerView)
-    return () => window.removeEventListener('resize', updateCardsPerView)
-  }, [])
-
-  const maxIndex = Math.max(0, services.length - cardsPerView)
+  const maxIndex = services.length - 1
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
@@ -173,7 +156,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
           </Box>
           
           {/* Services Carousel */}
-          <Box w="100%" position="relative" px={{ base: '0', md: '16', lg: '20' }}>
+          <Box w="100%" position="relative" px={{ base: '4', md: '20', lg: '32' }}>
             {/* Navigation Buttons */}
             <IconButton
               aria-label="Anterior"
@@ -195,7 +178,6 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                 transform: 'translateY(-50%) scale(1.1)'
               }}
               transition="all 0.3s"
-              display={{ base: 'none', md: 'flex' }}
             />
             
             <IconButton
@@ -218,7 +200,6 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                 transform: 'translateY(-50%) scale(1.1)'
               }}
               transition="all 0.3s"
-              display={{ base: 'none', md: 'flex' }}
             />
 
             {/* Carousel Container */}
@@ -227,23 +208,22 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
               position="relative"
               w="100%"
               mx="auto"
-              px={{ base: '4', md: '0' }}
             >
               <Flex
-                transform={`translateX(-${currentIndex * (100 / cardsPerView)}%)`}
+                transform={`translateX(-${currentIndex * 100}%)`}
                 transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
-                gap={{ base: '4', md: '6', lg: '8' }}
                 style={{
-                  width: `${(services.length / cardsPerView) * 100}%`
+                  width: `${services.length * 100}%`
                 }}
               >
                 {services.map((service, index) => (
                   <Box
                     key={index}
-                    flex={`0 0 ${100 / cardsPerView}%`}
-                    minW={`${100 / cardsPerView}%`}
-                    maxW={`${100 / cardsPerView}%`}
-                    px={{ base: '2', md: '0' }}
+                    flex="0 0 100%"
+                    minW="100%"
+                    maxW="100%"
+                    w="100%"
+                    px={{ base: '0', md: '4' }}
                   >
                     <Card 
                       bg="white" 
@@ -331,7 +311,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
 
             {/* Dots Indicator */}
             <HStack spacing="2" justify="center" mt="8">
-              {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+              {services.map((_, index) => (
                 <Box
                   key={index}
                   w={currentIndex === index ? '32px' : '8px'}
