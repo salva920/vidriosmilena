@@ -173,7 +173,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
           </Box>
           
           {/* Services Carousel */}
-          <Box w="100%" position="relative" px={{ base: '4', md: '16', lg: '20' }}>
+          <Box w="100%" position="relative" px={{ base: '0', md: '16', lg: '20' }}>
             {/* Navigation Buttons */}
             <IconButton
               aria-label="Anterior"
@@ -227,6 +227,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
               position="relative"
               w="100%"
               mx="auto"
+              px={{ base: '4', md: '0' }}
             >
               <Flex
                 transform={`translateX(-${currentIndex * (100 / cardsPerView)}%)`}
@@ -240,7 +241,9 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                   <Box
                     key={index}
                     flex={`0 0 ${100 / cardsPerView}%`}
-                    minW="0"
+                    minW={`${100 / cardsPerView}%`}
+                    maxW={`${100 / cardsPerView}%`}
+                    px={{ base: '2', md: '0' }}
                   >
                     <Card 
                       bg="white" 
@@ -248,9 +251,11 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                       borderRadius="xl"
                       border="1px solid"
                       borderColor="gray.100"
-                      overflow="hidden"
+                      overflow="visible"
                       h="100%"
                       w="100%"
+                      display="flex"
+                      flexDirection="column"
                       _hover={{
                         transform: 'translateY(-4px)',
                         boxShadow: '2xl',
@@ -261,10 +266,11 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                       {/* Image Section */}
                       <Box
                         position="relative"
-                        h={{ base: '180px', sm: '200px', md: '240px' }}
+                        h={{ base: '200px', sm: '220px', md: '240px' }}
                         w="100%"
                         overflow="hidden"
                         bg="gray.100"
+                        flexShrink={0}
                       >
                         {service.images && service.images.length > 1 ? (
                           <ImageCarousel images={service.images} title={service.title} />
@@ -276,14 +282,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                             h="100%"
                             objectFit="cover"
                             objectPosition="center"
-                            minH="100%"
-                            minW="100%"
-                            transition="transform 0.5s ease"
-                            sx={{
-                              '&:hover': {
-                                transform: 'scale(1.05)'
-                              }
-                            }}
+                            display="block"
                           />
                         )}
                         <Box
@@ -297,20 +296,28 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                         />
                       </Box>
                       
-                      <CardBody textAlign="center" p={{ base: '5', md: '8' }}>
+                      <CardBody 
+                        textAlign="center" 
+                        p={{ base: '6', md: '8' }}
+                        flex="1"
+                        display="flex"
+                        flexDirection="column"
+                        justifyContent="center"
+                      >
                         <Heading 
                           size="md" 
                           mb="3" 
                           color="gray.800"
                           fontWeight="700"
-                          fontSize={{ base: 'md', sm: 'lg', md: 'xl' }}
+                          fontSize={{ base: 'lg', sm: 'xl', md: 'xl' }}
+                          lineHeight="1.2"
                         >
                           {service.title}
                         </Heading>
                         
                         <Text 
                           color="gray.600" 
-                          fontSize={{ base: 'xs', sm: 'sm', md: 'md' }}
+                          fontSize={{ base: 'sm', sm: 'md', md: 'md' }}
                           lineHeight="1.6"
                         >
                           {service.description}
