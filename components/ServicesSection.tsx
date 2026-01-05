@@ -33,6 +33,8 @@ function ImageCarousel({ images, title }: { images: string[], title: string }) {
           opacity={index === currentImgIndex ? 1 : 0}
           transition="opacity 0.8s ease-in-out"
           pointerEvents="none"
+          zIndex={index === currentImgIndex ? 1 : 0}
+          loading={index === 0 ? 'eager' : 'lazy'}
         />
       ))}
     </Box>
@@ -212,9 +214,9 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
               <Flex
                 transform={`translateX(-${currentIndex * 100}%)`}
                 transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
-                style={{
-                  width: `${services.length * 100}%`
-                }}
+                w={`${services.length * 100}%`}
+                minW={`${services.length * 100}%`}
+                style={{ willChange: 'transform' }}
               >
                 {services.map((service, index) => (
                   <Box
@@ -224,6 +226,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                     maxW="100%"
                     w="100%"
                     px={{ base: '0', md: '4' }}
+                    position="relative"
                   >
                     <Card 
                       bg="white" 
@@ -231,7 +234,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                       borderRadius="xl"
                       border="1px solid"
                       borderColor="gray.100"
-                      overflow="visible"
+                      overflow="hidden"
                       h="100%"
                       w="100%"
                       display="flex"
@@ -262,7 +265,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                             h="100%"
                             objectFit="cover"
                             objectPosition="center"
-                            display="block"
+                            loading="lazy"
                           />
                         )}
                         <Box
