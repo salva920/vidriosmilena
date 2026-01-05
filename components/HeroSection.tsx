@@ -2,7 +2,6 @@
 
 import { Box, Container, Button, VStack, Heading } from '@chakra-ui/react'
 import TitleCarousel from './TitleCarousel'
-import ImageCarousel from './ImageCarousel'
 
 interface RotatingTitle {
   line1: string
@@ -33,7 +32,7 @@ export default function HeroSection({
       position="relative"
       overflow="hidden"
     >
-      {/* Imagen de fondo con carrusel */}
+      {/* Video de fondo */}
       <Box
         position="absolute"
         top="0"
@@ -41,8 +40,25 @@ export default function HeroSection({
         width="100%"
         height="100%"
         zIndex={1}
+        overflow="hidden"
       >
-        <ImageCarousel images={images} />
+        <Box
+          as="video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          position="absolute"
+          top="50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          minW="100%"
+          minH="100%"
+          width="auto"
+          height="auto"
+          objectFit="cover"
+          src="/fondo home.mp4"
+        />
       </Box>
       
       {/* Overlay oscuro para mejorar legibilidad */}
