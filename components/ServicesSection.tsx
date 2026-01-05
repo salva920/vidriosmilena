@@ -52,10 +52,17 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
         <VStack spacing="16">
           <Box textAlign="center">
             <Heading size="2xl" mb="4" color="gray.800">
-              Nuestros Servicios
+              PRODUCTOS Y SERVICIOS
             </Heading>
-            <Text fontSize="lg" color="gray.600" maxW="600px">
-              Soluciones completas en vidrios para hogares y empresas
+            <Box
+              w="60px"
+              h="3px"
+              bg="red.500"
+              mx="auto"
+              mb="6"
+            />
+            <Text fontSize="lg" color="gray.600" maxW="800px" mx="auto" lineHeight="tall">
+              Nos caracterizamos por nuestro diseño tecnológico, innovador y funcional. Nuestra línea de maquinarias modernas nos han permitido dar un paso más en la fabricación de vidrio templado y laminado, brindándote una amplia y moderna selección de productos. Si necesitas más información, no dudes en contactar con nosotros y pedirnos un presupuesto sin ningún compromiso.
             </Text>
           </Box>
           
