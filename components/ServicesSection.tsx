@@ -134,9 +134,9 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
   }, [currentIndex, maxIndex])
 
   return (
-    <Box id="servicios" py="20" bg="white">
+    <Box id="servicios" py={{ base: '12', md: '16' }} bg="white">
       <Container maxW="container.xl">
-        <VStack spacing="12">
+        <VStack spacing={{ base: '8', md: '10' }}>
           {/* Header Section */}
           <Box textAlign="center" maxW="850px" mx="auto" px={{ base: '4', md: '6' }} w="100%">
             <Heading 
@@ -266,7 +266,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                       {/* Image Section */}
                       <Box
                         position="relative"
-                        h={{ base: '200px', sm: '220px', md: '240px' }}
+                        h={{ base: '240px', sm: '280px', md: '320px', lg: '340px' }}
                         w="100%"
                         overflow="hidden"
                         bg="gray.100"
