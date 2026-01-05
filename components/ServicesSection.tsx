@@ -158,7 +158,7 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
           </Box>
           
           {/* Services Carousel */}
-          <Box w="100%" position="relative" px={{ base: '4', md: '20', lg: '32' }}>
+          <Box w="100%" position="relative" px={{ base: '12', md: '20', lg: '32' }}>
             {/* Navigation Buttons */}
             <IconButton
               aria-label="Anterior"
@@ -206,25 +206,27 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
 
             {/* Carousel Container */}
             <Box
-              overflow="hidden"
               position="relative"
               w="100%"
               mx="auto"
+              maxW={{ base: '100%', md: '600px', lg: '700px' }}
             >
               <Box
-                display="flex"
-                transform={`translateX(-${currentIndex * 100}%)`}
-                transition="transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
-                w={`${services.length * 100}%`}
+                position="relative"
+                w="100%"
+                minH="500px"
               >
                 {services.map((service, index) => (
                   <Box
                     key={index}
-                    flex="0 0 100%"
+                    position={index === currentIndex ? 'relative' : 'absolute'}
+                    top="0"
+                    left="0"
                     w="100%"
-                    px={{ base: '0', md: '4' }}
-                    position="relative"
-                    boxSizing="border-box"
+                    opacity={index === currentIndex ? 1 : 0}
+                    pointerEvents={index === currentIndex ? 'auto' : 'none'}
+                    transition="opacity 0.5s ease-in-out"
+                    zIndex={index === currentIndex ? 1 : 0}
                   >
                     <Card 
                       bg="white" 
@@ -233,7 +235,6 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                       border="1px solid"
                       borderColor="gray.100"
                       overflow="hidden"
-                      h="auto"
                       w="100%"
                       display="flex"
                       flexDirection="column"
@@ -251,7 +252,6 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                         w="100%"
                         overflow="hidden"
                         bg="gray.100"
-                        flexShrink={0}
                       >
                         {service.images && service.images.length > 1 ? (
                           <ImageCarousel images={service.images} title={service.title} />
@@ -263,8 +263,6 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                             h="100%"
                             objectFit="cover"
                             objectPosition="center"
-                            loading="lazy"
-                            display="block"
                           />
                         )}
                         <Box
@@ -282,10 +280,6 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
                       <CardBody 
                         textAlign="center" 
                         p={{ base: '6', md: '8' }}
-                        flex="1"
-                        display="flex"
-                        flexDirection="column"
-                        justifyContent="center"
                       >
                         <Heading 
                           size="md" 
