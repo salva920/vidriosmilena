@@ -32,32 +32,6 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
           gap={{ base: '8', lg: '12' }}
           align="stretch"
         >
-          {/* Left Side - Video */}
-          <Box 
-            flex={{ base: '1', lg: '1' }}
-            position="relative"
-            borderRadius="xl"
-            overflow="hidden"
-            bg="gray.100"
-            minH={{ base: '300px', md: '400px', lg: '600px' }}
-            order={{ base: 2, lg: 1 }}
-          >
-            <Box
-              as="video"
-              autoPlay
-              loop
-              muted
-              playsInline
-              w="100%"
-              h="100%"
-              objectFit="cover"
-              position="absolute"
-              top="0"
-              left="0"
-              src="/img/shower1.mp4"
-            />
-          </Box>
-
           {/* Right Side - Content */}
           <Box 
             flex={{ base: '1', lg: '1' }}
@@ -126,6 +100,32 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
                 ))}
               </SimpleGrid>
 
+              {/* Video - Mobile only (appears after gallery, before button) */}
+              <Box 
+                display={{ base: 'block', lg: 'none' }}
+                position="relative"
+                borderRadius="xl"
+                overflow="hidden"
+                bg="gray.100"
+                minH="300px"
+                mt="6"
+              >
+                <Box
+                  as="video"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  w="100%"
+                  h="100%"
+                  objectFit="cover"
+                  position="absolute"
+                  top="0"
+                  left="0"
+                  src="/img/shower1.mp4"
+                />
+              </Box>
+
               {/* CTA Button */}
               <Button
                 onClick={onOpenModal}
@@ -149,6 +149,32 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
                 Cotizar
               </Button>
             </VStack>
+          </Box>
+
+          {/* Left Side - Video (Desktop only) */}
+          <Box 
+            flex={{ base: '1', lg: '1' }}
+            position="relative"
+            borderRadius="xl"
+            overflow="hidden"
+            bg="gray.100"
+            minH={{ base: '300px', md: '400px', lg: '600px' }}
+            display={{ base: 'none', lg: 'block' }}
+          >
+            <Box
+              as="video"
+              autoPlay
+              loop
+              muted
+              playsInline
+              w="100%"
+              h="100%"
+              objectFit="cover"
+              position="absolute"
+              top="0"
+              left="0"
+              src="/img/shower1.mp4"
+            />
           </Box>
         </Flex>
       </Container>
