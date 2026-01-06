@@ -6,7 +6,6 @@ import {
   Heading,
   Text,
   VStack,
-  SimpleGrid,
   Image,
   Button,
   Modal,
@@ -15,9 +14,11 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  Flex,
+  IconButton,
+  HStack,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 interface VentanasSectionProps {
   onOpenModal?: () => void
@@ -38,6 +39,25 @@ const galleryImages = [
 export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  // Auto-play carousel
+  useEffect(() => {
+    if (galleryImages.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % galleryImages.length)
+      }, 5000)
+      return () => clearInterval(interval)
+    }
+  }, [])
+
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev + 1) % galleryImages.length)
+  }
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)
+  }
 
   const handleImageClick = (image: string) => {
     setSelectedImage(image)
@@ -49,110 +69,165 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
   return (
     <Box id="ventanas" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
-        <Flex
-          direction={{ base: 'column', lg: 'row' }}
-          gap={{ base: '8', lg: '12' }}
-          align="stretch"
-        >
-          {/* Left Side - Content */}
-          <Box 
-            flex={{ base: '1', lg: '1' }}
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            order={{ base: 1, lg: 1 }}
-          >
-            <VStack spacing="6" align="stretch">
-              {/* Title */}
-              <Heading 
-                fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-                color="gray.900"
-                fontWeight="800"
-                letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
-                textTransform="uppercase"
-                lineHeight="1.1"
-              >
-                VENTANAS DE PVC Y ALUMINIO
-              </Heading>
-              
-              {/* Subtitle */}
-              <Text 
-                fontSize={{ base: 'lg', md: 'xl' }}
-                color="gray.700"
-                fontWeight="600"
-              >
-                Tecnología, estilo y eficiencia
-              </Text>
-              
-              {/* Description */}
-              <Text 
-                fontSize={{ base: 'md', md: 'lg' }}
-                color="gray.600"
-                lineHeight="1.7"
-              >
-                Contar con nuestras ventanas de alto rendimiento marca la diferencia en cualquier espacio. Ofrecemos opciones en PVC, aluminio y RPT (Rotura de Puente Térmico) que combinados con nuestros cristales de alto rendimiento.
-              </Text>
-
-              {/* CTA Button */}
-              <Button
-                onClick={onOpenModal}
-                bg="red.600"
-                color="white"
-                fontWeight="bold"
-                textTransform="uppercase"
-                fontSize={{ base: 'sm', md: 'md' }}
-                px={{ base: '6', md: '8' }}
-                py={{ base: '5', md: '6' }}
-                borderRadius="md"
-                mt="4"
-                alignSelf="flex-start"
-                _hover={{
-                  bg: 'red.700',
-                  transform: 'translateY(-2px)',
-                  boxShadow: 'lg'
-                }}
-                transition="all 0.3s"
-              >
-                Cotizar
-              </Button>
-            </VStack>
+        <VStack spacing="8" align="stretch">
+          {/* Header Section - Centered */}
+          <Box textAlign="center" maxW="900px" mx="auto" w="100%">
+            <Heading 
+              fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
+              color="gray.900"
+              fontWeight="800"
+              letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
+              textTransform="uppercase"
+              lineHeight="1.1"
+              mb="4"
+            >
+              VENTANAS DE PVC Y ALUMINIO
+            </Heading>
+            
+            <Text 
+              fontSize={{ base: 'lg', md: 'xl' }}
+              color="gray.700"
+              fontWeight="600"
+              mb="4"
+            >
+              Tecnología, estilo y eficiencia
+            </Text>
+            
+            <Text 
+              fontSize={{ base: 'md', md: 'lg' }}
+              color="gray.600"
+              lineHeight="1.7"
+              maxW="800px"
+              mx="auto"
+            >
+              Contar con nuestras ventanas de alto rendimiento marca la diferencia en cualquier espacio. Ofrecemos opciones en PVC, aluminio y RPT (Rotura de Puente Térmico) que combinados con nuestros cristales de alto rendimiento.
+            </Text>
           </Box>
 
-          {/* Right Side - Gallery */}
+          {/* Carousel - Centered */}
           <Box 
-            flex={{ base: '1', lg: '1' }}
-            order={{ base: 2, lg: 2 }}
+            position="relative"
+            borderRadius="xl"
+            overflow="hidden"
+            bg="gray.100"
+            w="100%"
+            maxW="800px"
+            mx="auto"
+            h={{ base: '350px', md: '450px', lg: '550px' }}
+            cursor="pointer"
+            onClick={() => handleImageClick(galleryImages[currentIndex])}
           >
-            <SimpleGrid columns={2} spacing="4">
-              {galleryImages.map((image, index) => (
-                <Box
-                  key={index}
-                  position="relative"
-                  borderRadius="lg"
-                  overflow="hidden"
-                  bg="gray.100"
-                  h={{ base: '150px', md: '180px', lg: '200px' }}
-                  _hover={{
-                    transform: 'scale(1.05)',
-                    transition: 'transform 0.3s'
+            {galleryImages.map((image, index) => (
+              <Image
+                key={index}
+                src={image}
+                alt={`Ventana ${index + 1}`}
+                position="absolute"
+                top="0"
+                left="0"
+                w="100%"
+                h="100%"
+                objectFit="contain"
+                objectPosition="center"
+                opacity={index === currentIndex ? 1 : 0}
+                transition="opacity 0.8s ease-in-out"
+                zIndex={index === currentIndex ? 1 : 0}
+                pointerEvents="none"
+              />
+            ))}
+            
+            {/* Navigation Buttons */}
+            {galleryImages.length > 1 && (
+              <>
+                <IconButton
+                  aria-label="Imagen anterior"
+                  icon={<FiChevronLeft />}
+                  position="absolute"
+                  left="4"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  zIndex={2}
+                  bg="rgba(0, 0, 0, 0.5)"
+                  color="white"
+                  borderRadius="full"
+                  size={{ base: 'md', md: 'lg' }}
+                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    prevImage()
                   }}
-                  transition="transform 0.3s"
-                  cursor="pointer"
-                  onClick={() => handleImageClick(image)}
+                />
+                <IconButton
+                  aria-label="Imagen siguiente"
+                  icon={<FiChevronRight />}
+                  position="absolute"
+                  right="4"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  zIndex={2}
+                  bg="rgba(0, 0, 0, 0.5)"
+                  color="white"
+                  borderRadius="full"
+                  size={{ base: 'md', md: 'lg' }}
+                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    nextImage()
+                  }}
+                />
+                
+                {/* Pagination Dots */}
+                <HStack
+                  position="absolute"
+                  bottom="4"
+                  left="50%"
+                  transform="translateX(-50%)"
+                  zIndex={2}
+                  spacing="2"
                 >
-                  <Image
-                    src={image}
-                    alt={`Ventana ${index + 1}`}
-                    w="100%"
-                    h="100%"
-                    objectFit="cover"
-                    objectPosition="center"
-                  />
-                </Box>
-              ))}
-            </SimpleGrid>
+                  {galleryImages.map((_, index) => (
+                    <Box
+                      key={index}
+                      w={{ base: '8px', md: '10px' }}
+                      h={{ base: '8px', md: '10px' }}
+                      borderRadius="full"
+                      bg={index === currentIndex ? 'white' : 'rgba(255, 255, 255, 0.5)'}
+                      cursor="pointer"
+                      transition="all 0.3s"
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation()
+                        setCurrentIndex(index)
+                      }}
+                    />
+                  ))}
+                </HStack>
+              </>
+            )}
           </Box>
-        </Flex>
+
+          {/* CTA Button - Centered */}
+          <Box textAlign="center">
+            <Button
+              onClick={onOpenModal}
+              bg="red.600"
+              color="white"
+              fontWeight="bold"
+              textTransform="uppercase"
+              fontSize={{ base: 'sm', md: 'md' }}
+              px={{ base: '6', md: '8' }}
+              py={{ base: '5', md: '6' }}
+              borderRadius="md"
+              _hover={{
+                bg: 'red.700',
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg'
+              }}
+              transition="all 0.3s"
+            >
+              Cotizar
+            </Button>
+          </Box>
+        </VStack>
       </Container>
 
       {/* Image Modal */}
@@ -176,7 +251,7 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
                     alt="Ventana ampliada"
                     w="100%"
                     h="100%"
-                    objectFit="cover"
+                    objectFit="contain"
                     objectPosition="center"
                   />
                 </Box>

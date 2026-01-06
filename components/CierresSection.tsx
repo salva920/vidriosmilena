@@ -6,7 +6,6 @@ import {
   Heading,
   Text,
   VStack,
-  SimpleGrid,
   Image,
   Button,
   Modal,
@@ -15,7 +14,6 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  Flex,
   IconButton,
   HStack,
 } from '@chakra-ui/react'
@@ -31,51 +29,43 @@ interface GalleryItem {
   type: 'image' | 'video'
 }
 
-const videos: string[] = [
-  '/img/baranda.mp4',
-  '/img/baranda2.mp4',
-]
-
-const images: string[] = [
-  '/img/vidrioT.jpg',
-  '/img/vidriot2.jpg',
-  '/img/vidriot3.jpg',
-  '/img/cierre.jpg',
-  '/img/cierre2.jpg',
-  '/img/cierre3.jpg',
-  '/img/baranda3.jpg',
+const galleryItems: GalleryItem[] = [
+  { src: '/img/baranda.mp4', type: 'video' },
+  { src: '/img/baranda2.mp4', type: 'video' },
+  { src: '/img/vidrioT.jpg', type: 'image' },
+  { src: '/img/vidriot2.jpg', type: 'image' },
+  { src: '/img/vidriot3.jpg', type: 'image' },
+  { src: '/img/cierre.jpg', type: 'image' },
+  { src: '/img/cierre2.jpg', type: 'image' },
+  { src: '/img/cierre3.jpg', type: 'image' },
+  { src: '/img/baranda3.jpg', type: 'image' },
 ]
 
 export default function CierresSection({ onOpenModal }: CierresSectionProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null)
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Auto-play carousel para videos
+  // Auto-play carousel
   useEffect(() => {
-    if (videos.length > 1) {
+    if (galleryItems.length > 1) {
       const interval = setInterval(() => {
-        setCurrentVideoIndex((prev) => (prev + 1) % videos.length)
-      }, 5000) // Cambia cada 5 segundos
+        setCurrentIndex((prev) => (prev + 1) % galleryItems.length)
+      }, 5000)
       return () => clearInterval(interval)
     }
   }, [])
 
-  const nextVideo = () => {
-    setCurrentVideoIndex((prev) => (prev + 1) % videos.length)
+  const nextItem = () => {
+    setCurrentIndex((prev) => (prev + 1) % galleryItems.length)
   }
 
-  const prevVideo = () => {
-    setCurrentVideoIndex((prev) => (prev - 1 + videos.length) % videos.length)
+  const prevItem = () => {
+    setCurrentIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length)
   }
 
-  const handleImageClick = (src: string) => {
-    setSelectedItem({ src, type: 'image' })
-    onOpen()
-  }
-
-  const handleVideoClick = (src: string) => {
-    setSelectedItem({ src, type: 'video' })
+  const handleItemClick = (item: GalleryItem) => {
+    setSelectedItem(item)
     onOpen()
   }
 
@@ -84,311 +74,185 @@ export default function CierresSection({ onOpenModal }: CierresSectionProps) {
   return (
     <Box id="cierres" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
-        <Flex
-          direction={{ base: 'column', lg: 'row' }}
-          gap={{ base: '8', lg: '12' }}
-          align="stretch"
-        >
-          {/* Right Side - Content */}
-          <Box 
-            flex={{ base: '1', lg: '1' }}
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            order={{ base: 1, lg: 2 }}
-          >
-            <VStack spacing="6" align="stretch">
-              {/* Title */}
-              <Heading 
-                fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-                color="gray.900"
-                fontWeight="800"
-                letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
-                textTransform="uppercase"
-                lineHeight="1.1"
-              >
-                CIERRE DE TERRAZAS
-              </Heading>
-              
-              {/* Subtitle */}
-              <Text 
-                fontSize={{ base: 'lg', md: 'xl' }}
-                color="gray.700"
-                fontWeight="600"
-              >
-                Versatilidad e innovación en cada espacio
-              </Text>
-              
-              {/* Description */}
-              <Text 
-                fontSize={{ base: 'md', md: 'lg' }}
-                color="gray.600"
-                lineHeight="1.7"
-              >
-                En Vidrios Dellorto, contamos con una amplia variedad de sistemas de cerramientos, tanto horizontales como verticales, que te ayudan a transformar cualquier tipo de espacio.
-              </Text>
-
-              {/* Gallery Images */}
-              <SimpleGrid columns={2} spacing="4" mt="4">
-                {images.map((image, index) => (
-                  <Box
-                    key={index}
-                    position="relative"
-                    borderRadius="lg"
-                    overflow="hidden"
-                    bg="gray.100"
-                    h={{ base: '150px', md: '180px', lg: '200px' }}
-                    _hover={{
-                      transform: 'scale(1.05)',
-                      transition: 'transform 0.3s'
-                    }}
-                    transition="transform 0.3s"
-                    cursor="pointer"
-                    onClick={() => handleImageClick(image)}
-                  >
-                    <Image
-                      src={image}
-                      alt={`Cierre ${index + 1}`}
-                      w="100%"
-                      h="100%"
-                      objectFit="cover"
-                      objectPosition="center"
-                    />
-                  </Box>
-                ))}
-              </SimpleGrid>
-
-              {/* Video Carousel - Mobile only (appears after gallery, before button) */}
-              {videos.length > 0 && (
-                <Box 
-                  display={{ base: 'block', lg: 'none' }}
-                  position="relative"
-                  borderRadius="xl"
-                  overflow="hidden"
-                  bg="gray.100"
-                  minH="300px"
-                  mt="6"
-                  cursor="pointer"
-                  onClick={() => handleVideoClick(videos[currentVideoIndex])}
-                >
-                  {videos.map((video, index) => (
-                    <Box
-                      key={index}
-                      as="video"
-                      src={video}
-                      position="absolute"
-                      top="0"
-                      left="0"
-                      w="100%"
-                      h="100%"
-                      objectFit="cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      opacity={index === currentVideoIndex ? 1 : 0}
-                      transition="opacity 0.8s ease-in-out"
-                      zIndex={index === currentVideoIndex ? 1 : 0}
-                      pointerEvents="none"
-                    />
-                  ))}
-                  
-                  {/* Navigation Buttons - Mobile */}
-                  {videos.length > 1 && (
-                    <>
-                      <IconButton
-                        aria-label="Video anterior"
-                        icon={<FiChevronLeft />}
-                        position="absolute"
-                        left="4"
-                        top="50%"
-                        transform="translateY(-50%)"
-                        zIndex={2}
-                        bg="rgba(0, 0, 0, 0.5)"
-                        color="white"
-                        borderRadius="full"
-                        size="lg"
-                        _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
-                        onClick={(e: React.MouseEvent) => {
-                          e.stopPropagation()
-                          prevVideo()
-                        }}
-                      />
-                      <IconButton
-                        aria-label="Video siguiente"
-                        icon={<FiChevronRight />}
-                        position="absolute"
-                        right="4"
-                        top="50%"
-                        transform="translateY(-50%)"
-                        zIndex={2}
-                        bg="rgba(0, 0, 0, 0.5)"
-                        color="white"
-                        borderRadius="full"
-                        size="lg"
-                        _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
-                        onClick={(e: React.MouseEvent) => {
-                          e.stopPropagation()
-                          nextVideo()
-                        }}
-                      />
-                      <HStack
-                        position="absolute"
-                        bottom="4"
-                        left="50%"
-                        transform="translateX(-50%)"
-                        zIndex={2}
-                        spacing="2"
-                      >
-                        {videos.map((_, index) => (
-                          <Box
-                            key={index}
-                            w="10px"
-                            h="10px"
-                            borderRadius="full"
-                            bg={index === currentVideoIndex ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                            cursor="pointer"
-                            transition="all 0.3s"
-                            onClick={(e: React.MouseEvent) => {
-                              e.stopPropagation()
-                              setCurrentVideoIndex(index)
-                            }}
-                          />
-                        ))}
-                      </HStack>
-                    </>
-                  )}
-                </Box>
-              )}
-
-              {/* CTA Button */}
-              <Button
-                onClick={onOpenModal}
-                bg="red.600"
-                color="white"
-                fontWeight="bold"
-                textTransform="uppercase"
-                fontSize={{ base: 'sm', md: 'md' }}
-                px={{ base: '6', md: '8' }}
-                py={{ base: '5', md: '6' }}
-                borderRadius="md"
-                mt="4"
-                alignSelf="flex-start"
-                _hover={{
-                  bg: 'red.700',
-                  transform: 'translateY(-2px)',
-                  boxShadow: 'lg'
-                }}
-                transition="all 0.3s"
-              >
-                Cotizar
-              </Button>
-            </VStack>
+        <VStack spacing="8" align="stretch">
+          {/* Header Section - Centered */}
+          <Box textAlign="center" maxW="900px" mx="auto" w="100%">
+            <Heading 
+              fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
+              color="gray.900"
+              fontWeight="800"
+              letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
+              textTransform="uppercase"
+              lineHeight="1.1"
+              mb="4"
+            >
+              CIERRE DE TERRAZAS
+            </Heading>
+            
+            <Text 
+              fontSize={{ base: 'lg', md: 'xl' }}
+              color="gray.700"
+              fontWeight="600"
+              mb="4"
+            >
+              Versatilidad e innovación en cada espacio
+            </Text>
+            
+            <Text 
+              fontSize={{ base: 'md', md: 'lg' }}
+              color="gray.600"
+              lineHeight="1.7"
+              maxW="800px"
+              mx="auto"
+            >
+              En Vidrios Dellorto, contamos con una amplia variedad de sistemas de cerramientos, tanto horizontales como verticales, que te ayudan a transformar cualquier tipo de espacio.
+            </Text>
           </Box>
 
-          {/* Left Side - Video Carousel (Desktop only) */}
-          {videos.length > 0 && (
-            <Box 
-              flex={{ base: '1', lg: '1' }}
-              position="relative"
-              borderRadius="xl"
-              overflow="hidden"
-              bg="gray.100"
-              minH={{ base: '300px', md: '400px', lg: '600px' }}
-              display={{ base: 'none', lg: 'block' }}
-              cursor="pointer"
-              onClick={() => handleVideoClick(videos[currentVideoIndex])}
-            >
-              {videos.map((video, index) => (
-                <Box
-                  key={index}
-                  as="video"
-                  src={video}
+          {/* Carousel - Centered */}
+          <Box 
+            position="relative"
+            borderRadius="xl"
+            overflow="hidden"
+            bg="gray.100"
+            w="100%"
+            maxW="800px"
+            mx="auto"
+            h={{ base: '350px', md: '450px', lg: '550px' }}
+            cursor="pointer"
+            onClick={() => handleItemClick(galleryItems[currentIndex])}
+          >
+            {galleryItems.map((item, index) => (
+              <Box
+                key={index}
+                position="absolute"
+                top="0"
+                left="0"
+                w="100%"
+                h="100%"
+                opacity={index === currentIndex ? 1 : 0}
+                transition="opacity 0.8s ease-in-out"
+                zIndex={index === currentIndex ? 1 : 0}
+                pointerEvents="none"
+              >
+                {item.type === 'video' ? (
+                  <Box
+                    as="video"
+                    src={item.src}
+                    w="100%"
+                    h="100%"
+                    objectFit="contain"
+                    objectPosition="center"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                ) : (
+                  <Image
+                    src={item.src}
+                    alt={`Cierre ${index + 1}`}
+                    w="100%"
+                    h="100%"
+                    objectFit="contain"
+                    objectPosition="center"
+                  />
+                )}
+              </Box>
+            ))}
+            
+            {/* Navigation Buttons */}
+            {galleryItems.length > 1 && (
+              <>
+                <IconButton
+                  aria-label="Anterior"
+                  icon={<FiChevronLeft />}
                   position="absolute"
-                  top="0"
-                  left="0"
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  opacity={index === currentVideoIndex ? 1 : 0}
-                  transition="opacity 0.8s ease-in-out"
-                  zIndex={index === currentVideoIndex ? 1 : 0}
-                  pointerEvents="none"
+                  left="4"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  zIndex={2}
+                  bg="rgba(0, 0, 0, 0.5)"
+                  color="white"
+                  borderRadius="full"
+                  size={{ base: 'md', md: 'lg' }}
+                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    prevItem()
+                  }}
                 />
-              ))}
-              
-              {/* Navigation Buttons - Desktop */}
-              {videos.length > 1 && (
-                <>
-                  <IconButton
-                    aria-label="Video anterior"
-                    icon={<FiChevronLeft />}
-                    position="absolute"
-                    left="4"
-                    top="50%"
-                    transform="translateY(-50%)"
-                    zIndex={2}
-                    bg="rgba(0, 0, 0, 0.5)"
-                    color="white"
-                    borderRadius="full"
-                    size="lg"
-                    _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
-                    onClick={(e: React.MouseEvent) => {
-                      e.stopPropagation()
-                      prevVideo()
-                    }}
-                  />
-                  <IconButton
-                    aria-label="Video siguiente"
-                    icon={<FiChevronRight />}
-                    position="absolute"
-                    right="4"
-                    top="50%"
-                    transform="translateY(-50%)"
-                    zIndex={2}
-                    bg="rgba(0, 0, 0, 0.5)"
-                    color="white"
-                    borderRadius="full"
-                    size="lg"
-                    _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
-                    onClick={(e: React.MouseEvent) => {
-                      e.stopPropagation()
-                      nextVideo()
-                    }}
-                  />
-                  <HStack
-                    position="absolute"
-                    bottom="4"
-                    left="50%"
-                    transform="translateX(-50%)"
-                    zIndex={2}
-                    spacing="2"
-                  >
-                    {videos.map((_, index) => (
-                      <Box
-                        key={index}
-                        w="10px"
-                        h="10px"
-                        borderRadius="full"
-                        bg={index === currentVideoIndex ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                        cursor="pointer"
-                        transition="all 0.3s"
-                        onClick={(e: React.MouseEvent) => {
-                          e.stopPropagation()
-                          setCurrentVideoIndex(index)
-                        }}
-                      />
-                    ))}
-                  </HStack>
-                </>
-              )}
-            </Box>
-          )}
-        </Flex>
+                <IconButton
+                  aria-label="Siguiente"
+                  icon={<FiChevronRight />}
+                  position="absolute"
+                  right="4"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  zIndex={2}
+                  bg="rgba(0, 0, 0, 0.5)"
+                  color="white"
+                  borderRadius="full"
+                  size={{ base: 'md', md: 'lg' }}
+                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    nextItem()
+                  }}
+                />
+                
+                {/* Pagination Dots */}
+                <HStack
+                  position="absolute"
+                  bottom="4"
+                  left="50%"
+                  transform="translateX(-50%)"
+                  zIndex={2}
+                  spacing="2"
+                >
+                  {galleryItems.map((_, index) => (
+                    <Box
+                      key={index}
+                      w={{ base: '8px', md: '10px' }}
+                      h={{ base: '8px', md: '10px' }}
+                      borderRadius="full"
+                      bg={index === currentIndex ? 'white' : 'rgba(255, 255, 255, 0.5)'}
+                      cursor="pointer"
+                      transition="all 0.3s"
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation()
+                        setCurrentIndex(index)
+                      }}
+                    />
+                  ))}
+                </HStack>
+              </>
+            )}
+          </Box>
+
+          {/* CTA Button - Centered */}
+          <Box textAlign="center">
+            <Button
+              onClick={onOpenModal}
+              bg="red.600"
+              color="white"
+              fontWeight="bold"
+              textTransform="uppercase"
+              fontSize={{ base: 'sm', md: 'md' }}
+              px={{ base: '6', md: '8' }}
+              py={{ base: '5', md: '6' }}
+              borderRadius="md"
+              _hover={{
+                bg: 'red.700',
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg'
+              }}
+              transition="all 0.3s"
+            >
+              Cotizar
+            </Button>
+          </Box>
+        </VStack>
       </Container>
 
       {/* Image/Video Modal */}
@@ -413,7 +277,7 @@ export default function CierresSection({ onOpenModal }: CierresSectionProps) {
                       alt="Cierre ampliado"
                       w="100%"
                       h="100%"
-                      objectFit="cover"
+                      objectFit="contain"
                       objectPosition="center"
                     />
                   ) : (
@@ -422,7 +286,7 @@ export default function CierresSection({ onOpenModal }: CierresSectionProps) {
                       src={selectedItem.src}
                       w="100%"
                       h="100%"
-                      objectFit="cover"
+                      objectFit="contain"
                       autoPlay
                       loop
                       muted
