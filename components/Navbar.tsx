@@ -116,7 +116,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             {/* Logo */}
             <Box flexShrink={0}>
               <Image
-                src="/logo.jpg"
+                src="/logo.png"
                 alt="Logo MILEGLASS"
                 h={{ base: '80px', md: '100px', lg: '120px' }}
                 w="auto"
