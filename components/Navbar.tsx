@@ -29,13 +29,14 @@ export default function Navbar() {
   const scrollToSection = (id: string) => {
     // Mapear los IDs correctamente según las secciones existentes
     const sectionMap: Record<string, string> = {
-      'NOSOTROS': 'nosotros',
+      
       'ARQUITECTURA': 'arquitectura',
       'VENTANAS': 'ventanas',
       'CIERRES': 'cierres',
       'ESPEJOS': 'espejos',
       'CORTINAS': 'cortinas',
-      'CONTACTO': 'contact'
+      'CONTACTO': 'contact',
+      'NOSOTROS': 'nosotros'
     }
     
     const sectionId = sectionMap[id] || id.toLowerCase()
