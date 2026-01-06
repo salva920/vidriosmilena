@@ -118,8 +118,9 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
               <Image
                 src="/logo.jpg"
                 alt="Logo MILEGLASS"
-                h={{ base: '50px', md: '60px', lg: '70px' }}
+                h={{ base: '80px', md: '100px', lg: '120px' }}
                 w="auto"
+                maxW={{ base: '200px', md: '250px', lg: '300px' }}
                 objectFit="contain"
                 cursor="pointer"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -338,8 +339,9 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             <Image
               src="/logo.jpg"
               alt="Logo MILEGLASS"
-              h="50px"
+              h="99px"
               w="auto"
+              maxW="200px"
               objectFit="contain"
             />
           </DrawerHeader>
