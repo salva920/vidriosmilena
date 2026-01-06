@@ -67,7 +67,7 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
                 textTransform="uppercase"
                 lineHeight="1.1"
               >
-                SHOWER O MAMPARAS
+                SHOWER DOOR 
               </Heading>
               
               {/* Subtitle */}
