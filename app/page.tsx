@@ -4,9 +4,14 @@ import { Box } from '@chakra-ui/react'
 import { useState } from 'react'
 import Navbar from '@/components/Navbar'
 import HeroSection from '@/components/HeroSection'
+import ArquitecturaSection from '@/components/ArquitecturaSection'
+import VentanasSection from '@/components/VentanasSection'
+import ShowerSection from '@/components/ShowerSection'
+import CierresSection from '@/components/CierresSection'
+import EspejosSection from '@/components/EspejosSection'
+import CortinasSection from '@/components/CortinasSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import StatsSection from '@/components/StatsSection'
-import ServicesSection from '@/components/ServicesSection'
 import WhyUsSection from '@/components/WhyUsSection'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
@@ -89,7 +94,17 @@ export default function Home() {
         onOpenModal={onOpen}
       />
 
-      <ServicesSection onScrollToContact={scrollToContact} />
+      <ArquitecturaSection />
+
+      <VentanasSection />
+
+      <ShowerSection />
+
+      <CierresSection />
+
+      <EspejosSection />
+
+      <CortinasSection />
 
       <FeaturesSection />
 

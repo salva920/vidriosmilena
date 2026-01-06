@@ -40,7 +40,11 @@ export default function Navbar() {
     // Mapear los IDs correctamente según las secciones existentes
     const sectionMap: Record<string, string> = {
       'NOSOTROS': 'nosotros',
-      'SERVICIOS': 'servicios',
+      'ARQUITECTURA': 'arquitectura',
+      'VENTANAS': 'ventanas',
+      'CIERRES': 'cierres',
+      'ESPEJOS': 'espejos',
+      'CORTINAS': 'cortinas',
       'CONTACTO': 'contact'
     }
     
@@ -144,10 +148,11 @@ export default function Navbar() {
 
             {/* Navigation Links - Desktop */}
             <HStack
-              spacing="8"
+              spacing={{ base: '4', md: '6', lg: '8' }}
               display={{ base: 'none', md: 'flex' }}
               flex="1"
               justify="center"
+              flexWrap="wrap"
             >
               <Link
                 onClick={() => scrollToSection('NOSOTROS')}
@@ -172,17 +177,105 @@ export default function Navbar() {
                 )}
               </Link>
               <Link
-                onClick={() => scrollToSection('SERVICIOS')}
+                onClick={() => scrollToSection('ARQUITECTURA')}
                 fontWeight="semibold"
-                color={activeLink === 'SERVICIOS' ? 'gray.900' : 'gray.600'}
+                color={activeLink === 'ARQUITECTURA' ? 'gray.900' : 'gray.600'}
                 position="relative"
                 _hover={{ color: 'gray.900' }}
                 cursor="pointer"
                 textTransform="uppercase"
                 fontSize="sm"
               >
-                ¿QUÉ HACEMOS?
-                {activeLink === 'SERVICIOS' && (
+                ARQUITECTURA
+                {activeLink === 'ARQUITECTURA' && (
+                  <Box
+                    position="absolute"
+                    bottom="-8px"
+                    left="0"
+                    right="0"
+                    h="2px"
+                    bg="red.500"
+                  />
+                )}
+              </Link>
+              <Link
+                onClick={() => scrollToSection('VENTANAS')}
+                fontWeight="semibold"
+                color={activeLink === 'VENTANAS' ? 'gray.900' : 'gray.600'}
+                position="relative"
+                _hover={{ color: 'gray.900' }}
+                cursor="pointer"
+                textTransform="uppercase"
+                fontSize="sm"
+              >
+                VENTANAS
+                {activeLink === 'VENTANAS' && (
+                  <Box
+                    position="absolute"
+                    bottom="-8px"
+                    left="0"
+                    right="0"
+                    h="2px"
+                    bg="red.500"
+                  />
+                )}
+              </Link>
+              <Link
+                onClick={() => scrollToSection('CIERRES')}
+                fontWeight="semibold"
+                color={activeLink === 'CIERRES' ? 'gray.900' : 'gray.600'}
+                position="relative"
+                _hover={{ color: 'gray.900' }}
+                cursor="pointer"
+                textTransform="uppercase"
+                fontSize="sm"
+              >
+                CIERRES
+                {activeLink === 'CIERRES' && (
+                  <Box
+                    position="absolute"
+                    bottom="-8px"
+                    left="0"
+                    right="0"
+                    h="2px"
+                    bg="red.500"
+                  />
+                )}
+              </Link>
+              <Link
+                onClick={() => scrollToSection('ESPEJOS')}
+                fontWeight="semibold"
+                color={activeLink === 'ESPEJOS' ? 'gray.900' : 'gray.600'}
+                position="relative"
+                _hover={{ color: 'gray.900' }}
+                cursor="pointer"
+                textTransform="uppercase"
+                fontSize="sm"
+              >
+                ESPEJOS
+                {activeLink === 'ESPEJOS' && (
+                  <Box
+                    position="absolute"
+                    bottom="-8px"
+                    left="0"
+                    right="0"
+                    h="2px"
+                    bg="red.500"
+                  />
+                )}
+              </Link>
+              <Link
+                onClick={() => scrollToSection('CORTINAS')}
+                fontWeight="semibold"
+                color={activeLink === 'CORTINAS' ? 'gray.900' : 'gray.600'}
+                position="relative"
+                _hover={{ color: 'gray.900' }}
+                cursor="pointer"
+                textTransform="uppercase"
+                fontSize="sm"
+              >
+                CORTINAS
+                {activeLink === 'CORTINAS' && (
                   <Box
                     position="absolute"
                     bottom="-8px"
@@ -304,13 +397,61 @@ export default function Navbar() {
                 variant="ghost"
                 justifyContent="flex-start"
                 fontWeight="semibold"
-                color={activeLink === 'SERVICIOS' ? 'blue.600' : 'gray.700'}
-                onClick={() => scrollToSection('SERVICIOS')}
+                color={activeLink === 'ARQUITECTURA' ? 'blue.600' : 'gray.700'}
+                onClick={() => scrollToSection('ARQUITECTURA')}
                 textTransform="uppercase"
                 fontSize="sm"
                 _hover={{ bg: 'gray.100', color: 'blue.600' }}
               >
-                ¿QUÉ HACEMOS?
+                ARQUITECTURA
+              </Button>
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                fontWeight="semibold"
+                color={activeLink === 'VENTANAS' ? 'blue.600' : 'gray.700'}
+                onClick={() => scrollToSection('VENTANAS')}
+                textTransform="uppercase"
+                fontSize="sm"
+                _hover={{ bg: 'gray.100', color: 'blue.600' }}
+              >
+                VENTANAS
+              </Button>
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                fontWeight="semibold"
+                color={activeLink === 'CIERRES' ? 'blue.600' : 'gray.700'}
+                onClick={() => scrollToSection('CIERRES')}
+                textTransform="uppercase"
+                fontSize="sm"
+                _hover={{ bg: 'gray.100', color: 'blue.600' }}
+              >
+                CIERRES
+              </Button>
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                fontWeight="semibold"
+                color={activeLink === 'ESPEJOS' ? 'blue.600' : 'gray.700'}
+                onClick={() => scrollToSection('ESPEJOS')}
+                textTransform="uppercase"
+                fontSize="sm"
+                _hover={{ bg: 'gray.100', color: 'blue.600' }}
+              >
+                ESPEJOS
+              </Button>
+              <Button
+                variant="ghost"
+                justifyContent="flex-start"
+                fontWeight="semibold"
+                color={activeLink === 'CORTINAS' ? 'blue.600' : 'gray.700'}
+                onClick={() => scrollToSection('CORTINAS')}
+                textTransform="uppercase"
+                fontSize="sm"
+                _hover={{ bg: 'gray.100', color: 'blue.600' }}
+              >
+                CORTINAS
               </Button>
               <Button
                 variant="ghost"
