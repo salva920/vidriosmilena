@@ -40,6 +40,7 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
             overflow="hidden"
             bg="gray.100"
             minH={{ base: '300px', md: '400px', lg: '600px' }}
+            order={{ base: 2, lg: 1 }}
           >
             <Box
               as="video"
@@ -63,6 +64,7 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
             display="flex"
             flexDirection="column"
             justifyContent="center"
+            order={{ base: 1, lg: 2 }}
           >
             <VStack spacing="6" align="stretch">
               {/* Title */}
