@@ -7,199 +7,282 @@ import {
   Text,
   VStack,
   SimpleGrid,
-  Card,
-  CardBody,
   Image,
   Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Flex,
+  Badge,
 } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 interface EspejosSectionProps {
   onOpenModal?: () => void
 }
 
-const espejosTypes = [
-  {
-    image: '/img/espejo decorativo.jpg',
-    images: [
-      '/img/espejo decorativo.jpg',
-      '/img/espejo decorativo2.jpg',
-      '/img/espejo decorativo3.jpg'
-    ],
-    title: 'Espejos Decorativos',
-    description: 'Espejos de diferentes tamaños y formas para decorar y ampliar visualmente tu espacio.'
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    title: 'Espejos de Baño',
-    description: 'Espejos funcionales y decorativos para baños con iluminación LED y diferentes acabados.'
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    title: 'Espejos Personalizados',
-    description: 'Espejos a medida según tus necesidades, con diferentes formas, tamaños y marcos.'
-  }
+const galleryImages = [
+  '/img/espejo decorativo.jpg',
+  '/img/espejo decorativo2.jpg',
+  '/img/espejo decorativo3.jpg',
+  '/img/photo_2025-09-29_16-45-30.jpg',
+  '/img/4.png',
+  '/img/9.png',
 ]
 
-// Componente para carrusel interno de imágenes
-function ImageCarousel({ images, title }: { images: string[], title: string }) {
-  const [currentImgIndex, setCurrentImgIndex] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImgIndex((prev) => (prev + 1) % images.length)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [images.length])
-
-  return (
-    <Box position="relative" w="100%" h="100%">
-      {images.map((img, index) => (
-        <Image
-          key={index}
-          src={img}
-          alt={`${title} ${index + 1}`}
-          position="absolute"
-          top="0"
-          left="0"
-          w="100%"
-          h="100%"
-          objectFit="cover"
-          objectPosition="center"
-          opacity={index === currentImgIndex ? 1 : 0}
-          transition="opacity 0.8s ease-in-out"
-          pointerEvents="none"
-          zIndex={index === currentImgIndex ? 1 : 0}
-          loading={index === 0 ? 'eager' : 'lazy'}
-        />
-      ))}
-    </Box>
-  )
-}
-
 export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
+  const handleImageClick = (image: string) => {
+    setSelectedImage(image)
+    onOpen()
+  }
+
+  // Identificar imágenes con LED (4.png y 9.png probablemente sean espejos con LED)
+  const ledImages = ['/img/4.png', '/img/9.png']
+  const isLedImage = (image: string) => ledImages.includes(image)
+
+  const additionalDescription = "Nuestros espejos están diseñados para combinar funcionalidad y estética, transformando cualquier espacio con elegancia y estilo. Ofrecemos una amplia variedad de opciones, desde espejos decorativos hasta espejos con iluminación LED integrada que proporcionan una luz perfecta para cualquier ambiente. Cada espejo está fabricado con los más altos estándares de calidad, disponible en diferentes tamaños, formas y acabados para adaptarse a tus necesidades específicas."
+
   return (
     <Box id="espejos" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
-        <VStack spacing="12">
-          <Box textAlign="center" maxW="900px" mx="auto" px={{ base: '4', md: '6' }} w="100%">
-            <Heading 
-              fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-              color="gray.900"
-              fontWeight="800"
-              letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
-              textTransform="uppercase"
-              mb={{ base: '3', md: '4' }}
-              lineHeight="1.1"
-            >
-              ESPEJOS
-            </Heading>
-            
-            <Box
-              w={{ base: '60px', md: '80px' }}
-              h="4px"
-              bgGradient="linear(to-r, red.400, red.600)"
-              borderRadius="full"
-              mx="auto"
-              mb={{ base: '6', md: '8' }}
-              boxShadow="0 2px 8px rgba(229, 62, 62, 0.3)"
-            />
-            
-            <Text 
-              fontSize={{ base: 'md', md: 'lg' }}
-              color="gray.600"
-              maxW="800px"
-              mx="auto"
-              lineHeight="1.7"
-            >
-              Espejos de alta calidad para decoración y funcionalidad, disponibles en diferentes estilos y tamaños para transformar tus espacios.
-            </Text>
-            
-            <Button
-              onClick={onOpenModal}
-              bg="red.600"
-              color="white"
-              fontWeight="bold"
-              textTransform="uppercase"
-              fontSize={{ base: 'sm', md: 'md' }}
-              px={{ base: '6', md: '8' }}
-              py={{ base: '5', md: '6' }}
-              borderRadius="md"
-              mt="6"
-              _hover={{
-                bg: 'red.700',
-                transform: 'translateY(-2px)',
-                boxShadow: 'lg'
-              }}
-              transition="all 0.3s"
-            >
-              Cotizar
-            </Button>
-          </Box>
-
-          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: '6', md: '8' }} w="100%">
-            {espejosTypes.map((item, index) => (
-              <Card 
-                key={index} 
-                bg="white" 
-                boxShadow="xl" 
-                borderRadius="xl"
-                border="1px solid"
-                borderColor="gray.100"
-                overflow="hidden"
-                _hover={{
-                  transform: 'translateY(-4px)',
-                  boxShadow: '2xl',
-                  transition: 'all 0.3s'
-                }}
-                transition="all 0.3s"
+        <Flex
+          direction={{ base: 'column', lg: 'row' }}
+          gap={{ base: '8', lg: '12' }}
+          align="stretch"
+        >
+          {/* Right Side - Content */}
+          <Box 
+            flex={{ base: '1', lg: '1' }}
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            order={{ base: 1, lg: 2 }}
+          >
+            <VStack spacing="6" align="stretch">
+              {/* Title */}
+              <Heading 
+                fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
+                color="gray.900"
+                fontWeight="800"
+                letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
+                textTransform="uppercase"
+                lineHeight="1.1"
               >
-                <Box
-                  position="relative"
-                  h={{ base: '200px', md: '240px' }}
-                  w="100%"
-                  overflow="hidden"
-                  bg="gray.100"
-                >
-                  {item.images && item.images.length > 1 ? (
-                    <ImageCarousel images={item.images} title={item.title} />
-                  ) : (
+                ESPEJOS
+              </Heading>
+              
+              {/* Subtitle */}
+              <Text 
+                fontSize={{ base: 'lg', md: 'xl' }}
+                color="gray.700"
+                fontWeight="600"
+              >
+                Decoración y funcionalidad con iluminación LED
+              </Text>
+              
+              {/* Description */}
+              <Text 
+                fontSize={{ base: 'md', md: 'lg' }}
+                color="gray.600"
+                lineHeight="1.7"
+              >
+                Espejos de alta calidad para decoración y funcionalidad, disponibles en diferentes estilos y tamaños. <Text as="span" fontWeight="700" color="gray.900">Destacamos nuestros espejos con iluminación LED integrada</Text> que proporcionan una luz perfecta para cualquier ambiente.
+              </Text>
+
+              {/* Gallery Images */}
+              <SimpleGrid columns={2} spacing="4" mt="4">
+                {galleryImages.map((image, index) => (
+                  <Box
+                    key={index}
+                    position="relative"
+                    borderRadius="lg"
+                    overflow="hidden"
+                    bg="gray.100"
+                    h={{ base: '150px', md: '180px', lg: '200px' }}
+                    _hover={{
+                      transform: 'scale(1.05)',
+                      transition: 'transform 0.3s'
+                    }}
+                    transition="transform 0.3s"
+                    cursor="pointer"
+                    onClick={() => handleImageClick(image)}
+                  >
                     <Image
-                      src={item.image}
-                      alt={item.title}
+                      src={image}
+                      alt={`Espejo ${index + 1}`}
                       w="100%"
                       h="100%"
                       objectFit="cover"
                       objectPosition="center"
                     />
+                    {isLedImage(image) && (
+                      <Badge
+                        position="absolute"
+                        top="2"
+                        right="2"
+                        bg="yellow.400"
+                        color="gray.900"
+                        fontWeight="bold"
+                        fontSize="xs"
+                        px="2"
+                        py="1"
+                        borderRadius="md"
+                        boxShadow="md"
+                      >
+                        LED
+                      </Badge>
+                    )}
+                  </Box>
+                ))}
+              </SimpleGrid>
+
+              {/* CTA Button */}
+              <Button
+                onClick={onOpenModal}
+                bg="red.600"
+                color="white"
+                fontWeight="bold"
+                textTransform="uppercase"
+                fontSize={{ base: 'sm', md: 'md' }}
+                px={{ base: '6', md: '8' }}
+                py={{ base: '5', md: '6' }}
+                borderRadius="md"
+                mt="4"
+                alignSelf="flex-start"
+                _hover={{
+                  bg: 'red.700',
+                  transform: 'translateY(-2px)',
+                  boxShadow: 'lg'
+                }}
+                transition="all 0.3s"
+              >
+                Cotizar
+              </Button>
+            </VStack>
+          </Box>
+
+          {/* Left Side - Main Image (Desktop only) */}
+          <Box 
+            flex={{ base: '1', lg: '1' }}
+            position="relative"
+            borderRadius="xl"
+            overflow="hidden"
+            bg="gray.100"
+            minH={{ base: '300px', md: '400px', lg: '600px' }}
+            display={{ base: 'none', lg: 'block' }}
+          >
+            <Image
+              src={galleryImages[0]}
+              alt="Espejos decorativos"
+              w="100%"
+              h="100%"
+              objectFit="cover"
+              objectPosition="center"
+            />
+          </Box>
+        </Flex>
+      </Container>
+
+      {/* Image Modal */}
+      <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody p={0}>
+            <VStack spacing="6" p={{ base: '6', md: '8' }}>
+              {/* Expanded Image */}
+              {selectedImage && (
+                <Box position="relative" w="100%">
+                  <Box
+                    w="100%"
+                    h={{ base: '300px', md: '400px', lg: '500px' }}
+                    borderRadius="lg"
+                    overflow="hidden"
+                    bg="gray.100"
+                  >
+                    <Image
+                      src={selectedImage}
+                      alt="Espejo ampliado"
+                      w="100%"
+                      h="100%"
+                      objectFit="cover"
+                      objectPosition="center"
+                    />
+                  </Box>
+                  {isLedImage(selectedImage) && (
+                    <Badge
+                      position="absolute"
+                      top="4"
+                      right="4"
+                      bg="yellow.400"
+                      color="gray.900"
+                      fontWeight="bold"
+                      fontSize="md"
+                      px="3"
+                      py="2"
+                      borderRadius="md"
+                      boxShadow="lg"
+                    >
+                      ✨ ILUMINACIÓN LED
+                    </Badge>
                   )}
                 </Box>
-                
-                <CardBody textAlign="center" p={{ base: '6', md: '8' }}>
-                  <Heading 
-                    size="md" 
-                    mb="3" 
-                    color="gray.800"
-                    fontWeight="700"
-                    fontSize={{ base: 'lg', md: 'xl' }}
-                  >
-                    {item.title}
-                  </Heading>
-                  
-                  <Text 
-                    color="gray.600" 
-                    fontSize={{ base: 'sm', md: 'md' }}
-                    lineHeight="1.6"
-                  >
-                    {item.description}
-                  </Text>
-                </CardBody>
-              </Card>
-            ))}
-          </SimpleGrid>
-        </VStack>
-      </Container>
+              )}
+
+              {/* Additional Description */}
+              <Box w="100%">
+                <Heading 
+                  size="lg" 
+                  mb="4" 
+                  color="gray.900"
+                  textTransform="uppercase"
+                >
+                  ESPEJOS
+                </Heading>
+                <Text 
+                  fontSize={{ base: 'md', md: 'lg' }}
+                  color="gray.600"
+                  lineHeight="1.7"
+                  mb="6"
+                >
+                  {additionalDescription}
+                </Text>
+
+                {/* CTA Button */}
+                <Button
+                  onClick={() => {
+                    onClose()
+                    onOpenModal?.()
+                  }}
+                  bg="red.600"
+                  color="white"
+                  fontWeight="bold"
+                  textTransform="uppercase"
+                  fontSize={{ base: 'sm', md: 'md' }}
+                  px={{ base: '6', md: '8' }}
+                  py={{ base: '5', md: '6' }}
+                  borderRadius="md"
+                  w={{ base: '100%', md: 'auto' }}
+                  _hover={{
+                    bg: 'red.700',
+                    transform: 'translateY(-2px)',
+                    boxShadow: 'lg'
+                  }}
+                  transition="all 0.3s"
+                >
+                  Cotizar
+                </Button>
+              </Box>
+            </VStack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Box>
   )
 }
