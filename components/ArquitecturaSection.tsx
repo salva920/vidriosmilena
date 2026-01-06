@@ -6,9 +6,14 @@ import {
   Heading,
   Text,
   VStack,
+  Button,
 } from '@chakra-ui/react'
 
-export default function ArquitecturaSection() {
+interface ArquitecturaSectionProps {
+  onOpenModal?: () => void
+}
+
+export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSectionProps) {
   return (
     <Box id="arquitectura" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
@@ -56,6 +61,27 @@ export default function ArquitecturaSection() {
             >
               En MILEGLASS ofrecemos cristales de alta calidad para todo tipo de proyectos arquitectónicos, combinando diseño, funcionalidad y seguridad con un acabado impecable.
             </Text>
+            
+            <Button
+              onClick={onOpenModal}
+              bg="red.600"
+              color="white"
+              fontWeight="bold"
+              textTransform="uppercase"
+              fontSize={{ base: 'sm', md: 'md' }}
+              px={{ base: '6', md: '8' }}
+              py={{ base: '5', md: '6' }}
+              borderRadius="md"
+              mt="6"
+              _hover={{
+                bg: 'red.700',
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg'
+              }}
+              transition="all 0.3s"
+            >
+              Cotizar
+            </Button>
           </Box>
         </VStack>
       </Container>

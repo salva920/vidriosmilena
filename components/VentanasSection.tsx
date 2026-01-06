@@ -10,7 +10,12 @@ import {
   Card,
   CardBody,
   Image,
+  Button,
 } from '@chakra-ui/react'
+
+interface VentanasSectionProps {
+  onOpenModal?: () => void
+}
 
 const ventanasTypes = [
   {
@@ -30,7 +35,7 @@ const ventanasTypes = [
   }
 ]
 
-export default function VentanasSection() {
+export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
   return (
     <Box id="ventanas" py={{ base: '12', md: '16', lg: '20' }} bg="gray.50">
       <Container maxW="container.xl">
@@ -67,6 +72,27 @@ export default function VentanasSection() {
             >
               <Text as="span" fontWeight="700" color="gray.900">Tecnología, estilo y eficiencia</Text>. Contar con nuestras ventanas de alto rendimiento marca la diferencia en cualquier espacio. Ofrecemos opciones en PVC, aluminio y RPT (Rotura de Puente Térmico) que combinados con nuestros cristales de alto rendimiento.
             </Text>
+            
+            <Button
+              onClick={onOpenModal}
+              bg="red.600"
+              color="white"
+              fontWeight="bold"
+              textTransform="uppercase"
+              fontSize={{ base: 'sm', md: 'md' }}
+              px={{ base: '6', md: '8' }}
+              py={{ base: '5', md: '6' }}
+              borderRadius="md"
+              mt="6"
+              _hover={{
+                bg: 'red.700',
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg'
+              }}
+              transition="all 0.3s"
+            >
+              Cotizar
+            </Button>
           </Box>
 
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: '6', md: '8' }} w="100%">

@@ -10,7 +10,12 @@ import {
   Card,
   CardBody,
   Image,
+  Button,
 } from '@chakra-ui/react'
+
+interface CierresSectionProps {
+  onOpenModal?: () => void
+}
 
 const cierresTypes = [
   {
@@ -67,6 +72,27 @@ export default function CierresSection() {
             >
               Soluciones de seguridad y diseño con cierres y barandas de vidrio templado para proyectos residenciales y comerciales.
             </Text>
+            
+            <Button
+              onClick={onOpenModal}
+              bg="red.600"
+              color="white"
+              fontWeight="bold"
+              textTransform="uppercase"
+              fontSize={{ base: 'sm', md: 'md' }}
+              px={{ base: '6', md: '8' }}
+              py={{ base: '5', md: '6' }}
+              borderRadius="md"
+              mt="6"
+              _hover={{
+                bg: 'red.700',
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg'
+              }}
+              transition="all 0.3s"
+            >
+              Cotizar
+            </Button>
           </Box>
 
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: '6', md: '8' }} w="100%">

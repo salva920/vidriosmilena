@@ -93,17 +93,17 @@ export default function Home() {
         onOpenModal={onOpen}
       />
 
-      <ArquitecturaSection />
+      <ArquitecturaSection onOpenModal={onOpen} />
 
-      <VentanasSection />
+      <VentanasSection onOpenModal={onOpen} />
 
-      <ShowerSection />
+      <ShowerSection onOpenModal={onOpen} />
 
-      <CierresSection />
+      <CierresSection onOpenModal={onOpen} />
 
-      <EspejosSection />
+      <EspejosSection onOpenModal={onOpen} />
 
-      <CortinasSection />
+      <CortinasSection onOpenModal={onOpen} />
 
       <FeaturesSection />
 

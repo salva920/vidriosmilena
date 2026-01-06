@@ -10,8 +10,13 @@ import {
   Card,
   CardBody,
   Image,
+  Button,
 } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
+
+interface EspejosSectionProps {
+  onOpenModal?: () => void
+}
 
 const espejosTypes = [
   {
@@ -73,7 +78,7 @@ function ImageCarousel({ images, title }: { images: string[], title: string }) {
   )
 }
 
-export default function EspejosSection() {
+export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
   return (
     <Box id="espejos" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
@@ -110,6 +115,27 @@ export default function EspejosSection() {
             >
               Espejos de alta calidad para decoración y funcionalidad, disponibles en diferentes estilos y tamaños para transformar tus espacios.
             </Text>
+            
+            <Button
+              onClick={onOpenModal}
+              bg="red.600"
+              color="white"
+              fontWeight="bold"
+              textTransform="uppercase"
+              fontSize={{ base: 'sm', md: 'md' }}
+              px={{ base: '6', md: '8' }}
+              py={{ base: '5', md: '6' }}
+              borderRadius="md"
+              mt="6"
+              _hover={{
+                bg: 'red.700',
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg'
+              }}
+              transition="all 0.3s"
+            >
+              Cotizar
+            </Button>
           </Box>
 
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: '6', md: '8' }} w="100%">

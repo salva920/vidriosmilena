@@ -123,7 +123,7 @@ export default function HeroSection({
             boxShadow="2xl"
             letterSpacing="wide"
             textTransform="uppercase"
-            onClick={onScrollToContact}
+            onClick={onOpenModal}
           >
             Solicitar Cotización
           </Button>

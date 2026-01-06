@@ -10,7 +10,12 @@ import {
   Card,
   CardBody,
   Image,
+  Button,
 } from '@chakra-ui/react'
+
+interface ShowerSectionProps {
+  onOpenModal?: () => void
+}
 
 const showerTypes = [
   {
@@ -30,7 +35,7 @@ const showerTypes = [
   }
 ]
 
-export default function ShowerSection() {
+export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
   return (
     <Box id="shower" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
@@ -67,6 +72,27 @@ export default function ShowerSection() {
             >
               Soluciones modernas y elegantes para baños con mamparas de vidrio templado que combinan funcionalidad, seguridad y diseño.
             </Text>
+            
+            <Button
+              onClick={onOpenModal}
+              bg="red.600"
+              color="white"
+              fontWeight="bold"
+              textTransform="uppercase"
+              fontSize={{ base: 'sm', md: 'md' }}
+              px={{ base: '6', md: '8' }}
+              py={{ base: '5', md: '6' }}
+              borderRadius="md"
+              mt="6"
+              _hover={{
+                bg: 'red.700',
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg'
+              }}
+              transition="all 0.3s"
+            >
+              Cotizar
+            </Button>
           </Box>
 
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: '6', md: '8' }} w="100%">
