@@ -24,7 +24,12 @@ interface ShowerSectionProps {
   onOpenModal?: () => void
 }
 
-const galleryItems = [
+interface GalleryItem {
+  src: string
+  type: 'image' | 'video'
+}
+
+const galleryItems: GalleryItem[] = [
   { src: '/img/shower1.mp4', type: 'video' },
   { src: '/img/shower2.jpg', type: 'image' },
   { src: '/img/shower3.jpg', type: 'image' },
@@ -34,7 +39,7 @@ const galleryItems = [
 
 export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [selectedItem, setSelectedItem] = useState<{ src: string; type: 'image' | 'video' } | null>(null)
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
 
   // Auto-play carousel
@@ -55,7 +60,7 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
     setCurrentIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length)
   }
 
-  const handleItemClick = (item: { src: string; type: 'image' | 'video' }) => {
+  const handleItemClick = (item: GalleryItem) => {
     setSelectedItem(item)
     onOpen()
   }
