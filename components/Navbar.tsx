@@ -18,6 +18,7 @@ import {
   VStack,
   useDisclosure,
   Button,
+  Image,
 } from '@chakra-ui/react'
 import { FiMenu } from 'react-icons/fi'
 import { useState } from 'react'
@@ -113,33 +114,17 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             gap="4"
           >
             {/* Logo */}
-            <HStack spacing={{ base: '2', md: '3' }} flexShrink={0}>
-              <Box
-                position="relative"
-                w={{ base: '32px', md: '40px' }}
-                h={{ base: '32px', md: '40px' }}
-              >
-                {/* Logo geométrico rojo y azul */}
-                <Box
-                  position="absolute"
-                  w="100%"
-                  h="100%"
-                  bgGradient="linear(to-br, red.500, blue.500)"
-                  clipPath="polygon(0 0, 100% 0, 50% 100%)"
-                  borderRadius="sm"
-                />
-              </Box>
-              <Heading
-                size={{ base: 'md', md: 'lg' }}
-                fontWeight="bold"
-                letterSpacing="tight"
-                textTransform="uppercase"
-                display={{ base: 'none', sm: 'block' }}
-              >
-                <Text as="span" color="blue.600">MILE</Text>
-                <Text as="span" color="gray.900">GLASS</Text>
-              </Heading>
-            </HStack>
+            <Box flexShrink={0}>
+              <Image
+                src="/logo.jpg"
+                alt="Logo MILEGLASS"
+                h={{ base: '50px', md: '60px', lg: '70px' }}
+                w="auto"
+                objectFit="contain"
+                cursor="pointer"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              />
+            </Box>
 
             {/* Navigation Links - Desktop */}
             <HStack
@@ -350,26 +335,13 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader borderBottomWidth="1px">
-            <HStack spacing="2">
-              <Box
-                position="relative"
-                w="32px"
-                h="32px"
-              >
-                <Box
-                  position="absolute"
-                  w="100%"
-                  h="100%"
-                  bgGradient="linear(to-br, red.500, blue.500)"
-                  clipPath="polygon(0 0, 100% 0, 50% 100%)"
-                  borderRadius="sm"
-                />
-              </Box>
-              <Heading size="md" fontWeight="bold" letterSpacing="tight" textTransform="uppercase">
-                <Text as="span" color="blue.600">MILE</Text>
-                <Text as="span" color="gray.900">GLASS</Text>
-              </Heading>
-            </HStack>
+            <Image
+              src="/logo.jpg"
+              alt="Logo MILEGLASS"
+              h="50px"
+              w="auto"
+              objectFit="contain"
+            />
           </DrawerHeader>
 
           <DrawerBody pt="6">
