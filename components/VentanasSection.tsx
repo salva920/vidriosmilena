@@ -19,17 +19,17 @@ interface VentanasSectionProps {
 
 const ventanasTypes = [
   {
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: '/ventana aluminio.png',
     title: 'Ventanas de Aluminio',
     description: 'Ventanas de alto rendimiento con marco de aluminio, ideales para proyectos modernos y duraderos.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: '/img/ventana pvc.jpg',
     title: 'Ventanas de PVC',
     description: 'Excelente aislamiento térmico y acústico, perfectas para mejorar la eficiencia energética de tu hogar.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    image: '/img/ventarpt.jpg',
     title: 'Ventanas RPT',
     description: 'Rotura de Puente Térmico para máximo aislamiento y eficiencia energética.'
   }
