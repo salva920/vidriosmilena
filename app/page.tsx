@@ -85,7 +85,7 @@ export default function Home() {
 
   return (
     <Box>
-      <Navbar />
+      <Navbar onOpenModal={onOpen} />
       <Box pt={{ base: '80px', md: '120px' }}>
         <HeroSection
         rotatingTitles={rotatingTitles}
@@ -119,7 +119,7 @@ export default function Home() {
 
       <Footer />
 
-      <ContactModal isOpen={isOpen} onClose={onClose} />
+      <ContactModal isOpen={isOpen} onClose={onClose} numeroWhatsApp={numeroWhatsApp} />
       </Box>
     </Box>
   )

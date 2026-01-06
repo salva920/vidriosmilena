@@ -22,7 +22,11 @@ import {
 import { FiMenu } from 'react-icons/fi'
 import { useState } from 'react'
 
-export default function Navbar() {
+interface NavbarProps {
+  onOpenModal?: () => void
+}
+
+export default function Navbar({ onOpenModal }: NavbarProps) {
   const [activeLink, setActiveLink] = useState('')
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -303,7 +307,10 @@ export default function Navbar() {
 
             {/* Cotiza Button - Desktop */}
             <Button
-              onClick={() => scrollToSection('CONTACTO')}
+              onClick={() => {
+                onOpenModal?.()
+                onClose() // Cerrar el drawer si está abierto
+              }}
               bg="red.600"
               color="white"
               fontWeight="bold"
@@ -454,7 +461,10 @@ export default function Navbar() {
 
               {/* Cotiza Button - Mobile */}
               <Button
-                onClick={() => scrollToSection('CONTACTO')}
+                onClick={() => {
+                  onOpenModal?.()
+                  onClose() // Cerrar el drawer
+                }}
                 bg="red.600"
                 color="white"
                 fontWeight="bold"
