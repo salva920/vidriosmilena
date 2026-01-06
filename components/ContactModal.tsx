@@ -4,7 +4,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalBody,
   ModalCloseButton,
   VStack,
@@ -16,6 +15,9 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  HStack,
+  Flex,
+  Container,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
@@ -124,162 +126,208 @@ _Generado desde el formulario de contacto de MILEGLASS_`
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} size="xl">
+    <Modal isOpen={isOpen} onClose={handleClose} size="6xl" isCentered>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <Heading size="lg" color="gray.800">
-            Solicitar Cotización
-          </Heading>
-        </ModalHeader>
-        <ModalCloseButton />
-        <ModalBody pb={6}>
-          <VStack spacing="6" align="stretch">
-            <Text color="gray.600">
-              Completa el formulario y te contactaremos a la brevedad. También se abrirá WhatsApp para que puedas contactarnos directamente.
-            </Text>
-            
-            <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-              <VStack spacing="4" width="full">
-                <Box width="full">
-                  <Text fontSize="sm" fontWeight="semibold" mb="2" color="gray.700">
-                    Nombre Completo
-                  </Text>
-                  <Box
-                    as="input"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    width="full"
-                    p="3"
-                    border="1px solid"
-                    borderColor="gray.300"
-                    borderRadius="md"
-                    placeholder="Tu nombre completo"
-                    _focus={{ borderColor: 'red.500', outline: 'none' }}
-                    required
-                  />
-                </Box>
+      <ModalContent maxW="1200px" maxH="90vh" overflowY="auto">
+        <ModalCloseButton zIndex={2} />
+        <ModalBody p={0}>
+          <Flex
+            direction={{ base: 'column', lg: 'row' }}
+            align="stretch"
+            minH={{ base: 'auto', lg: '600px' }}
+          >
+            {/* Left Section - Blue Background */}
+            <Box 
+              flex="1" 
+              bg="blue.500" 
+              color="white"
+              p={{ base: '8', md: '10', lg: '12' }}
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+            >
+              <VStack align="start" spacing="6">
+                <Heading size="2xl" color="white">
+                  ¿Listo para transformar tu espacio?
+                </Heading>
+                <Text fontSize="lg" color="blue.100" maxW="500px">
+                  Contáctanos hoy mismo para una cotización gratuita. 
+                  Nuestros expertos te ayudarán a encontrar la solución perfecta.
+                </Text>
                 
-                <Box width="full">
-                  <Text fontSize="sm" fontWeight="semibold" mb="2" color="gray.700">
-                    Teléfono
-                  </Text>
-                  <Box
-                    as="input"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    width="full"
-                    p="3"
-                    border="1px solid"
-                    borderColor="gray.300"
-                    borderRadius="md"
-                    placeholder="Tu número de teléfono"
-                    _focus={{ borderColor: 'red.500', outline: 'none' }}
-                    required
-                  />
-                </Box>
-                
-                <Box width="full">
-                  <Text fontSize="sm" fontWeight="semibold" mb="2" color="gray.700">
-                    Tipo de Servicio
-                  </Text>
-                  <Box
-                    as="select"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleInputChange}
-                    width="full"
-                    p="3"
-                    border="1px solid"
-                    borderColor="gray.300"
-                    borderRadius="md"
-                    _focus={{ borderColor: 'red.500', outline: 'none' }}
-                    required
-                  >
-                    <option value="">Selecciona un servicio</option>
-                    <option value="Arquitectura">Arquitectura</option>
-                    <option value="Ventanas de PVC y Aluminio">Ventanas de PVC y Aluminio</option>
-                    <option value="Shower o Mamparas">Shower o Mamparas</option>
-                    <option value="Cierres y Barandas">Cierres y Barandas</option>
-                    <option value="Espejos">Espejos</option>
-                    <option value="Cortinas de Cristal">Cortinas de Cristal</option>
-                    <option value="Vidrios Templados">Vidrios Templados</option>
-                    <option value="Vidrios Laminados">Vidrios Laminados</option>
-                    <option value="Instalación">Instalación</option>
-                    <option value="Reparación">Reparación</option>
-                    <option value="Otro">Otro</option>
-                  </Box>
-                </Box>
-                
-                <Box width="full">
-                  <Text fontSize="sm" fontWeight="semibold" mb="2" color="gray.700">
-                    Mensaje
-                  </Text>
-                  <Box
-                    as="textarea"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    width="full"
-                    p="3"
-                    border="1px solid"
-                    borderColor="gray.300"
-                    borderRadius="md"
-                    placeholder="Cuéntanos sobre tu proyecto..."
-                    rows={4}
-                    _focus={{ borderColor: 'red.500', outline: 'none' }}
-                    required
-                  />
-                </Box>
-
-                {/* Mensajes de estado */}
-                {submitStatus === 'success' && (
-                  <Alert status="success" borderRadius="md">
-                    <AlertIcon />
-                    <Box>
-                      <AlertTitle>¡Mensaje enviado exitosamente!</AlertTitle>
-                      <AlertDescription>
-                        Tu mensaje ha sido enviado por correo y se abrió WhatsApp para que puedas contactarnos directamente.
-                      </AlertDescription>
-                    </Box>
-                  </Alert>
-                )}
-                
-                {submitStatus === 'error' && (
-                  <Alert status="error" borderRadius="md">
-                    <AlertIcon />
-                    <Box>
-                      <AlertTitle>Error al enviar el mensaje</AlertTitle>
-                      <AlertDescription>
-                        Por favor, inténtalo de nuevo o contáctanos directamente.
-                      </AlertDescription>
-                    </Box>
-                  </Alert>
-                )}
-                
-                <Button
-                  type="submit"
-                  width="full"
-                  size="lg"
-                  bg="red.600"
-                  color="white"
-                  py="6"
-                  fontSize="lg"
-                  fontWeight="semibold"
-                  isLoading={isSubmitting}
-                  loadingText="Enviando..."
-                  disabled={isSubmitting}
-                  _hover={{
-                    bg: 'red.700'
-                  }}
-                >
-                  💬 Enviar Mensaje y Abrir WhatsApp
-                </Button>
+                <VStack align="start" spacing="4" pt="4">
+                  <HStack>
+                    <Text fontSize="lg">📞</Text>
+                    <Text fontWeight="semibold">+58 (412) 239 0689</Text>
+                  </HStack>
+                  <HStack>
+                    <Text fontSize="lg">✉️</Text>
+                    <Text fontWeight="semibold">info@mileglass.com</Text>
+                  </HStack>
+                  <HStack>
+                    <Text fontSize="lg">📍</Text>
+                    <Text fontWeight="semibold">Maipu, Santiago, Chile</Text>
+                  </HStack>
+                </VStack>
               </VStack>
-            </form>
-          </VStack>
+            </Box>
+            
+            {/* Right Section - White Background with Form */}
+            <Box 
+              flex="1" 
+              bg="white"
+              p={{ base: '8', md: '10', lg: '12' }}
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+            >
+              <Box
+                bg="white"
+                borderRadius="xl"
+                color="gray.800"
+                w="100%"
+              >
+                <VStack spacing="6" align="stretch">
+                  <Heading size="lg" color="gray.800">
+                    Contáctanos
+                  </Heading>
+                  
+                  <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+                    <VStack spacing="4" width="full">
+                      <Box width="full">
+                        <Text fontSize="sm" fontWeight="semibold" mb="2">
+                          Nombre Completo
+                        </Text>
+                        <Box
+                          as="input"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          width="full"
+                          p="3"
+                          border="1px solid"
+                          borderColor="gray.300"
+                          borderRadius="md"
+                          placeholder="Tu nombre completo"
+                          _focus={{ borderColor: 'blue.500', outline: 'none' }}
+                          required
+                        />
+                      </Box>
+                      
+                      <Box width="full">
+                        <Text fontSize="sm" fontWeight="semibold" mb="2">
+                          Teléfono
+                        </Text>
+                        <Box
+                          as="input"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          width="full"
+                          p="3"
+                          border="1px solid"
+                          borderColor="gray.300"
+                          borderRadius="md"
+                          placeholder="Tu número de teléfono"
+                          _focus={{ borderColor: 'blue.500', outline: 'none' }}
+                          required
+                        />
+                      </Box>
+                      
+                      <Box width="full">
+                        <Text fontSize="sm" fontWeight="semibold" mb="2">
+                          Tipo de Servicio
+                        </Text>
+                        <Box
+                          as="select"
+                          name="service"
+                          value={formData.service}
+                          onChange={handleInputChange}
+                          width="full"
+                          p="3"
+                          border="1px solid"
+                          borderColor="gray.300"
+                          borderRadius="md"
+                          _focus={{ borderColor: 'blue.500', outline: 'none' }}
+                          required
+                        >
+                          <option value="">Selecciona un servicio</option>
+                          <option value="Arquitectura">Arquitectura</option>
+                          <option value="Ventanas de PVC y Aluminio">Ventanas de PVC y Aluminio</option>
+                          <option value="Shower o Mamparas">Shower o Mamparas</option>
+                          <option value="Cierres y Barandas">Cierres y Barandas</option>
+                          <option value="Espejos">Espejos</option>
+                          <option value="Cortinas de Cristal">Cortinas de Cristal</option>
+                          <option value="Vidrios Templados">Vidrios Templados</option>
+                          <option value="Vidrios Laminados">Vidrios Laminados</option>
+                          <option value="Instalación">Instalación</option>
+                          <option value="Reparación">Reparación</option>
+                          <option value="Otro">Otro</option>
+                        </Box>
+                      </Box>
+                      
+                      <Box width="full">
+                        <Text fontSize="sm" fontWeight="semibold" mb="2">
+                          Mensaje
+                        </Text>
+                        <Box
+                          as="textarea"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          width="full"
+                          p="3"
+                          border="1px solid"
+                          borderColor="gray.300"
+                          borderRadius="md"
+                          placeholder="Cuéntanos sobre tu proyecto..."
+                          rows={4}
+                          _focus={{ borderColor: 'blue.500', outline: 'none' }}
+                          required
+                        />
+                      </Box>
+
+                      {/* Mensajes de estado */}
+                      {submitStatus === 'success' && (
+                        <Alert status="success" borderRadius="md">
+                          <AlertIcon />
+                          <AlertTitle>¡Mensaje enviado exitosamente!</AlertTitle>
+                          <AlertDescription>
+                            Tu mensaje ha sido enviado por correo y se abrió WhatsApp para que puedas contactarnos directamente.
+                          </AlertDescription>
+                        </Alert>
+                      )}
+                      
+                      {submitStatus === 'error' && (
+                        <Alert status="error" borderRadius="md">
+                          <AlertIcon />
+                          <AlertTitle>Error al enviar el mensaje</AlertTitle>
+                          <AlertDescription>
+                            Por favor, inténtalo de nuevo o contáctanos directamente.
+                          </AlertDescription>
+                        </Alert>
+                      )}
+                      
+                      <Button
+                        type="submit"
+                        width="full"
+                        size="lg"
+                        colorScheme="blue"
+                        py="6"
+                        fontSize="lg"
+                        fontWeight="semibold"
+                        isLoading={isSubmitting}
+                        loadingText="Enviando..."
+                        disabled={isSubmitting}
+                      >
+                        💬 Enviar Mensaje y Abrir WhatsApp
+                      </Button>
+                    </VStack>
+                  </form>
+                </VStack>
+              </Box>
+            </Box>
+          </Flex>
         </ModalBody>
       </ModalContent>
     </Modal>
