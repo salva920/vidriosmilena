@@ -10,7 +10,14 @@ import {
   Image,
   Button,
   SimpleGrid,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 
 interface ShowerSectionProps {
   onOpenModal?: () => void
@@ -24,6 +31,16 @@ const galleryImages = [
 ]
 
 export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
+  const handleImageClick = (image: string) => {
+    setSelectedImage(image)
+    onOpen()
+  }
+
+  const additionalDescription = "Nuestras mamparas de vidrio templado están fabricadas con los más altos estándares de calidad y seguridad. Ofrecemos una amplia variedad de diseños, desde mamparas corredizas hasta puertas pivotantes, todas personalizables según tus necesidades. Cada producto está diseñado para maximizar el espacio, mejorar la iluminación natural y crear ambientes modernos y elegantes."
+
   return (
     <Box id="shower" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
@@ -87,6 +104,7 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
                     }}
                     transition="transform 0.3s"
                     cursor="pointer"
+                    onClick={() => handleImageClick(image)}
                   >
                     <Image
                       src={image}
@@ -178,6 +196,82 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
           </Box>
         </Flex>
       </Container>
+
+      {/* Image Modal */}
+      <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalBody p={0}>
+            <VStack spacing="6" p={{ base: '6', md: '8' }}>
+              {/* Expanded Image */}
+              {selectedImage && (
+                <Box
+                  w="100%"
+                  h={{ base: '300px', md: '400px', lg: '500px' }}
+                  borderRadius="lg"
+                  overflow="hidden"
+                  bg="gray.100"
+                >
+                  <Image
+                    src={selectedImage}
+                    alt="Shower ampliado"
+                    w="100%"
+                    h="100%"
+                    objectFit="cover"
+                    objectPosition="center"
+                  />
+                </Box>
+              )}
+
+              {/* Additional Description */}
+              <Box w="100%">
+                <Heading 
+                  size="lg" 
+                  mb="4" 
+                  color="gray.900"
+                  textTransform="uppercase"
+                >
+                  SHOWER O MAMPARAS
+                </Heading>
+                <Text 
+                  fontSize={{ base: 'md', md: 'lg' }}
+                  color="gray.600"
+                  lineHeight="1.7"
+                  mb="6"
+                >
+                  {additionalDescription}
+                </Text>
+
+                {/* CTA Button */}
+                <Button
+                  onClick={() => {
+                    onClose()
+                    onOpenModal?.()
+                  }}
+                  bg="red.600"
+                  color="white"
+                  fontWeight="bold"
+                  textTransform="uppercase"
+                  fontSize={{ base: 'sm', md: 'md' }}
+                  px={{ base: '6', md: '8' }}
+                  py={{ base: '5', md: '6' }}
+                  borderRadius="md"
+                  w={{ base: '100%', md: 'auto' }}
+                  _hover={{
+                    bg: 'red.700',
+                    transform: 'translateY(-2px)',
+                    boxShadow: 'lg'
+                  }}
+                  transition="all 0.3s"
+                >
+                  Cotizar
+                </Button>
+              </Box>
+            </VStack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Box>
   )
 }
