@@ -17,8 +17,11 @@ import {
   useDisclosure,
   Flex,
   Badge,
+  IconButton,
+  HStack,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 interface EspejosSectionProps {
   onOpenModal?: () => void
@@ -35,6 +38,25 @@ const galleryImages = [
 export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  // Auto-play carousel para imágenes
+  useEffect(() => {
+    if (galleryImages.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length)
+      }, 5000) // Cambia cada 5 segundos
+      return () => clearInterval(interval)
+    }
+  }, [])
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)
+  }
 
   const handleImageClick = (image: string) => {
     setSelectedImage(image)
@@ -166,7 +188,7 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
             </VStack>
           </Box>
 
-          {/* Left Side - Main Image (Desktop only) */}
+          {/* Left Side - Image Carousel (Desktop only) */}
           <Box 
             flex={{ base: '1', lg: '1' }}
             position="relative"
@@ -175,15 +197,115 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
             bg="gray.100"
             minH={{ base: '300px', md: '400px', lg: '600px' }}
             display={{ base: 'none', lg: 'block' }}
+            cursor="pointer"
+            onClick={() => handleImageClick(galleryImages[currentImageIndex])}
           >
-            <Image
-              src={galleryImages[0]}
-              alt="Espejos decorativos"
-              w="100%"
-              h="100%"
-              objectFit="cover"
-              objectPosition="center"
-            />
+            {galleryImages.map((image, index) => (
+              <Image
+                key={index}
+                src={image}
+                alt={`Espejo ${index + 1}`}
+                position="absolute"
+                top="0"
+                left="0"
+                w="100%"
+                h="100%"
+                objectFit="cover"
+                objectPosition="center"
+                opacity={index === currentImageIndex ? 1 : 0}
+                transition="opacity 0.8s ease-in-out"
+                zIndex={index === currentImageIndex ? 1 : 0}
+                pointerEvents="none"
+              />
+            ))}
+            
+            {/* Navigation Buttons */}
+            {galleryImages.length > 1 && (
+              <>
+                <IconButton
+                  aria-label="Imagen anterior"
+                  icon={<FiChevronLeft />}
+                  position="absolute"
+                  left="4"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  zIndex={2}
+                  bg="rgba(0, 0, 0, 0.5)"
+                  color="white"
+                  borderRadius="full"
+                  size="lg"
+                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    prevImage()
+                  }}
+                />
+                <IconButton
+                  aria-label="Imagen siguiente"
+                  icon={<FiChevronRight />}
+                  position="absolute"
+                  right="4"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  zIndex={2}
+                  bg="rgba(0, 0, 0, 0.5)"
+                  color="white"
+                  borderRadius="full"
+                  size="lg"
+                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    nextImage()
+                  }}
+                />
+                
+                {/* Pagination Dots */}
+                <HStack
+                  position="absolute"
+                  bottom="4"
+                  left="50%"
+                  transform="translateX(-50%)"
+                  zIndex={2}
+                  spacing="2"
+                >
+                  {galleryImages.map((_, index) => (
+                    <Box
+                      key={index}
+                      w="10px"
+                      h="10px"
+                      borderRadius="full"
+                      bg={index === currentImageIndex ? 'white' : 'rgba(255, 255, 255, 0.5)'}
+                      cursor="pointer"
+                      transition="all 0.3s"
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation()
+                        setCurrentImageIndex(index)
+                      }}
+                    />
+                  ))}
+                </HStack>
+              </>
+            )}
+            
+            {/* LED Badge if current image has LED */}
+            {isLedImage(galleryImages[currentImageIndex]) && (
+              <Badge
+                position="absolute"
+                top="4"
+                right="4"
+                bg="yellow.400"
+                color="gray.900"
+                fontWeight="bold"
+                fontSize="md"
+                px="3"
+                py="2"
+                borderRadius="md"
+                boxShadow="lg"
+                zIndex={2}
+              >
+                ✨ LED
+              </Badge>
+            )}
           </Box>
         </Flex>
       </Container>
