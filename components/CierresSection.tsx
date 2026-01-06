@@ -35,7 +35,7 @@ const cierresTypes = [
   }
 ]
 
-export default function CierresSection() {
+export default function CierresSection({ onOpenModal }: CierresSectionProps) {
   return (
     <Box id="cierres" py={{ base: '12', md: '16', lg: '20' }} bg="gray.50">
       <Container maxW="container.xl">

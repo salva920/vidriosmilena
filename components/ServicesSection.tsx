@@ -112,11 +112,11 @@ export default function ServicesSection({ onScrollToContact }: ServicesSectionPr
   // Auto-play del carrusel
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide()
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
     }, 5000) // Cambia cada 5 segundos
 
     return () => clearInterval(interval)
-  }, [currentIndex, maxIndex])
+  }, [maxIndex])
 
   return (
     <Box id="servicios" py={{ base: '12', md: '16' }} bg="white">
