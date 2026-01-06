@@ -84,7 +84,8 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
             borderRadius="xl"
             overflow="hidden"
             bg="gray.100"
-            minH={{ base: '400px', md: '500px', lg: '600px' }}
+            h={{ base: '300px', md: '400px', lg: '500px' }}
+            maxH={{ base: '300px', md: '400px', lg: '500px' }}
             cursor="pointer"
             onClick={() => handleImageClick(galleryImages[currentImageIndex])}
           >
@@ -98,7 +99,7 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
                 left="0"
                 w="100%"
                 h="100%"
-                objectFit="cover"
+                objectFit="contain"
                 objectPosition="center"
                 opacity={index === currentImageIndex ? 1 : 0}
                 transition="opacity 0.8s ease-in-out"
