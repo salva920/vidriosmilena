@@ -6,9 +6,6 @@ import {
   Flex,
   HStack,
   Text,
-  Input,
-  InputGroup,
-  InputRightElement,
   IconButton,
   Link,
   Heading,
@@ -22,19 +19,12 @@ import {
   useDisclosure,
   Button,
 } from '@chakra-ui/react'
-import { FiSearch, FiMenu } from 'react-icons/fi'
+import { FiMenu } from 'react-icons/fi'
 import { useState } from 'react'
 
 export default function Navbar() {
-  const [searchQuery, setSearchQuery] = useState('')
   const [activeLink, setActiveLink] = useState('')
   const { isOpen, onOpen, onClose } = useDisclosure()
-
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    // Lógica de búsqueda aquí
-    console.log('Buscando:', searchQuery)
-  }
 
   const scrollToSection = (id: string) => {
     // Mapear los IDs correctamente según las secciones existentes
@@ -310,32 +300,27 @@ export default function Navbar() {
               </Link>
             </HStack>
 
-            {/* Search Bar - Desktop */}
-            <Box flex="1" maxW="300px" display={{ base: 'none', lg: 'block' }}>
-              <form onSubmit={handleSearch}>
-                <InputGroup size="sm">
-                  <Input
-                    placeholder="Type and hit enter..."
-                    value={searchQuery}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
-                    borderRadius="md"
-                    borderColor="gray.300"
-                    _focus={{ borderColor: 'blue.500', boxShadow: 'none' }}
-                  />
-                  <InputRightElement>
-                    <IconButton
-                      aria-label="Buscar"
-                      icon={<FiSearch />}
-                      size="sm"
-                      variant="ghost"
-                      type="submit"
-                      color="gray.600"
-                      _hover={{ color: 'blue.500' }}
-                    />
-                  </InputRightElement>
-                </InputGroup>
-              </form>
-            </Box>
+            {/* Cotiza Button - Desktop */}
+            <Button
+              onClick={() => scrollToSection('CONTACTO')}
+              bg="red.600"
+              color="white"
+              fontWeight="bold"
+              textTransform="uppercase"
+              fontSize="sm"
+              px={{ base: '4', md: '6' }}
+              py="6"
+              borderRadius="md"
+              _hover={{
+                bg: 'red.700',
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg'
+              }}
+              transition="all 0.3s"
+              display={{ base: 'none', md: 'flex' }}
+            >
+              Cotiza
+            </Button>
 
             {/* Mobile Menu Button */}
             <IconButton
@@ -464,6 +449,28 @@ export default function Navbar() {
                 _hover={{ bg: 'gray.100', color: 'blue.600' }}
               >
                 CONTACTO
+              </Button>
+
+              {/* Cotiza Button - Mobile */}
+              <Button
+                onClick={() => scrollToSection('CONTACTO')}
+                bg="red.600"
+                color="white"
+                fontWeight="bold"
+                textTransform="uppercase"
+                fontSize="sm"
+                w="100%"
+                py="6"
+                borderRadius="md"
+                mt="4"
+                _hover={{
+                  bg: 'red.700',
+                  transform: 'translateY(-2px)',
+                  boxShadow: 'lg'
+                }}
+                transition="all 0.3s"
+              >
+                Cotiza
               </Button>
 
               {/* Contact Info in Mobile Menu */}
