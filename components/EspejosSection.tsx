@@ -163,6 +163,124 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
                 ))}
               </SimpleGrid>
 
+              {/* Image Carousel - Mobile only (appears after gallery, before button) */}
+              <Box 
+                display={{ base: 'block', lg: 'none' }}
+                position="relative"
+                borderRadius="xl"
+                overflow="hidden"
+                bg="gray.100"
+                minH="300px"
+                mt="6"
+                cursor="pointer"
+                onClick={() => handleImageClick(galleryImages[currentImageIndex])}
+              >
+                {galleryImages.map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image}
+                    alt={`Espejo ${index + 1}`}
+                    position="absolute"
+                    top="0"
+                    left="0"
+                    w="100%"
+                    h="100%"
+                    objectFit="cover"
+                    objectPosition="center"
+                    opacity={index === currentImageIndex ? 1 : 0}
+                    transition="opacity 0.8s ease-in-out"
+                    zIndex={index === currentImageIndex ? 1 : 0}
+                    pointerEvents="none"
+                  />
+                ))}
+                
+                {/* Navigation Buttons - Mobile */}
+                {galleryImages.length > 1 && (
+                  <>
+                    <IconButton
+                      aria-label="Imagen anterior"
+                      icon={<FiChevronLeft />}
+                      position="absolute"
+                      left="4"
+                      top="50%"
+                      transform="translateY(-50%)"
+                      zIndex={2}
+                      bg="rgba(0, 0, 0, 0.5)"
+                      color="white"
+                      borderRadius="full"
+                      size="lg"
+                      _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation()
+                        prevImage()
+                      }}
+                    />
+                    <IconButton
+                      aria-label="Imagen siguiente"
+                      icon={<FiChevronRight />}
+                      position="absolute"
+                      right="4"
+                      top="50%"
+                      transform="translateY(-50%)"
+                      zIndex={2}
+                      bg="rgba(0, 0, 0, 0.5)"
+                      color="white"
+                      borderRadius="full"
+                      size="lg"
+                      _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation()
+                        nextImage()
+                      }}
+                    />
+                    <HStack
+                      position="absolute"
+                      bottom="4"
+                      left="50%"
+                      transform="translateX(-50%)"
+                      zIndex={2}
+                      spacing="2"
+                    >
+                      {galleryImages.map((_, index) => (
+                        <Box
+                          key={index}
+                          w="10px"
+                          h="10px"
+                          borderRadius="full"
+                          bg={index === currentImageIndex ? 'white' : 'rgba(255, 255, 255, 0.5)'}
+                          cursor="pointer"
+                          transition="all 0.3s"
+                          onClick={(e: React.MouseEvent) => {
+                            e.stopPropagation()
+                            setCurrentImageIndex(index)
+                          }}
+                        />
+                      ))}
+                    </HStack>
+                  </>
+                )}
+                
+                {/* LED Badge if current image has LED - Mobile */}
+                {isLedImage(galleryImages[currentImageIndex]) && (
+                  <Badge
+                    position="absolute"
+                    top="4"
+                    right="4"
+                    bg="yellow.400"
+                    color="gray.900"
+                    fontWeight="bold"
+                    fontSize="md"
+                    px="3"
+                    py="2"
+                    borderRadius="md"
+                    boxShadow="lg"
+                    zIndex={2}
+                  >
+                    ✨ LED
+                  </Badge>
+                )}
+              </Box>
+
               {/* CTA Button */}
               <Button
                 onClick={onOpenModal}
