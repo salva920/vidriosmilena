@@ -73,17 +73,135 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
     <Box id="espejos" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
         <Flex
-          direction={{ base: 'column', lg: 'row' }}
-          gap={{ base: '8', lg: '12' }}
+          direction={{ base: 'row', lg: 'row' }}
+          gap={{ base: '4', md: '6', lg: '12' }}
           align="stretch"
         >
+          {/* Left Side - Image Carousel */}
+          <Box 
+            flex={{ base: '1', lg: '1' }}
+            position="relative"
+            borderRadius="xl"
+            overflow="hidden"
+            bg="gray.100"
+            minH={{ base: '400px', md: '500px', lg: '600px' }}
+            cursor="pointer"
+            onClick={() => handleImageClick(galleryImages[currentImageIndex])}
+          >
+            {galleryImages.map((image, index) => (
+              <Image
+                key={index}
+                src={image}
+                alt={`Espejo ${index + 1}`}
+                position="absolute"
+                top="0"
+                left="0"
+                w="100%"
+                h="100%"
+                objectFit="cover"
+                objectPosition="center"
+                opacity={index === currentImageIndex ? 1 : 0}
+                transition="opacity 0.8s ease-in-out"
+                zIndex={index === currentImageIndex ? 1 : 0}
+                pointerEvents="none"
+              />
+            ))}
+            
+            {/* Navigation Buttons */}
+            {galleryImages.length > 1 && (
+              <>
+                <IconButton
+                  aria-label="Imagen anterior"
+                  icon={<FiChevronLeft />}
+                  position="absolute"
+                  left="2"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  zIndex={2}
+                  bg="rgba(0, 0, 0, 0.5)"
+                  color="white"
+                  borderRadius="full"
+                  size={{ base: 'md', md: 'lg' }}
+                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    prevImage()
+                  }}
+                />
+                <IconButton
+                  aria-label="Imagen siguiente"
+                  icon={<FiChevronRight />}
+                  position="absolute"
+                  right="2"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  zIndex={2}
+                  bg="rgba(0, 0, 0, 0.5)"
+                  color="white"
+                  borderRadius="full"
+                  size={{ base: 'md', md: 'lg' }}
+                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    nextImage()
+                  }}
+                />
+                
+                {/* Pagination Dots */}
+                <HStack
+                  position="absolute"
+                  bottom="2"
+                  left="50%"
+                  transform="translateX(-50%)"
+                  zIndex={2}
+                  spacing="2"
+                >
+                  {galleryImages.map((_, index) => (
+                    <Box
+                      key={index}
+                      w={{ base: '8px', md: '10px' }}
+                      h={{ base: '8px', md: '10px' }}
+                      borderRadius="full"
+                      bg={index === currentImageIndex ? 'white' : 'rgba(255, 255, 255, 0.5)'}
+                      cursor="pointer"
+                      transition="all 0.3s"
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation()
+                        setCurrentImageIndex(index)
+                      }}
+                    />
+                  ))}
+                </HStack>
+              </>
+            )}
+            
+            {/* LED Badge if current image has LED */}
+            {isLedImage(galleryImages[currentImageIndex]) && (
+              <Badge
+                position="absolute"
+                top="2"
+                right="2"
+                bg="yellow.400"
+                color="gray.900"
+                fontWeight="bold"
+                fontSize={{ base: 'xs', md: 'md' }}
+                px={{ base: '2', md: '3' }}
+                py={{ base: '1', md: '2' }}
+                borderRadius="md"
+                boxShadow="lg"
+                zIndex={2}
+              >
+                ✨ LED
+              </Badge>
+            )}
+          </Box>
+
           {/* Right Side - Content */}
           <Box 
             flex={{ base: '1', lg: '1' }}
             display="flex"
             flexDirection="column"
             justifyContent="center"
-            order={{ base: 1, lg: 2 }}
           >
             <VStack spacing="6" align="stretch">
               {/* Title */}
@@ -117,7 +235,7 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
               </Text>
 
               {/* Gallery Images */}
-              <SimpleGrid columns={2} spacing="4" mt="4">
+              <SimpleGrid columns={2} spacing="3" mt="4">
                 {galleryImages.map((image, index) => (
                   <Box
                     key={index}
@@ -125,7 +243,7 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
                     borderRadius="lg"
                     overflow="hidden"
                     bg="gray.100"
-                    h={{ base: '150px', md: '180px', lg: '200px' }}
+                    h={{ base: '100px', md: '120px', lg: '150px' }}
                     _hover={{
                       transform: 'scale(1.05)',
                       transition: 'transform 0.3s'
@@ -145,14 +263,14 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
                     {isLedImage(image) && (
                       <Badge
                         position="absolute"
-                        top="2"
-                        right="2"
+                        top="1"
+                        right="1"
                         bg="yellow.400"
                         color="gray.900"
                         fontWeight="bold"
                         fontSize="xs"
-                        px="2"
-                        py="1"
+                        px="1.5"
+                        py="0.5"
                         borderRadius="md"
                         boxShadow="md"
                       >
@@ -162,124 +280,6 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
                   </Box>
                 ))}
               </SimpleGrid>
-
-              {/* Image Carousel - Mobile only (appears after gallery, before button) */}
-              <Box 
-                display={{ base: 'block', lg: 'none' }}
-                position="relative"
-                borderRadius="xl"
-                overflow="hidden"
-                bg="gray.100"
-                minH="300px"
-                mt="6"
-                cursor="pointer"
-                onClick={() => handleImageClick(galleryImages[currentImageIndex])}
-              >
-                {galleryImages.map((image, index) => (
-                  <Image
-                    key={index}
-                    src={image}
-                    alt={`Espejo ${index + 1}`}
-                    position="absolute"
-                    top="0"
-                    left="0"
-                    w="100%"
-                    h="100%"
-                    objectFit="cover"
-                    objectPosition="center"
-                    opacity={index === currentImageIndex ? 1 : 0}
-                    transition="opacity 0.8s ease-in-out"
-                    zIndex={index === currentImageIndex ? 1 : 0}
-                    pointerEvents="none"
-                  />
-                ))}
-                
-                {/* Navigation Buttons - Mobile */}
-                {galleryImages.length > 1 && (
-                  <>
-                    <IconButton
-                      aria-label="Imagen anterior"
-                      icon={<FiChevronLeft />}
-                      position="absolute"
-                      left="4"
-                      top="50%"
-                      transform="translateY(-50%)"
-                      zIndex={2}
-                      bg="rgba(0, 0, 0, 0.5)"
-                      color="white"
-                      borderRadius="full"
-                      size="lg"
-                      _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
-                      onClick={(e: React.MouseEvent) => {
-                        e.stopPropagation()
-                        prevImage()
-                      }}
-                    />
-                    <IconButton
-                      aria-label="Imagen siguiente"
-                      icon={<FiChevronRight />}
-                      position="absolute"
-                      right="4"
-                      top="50%"
-                      transform="translateY(-50%)"
-                      zIndex={2}
-                      bg="rgba(0, 0, 0, 0.5)"
-                      color="white"
-                      borderRadius="full"
-                      size="lg"
-                      _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
-                      onClick={(e: React.MouseEvent) => {
-                        e.stopPropagation()
-                        nextImage()
-                      }}
-                    />
-                    <HStack
-                      position="absolute"
-                      bottom="4"
-                      left="50%"
-                      transform="translateX(-50%)"
-                      zIndex={2}
-                      spacing="2"
-                    >
-                      {galleryImages.map((_, index) => (
-                        <Box
-                          key={index}
-                          w="10px"
-                          h="10px"
-                          borderRadius="full"
-                          bg={index === currentImageIndex ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                          cursor="pointer"
-                          transition="all 0.3s"
-                          onClick={(e: React.MouseEvent) => {
-                            e.stopPropagation()
-                            setCurrentImageIndex(index)
-                          }}
-                        />
-                      ))}
-                    </HStack>
-                  </>
-                )}
-                
-                {/* LED Badge if current image has LED - Mobile */}
-                {isLedImage(galleryImages[currentImageIndex]) && (
-                  <Badge
-                    position="absolute"
-                    top="4"
-                    right="4"
-                    bg="yellow.400"
-                    color="gray.900"
-                    fontWeight="bold"
-                    fontSize="md"
-                    px="3"
-                    py="2"
-                    borderRadius="md"
-                    boxShadow="lg"
-                    zIndex={2}
-                  >
-                    ✨ LED
-                  </Badge>
-                )}
-              </Box>
 
               {/* CTA Button */}
               <Button
@@ -306,125 +306,6 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
             </VStack>
           </Box>
 
-          {/* Left Side - Image Carousel (Desktop only) */}
-          <Box 
-            flex={{ base: '1', lg: '1' }}
-            position="relative"
-            borderRadius="xl"
-            overflow="hidden"
-            bg="gray.100"
-            minH={{ base: '300px', md: '400px', lg: '600px' }}
-            display={{ base: 'none', lg: 'block' }}
-            cursor="pointer"
-            onClick={() => handleImageClick(galleryImages[currentImageIndex])}
-          >
-            {galleryImages.map((image, index) => (
-              <Image
-                key={index}
-                src={image}
-                alt={`Espejo ${index + 1}`}
-                position="absolute"
-                top="0"
-                left="0"
-                w="100%"
-                h="100%"
-                objectFit="cover"
-                objectPosition="center"
-                opacity={index === currentImageIndex ? 1 : 0}
-                transition="opacity 0.8s ease-in-out"
-                zIndex={index === currentImageIndex ? 1 : 0}
-                pointerEvents="none"
-              />
-            ))}
-            
-            {/* Navigation Buttons */}
-            {galleryImages.length > 1 && (
-              <>
-                <IconButton
-                  aria-label="Imagen anterior"
-                  icon={<FiChevronLeft />}
-                  position="absolute"
-                  left="4"
-                  top="50%"
-                  transform="translateY(-50%)"
-                  zIndex={2}
-                  bg="rgba(0, 0, 0, 0.5)"
-                  color="white"
-                  borderRadius="full"
-                  size="lg"
-                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
-                  onClick={(e: React.MouseEvent) => {
-                    e.stopPropagation()
-                    prevImage()
-                  }}
-                />
-                <IconButton
-                  aria-label="Imagen siguiente"
-                  icon={<FiChevronRight />}
-                  position="absolute"
-                  right="4"
-                  top="50%"
-                  transform="translateY(-50%)"
-                  zIndex={2}
-                  bg="rgba(0, 0, 0, 0.5)"
-                  color="white"
-                  borderRadius="full"
-                  size="lg"
-                  _hover={{ bg: 'rgba(0, 0, 0, 0.7)' }}
-                  onClick={(e: React.MouseEvent) => {
-                    e.stopPropagation()
-                    nextImage()
-                  }}
-                />
-                
-                {/* Pagination Dots */}
-                <HStack
-                  position="absolute"
-                  bottom="4"
-                  left="50%"
-                  transform="translateX(-50%)"
-                  zIndex={2}
-                  spacing="2"
-                >
-                  {galleryImages.map((_, index) => (
-                    <Box
-                      key={index}
-                      w="10px"
-                      h="10px"
-                      borderRadius="full"
-                      bg={index === currentImageIndex ? 'white' : 'rgba(255, 255, 255, 0.5)'}
-                      cursor="pointer"
-                      transition="all 0.3s"
-                      onClick={(e: React.MouseEvent) => {
-                        e.stopPropagation()
-                        setCurrentImageIndex(index)
-                      }}
-                    />
-                  ))}
-                </HStack>
-              </>
-            )}
-            
-            {/* LED Badge if current image has LED */}
-            {isLedImage(galleryImages[currentImageIndex]) && (
-              <Badge
-                position="absolute"
-                top="4"
-                right="4"
-                bg="yellow.400"
-                color="gray.900"
-                fontWeight="bold"
-                fontSize="md"
-                px="3"
-                py="2"
-                borderRadius="md"
-                boxShadow="lg"
-                zIndex={2}
-              >
-                ✨ LED
-              </Badge>
-            )}
-          </Box>
         </Flex>
       </Container>
 
