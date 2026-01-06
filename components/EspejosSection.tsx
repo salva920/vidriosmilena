@@ -28,7 +28,6 @@ const galleryImages = [
   '/img/espejo decorativo.jpg',
   '/img/espejo decorativo2.jpg',
   '/img/espejo decorativo3.jpg',
-  '/img/photo_2025-09-29_16-45-30.jpg',
   '/img/4.png',
   '/img/9.png',
 ]
