@@ -70,8 +70,8 @@ export default function HeroSection({
         height="100%"
         zIndex={2}
         clipPath={{
-          base: "polygon(0 0, 50% 0, 20% 100%, 0 100%)",
-          sm: "polygon(0 0, 52% 0, 22% 100%, 0 100%)",
+          base: "polygon(0 0, 45% 0, 15% 100%, 0 100%)",
+          sm: "polygon(0 0, 48% 0, 18% 100%, 0 100%)",
           md: "polygon(0 0, 55% 0, 28% 100%, 0 100%)",
           lg: "polygon(0 0, 60% 0, 32% 100%, 0 100%)"
         }}
@@ -89,17 +89,17 @@ export default function HeroSection({
           px={{ base: "4", md: "6", lg: "8" }}
         >
           <VStack
-            spacing={{ base: "6", md: "8" }}
+            spacing={{ base: "5", md: "8" }}
             align="flex-start"
             textAlign="left"
-            maxW={{ base: "90%", sm: "85%", md: "500px", lg: "600px" }}
+            maxW={{ base: "80%", sm: "82%", md: "500px", lg: "600px" }}
             w="100%"
-            pr={{ base: "2", sm: "4" }}
+            pr={{ base: "1", sm: "2", md: "4" }}
           >
             {/* Títulos alineados a la izquierda - Más compactos */}
             <Box
               position="relative"
-              minH={{ base: "140px", sm: "160px", md: "280px", lg: "320px" }}
+              minH={{ base: "120px", sm: "140px", md: "280px", lg: "320px" }}
               width="100%"
               display="flex"
               alignItems="center"
@@ -107,15 +107,16 @@ export default function HeroSection({
             >
               <Heading
                 as="h1"
-                fontSize={{ base: "lg", sm: "xl", md: "4xl", lg: "5xl", xl: "6xl" }}
+                fontSize={{ base: "md", sm: "lg", md: "4xl", lg: "5xl", xl: "6xl" }}
                 fontWeight="900"
-                lineHeight={{ base: "1.3", md: "1.1" }}
+                lineHeight={{ base: "1.4", sm: "1.3", md: "1.1" }}
                 color="white"
-                letterSpacing={{ base: "-0.01em", md: "-0.02em" }}
+                letterSpacing={{ base: "-0.005em", sm: "-0.01em", md: "-0.02em" }}
                 textTransform="uppercase"
                 fontFamily="sans-serif"
                 width="100%"
                 wordBreak="break-word"
+                overflowWrap="break-word"
               >
                 <TitleCarousel titles={rotatingTitles} />
               </Heading>
