@@ -405,12 +405,12 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
               h="1px"
               bg="gray.200"
               mt={{ base: '4', md: '6' }}
-              mb={{ base: '2', md: '3' }}
+              mb={{ base: '1', md: '2' }}
             />
               
               <Button
                 onClick={onOpenModal}
-                bg="red.600"
+                bg="cyan.500"
                 color="white"
                 fontWeight="bold"
                 textTransform="uppercase"
@@ -418,13 +418,19 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                 px={{ base: '6', md: '8' }}
                 py={{ base: '5', md: '6' }}
                 borderRadius="md"
-                mt={{ base: '2', md: '3' }}
+                mt={{ base: '1', md: '2' }}
+                boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
                 _hover={{
-                  bg: 'red.700',
+                  bg: 'cyan.600',
                   transform: 'translateY(-2px)',
-                  boxShadow: 'lg'
+                  boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
                 }}
-                transition="all 0.3s"
+                _active={{
+                  bg: 'cyan.700',
+                  transform: 'translateY(0px)',
+                  boxShadow: '0 2px 10px rgba(6, 182, 212, 0.4)'
+                }}
+                transition="all 0.2s ease"
               >
                 Cotizar
               </Button>
