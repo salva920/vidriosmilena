@@ -105,7 +105,7 @@ export default function CierresSection({ onOpenModal }: CierresSectionProps) {
               maxW="800px"
               mx="auto"
             >
-              En Vidrios Dellorto, contamos con una amplia variedad de sistemas de cerramientos, tanto horizontales como verticales, que te ayudan a transformar cualquier tipo de espacio.
+              En Arte Cristal, contamos con una amplia variedad de sistemas de cerramientos, tanto horizontales como verticales, que te ayudan a transformar cualquier tipo de espacio.
             </Text>
           </Box>
 
