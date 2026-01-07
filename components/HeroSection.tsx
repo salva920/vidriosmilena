@@ -70,9 +70,10 @@ export default function HeroSection({
         height="100%"
         zIndex={2}
         clipPath={{
-          base: "polygon(0 0, 55% 0, 25% 100%, 0 100%)",
-          md: "polygon(0 0, 60% 0, 30% 100%, 0 100%)",
-          lg: "polygon(0 0, 65% 0, 35% 100%, 0 100%)"
+          base: "polygon(0 0, 50% 0, 20% 100%, 0 100%)",
+          sm: "polygon(0 0, 52% 0, 22% 100%, 0 100%)",
+          md: "polygon(0 0, 55% 0, 28% 100%, 0 100%)",
+          lg: "polygon(0 0, 60% 0, 32% 100%, 0 100%)"
         }}
         bg="blue.900"
         opacity="0.95"
@@ -91,13 +92,14 @@ export default function HeroSection({
             spacing={{ base: "6", md: "8" }}
             align="flex-start"
             textAlign="left"
-            maxW={{ base: "85%", sm: "75%", md: "600px", lg: "700px" }}
+            maxW={{ base: "90%", sm: "85%", md: "500px", lg: "600px" }}
             w="100%"
+            pr={{ base: "2", sm: "4" }}
           >
             {/* Títulos alineados a la izquierda - Más compactos */}
             <Box
               position="relative"
-              minH={{ base: "150px", md: "280px", lg: "320px" }}
+              minH={{ base: "140px", sm: "160px", md: "280px", lg: "320px" }}
               width="100%"
               display="flex"
               alignItems="center"
@@ -105,14 +107,15 @@ export default function HeroSection({
             >
               <Heading
                 as="h1"
-                fontSize={{ base: "xl", sm: "2xl", md: "5xl", lg: "6xl", xl: "7xl" }}
+                fontSize={{ base: "lg", sm: "xl", md: "4xl", lg: "5xl", xl: "6xl" }}
                 fontWeight="900"
-                lineHeight={{ base: "1.2", md: "1.1" }}
+                lineHeight={{ base: "1.3", md: "1.1" }}
                 color="white"
                 letterSpacing={{ base: "-0.01em", md: "-0.02em" }}
                 textTransform="uppercase"
                 fontFamily="sans-serif"
                 width="100%"
+                wordBreak="break-word"
               >
                 <TitleCarousel titles={rotatingTitles} />
               </Heading>
