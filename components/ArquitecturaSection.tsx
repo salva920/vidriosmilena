@@ -7,18 +7,83 @@ import {
   Text,
   VStack,
   Button,
+  SimpleGrid,
 } from '@chakra-ui/react'
 
 interface ArquitecturaSectionProps {
   onOpenModal?: () => void
 }
 
+const stats = [
+  {
+    number: '25+',
+    description: 'años de experiencia'
+  },
+  {
+    number: '1000+',
+    description: 'proyectos exitosos'
+  },
+  {
+    number: '95%',
+    description: 'clientes nos recomiendan'
+  }
+]
+
 export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSectionProps) {
   return (
-    <Box id="arquitectura" py={{ base: '12', md: '16', lg: '20' }} bgGradient="linear(to-br, blue.300, blue.400)">
-      <Container maxW="container.xl">
-        <VStack spacing="8">
-          <Box textAlign="center" maxW="900px" mx="auto" px={{ base: '4', md: '6' }} w="100%">
+    <Box id="arquitectura">
+      {/* Stats Section - Beige background */}
+      <Box 
+        py={{ base: '12', md: '16' }} 
+        bgGradient="linear(to-br, gray.50, yellow.50)"
+      >
+        <Container maxW="container.xl">
+          <SimpleGrid 
+            columns={{ base: 1, sm: 3 }} 
+            spacing={{ base: '6', md: '8' }}
+          >
+            {stats.map((stat, index) => (
+              <Box
+                key={index}
+                textAlign="center"
+                p={{ base: '6', md: '8' }}
+                bg="blue.900"
+                borderRadius="lg"
+                boxShadow="lg"
+                _hover={{
+                  transform: 'translateY(-4px)',
+                  boxShadow: 'xl',
+                  transition: 'all 0.3s'
+                }}
+                transition="all 0.3s"
+              >
+                <Heading
+                  size="xl"
+                  color="white"
+                  fontWeight="bold"
+                  lineHeight="1"
+                  mb="2"
+                >
+                  {stat.number}
+                </Heading>
+                <Text
+                  color="white"
+                  fontSize={{ base: 'sm', md: 'md' }}
+                  fontWeight="medium"
+                >
+                  {stat.description}
+                </Text>
+              </Box>
+            ))}
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Main Content Section */}
+      <Box py={{ base: '12', md: '16', lg: '20' }} bgGradient="linear(to-br, blue.300, blue.400)">
+        <Container maxW="container.xl">
+          <VStack spacing="8">
+            <Box textAlign="center" maxW="900px" mx="auto" px={{ base: '4', md: '6' }} w="100%">
             <Heading 
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
               color="blue.900"
