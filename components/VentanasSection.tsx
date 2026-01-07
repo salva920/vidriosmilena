@@ -67,14 +67,14 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
   const additionalDescription = "Nuestras ventanas de PVC y aluminio están diseñadas para ofrecer la máxima calidad, eficiencia energética y durabilidad. Trabajamos con los mejores materiales y tecnologías del mercado, incluyendo sistemas de Rotura de Puente Térmico (RPT) que garantizan un aislamiento superior. Ofrecemos soluciones personalizadas para proyectos residenciales y comerciales, combinando estética moderna con funcionalidad excepcional. Cada ventana está fabricada con precisión para garantizar hermeticidad, resistencia a la intemperie y máximo confort térmico y acústico."
 
   return (
-    <Box id="ventanas" py={{ base: '12', md: '16', lg: '20' }} bg="white">
+    <Box id="ventanas" py={{ base: '12', md: '16', lg: '20' }} bgGradient="linear(to-br, blue.100, blue.200)">
       <Container maxW="container.xl">
         <VStack spacing="8" align="stretch">
           {/* Header Section - Centered */}
           <Box textAlign="center" maxW="900px" mx="auto" w="100%">
             <Heading 
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-              color="gray.900"
+              color="blue.900"
               fontWeight="800"
               letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
               textTransform="uppercase"
@@ -86,7 +86,7 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
             
             <Text 
               fontSize={{ base: 'lg', md: 'xl' }}
-              color="gray.700"
+              color="blue.800"
               fontWeight="600"
               mb="4"
             >
@@ -95,7 +95,7 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
             
             <Text 
               fontSize={{ base: 'md', md: 'lg' }}
-              color="gray.600"
+              color="blue.700"
               lineHeight="1.7"
               maxW="800px"
               mx="auto"
