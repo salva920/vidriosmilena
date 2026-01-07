@@ -61,73 +61,83 @@ export default function HeroSection({
         />
       </Box>
       
-      {/* Overlay oscuro para mejorar legibilidad */}
+      {/* Fondo triangular/diagonal azul oscuro */}
       <Box
         position="absolute"
         top="0"
         left="0"
         width="100%"
         height="100%"
-        bg="blackAlpha.400"
         zIndex={2}
+        clipPath="polygon(0 0, 65% 0, 35% 100%, 0 100%)"
+        bg="blue.900"
+        opacity="0.95"
       />
       
-      {/* Contenido centrado sobre la imagen */}
-      <Container maxW="container.xl" position="relative" zIndex={3}>
-        <VStack
-          spacing="8"
-          align="center"
-          textAlign="center"
+      {/* Contenido alineado a la izquierda */}
+      <Container maxW="container.xl" position="relative" zIndex={3} h="100%">
+        <Box
+          display="flex"
+          alignItems="center"
+          minH="100vh"
           py="20"
+          px={{ base: "4", md: "6", lg: "8" }}
         >
-          {/* Títulos centrados */}
-          <Box
-            position="relative"
-            minH={{ base: "200px", md: "280px", lg: "320px" }}
-            width="100%"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
+          <VStack
+            spacing="8"
+            align="flex-start"
+            textAlign="left"
+            maxW={{ base: "100%", md: "600px", lg: "700px" }}
           >
-            <Heading
-              as="h1"
-              fontSize={{ base: "3xl", md: "5xl", lg: "6xl", xl: "7xl" }}
-              fontWeight="900"
-              lineHeight="1.1"
-              color="white"
-              letterSpacing={{ base: "-0.01em", md: "-0.02em" }}
-              textTransform="uppercase"
-              fontFamily="sans-serif"
+            {/* Títulos alineados a la izquierda */}
+            <Box
+              position="relative"
+              minH={{ base: "200px", md: "280px", lg: "320px" }}
               width="100%"
+              display="flex"
+              alignItems="center"
+              justifyContent="flex-start"
             >
-              <TitleCarousel titles={rotatingTitles} />
-            </Heading>
-          </Box>
-          
-          {/* Botón CTA */}
-          <Button
-            size="lg"
-            bg="red.600"
-            color="white"
-            px={{ base: "8", md: "12" }}
-            py={{ base: "6", md: "8" }}
-            fontSize={{ base: "md", md: "lg" }}
-            fontWeight="bold"
-            borderRadius="md"
-            _hover={{ 
-              bg: 'red.700',
-              transform: 'translateY(-2px)',
-              boxShadow: 'xl'
-            }}
-            transition="all 0.3s"
-            boxShadow="2xl"
-            letterSpacing="wide"
-            textTransform="uppercase"
-            onClick={onOpenModal}
-          >
-            Solicitar Cotización
-          </Button>
-        </VStack>
+              <Heading
+                as="h1"
+                fontSize={{ base: "3xl", md: "5xl", lg: "6xl", xl: "7xl" }}
+                fontWeight="900"
+                lineHeight="1.1"
+                color="white"
+                letterSpacing={{ base: "-0.01em", md: "-0.02em" }}
+                textTransform="uppercase"
+                fontFamily="sans-serif"
+                width="100%"
+              >
+                <TitleCarousel titles={rotatingTitles} />
+              </Heading>
+            </Box>
+            
+            {/* Botón CTA alineado a la izquierda */}
+            <Button
+              size="lg"
+              bg="white"
+              color="blue.900"
+              px={{ base: "8", md: "12" }}
+              py={{ base: "6", md: "8" }}
+              fontSize={{ base: "md", md: "lg" }}
+              fontWeight="bold"
+              borderRadius="md"
+              _hover={{ 
+                bg: 'gray.100',
+                transform: 'translateY(-2px)',
+                boxShadow: 'xl'
+              }}
+              transition="all 0.3s"
+              boxShadow="2xl"
+              letterSpacing="wide"
+              textTransform="uppercase"
+              onClick={onOpenModal}
+            >
+              Más resultados
+            </Button>
+          </VStack>
+        </Box>
       </Container>
     </Box>
   )
