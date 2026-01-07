@@ -61,24 +61,6 @@ export default function HeroSection({
         />
       </Box>
       
-      {/* Fondo triangular/diagonal azul oscuro - Responsive */}
-      <Box
-        position="absolute"
-        top="0"
-        left="0"
-        width="100%"
-        height="100%"
-        zIndex={2}
-        clipPath={{
-          base: "polygon(0 0, 45% 0, 15% 100%, 0 100%)",
-          sm: "polygon(0 0, 48% 0, 18% 100%, 0 100%)",
-          md: "polygon(0 0, 55% 0, 28% 100%, 0 100%)",
-          lg: "polygon(0 0, 60% 0, 32% 100%, 0 100%)"
-        }}
-        bg="blue.900"
-        opacity="0.95"
-      />
-      
       {/* Contenido alineado a la izquierda */}
       <Container maxW="container.xl" position="relative" zIndex={3} h="100%">
         <Box
@@ -88,14 +70,22 @@ export default function HeroSection({
           py={{ base: "12", md: "20" }}
           px={{ base: "4", md: "6", lg: "8" }}
         >
-          <VStack
-            spacing={{ base: "5", md: "8" }}
-            align="flex-start"
-            textAlign="left"
-            maxW={{ base: "80%", sm: "82%", md: "500px", lg: "600px" }}
+          {/* Cuadro de fondo azul para el contenido */}
+          <Box
+            bg="blue.900"
+            opacity="0.95"
+            borderRadius={{ base: "lg", md: "xl" }}
+            p={{ base: "6", sm: "8", md: "10", lg: "12" }}
+            maxW={{ base: "90%", sm: "85%", md: "550px", lg: "650px" }}
             w="100%"
-            pr={{ base: "1", sm: "2", md: "4" }}
+            boxShadow="2xl"
           >
+            <VStack
+              spacing={{ base: "6", md: "8" }}
+              align="flex-start"
+              textAlign="left"
+              w="100%"
+            >
             {/* Títulos alineados a la izquierda - Más compactos */}
             <Box
               position="relative"
@@ -145,7 +135,8 @@ export default function HeroSection({
             >
               Más resultados
             </Button>
-          </VStack>
+            </VStack>
+          </Box>
         </Box>
       </Container>
     </Box>
