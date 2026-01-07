@@ -122,99 +122,107 @@ const partners = [
 export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSectionProps) {
   return (
     <Box id="arquitectura">
-      {/* Stats Section - Beige background */}
+      {/* Stats and Partners Section */}
       <Box 
-        py={{ base: '12', md: '16' }} 
         bgGradient="linear(to-br, gray.50, yellow.50)"
       >
         <Container maxW="container.xl">
-          <SimpleGrid 
-            columns={{ base: 1, sm: 3 }} 
-            spacing={{ base: '6', md: '8' }}
-          >
-            {stats.map((stat, index) => (
-              <Box
-                key={index}
-                textAlign="center"
-                p={{ base: '6', md: '8' }}
-                bg="blue.900"
-                borderRadius="lg"
-                boxShadow="lg"
-                _hover={{
-                  transform: 'translateY(-4px)',
-                  boxShadow: 'xl',
-                  transition: 'all 0.3s'
-                }}
-                transition="all 0.3s"
-              >
-                <Heading
-                  size="xl"
-                  color="white"
-                  fontWeight="bold"
-                  lineHeight="1"
-                  mb="2"
-                >
-                  {stat.number}
-                </Heading>
-                <Text
-                  color="white"
-                  fontSize={{ base: 'sm', md: 'md' }}
-                  fontWeight="medium"
-                >
-                  {stat.description}
-                </Text>
-              </Box>
-            ))}
-          </SimpleGrid>
-        </Container>
-      </Box>
-
-      {/* Partners Section - White background */}
-      <Box 
-        py={{ base: '8', md: '12' }} 
-        bg="white"
-      >
-        <Container maxW="container.xl">
-          <Flex
-            direction={{ base: 'column', md: 'row' }}
-            align="center"
-            justify="space-around"
-            wrap="wrap"
-            gap={{ base: '6', md: '8' }}
-          >
-            {partners.map((partner, index) => (
-              <Box
-                key={index}
-                flex="1"
-                minW={{ base: '120px', md: '150px' }}
-                maxW={{ base: '150px', md: '200px' }}
-                h={{ base: '60px', md: '80px' }}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                opacity="0.7"
-                _hover={{
-                  opacity: 1,
-                  transform: 'scale(1.05)',
-                  transition: 'all 0.3s'
-                }}
-                transition="all 0.3s"
-              >
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  maxH="100%"
-                  maxW="100%"
-                  objectFit="contain"
-                  filter="grayscale(100%)"
+          {/* Stats Section */}
+          <Box py={{ base: '12', md: '16' }}>
+            <SimpleGrid 
+              columns={{ base: 1, sm: 3 }} 
+              spacing={{ base: '6', md: '8' }}
+            >
+              {stats.map((stat, index) => (
+                <Box
+                  key={index}
+                  textAlign="center"
+                  p={{ base: '6', md: '8' }}
+                  bg="blue.900"
+                  borderRadius="lg"
+                  boxShadow="lg"
                   _hover={{
-                    filter: 'grayscale(0%)',
-                    transition: 'filter 0.3s'
+                    transform: 'translateY(-4px)',
+                    boxShadow: 'xl',
+                    transition: 'all 0.3s'
                   }}
-                />
-              </Box>
-            ))}
-          </Flex>
+                  transition="all 0.3s"
+                >
+                  <Heading
+                    size="xl"
+                    color="white"
+                    fontWeight="bold"
+                    lineHeight="1"
+                    mb="2"
+                  >
+                    {stat.number}
+                  </Heading>
+                  <Text
+                    color="white"
+                    fontSize={{ base: 'sm', md: 'md' }}
+                    fontWeight="medium"
+                  >
+                    {stat.description}
+                  </Text>
+                </Box>
+              ))}
+            </SimpleGrid>
+          </Box>
+
+          {/* Partners Section - Aligned with stats */}
+          <Box 
+            py={{ base: '8', md: '10' }} 
+            borderTop="1px solid"
+            borderColor="gray.200"
+          >
+            <Flex
+              direction={{ base: 'column', md: 'row' }}
+              align="center"
+              justify="space-between"
+              wrap="wrap"
+              gap={{ base: '6', md: '4', lg: '6' }}
+            >
+              {partners.map((partner, index) => (
+                <Box
+                  key={index}
+                  flex={{ base: '0 0 auto', md: '1' }}
+                  minW={{ base: '140px', md: '160px', lg: '180px' }}
+                  maxW={{ base: '180px', md: '200px', lg: '220px' }}
+                  h={{ base: '70px', md: '90px', lg: '100px' }}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  px={{ base: '4', md: '6' }}
+                  py={{ base: '4', md: '6' }}
+                  bg="white"
+                  borderRadius="lg"
+                  boxShadow="sm"
+                  border="1px solid"
+                  borderColor="gray.100"
+                  _hover={{
+                    transform: 'translateY(-4px)',
+                    boxShadow: 'md',
+                    borderColor: 'blue.200',
+                    transition: 'all 0.3s'
+                  }}
+                  transition="all 0.3s"
+                >
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    maxH="100%"
+                    maxW="100%"
+                    objectFit="contain"
+                    filter="grayscale(80%) opacity(0.8)"
+                    transition="all 0.3s"
+                    _hover={{
+                      filter: 'grayscale(0%) opacity(1)',
+                    }}
+                  />
+                </Box>
+              ))}
+            </Flex>
+          </Box>
         </Container>
       </Box>
 
