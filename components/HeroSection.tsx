@@ -87,8 +87,8 @@ export default function HeroSection({
             bg="blue.900"
             borderRadius={{ base: "md", md: "xl" }}
             p={{ base: "5", sm: "6", md: "10", lg: "12" }}
-            maxW={{ base: "100%", sm: "95%", md: "550px", lg: "650px" }}
-            w="100%"
+            w="auto"
+            maxW={{ base: "90%", sm: "85%", md: "600px", lg: "700px" }}
             boxShadow="0 20px 60px rgba(0, 0, 0, 0.5)"
             border="2px solid"
             borderColor="blue.700"
@@ -98,7 +98,8 @@ export default function HeroSection({
               spacing={{ base: "5", sm: "6", md: "8" }}
               align="flex-start"
               textAlign="left"
-              w="100%"
+              w="auto"
+              minW={{ base: "200px", sm: "250px", md: "400px" }}
             >
             {/* Títulos alineados a la izquierda - Más compactos */}
             <Box
@@ -118,7 +119,8 @@ export default function HeroSection({
                 letterSpacing={{ base: "-0.003em", sm: "-0.005em", md: "-0.02em" }}
                 textTransform="uppercase"
                 fontFamily="sans-serif"
-                width="100%"
+                w="auto"
+                maxW={{ base: "280px", sm: "320px", md: "500px", lg: "600px" }}
                 wordBreak="break-word"
                 overflowWrap="break-word"
               >
