@@ -10,6 +10,8 @@ import {
   SimpleGrid,
   Image,
   Card,
+  Flex,
+  HStack,
 } from '@chakra-ui/react'
 
 interface ArquitecturaSectionProps {
@@ -94,6 +96,29 @@ const stats = [
   }
 ]
 
+const partners = [
+  {
+    name: 'Reynaers Aluminium',
+    logo: '/img/reynaers.png' // Asumiendo que el logo estará en public/img/
+  },
+  {
+    name: 'kuraray',
+    logo: '/img/kuraray.png'
+  },
+  {
+    name: 'T-TEC',
+    logo: '/img/ttec.png'
+  },
+  {
+    name: 'BTS ALUMINIUM',
+    logo: '/img/bts.png'
+  },
+  {
+    name: 'ALBERTGENAU',
+    logo: '/img/albertgenau.png'
+  }
+]
+
 export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSectionProps) {
   return (
     <Box id="arquitectura">
@@ -141,6 +166,55 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
               </Box>
             ))}
           </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Partners Section - White background */}
+      <Box 
+        py={{ base: '8', md: '12' }} 
+        bg="white"
+      >
+        <Container maxW="container.xl">
+          <Flex
+            direction={{ base: 'column', md: 'row' }}
+            align="center"
+            justify="space-around"
+            wrap="wrap"
+            gap={{ base: '6', md: '8' }}
+          >
+            {partners.map((partner, index) => (
+              <Box
+                key={index}
+                flex="1"
+                minW={{ base: '120px', md: '150px' }}
+                maxW={{ base: '150px', md: '200px' }}
+                h={{ base: '60px', md: '80px' }}
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                opacity="0.7"
+                _hover={{
+                  opacity: 1,
+                  transform: 'scale(1.05)',
+                  transition: 'all 0.3s'
+                }}
+                transition="all 0.3s"
+              >
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  maxH="100%"
+                  maxW="100%"
+                  objectFit="contain"
+                  filter="grayscale(100%)"
+                  _hover={{
+                    filter: 'grayscale(0%)',
+                    transition: 'filter 0.3s'
+                  }}
+                />
+              </Box>
+            ))}
+          </Flex>
         </Container>
       </Box>
 
