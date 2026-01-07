@@ -62,15 +62,22 @@ export default function HeroSection({
         />
       </Box>
       
-      {/* Overlay oscuro general para mejorar contraste */}
+      {/* Fondo azul grande diagonal/triangular sobre el video */}
       <Box
         position="absolute"
         top="0"
         left="0"
         width="100%"
         height="100%"
-        bg="blackAlpha.400"
         zIndex={2}
+        clipPath={{
+          base: "polygon(0 0, 60% 0, 40% 100%, 0 100%)",
+          sm: "polygon(0 0, 65% 0, 42% 100%, 0 100%)",
+          md: "polygon(0 0, 70% 0, 45% 100%, 0 100%)",
+          lg: "polygon(0 0, 75% 0, 50% 100%, 0 100%)"
+        }}
+        bg="blue.900"
+        opacity="0.95"
       />
       
       {/* Contenido alineado a la izquierda */}
@@ -82,30 +89,22 @@ export default function HeroSection({
           py={{ base: "6", sm: "8", md: "12", lg: "16" }}
           px={{ base: "4", sm: "5", md: "6", lg: "8" }}
         >
-          {/* Cuadro de fondo azul para el contenido */}
+          {/* Contenido dentro del área azul */}
           <Box
             position="relative"
-            bg="blue.900"
-            borderRadius={{ base: "md", md: "xl" }}
-            p={{ base: "5", sm: "6", md: "10", lg: "12" }}
+            maxW={{ base: "85%", sm: "80%", md: "600px", lg: "700px" }}
             w="auto"
-            maxW={{ base: "90%", sm: "85%", md: "600px", lg: "700px" }}
-            boxShadow="0 20px 60px rgba(0, 0, 0, 0.5)"
-            border="2px solid"
-            borderColor="blue.700"
-            backdropFilter="blur(10px)"
           >
             <VStack
               spacing={{ base: "5", sm: "6", md: "8" }}
               align="flex-start"
               textAlign="left"
               w="auto"
-              minW={{ base: "200px", sm: "250px", md: "400px" }}
             >
-            {/* Títulos alineados a la izquierda - Más compactos */}
+            {/* Títulos alineados a la izquierda */}
             <Box
               position="relative"
-              width="100%"
+              w="auto"
               display="flex"
               alignItems="center"
               justifyContent="flex-start"
@@ -128,7 +127,7 @@ export default function HeroSection({
               </Heading>
             </Box>
             
-            {/* Botón CTA alineado a la izquierda - Más compacto */}
+            {/* Botón CTA alineado a la izquierda */}
             <Button
               size={{ base: "sm", sm: "md", md: "lg" }}
               bg="white"
