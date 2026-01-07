@@ -68,7 +68,7 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
   const additionalDescription = "Nuestras mamparas de vidrio templado están fabricadas con los más altos estándares de calidad y seguridad. Ofrecemos una amplia variedad de diseños, desde mamparas corredizas hasta puertas pivotantes, todas personalizables según tus necesidades. Cada producto está diseñado para maximizar el espacio, mejorar la iluminación natural y crear ambientes modernos y elegantes."
 
   return (
-    <Box id="shower" py={{ base: '12', md: '16', lg: '20' }} bg="white">
+    <Box id="shower" py={{ base: '4', md: '6', lg: '8' }} bg="white">
       <Container maxW="container.xl">
         <VStack spacing="8" align="stretch">
           {/* Header Section - Centered */}
@@ -256,15 +256,6 @@ export default function ShowerSection({ onOpenModal }: ShowerSectionProps) {
           </Box>
         </VStack>
       </Container>
-
-      {/* Divider Line */}
-      <Box
-        w="100%"
-        h="4px"
-        bgGradient="linear(to-r, yellow.100, yellow.200, yellow.100)"
-        mt={{ base: '4', md: '6' }}
-        mb="0"
-      />
 
       {/* Image/Video Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>

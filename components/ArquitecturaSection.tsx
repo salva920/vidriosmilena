@@ -286,7 +286,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
       </Box>
 
       {/* Main Content Section */}
-      <Box py={{ base: '8', sm: '10', md: '16', lg: '20' }} bg="white">
+      <Box py={{ base: '4', sm: '6', md: '8', lg: '10' }} bg="white">
         <Container maxW="container.xl">
           <VStack spacing={{ base: '6', md: '8' }}>
             <Box textAlign="center" maxW="900px" mx="auto" px={{ base: '4', sm: '5', md: '6' }} w="100%">
@@ -437,15 +437,6 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
           </VStack>
         </Container>
       </Box>
-
-      {/* Divider Line */}
-      <Box
-        w="100%"
-        h="4px"
-        bgGradient="linear(to-r, yellow.100, yellow.200, yellow.100)"
-        mt={{ base: '4', md: '6' }}
-        mb="0"
-      />
     </Box>
   )
 }

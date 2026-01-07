@@ -68,7 +68,7 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
   const additionalDescription = "Nuestros espejos están diseñados para combinar funcionalidad y estética, transformando cualquier espacio con elegancia y estilo. Ofrecemos una amplia variedad de opciones, desde espejos decorativos hasta espejos con iluminación LED integrada que proporcionan una luz perfecta para cualquier ambiente. Cada espejo está fabricado con los más altos estándares de calidad, disponible en diferentes tamaños, formas y acabados para adaptarse a tus necesidades específicas."
 
   return (
-    <Box id="espejos" py={{ base: '12', md: '16', lg: '20' }} bg="white">
+    <Box id="espejos" py={{ base: '4', md: '6', lg: '8' }} bg="white">
       <Container maxW="container.xl">
         <VStack spacing="8" align="stretch">
           {/* Header Section - Centered */}
@@ -256,15 +256,6 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
           </Box>
         </VStack>
       </Container>
-
-      {/* Divider Line */}
-      <Box
-        w="100%"
-        h="4px"
-        bgGradient="linear(to-r, yellow.100, yellow.200, yellow.100)"
-        mt={{ base: '4', md: '6' }}
-        mb="0"
-      />
 
       {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
