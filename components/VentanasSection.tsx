@@ -236,6 +236,15 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
         </VStack>
       </Container>
 
+      {/* Divider Line */}
+      <Box
+        w="100%"
+        h="2px"
+        bgGradient="linear(to-r, yellow.50, yellow.100, yellow.50)"
+        mt={{ base: '8', md: '12' }}
+        mb="0"
+      />
+
       {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
         <ModalOverlay />
