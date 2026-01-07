@@ -144,18 +144,18 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
       >
         <Container maxW="container.xl">
           {/* Stats Section */}
-          <Box py={{ base: '12', md: '16' }}>
+          <Box py={{ base: '8', sm: '10', md: '16' }}>
             <SimpleGrid 
               columns={{ base: 1, sm: 3 }} 
-              spacing={{ base: '6', md: '8' }}
+              spacing={{ base: '4', sm: '5', md: '8' }}
             >
               {stats.map((stat, index) => (
                 <Box
                   key={index}
                   textAlign="center"
-                  p={{ base: '6', md: '8' }}
+                  p={{ base: '5', sm: '6', md: '8' }}
                   bg="blue.900"
-                  borderRadius="lg"
+                  borderRadius={{ base: 'md', md: 'lg' }}
                   boxShadow="lg"
                   _hover={{
                     transform: 'translateY(-4px)',
@@ -165,18 +165,19 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                   transition="all 0.3s"
                 >
                   <Heading
-                    size="xl"
+                    size={{ base: 'lg', sm: 'xl', md: 'xl' }}
                     color="white"
                     fontWeight="bold"
                     lineHeight="1"
-                    mb="2"
+                    mb={{ base: '1', md: '2' }}
                   >
                     {stat.number}
                   </Heading>
                   <Text
                     color="white"
-                    fontSize={{ base: 'sm', md: 'md' }}
+                    fontSize={{ base: 'xs', sm: 'sm', md: 'md' }}
                     fontWeight="medium"
+                    lineHeight={{ base: '1.3', md: '1.5' }}
                   >
                     {stat.description}
                   </Text>
@@ -187,7 +188,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
 
           {/* Partners Section - Aligned with stats */}
           <Box 
-            py={{ base: '8', md: '10' }} 
+            py={{ base: '6', sm: '8', md: '10' }} 
             borderTop="1px solid"
             borderColor="gray.200"
           >
@@ -197,22 +198,23 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
               direction="row"
               align="center"
               justify="space-around"
-              gap={{ base: '2', sm: '4' }}
+              gap={{ base: '1', sm: '2', md: '4' }}
+              px={{ base: '2', sm: '4' }}
             >
               {mobilePartners.map((partner, index) => (
                 <Box
                   key={index}
                   flex="1"
-                  minW="100px"
-                  maxW="120px"
-                  h={{ base: '60px', sm: '70px' }}
+                  minW={{ base: '90px', sm: '100px' }}
+                  maxW={{ base: '110px', sm: '120px' }}
+                  h={{ base: '50px', sm: '60px' }}
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
-                  px={{ base: '2', sm: '4' }}
-                  py={{ base: '3', sm: '4' }}
+                  px={{ base: '2', sm: '3' }}
+                  py={{ base: '2', sm: '3' }}
                   bg="white"
-                  borderRadius="lg"
+                  borderRadius={{ base: 'md', sm: 'lg' }}
                   boxShadow="sm"
                   border="1px solid"
                   borderColor="gray.100"
@@ -284,49 +286,49 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
       </Box>
 
       {/* Main Content Section */}
-      <Box py={{ base: '12', md: '16', lg: '20' }} bg="white">
+      <Box py={{ base: '8', sm: '10', md: '16', lg: '20' }} bg="white">
         <Container maxW="container.xl">
-          <VStack spacing="8">
-            <Box textAlign="center" maxW="900px" mx="auto" px={{ base: '4', md: '6' }} w="100%">
+          <VStack spacing={{ base: '6', md: '8' }}>
+            <Box textAlign="center" maxW="900px" mx="auto" px={{ base: '4', sm: '5', md: '6' }} w="100%">
             <Heading 
-              fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
+              fontSize={{ base: 'xl', sm: '2xl', md: '3xl', lg: '4xl' }}
               color="gray.900"
               fontWeight="800"
-              letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
+              letterSpacing={{ base: '-0.01em', md: '-0.03em' }}
               textTransform="uppercase"
-              mb={{ base: '3', md: '4' }}
+              mb={{ base: '2', sm: '3', md: '4' }}
               lineHeight="1.1"
             >
               ARQUITECTURA
             </Heading>
             
             <Box
-              w={{ base: '60px', md: '80px' }}
-              h="4px"
+              w={{ base: '50px', sm: '60px', md: '80px' }}
+              h={{ base: '3px', md: '4px' }}
               bgGradient="linear(to-r, red.400, red.600)"
               borderRadius="full"
               mx="auto"
-              mb={{ base: '6', md: '8' }}
+              mb={{ base: '4', sm: '5', md: '8' }}
               boxShadow="0 2px 8px rgba(229, 62, 62, 0.3)"
             />
             
             <Text 
-              fontSize={{ base: 'md', md: 'lg' }}
+              fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
               color="gray.700"
               maxW="800px"
               mx="auto"
-              lineHeight="1.7"
-              mb="4"
+              lineHeight={{ base: '1.6', md: '1.7' }}
+              mb={{ base: '3', md: '4' }}
             >
               <Text as="span" fontWeight="700" color="gray.900">Innovación, diseño y seguridad</Text>
             </Text>
             
             <Text 
-              fontSize={{ base: 'md', md: 'lg' }}
+              fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
               color="gray.600"
               maxW="800px"
               mx="auto"
-              lineHeight="1.7"
+              lineHeight={{ base: '1.6', md: '1.7' }}
             >
               En Arte Cristal ofrecemos cristales de alta calidad para todo tipo de proyectos arquitectónicos, combinando diseño, funcionalidad y seguridad con un acabado impecable.
             </Text>
@@ -335,9 +337,10 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
             {/* Services Gallery */}
             <SimpleGrid 
               columns={{ base: 2, md: 3 }} 
-              spacing={{ base: '4', md: '6' }}
+              spacing={{ base: '3', sm: '4', md: '6' }}
               w="100%"
-              mt="8"
+              mt={{ base: '6', md: '8' }}
+              px={{ base: '2', sm: '4', md: '0' }}
             >
               {services.map((service, index) => (
                 <Card
@@ -357,7 +360,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                 >
                   <Box
                     position="relative"
-                    h={{ base: '200px', md: '250px', lg: '280px' }}
+                    h={{ base: '150px', sm: '180px', md: '250px', lg: '280px' }}
                     w="100%"
                     overflow="hidden"
                   >
