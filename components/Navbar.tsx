@@ -337,7 +337,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           <DrawerCloseButton />
           <DrawerHeader borderBottomWidth="1px">
             <Image
-              src="/logo.jpg"
+              src="/logo.png"
               alt="Logo MILEGLASS"
               h="99px"
               w="auto"
