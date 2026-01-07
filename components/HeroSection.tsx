@@ -61,6 +61,17 @@ export default function HeroSection({
         />
       </Box>
       
+      {/* Overlay oscuro general para mejorar contraste */}
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        width="100%"
+        height="100%"
+        bg="blackAlpha.400"
+        zIndex={2}
+      />
+      
       {/* Contenido alineado a la izquierda */}
       <Container maxW="container.xl" position="relative" zIndex={3} h="100%">
         <Box
@@ -72,13 +83,16 @@ export default function HeroSection({
         >
           {/* Cuadro de fondo azul para el contenido */}
           <Box
+            position="relative"
             bg="blue.900"
-            opacity="0.95"
             borderRadius={{ base: "lg", md: "xl" }}
             p={{ base: "6", sm: "8", md: "10", lg: "12" }}
             maxW={{ base: "90%", sm: "85%", md: "550px", lg: "650px" }}
             w="100%"
-            boxShadow="2xl"
+            boxShadow="0 20px 60px rgba(0, 0, 0, 0.5)"
+            border="2px solid"
+            borderColor="blue.700"
+            backdropFilter="blur(10px)"
           >
             <VStack
               spacing={{ base: "6", md: "8" }}
