@@ -119,6 +119,22 @@ const partners = [
   }
 ]
 
+// Partners para mobile (solo 3)
+const mobilePartners = [
+  {
+    name: 'BTS ALUMINIUM',
+    logo: '/img/bts.png'
+  },
+  {
+    name: 'kuraray',
+    logo: '/img/kuraray.png'
+  },
+  {
+    name: 'Reynaers Aluminium',
+    logo: '/img/reynaers.png'
+  }
+]
+
 export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSectionProps) {
   return (
     <Box id="arquitectura">
@@ -175,25 +191,66 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
             borderTop="1px solid"
             borderColor="gray.200"
           >
+            {/* Mobile: Solo 3 logos en fila */}
             <Flex
-              direction={{ base: 'column', md: 'row' }}
+              display={{ base: 'flex', md: 'none' }}
+              direction="row"
+              align="center"
+              justify="space-around"
+              gap={{ base: '2', sm: '4' }}
+            >
+              {mobilePartners.map((partner, index) => (
+                <Box
+                  key={index}
+                  flex="1"
+                  minW="100px"
+                  maxW="120px"
+                  h={{ base: '60px', sm: '70px' }}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  px={{ base: '2', sm: '4' }}
+                  py={{ base: '3', sm: '4' }}
+                  bg="white"
+                  borderRadius="lg"
+                  boxShadow="sm"
+                  border="1px solid"
+                  borderColor="gray.100"
+                >
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    maxH="100%"
+                    maxW="100%"
+                    objectFit="contain"
+                    filter="grayscale(80%) opacity(0.8)"
+                    transition="all 0.3s"
+                  />
+                </Box>
+              ))}
+            </Flex>
+
+            {/* Desktop: Todos los logos */}
+            <Flex
+              display={{ base: 'none', md: 'flex' }}
+              direction="row"
               align="center"
               justify="space-between"
               wrap="wrap"
-              gap={{ base: '6', md: '4', lg: '6' }}
+              gap={{ base: '4', lg: '6' }}
             >
               {partners.map((partner, index) => (
                 <Box
                   key={index}
-                  flex={{ base: '0 0 auto', md: '1' }}
-                  minW={{ base: '140px', md: '160px', lg: '180px' }}
-                  maxW={{ base: '180px', md: '200px', lg: '220px' }}
-                  h={{ base: '70px', md: '90px', lg: '100px' }}
+                  flex="1"
+                  minW={{ md: '160px', lg: '180px' }}
+                  maxW={{ md: '200px', lg: '220px' }}
+                  h={{ md: '90px', lg: '100px' }}
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
-                  px={{ base: '4', md: '6' }}
-                  py={{ base: '4', md: '6' }}
+                  px="6"
+                  py="6"
                   bg="white"
                   borderRadius="lg"
                   boxShadow="sm"
