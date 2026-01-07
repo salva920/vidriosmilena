@@ -87,54 +87,43 @@ export default function HeroSection({
           alignItems="center"
           h="100%"
           py={{ base: "6", sm: "8", md: "12", lg: "16" }}
-          px={{ base: "4", sm: "5", md: "6", lg: "8" }}
+          px={{ base: "3", sm: "4", md: "6", lg: "8" }}
         >
-          {/* Contenido dentro del área azul */}
-          <Box
-            position="relative"
-            maxW={{ base: "85%", sm: "80%", md: "600px", lg: "700px" }}
+          {/* Contenido dentro del área azul - Totalmente a la izquierda */}
+          <VStack
+            spacing={{ base: "3", sm: "4", md: "6" }}
+            align="flex-start"
+            textAlign="left"
             w="auto"
+            maxW={{ base: "55%", sm: "60%", md: "auto" }}
+            pl={{ base: "2", sm: "3", md: "4" }}
           >
-            <VStack
-              spacing={{ base: "5", sm: "6", md: "8" }}
-              align="flex-start"
-              textAlign="left"
-              w="auto"
+            {/* Títulos totalmente a la izquierda */}
+            <Heading
+              as="h1"
+              fontSize={{ base: "10px", sm: "xs", md: "2xl", lg: "3xl", xl: "4xl" }}
+              fontWeight="900"
+              lineHeight={{ base: "1.2", sm: "1.3", md: "1.2", lg: "1.1" }}
+              color="white"
+              letterSpacing={{ base: "-0.002em", sm: "-0.003em", md: "-0.02em" }}
+              textTransform="uppercase"
+              fontFamily="sans-serif"
+              w="100%"
+              maxW="100%"
+              wordBreak="break-word"
+              overflowWrap="break-word"
             >
-            {/* Títulos alineados a la izquierda */}
-            <Box
-              position="relative"
-              w="auto"
-              display="flex"
-              alignItems="center"
-              justifyContent="flex-start"
-            >
-              <Heading
-                as="h1"
-                fontSize={{ base: "sm", sm: "md", md: "3xl", lg: "4xl", xl: "5xl" }}
-                fontWeight="900"
-                lineHeight={{ base: "1.3", sm: "1.35", md: "1.2", lg: "1.1" }}
-                color="white"
-                letterSpacing={{ base: "-0.003em", sm: "-0.005em", md: "-0.02em" }}
-                textTransform="uppercase"
-                fontFamily="sans-serif"
-                w="auto"
-                maxW={{ base: "280px", sm: "320px", md: "500px", lg: "600px" }}
-                wordBreak="break-word"
-                overflowWrap="break-word"
-              >
-                <TitleCarousel titles={rotatingTitles} />
-              </Heading>
-            </Box>
+              <TitleCarousel titles={rotatingTitles} />
+            </Heading>
             
-            {/* Botón CTA alineado a la izquierda */}
+            {/* Botón CTA totalmente a la izquierda */}
             <Button
-              size={{ base: "sm", sm: "md", md: "lg" }}
+              size={{ base: "xs", sm: "sm", md: "lg" }}
               bg="white"
               color="blue.900"
-              px={{ base: "5", sm: "6", md: "12" }}
-              py={{ base: "4", sm: "5", md: "8" }}
-              fontSize={{ base: "xs", sm: "sm", md: "lg" }}
+              px={{ base: "3", sm: "4", md: "10" }}
+              py={{ base: "2", sm: "3", md: "6" }}
+              fontSize={{ base: "10px", sm: "xs", md: "md" }}
               fontWeight="bold"
               borderRadius="md"
               _hover={{ 
@@ -151,8 +140,7 @@ export default function HeroSection({
             >
               Más resultados
             </Button>
-            </VStack>
-          </Box>
+          </VStack>
         </Box>
       </Container>
     </Box>
