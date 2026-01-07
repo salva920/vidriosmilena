@@ -8,10 +8,75 @@ import {
   VStack,
   Button,
   SimpleGrid,
+  Image,
+  Card,
 } from '@chakra-ui/react'
 
 interface ArquitecturaSectionProps {
   onOpenModal?: () => void
+}
+
+interface ServiceCard {
+  id: string
+  title: string
+  image: string
+}
+
+const services: ServiceCard[] = [
+  {
+    id: 'shower',
+    title: 'Shower Door',
+    image: '/img/shower2.jpg'
+  },
+  {
+    id: 'ventanas',
+    title: 'Ventanas',
+    image: '/img/ventana pvc.jpg'
+  },
+  {
+    id: 'cierres',
+    title: 'Cierres',
+    image: '/img/cierre.jpg'
+  },
+  {
+    id: 'espejos',
+    title: 'Espejos',
+    image: '/img/espejo decorativo.jpg'
+  },
+  {
+    id: 'cortinas',
+    title: 'Cortinas',
+    image: '/img/cortinas1.jpg'
+  },
+  {
+    id: 'shower',
+    title: 'Puertas',
+    image: '/img/shower3.jpg'
+  },
+  {
+    id: 'ventanas',
+    title: 'Sistemas de Acceso',
+    image: '/img/ventarpt.jpg'
+  },
+  {
+    id: 'cierres',
+    title: 'Barandas',
+    image: '/img/baranda3.jpg'
+  },
+  {
+    id: 'espejos',
+    title: 'Espejos LED',
+    image: '/img/4.png'
+  }
+]
+
+const scrollToSection = (id: string) => {
+  const section = document.getElementById(id)
+  if (section) {
+    const yOffset = -120
+    const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset
+    window.scrollTo({ top: y, behavior: 'smooth' })
+  }
 }
 
 const stats = [
@@ -126,30 +191,94 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
             >
               En Arte Cristal ofrecemos cristales de alta calidad para todo tipo de proyectos arquitectónicos, combinando diseño, funcionalidad y seguridad con un acabado impecable.
             </Text>
-            
-            <Button
-              onClick={onOpenModal}
-              bg="red.600"
-              color="white"
-              fontWeight="bold"
-              textTransform="uppercase"
-              fontSize={{ base: 'sm', md: 'md' }}
-              px={{ base: '6', md: '8' }}
-              py={{ base: '5', md: '6' }}
-              borderRadius="md"
-              mt="6"
-              _hover={{
-                bg: 'red.700',
-                transform: 'translateY(-2px)',
-                boxShadow: 'lg'
-              }}
-              transition="all 0.3s"
+            </Box>
+
+            {/* Services Gallery */}
+            <SimpleGrid 
+              columns={{ base: 2, md: 3 }} 
+              spacing={{ base: '4', md: '6' }}
+              w="100%"
+              mt="8"
             >
-              Cotizar
-            </Button>
-          </Box>
-        </VStack>
-      </Container>
+              {services.map((service, index) => (
+                <Card
+                  key={index}
+                  overflow="hidden"
+                  borderRadius="lg"
+                  cursor="pointer"
+                  bg="white"
+                  boxShadow="md"
+                  _hover={{
+                    transform: 'translateY(-8px)',
+                    boxShadow: 'xl',
+                    transition: 'all 0.3s'
+                  }}
+                  transition="all 0.3s"
+                  onClick={() => scrollToSection(service.id)}
+                >
+                  <Box
+                    position="relative"
+                    h={{ base: '200px', md: '250px', lg: '280px' }}
+                    w="100%"
+                    overflow="hidden"
+                  >
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      w="100%"
+                      h="100%"
+                      objectFit="cover"
+                      objectPosition="center"
+                      transition="transform 0.3s"
+                      _groupHover={{
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                    <Box
+                      position="absolute"
+                      bottom="0"
+                      left="0"
+                      right="0"
+                      bgGradient="linear(to-t, rgba(0,0,0,0.7), transparent)"
+                      p="4"
+                    >
+                      <Heading
+                        size="sm"
+                        color="white"
+                        fontWeight="bold"
+                        textTransform="uppercase"
+                      >
+                        {service.title}
+                      </Heading>
+                    </Box>
+                  </Box>
+                </Card>
+              ))}
+            </SimpleGrid>
+              
+              <Button
+                onClick={onOpenModal}
+                bg="red.600"
+                color="white"
+                fontWeight="bold"
+                textTransform="uppercase"
+                fontSize={{ base: 'sm', md: 'md' }}
+                px={{ base: '6', md: '8' }}
+                py={{ base: '5', md: '6' }}
+                borderRadius="md"
+                mt="8"
+                _hover={{
+                  bg: 'red.700',
+                  transform: 'translateY(-2px)',
+                  boxShadow: 'lg'
+                }}
+                transition="all 0.3s"
+              >
+                Cotizar
+              </Button>
+          </VStack>
+        </Container>
+      </Box>
     </Box>
   )
 }
