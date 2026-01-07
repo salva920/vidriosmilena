@@ -25,7 +25,8 @@ export default function HeroSection({
   return (
     <Box
       id="inicio"
-      minH="100vh"
+      minH={{ base: "60vh", sm: "65vh", md: "70vh", lg: "75vh" }}
+      h={{ base: "60vh", sm: "65vh", md: "70vh", lg: "75vh" }}
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -77,8 +78,8 @@ export default function HeroSection({
         <Box
           display="flex"
           alignItems="center"
-          minH="100vh"
-          py={{ base: "8", md: "20" }}
+          h="100%"
+          py={{ base: "6", sm: "8", md: "12", lg: "16" }}
           px={{ base: "4", sm: "5", md: "6", lg: "8" }}
         >
           {/* Cuadro de fondo azul para el contenido */}
@@ -104,7 +105,6 @@ export default function HeroSection({
             {/* Títulos alineados a la izquierda - Más compactos */}
             <Box
               position="relative"
-              minH={{ base: "100px", sm: "120px", md: "280px", lg: "320px" }}
               width="100%"
               display="flex"
               alignItems="center"
@@ -112,9 +112,9 @@ export default function HeroSection({
             >
               <Heading
                 as="h1"
-                fontSize={{ base: "sm", sm: "md", md: "4xl", lg: "5xl", xl: "6xl" }}
+                fontSize={{ base: "sm", sm: "md", md: "3xl", lg: "4xl", xl: "5xl" }}
                 fontWeight="900"
-                lineHeight={{ base: "1.3", sm: "1.35", md: "1.1" }}
+                lineHeight={{ base: "1.3", sm: "1.35", md: "1.2", lg: "1.1" }}
                 color="white"
                 letterSpacing={{ base: "-0.003em", sm: "-0.005em", md: "-0.02em" }}
                 textTransform="uppercase"
