@@ -146,14 +146,14 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
           {/* Stats Section */}
           <Box py={{ base: '8', sm: '10', md: '16' }}>
             <SimpleGrid 
-              columns={{ base: 1, sm: 3 }} 
-              spacing={{ base: '4', sm: '5', md: '8' }}
+              columns={3} 
+              spacing={{ base: '3', sm: '4', md: '8' }}
             >
               {stats.map((stat, index) => (
                 <Box
                   key={index}
                   textAlign="center"
-                  p={{ base: '5', sm: '6', md: '8' }}
+                  p={{ base: '4', sm: '5', md: '8' }}
                   bg="blue.900"
                   borderRadius={{ base: 'md', md: 'lg' }}
                   boxShadow="lg"
@@ -165,7 +165,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                   transition="all 0.3s"
                 >
                   <Heading
-                    size={{ base: 'lg', sm: 'xl', md: 'xl' }}
+                    size={{ base: 'md', sm: 'lg', md: 'xl' }}
                     color="white"
                     fontWeight="bold"
                     lineHeight="1"
@@ -175,9 +175,9 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                   </Heading>
                   <Text
                     color="white"
-                    fontSize={{ base: 'xs', sm: 'sm', md: 'md' }}
+                    fontSize={{ base: '2xs', sm: 'xs', md: 'md' }}
                     fontWeight="medium"
-                    lineHeight={{ base: '1.3', md: '1.5' }}
+                    lineHeight={{ base: '1.2', sm: '1.3', md: '1.5' }}
                   >
                     {stat.description}
                   </Text>
