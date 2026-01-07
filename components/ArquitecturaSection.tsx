@@ -337,9 +337,9 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
             {/* Services Gallery */}
             <SimpleGrid 
               columns={{ base: 2, md: 3 }} 
-              spacing={{ base: '3', sm: '4', md: '6' }}
+              spacing={{ base: '2', sm: '3', md: '4' }}
               w="100%"
-              mt={{ base: '6', md: '8' }}
+              mt={{ base: '4', md: '6' }}
               px={{ base: '2', sm: '4', md: '0' }}
             >
               {services.map((service, index) => (
@@ -360,7 +360,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                 >
                   <Box
                     position="relative"
-                    h={{ base: '150px', sm: '180px', md: '250px', lg: '280px' }}
+                    h={{ base: '120px', sm: '140px', md: '180px', lg: '200px' }}
                     w="100%"
                     overflow="hidden"
                   >
@@ -382,13 +382,14 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                       left="0"
                       right="0"
                       bgGradient="linear(to-t, rgba(0,0,0,0.7), transparent)"
-                      p="4"
+                      p={{ base: '2', sm: '3', md: '4' }}
                     >
                       <Heading
-                        size="sm"
+                        size={{ base: 'xs', sm: 'sm' }}
                         color="white"
                         fontWeight="bold"
                         textTransform="uppercase"
+                        fontSize={{ base: '10px', sm: 'xs', md: 'sm' }}
                       >
                         {service.title}
                       </Heading>
@@ -403,8 +404,8 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
               w="100%"
               h="1px"
               bg="gray.200"
-              mt="8"
-              mb="4"
+              mt={{ base: '4', md: '6' }}
+              mb={{ base: '2', md: '3' }}
             />
               
               <Button
@@ -417,7 +418,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                 px={{ base: '6', md: '8' }}
                 py={{ base: '5', md: '6' }}
                 borderRadius="md"
-                mt="8"
+                mt={{ base: '2', md: '3' }}
                 _hover={{
                   bg: 'red.700',
                   transform: 'translateY(-2px)',
