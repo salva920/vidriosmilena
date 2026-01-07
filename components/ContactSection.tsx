@@ -13,10 +13,12 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  IconButton,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { EMAILJS_CONFIG } from '@/app/config/emailjs'
+import { FaWhatsapp } from 'react-icons/fa'
 
 interface ContactSectionProps {
   numeroWhatsApp: string
@@ -109,8 +111,42 @@ _Generado desde el formulario de contacto de Vidrios Premium_`
     }
   }
 
+  const handleWhatsAppClick = () => {
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}`
+    window.open(urlWhatsApp, '_blank')
+  }
+
   return (
-    <Box id="contact" py="20" bg="blue.500" color="white">
+    <>
+      {/* Botón flotante de WhatsApp */}
+      <IconButton
+        aria-label="Chatear por WhatsApp"
+        icon={<FaWhatsapp />}
+        position="fixed"
+        bottom={{ base: '20px', md: '30px' }}
+        right={{ base: '20px', md: '30px' }}
+        zIndex={1000}
+        size="lg"
+        bg="#25D366"
+        color="white"
+        borderRadius="50%"
+        w={{ base: '56px', md: '64px' }}
+        h={{ base: '56px', md: '64px' }}
+        boxShadow="0 4px 12px rgba(37, 211, 102, 0.4)"
+        _hover={{
+          bg: '#20BA5A',
+          transform: 'scale(1.1)',
+          boxShadow: '0 6px 20px rgba(37, 211, 102, 0.6)'
+        }}
+        _active={{
+          bg: '#1DA851',
+          transform: 'scale(0.95)'
+        }}
+        transition="all 0.3s ease"
+        onClick={handleWhatsAppClick}
+      />
+
+      <Box id="contact" py="20" bg="blue.500" color="white">
       <Container maxW="container.xl">
         <Flex
           direction={{ base: 'column', lg: 'row' }}
