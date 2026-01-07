@@ -230,7 +230,7 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
           <Box textAlign="center">
             <Button
               onClick={onOpenModal}
-              bg="red.600"
+              bg="cyan.500"
               color="white"
               fontWeight="bold"
               textTransform="uppercase"
@@ -238,12 +238,18 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
               px={{ base: '6', md: '8' }}
               py={{ base: '5', md: '6' }}
               borderRadius="md"
+              boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
               _hover={{
-                bg: 'red.700',
+                bg: 'cyan.600',
                 transform: 'translateY(-2px)',
-                boxShadow: 'lg'
+                boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
               }}
-              transition="all 0.3s"
+              _active={{
+                bg: 'cyan.700',
+                transform: 'translateY(0px)',
+                boxShadow: '0 2px 10px rgba(6, 182, 212, 0.4)'
+              }}
+              transition="all 0.2s ease"
             >
               Cotizar
             </Button>
@@ -322,7 +328,7 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
                     onClose()
                     onOpenModal?.()
                   }}
-                  bg="red.600"
+                  bg="cyan.500"
                   color="white"
                   fontWeight="bold"
                   textTransform="uppercase"
@@ -331,12 +337,18 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
                   py={{ base: '5', md: '6' }}
                   borderRadius="md"
                   w={{ base: '100%', md: 'auto' }}
+                  boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
                   _hover={{
-                    bg: 'red.700',
+                    bg: 'cyan.600',
                     transform: 'translateY(-2px)',
-                    boxShadow: 'lg'
+                    boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
                   }}
-                  transition="all 0.3s"
+                  _active={{
+                    bg: 'cyan.700',
+                    transform: 'translateY(0px)',
+                    boxShadow: '0 2px 10px rgba(6, 182, 212, 0.4)'
+                  }}
+                  transition="all 0.2s ease"
                 >
                   Cotizar
                 </Button>
