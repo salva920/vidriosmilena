@@ -64,14 +64,14 @@ export default function CortinasSection({ onOpenModal }: CortinasSectionProps) {
   const additionalDescription = "Nuestras cortinas de cristal están diseñadas para crear espacios abiertos y luminosos con separación visual elegante. Ofrecemos soluciones modernas con sistemas de cortinas y divisiones de vidrio que combinan funcionalidad, estética y durabilidad. Cada producto está fabricado con los más altos estándares de calidad, permitiendo crear ambientes versátiles que se adaptan a tus necesidades específicas, ya sea para espacios residenciales o comerciales."
 
   return (
-    <Box id="cortinas" py={{ base: '12', md: '16', lg: '20' }} bgGradient="linear(to-br, sky.100, sky.200)">
+    <Box id="cortinas" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
         <VStack spacing="8" align="stretch">
           {/* Header Section - Centered */}
           <Box textAlign="center" maxW="900px" mx="auto" w="100%">
             <Heading 
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-              color="blue.900"
+              color="gray.900"
               fontWeight="800"
               letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
               textTransform="uppercase"
@@ -83,7 +83,7 @@ export default function CortinasSection({ onOpenModal }: CortinasSectionProps) {
             
             <Text 
               fontSize={{ base: 'lg', md: 'xl' }}
-              color="blue.800"
+              color="gray.700"
               fontWeight="600"
               mb="4"
             >
@@ -92,7 +92,7 @@ export default function CortinasSection({ onOpenModal }: CortinasSectionProps) {
             
             <Text 
               fontSize={{ base: 'md', md: 'lg' }}
-              color="blue.700"
+              color="gray.600"
               lineHeight="1.7"
               maxW="800px"
               mx="auto"

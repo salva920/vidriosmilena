@@ -68,14 +68,14 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
   const additionalDescription = "Nuestros espejos están diseñados para combinar funcionalidad y estética, transformando cualquier espacio con elegancia y estilo. Ofrecemos una amplia variedad de opciones, desde espejos decorativos hasta espejos con iluminación LED integrada que proporcionan una luz perfecta para cualquier ambiente. Cada espejo está fabricado con los más altos estándares de calidad, disponible en diferentes tamaños, formas y acabados para adaptarse a tus necesidades específicas."
 
   return (
-    <Box id="espejos" py={{ base: '12', md: '16', lg: '20' }} bgGradient="linear(to-br, indigo.100, blue.200)">
+    <Box id="espejos" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
         <VStack spacing="8" align="stretch">
           {/* Header Section - Centered */}
           <Box textAlign="center" maxW="900px" mx="auto" w="100%">
             <Heading 
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-              color="indigo.900"
+              color="gray.900"
               fontWeight="800"
               letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
               textTransform="uppercase"
@@ -87,7 +87,7 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
             
             <Text 
               fontSize={{ base: 'lg', md: 'xl' }}
-              color="indigo.800"
+              color="gray.700"
               fontWeight="600"
               mb="4"
             >
@@ -96,12 +96,12 @@ export default function EspejosSection({ onOpenModal }: EspejosSectionProps) {
             
             <Text 
               fontSize={{ base: 'md', md: 'lg' }}
-              color="indigo.700"
+              color="gray.600"
               lineHeight="1.7"
               maxW="800px"
               mx="auto"
             >
-              Espejos de alta calidad para decoración y funcionalidad, disponibles en diferentes estilos y tamaños. <Text as="span" fontWeight="700" color="indigo.900">Destacamos nuestros espejos con iluminación LED integrada</Text> que proporcionan una luz perfecta para cualquier ambiente.
+              Espejos de alta calidad para decoración y funcionalidad, disponibles en diferentes estilos y tamaños. <Text as="span" fontWeight="700" color="gray.900">Destacamos nuestros espejos con iluminación LED integrada</Text> que proporcionan una luz perfecta para cualquier ambiente.
             </Text>
           </Box>
 

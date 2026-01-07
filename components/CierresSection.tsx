@@ -72,14 +72,14 @@ export default function CierresSection({ onOpenModal }: CierresSectionProps) {
   const additionalDescription = "En Arte cristal, contamos con una amplia variedad de sistemas de cerramientos, tanto horizontales como verticales, que te ayudan a transformar cualquier tipo de espacio. Nuestros cierres y barandas de vidrio templado están diseñados para ofrecer máxima seguridad, durabilidad y estética moderna. Trabajamos con los mejores materiales y tecnologías para garantizar soluciones personalizadas que se adapten a tus necesidades específicas, ya sea para terrazas, balcones, escaleras o espacios comerciales."
 
   return (
-    <Box id="cierres" py={{ base: '12', md: '16', lg: '20' }} bgGradient="linear(to-br, blue.200, blue.300)">
+    <Box id="cierres" py={{ base: '12', md: '16', lg: '20' }} bg="white">
       <Container maxW="container.xl">
         <VStack spacing="8" align="stretch">
           {/* Header Section - Centered */}
           <Box textAlign="center" maxW="900px" mx="auto" w="100%">
             <Heading 
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-              color="blue.900"
+              color="gray.900"
               fontWeight="800"
               letterSpacing={{ base: '-0.02em', md: '-0.03em' }}
               textTransform="uppercase"
@@ -91,7 +91,7 @@ export default function CierresSection({ onOpenModal }: CierresSectionProps) {
             
             <Text 
               fontSize={{ base: 'lg', md: 'xl' }}
-              color="blue.800"
+              color="gray.700"
               fontWeight="600"
               mb="4"
             >
@@ -100,7 +100,7 @@ export default function CierresSection({ onOpenModal }: CierresSectionProps) {
             
             <Text 
               fontSize={{ base: 'md', md: 'lg' }}
-              color="blue.700"
+              color="gray.600"
               lineHeight="1.7"
               maxW="800px"
               mx="auto"

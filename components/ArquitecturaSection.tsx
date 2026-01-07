@@ -337,6 +337,15 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                 </Card>
               ))}
             </SimpleGrid>
+
+            {/* Divider Line */}
+            <Box
+              w="100%"
+              h="1px"
+              bg="gray.200"
+              mt="8"
+              mb="4"
+            />
               
               <Button
                 onClick={onOpenModal}
