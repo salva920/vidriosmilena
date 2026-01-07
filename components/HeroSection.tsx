@@ -61,7 +61,7 @@ export default function HeroSection({
         />
       </Box>
       
-      {/* Fondo triangular/diagonal azul oscuro */}
+      {/* Fondo triangular/diagonal azul oscuro - Responsive */}
       <Box
         position="absolute"
         top="0"
@@ -69,7 +69,11 @@ export default function HeroSection({
         width="100%"
         height="100%"
         zIndex={2}
-        clipPath="polygon(0 0, 65% 0, 35% 100%, 0 100%)"
+        clipPath={{
+          base: "polygon(0 0, 55% 0, 25% 100%, 0 100%)",
+          md: "polygon(0 0, 60% 0, 30% 100%, 0 100%)",
+          lg: "polygon(0 0, 65% 0, 35% 100%, 0 100%)"
+        }}
         bg="blue.900"
         opacity="0.95"
       />
@@ -80,19 +84,20 @@ export default function HeroSection({
           display="flex"
           alignItems="center"
           minH="100vh"
-          py="20"
+          py={{ base: "12", md: "20" }}
           px={{ base: "4", md: "6", lg: "8" }}
         >
           <VStack
-            spacing="8"
+            spacing={{ base: "6", md: "8" }}
             align="flex-start"
             textAlign="left"
-            maxW={{ base: "100%", md: "600px", lg: "700px" }}
+            maxW={{ base: "85%", sm: "75%", md: "600px", lg: "700px" }}
+            w="100%"
           >
-            {/* Títulos alineados a la izquierda */}
+            {/* Títulos alineados a la izquierda - Más compactos */}
             <Box
               position="relative"
-              minH={{ base: "200px", md: "280px", lg: "320px" }}
+              minH={{ base: "150px", md: "280px", lg: "320px" }}
               width="100%"
               display="flex"
               alignItems="center"
@@ -100,9 +105,9 @@ export default function HeroSection({
             >
               <Heading
                 as="h1"
-                fontSize={{ base: "3xl", md: "5xl", lg: "6xl", xl: "7xl" }}
+                fontSize={{ base: "xl", sm: "2xl", md: "5xl", lg: "6xl", xl: "7xl" }}
                 fontWeight="900"
-                lineHeight="1.1"
+                lineHeight={{ base: "1.2", md: "1.1" }}
                 color="white"
                 letterSpacing={{ base: "-0.01em", md: "-0.02em" }}
                 textTransform="uppercase"
@@ -113,14 +118,14 @@ export default function HeroSection({
               </Heading>
             </Box>
             
-            {/* Botón CTA alineado a la izquierda */}
+            {/* Botón CTA alineado a la izquierda - Más compacto */}
             <Button
-              size="lg"
+              size={{ base: "md", md: "lg" }}
               bg="white"
               color="blue.900"
-              px={{ base: "8", md: "12" }}
-              py={{ base: "6", md: "8" }}
-              fontSize={{ base: "md", md: "lg" }}
+              px={{ base: "6", md: "12" }}
+              py={{ base: "5", md: "8" }}
+              fontSize={{ base: "sm", md: "lg" }}
               fontWeight="bold"
               borderRadius="md"
               _hover={{ 
