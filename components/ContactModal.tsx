@@ -22,6 +22,7 @@ import {
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { EMAILJS_CONFIG } from '@/app/config/emailjs'
+import { FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa'
 
 interface ContactModalProps {
   isOpen: boolean
@@ -29,7 +30,7 @@ interface ContactModalProps {
   numeroWhatsApp?: string
 }
 
-export default function ContactModal({ isOpen, onClose, numeroWhatsApp = '56940665690' }: ContactModalProps) {
+export default function ContactModal({ isOpen, onClose, numeroWhatsApp = '56949932178' }: ContactModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [formData, setFormData] = useState({
@@ -73,7 +74,7 @@ export default function ContactModal({ isOpen, onClose, numeroWhatsApp = '569406
       )
 
       // Formatear el mensaje para WhatsApp
-      const mensaje = `🏠 *Nueva Solicitud de Cotización - MILEGLASS*
+      const mensaje = `🏠 *Nueva Solicitud de Cotización - ARTECRISTAL*
 
 👤 *Información del Cliente:*
 • Nombre: ${formData.name}
@@ -84,7 +85,7 @@ export default function ContactModal({ isOpen, onClose, numeroWhatsApp = '569406
 
 ${formData.message ? `📝 *Mensaje:*\n${formData.message}\n\n` : ''}⏰ *Fecha:* ${new Date().toLocaleString('es-VE', { dateStyle: 'long', timeStyle: 'short' })}
 
-_Generado desde el formulario de contacto de MILEGLASS_`
+_Generado desde el formulario de contacto de ARTECRISTAL_`
 
       // Codificar el mensaje para la URL de WhatsApp
       const mensajeCodificado = encodeURIComponent(mensaje)
@@ -125,6 +126,19 @@ _Generado desde el formulario de contacto de MILEGLASS_`
     onClose()
   }
 
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:Artecristales@gmail.com'
+  }
+
+  const handlePhoneClick = () => {
+    window.location.href = 'tel:+56949932178'
+  }
+
+  const handleLocationClick = () => {
+    const address = encodeURIComponent('Coronel souper 4400, Estación Central, Chile')
+    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank')
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size="6xl" isCentered>
       <ModalOverlay />
@@ -156,17 +170,38 @@ _Generado desde el formulario de contacto de MILEGLASS_`
                 </Text>
                 
                 <VStack align="start" spacing="4" pt="4">
-                  <HStack>
-                    <Text fontSize="lg">📞</Text>
-                    <Text fontWeight="semibold">+58 (412) 239 0689</Text>
+                  <HStack
+                    as="button"
+                    onClick={handlePhoneClick}
+                    cursor="pointer"
+                    _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
+                    transition="all 0.2s"
+                    spacing="3"
+                  >
+                    <FaPhone fontSize="20px" />
+                    <Text fontWeight="semibold">+56949932178</Text>
                   </HStack>
-                  <HStack>
-                    <Text fontSize="lg">✉️</Text>
-                    <Text fontWeight="semibold">info@mileglass.com</Text>
+                  <HStack
+                    as="button"
+                    onClick={handleEmailClick}
+                    cursor="pointer"
+                    _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
+                    transition="all 0.2s"
+                    spacing="3"
+                  >
+                    <FaEnvelope fontSize="20px" />
+                    <Text fontWeight="semibold">Artecristales@gmail.com</Text>
                   </HStack>
-                  <HStack>
-                    <Text fontSize="lg">📍</Text>
-                    <Text fontWeight="semibold">Maipu, Santiago, Chile</Text>
+                  <HStack
+                    as="button"
+                    onClick={handleLocationClick}
+                    cursor="pointer"
+                    _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
+                    transition="all 0.2s"
+                    spacing="3"
+                  >
+                    <FaMapMarkerAlt fontSize="20px" />
+                    <Text fontWeight="semibold">Coronel souper - Estacion central</Text>
                   </HStack>
                 </VStack>
               </VStack>

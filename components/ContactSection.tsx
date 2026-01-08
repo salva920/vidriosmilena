@@ -18,7 +18,7 @@ import {
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { EMAILJS_CONFIG } from '@/app/config/emailjs'
-import { FaWhatsapp } from 'react-icons/fa'
+import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa'
 
 interface ContactSectionProps {
   numeroWhatsApp: string
@@ -69,7 +69,7 @@ export default function ContactSection({ numeroWhatsApp, onOpenModal }: ContactS
       )
 
       // Formatear el mensaje para WhatsApp
-      const mensaje = `🏠 *Nueva Solicitud de Cotización - Vidrios Premium*
+      const mensaje = `🏠 *Nueva Solicitud de Cotización - ARTECRISTAL*
 
 👤 *Información del Cliente:*
 • Nombre: ${formData.name}
@@ -80,7 +80,7 @@ export default function ContactSection({ numeroWhatsApp, onOpenModal }: ContactS
 
 ${formData.message ? `📝 *Mensaje:*\n${formData.message}\n\n` : ''}⏰ *Fecha:* ${new Date().toLocaleString('es-VE', { dateStyle: 'long', timeStyle: 'short' })}
 
-_Generado desde el formulario de contacto de Vidrios Premium_`
+_Generado desde el formulario de contacto de ARTECRISTAL_`
 
       // Codificar el mensaje para la URL de WhatsApp
       const mensajeCodificado = encodeURIComponent(mensaje)
@@ -114,6 +114,19 @@ _Generado desde el formulario de contacto de Vidrios Premium_`
   const handleWhatsAppClick = () => {
     const urlWhatsApp = `https://wa.me/${numeroWhatsApp}`
     window.open(urlWhatsApp, '_blank')
+  }
+
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:Artecristales@gmail.com'
+  }
+
+  const handlePhoneClick = () => {
+    window.location.href = 'tel:+56949932178'
+  }
+
+  const handleLocationClick = () => {
+    const address = encodeURIComponent('Coronel souper 4400, Estación Central, Chile')
+    window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank')
   }
 
   return (
@@ -164,17 +177,38 @@ _Generado desde el formulario de contacto de Vidrios Premium_`
               </Text>
               
               <VStack align="start" spacing="4" pt="4">
-                <HStack>
-                  <Text fontSize="lg">📞</Text>
-                  <Text fontWeight="semibold">+1 (555) 123-4567</Text>
+                <HStack
+                  as="button"
+                  onClick={handlePhoneClick}
+                  cursor="pointer"
+                  _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
+                  transition="all 0.2s"
+                  spacing="3"
+                >
+                  <FaPhone fontSize="20px" />
+                  <Text fontWeight="semibold">+56949932178</Text>
                 </HStack>
-                <HStack>
-                  <Text fontSize="lg">✉️</Text>
-                  <Text fontWeight="semibold">info@vidriospremium.com</Text>
+                <HStack
+                  as="button"
+                  onClick={handleEmailClick}
+                  cursor="pointer"
+                  _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
+                  transition="all 0.2s"
+                  spacing="3"
+                >
+                  <FaEnvelope fontSize="20px" />
+                  <Text fontWeight="semibold">Artecristales@gmail.com</Text>
                 </HStack>
-                <HStack>
-                  <Text fontSize="lg">📍</Text>
-                  <Text fontWeight="semibold">Av. Principal 123, Ciudad</Text>
+                <HStack
+                  as="button"
+                  onClick={handleLocationClick}
+                  cursor="pointer"
+                  _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
+                  transition="all 0.2s"
+                  spacing="3"
+                >
+                  <FaMapMarkerAlt fontSize="20px" />
+                  <Text fontWeight="semibold">Coronel souper 4400 - Estacion central</Text>
                 </HStack>
               </VStack>
               
