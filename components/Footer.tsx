@@ -112,6 +112,30 @@ export default function Footer() {
             </Text>
           </HStack>
         </Flex>
+        
+        <Divider my="4" borderColor="gray.700" />
+        
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          justify="center"
+          align="center"
+          gap="2"
+        >
+          <Text color="gray.500" fontSize="xs" textAlign="center">
+            Desarrollado por{' '}
+            <Link
+              href="https://portafolio-salvador.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="blue.400"
+              _hover={{ color: 'blue.300', textDecoration: 'underline' }}
+              fontWeight="semibold"
+            >
+              Salvador Bermúdez
+            </Link>
+            {' '}| Ingeniero en Computación
+          </Text>
+        </Flex>
       </Container>
     </Box>
   )
