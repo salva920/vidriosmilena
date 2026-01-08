@@ -34,7 +34,13 @@ const galleryItems: GalleryItem[] = [
   { src: '/img/baranda2.mp4', type: 'video' },
   { src: '/img/vidriot2.jpg', type: 'image' },
   { src: '/img/vidriot3.jpg', type: 'image' },
-  { src: '/img/cierre.jpg', type: 'image' }
+  { src: '/img/cierre.jpg', type: 'image' },
+  { src: '/img/cortina_cristal_azur_vivienda_susana_elche_r_t7a6123.jpg', type: 'image' },
+  { src: '/img/cortinas-de-cristal-neulam.jpg', type: 'image' },
+  { src: '/img/cortinas3.jpg', type: 'image' },
+  { src: '/img/cortinas4.jpg', type: 'image' },
+  { src: '/img/cortinas5.webp', type: 'image' },
+  { src: '/img/IMG-20160407-WA0004-1024x614.jpg', type: 'image' }
 ]
 
 export default function CierresSection({ onOpenModal }: CierresSectionProps) {
