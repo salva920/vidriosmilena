@@ -25,15 +25,14 @@ interface VentanasSectionProps {
 }
 
 const galleryImages = [
-  '/img/ventana pvc.jpg',
-  '/img/ventarpt.jpg',
   '/ventana aluminio.png',
   '/img/ventana2.jpg',
   '/img/ventana3.jpg',
   '/img/ventana4.jpg',
   '/img/ventana5.jpg',
-  '/img/ventana7.jpg',
-  '/img/ventana8.jpg'
+  '/img/ventana8.jpg',
+  '/img/cierre2.jpg',
+  '/img/cierre3.jpg'
 ]
 
 export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {

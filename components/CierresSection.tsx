@@ -35,10 +35,7 @@ const galleryItems: GalleryItem[] = [
   { src: '/img/vidrioT.jpg', type: 'image' },
   { src: '/img/vidriot2.jpg', type: 'image' },
   { src: '/img/vidriot3.jpg', type: 'image' },
-  { src: '/img/cierre.jpg', type: 'image' },
-  { src: '/img/cierre2.jpg', type: 'image' },
-  { src: '/img/cierre3.jpg', type: 'image' },
-  { src: '/img/baranda3.jpg', type: 'image' },
+  { src: '/img/cierre.jpg', type: 'image' }
 ]
 
 export default function CierresSection({ onOpenModal }: CierresSectionProps) {
