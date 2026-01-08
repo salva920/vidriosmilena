@@ -32,7 +32,6 @@ interface GalleryItem {
 const galleryItems: GalleryItem[] = [
   { src: '/img/baranda.mp4', type: 'video' },
   { src: '/img/baranda2.mp4', type: 'video' },
-  { src: '/img/vidrioT.jpg', type: 'image' },
   { src: '/img/vidriot2.jpg', type: 'image' },
   { src: '/img/vidriot3.jpg', type: 'image' },
   { src: '/img/cierre.jpg', type: 'image' }
