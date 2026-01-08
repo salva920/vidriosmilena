@@ -25,8 +25,6 @@ interface CortinasSectionProps {
 }
 
 const galleryImages = [
-  '/img/cortinas1.jpg',
-  '/img/cortinas2.jpg',
   '/img/cortinas3.jpg',
   '/img/cortinas4.jpg',
   '/img/cortinas5.webp',
