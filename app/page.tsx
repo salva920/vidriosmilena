@@ -10,7 +10,6 @@ import VentanasSection from '@/components/VentanasSection'
 import ShowerSection from '@/components/ShowerSection'
 import CierresSection from '@/components/CierresSection'
 import EspejosSection from '@/components/EspejosSection'
-import CortinasSection from '@/components/CortinasSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import StatsSection from '@/components/StatsSection'
 import WhyUsSection from '@/components/WhyUsSection'
@@ -108,8 +107,6 @@ export default function Home() {
       <CierresSection onOpenModal={onOpen} />
 
       <EspejosSection onOpenModal={onOpen} />
-
-      <CortinasSection onOpenModal={onOpen} />
 
       <FeaturesSection />
 

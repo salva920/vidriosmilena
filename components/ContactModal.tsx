@@ -257,7 +257,6 @@ _Generado desde el formulario de contacto de MILEGLASS_`
                           <option value="Shower o Mamparas">Shower o Mamparas</option>
                           <option value="Cierres y Barandas">Cierres y Barandas</option>
                           <option value="Espejos">Espejos</option>
-                          <option value="Cortinas de Cristal">Cortinas de Cristal</option>
                           <option value="Vidrios Templados">Vidrios Templados</option>
                           <option value="Vidrios Laminados">Vidrios Laminados</option>
                           <option value="Instalación">Instalación</option>

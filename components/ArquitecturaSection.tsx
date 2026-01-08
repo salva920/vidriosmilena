@@ -46,7 +46,7 @@ const services: ServiceCard[] = [
     image: '/img/espejo decorativo.jpg'
   },
   {
-    id: 'cortinas',
+    id: 'cierres',
     title: 'Cortinas',
     image: '/img/cortinas1.jpg'
   },

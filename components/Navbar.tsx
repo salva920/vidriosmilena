@@ -39,7 +39,6 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
       'VENTANAS': 'ventanas',
       'CIERRES': 'cierres',
       'ESPEJOS': 'espejos',
-      'CORTINAS': 'cortinas',
       'CONTACTO': 'contact',
       'NOSOTROS': 'nosotros'
     }
@@ -246,28 +245,6 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 )}
               </Link>
               <Link
-                onClick={() => scrollToSection('CORTINAS')}
-                fontWeight="semibold"
-                color={activeLink === 'CORTINAS' ? 'gray.900' : 'gray.600'}
-                position="relative"
-                _hover={{ color: 'gray.900' }}
-                cursor="pointer"
-                textTransform="uppercase"
-                fontSize="sm"
-              >
-                CORTINAS
-                {activeLink === 'CORTINAS' && (
-                  <Box
-                    position="absolute"
-                    bottom="-8px"
-                    left="0"
-                    right="0"
-                    h="2px"
-                    bg="red.500"
-                  />
-                )}
-              </Link>
-              <Link
                 onClick={() => scrollToSection('CONTACTO')}
                 fontWeight="semibold"
                 color={activeLink === 'CONTACTO' ? 'gray.900' : 'gray.600'}
@@ -407,18 +384,6 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 _hover={{ bg: 'gray.100', color: 'blue.600' }}
               >
                 ESPEJOS
-              </Button>
-              <Button
-                variant="ghost"
-                justifyContent="flex-start"
-                fontWeight="semibold"
-                color={activeLink === 'CORTINAS' ? 'blue.600' : 'gray.700'}
-                onClick={() => scrollToSection('CORTINAS')}
-                textTransform="uppercase"
-                fontSize="sm"
-                _hover={{ bg: 'gray.100', color: 'blue.600' }}
-              >
-                CORTINAS
               </Button>
               <Button
                 variant="ghost"
