@@ -64,7 +64,7 @@ export default function CortinasSection({ onOpenModal }: CortinasSectionProps) {
   const additionalDescription = "Nuestras cortinas de cristal están diseñadas para crear espacios abiertos y luminosos con separación visual elegante. Ofrecemos soluciones modernas con sistemas de cortinas y divisiones de vidrio que combinan funcionalidad, estética y durabilidad. Cada producto está fabricado con los más altos estándares de calidad, permitiendo crear ambientes versátiles que se adaptan a tus necesidades específicas, ya sea para espacios residenciales o comerciales."
 
   return (
-    <Box id="cortinas" py={{ base: '4', md: '6', lg: '8' }} bg="white">
+    <Box id="cortinas" py={{ base: '4', md: '6', lg: '8' }} bg="gray.50">
       <Container maxW="container.xl">
         <VStack spacing="8" align="stretch">
           {/* Header Section - Centered */}
