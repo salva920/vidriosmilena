@@ -27,6 +27,9 @@ interface CortinasSectionProps {
 const galleryImages = [
   '/img/cortinas3.jpg',
   '/img/cortinas4.jpg',
+  '/img/cortinas5.webp',
+  '/img/ventana2.jpg',
+  
 ]
 
 export default function CortinasSection({ onOpenModal }: CortinasSectionProps) {
