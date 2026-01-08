@@ -71,11 +71,11 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             <HStack spacing="6">
               <HStack spacing="2">
                 <Text fontSize="lg" color="red.500">📍</Text>
-                <Text>Maipu, Santiago, Chile</Text>
+                <Text>Coronel souper 4400 - Estacion central</Text>
               </HStack>
               <HStack spacing="2">
                 <Text fontSize="lg" color="red.500">📞</Text>
-                <Text>+58 (412) 239 0689</Text>
+                <Text>+56949932178</Text>
               </HStack>
             </HStack>
             
@@ -116,7 +116,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             <Box flexShrink={0}>
               <Image
                 src="/logo.png"
-                alt="Logo MILEGLASS"
+                alt="Logo ARTECRISTAL"
                 h={{ base: '80px', md: '100px', lg: '120px' }}
                 w="auto"
                 maxW={{ base: '200px', md: '250px', lg: '300px' }}
@@ -315,7 +315,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           <DrawerHeader borderBottomWidth="1px">
             <Image
               src="/logo.png"
-              alt="Logo MILEGLASS"
+              alt="Logo ARTECRISTAL"
               h="99px"
               w="auto"
               maxW="200px"
@@ -429,13 +429,13 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                   <HStack spacing="2">
                     <Text fontSize="lg" color="red.500">📍</Text>
                     <Text fontSize="sm" color="gray.600">
-                      Paracotos 1201, Miranda, Venezuela
+                      Coronel souper 4400 - Estacion central
                     </Text>
                   </HStack>
                   <HStack spacing="2">
                     <Text fontSize="lg" color="red.500">📞</Text>
                     <Text fontSize="sm" color="gray.600">
-                      +58 (412) 239 0689
+                      +56949932178
                     </Text>
                   </HStack>
                   <HStack spacing="4" pt="2">

@@ -1,6 +1,7 @@
 'use client'
 
-import { Box, Container, Heading, Text, VStack, HStack, Flex, Divider } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, HStack, Flex, Divider, Link } from '@chakra-ui/react'
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
 
 export default function Footer() {
   return (
@@ -14,7 +15,7 @@ export default function Footer() {
         >
           <VStack align="start" spacing="4">
             <Heading size="lg" color="white">
-              Vidrios Premium
+              ARTECRISTAL
             </Heading>
             <Text color="gray.400" maxW="300px">
               Especialistas en vidrios de alta calidad. 
@@ -33,16 +34,19 @@ export default function Footer() {
             </Heading>
             <VStack align="start" spacing="2">
               <Text color="gray.400" _hover={{ color: 'white' }} cursor="pointer">
-                Vidrios Templados
+                Ventanas de PVC y Aluminio
               </Text>
               <Text color="gray.400" _hover={{ color: 'white' }} cursor="pointer">
-                Vidrios Laminados
+                Shower o Mamparas
+              </Text>
+              <Text color="gray.400" _hover={{ color: 'white' }} cursor="pointer">
+                Cierres y Barandas
               </Text>
               <Text color="gray.400" _hover={{ color: 'white' }} cursor="pointer">
                 Espejos
               </Text>
               <Text color="gray.400" _hover={{ color: 'white' }} cursor="pointer">
-                Instalación
+                Arquitectura
               </Text>
             </VStack>
           </VStack>
@@ -52,17 +56,37 @@ export default function Footer() {
               Contacto
             </Heading>
             <VStack align="start" spacing="2">
-              <HStack>
-                <Text fontSize="sm">📞</Text>
-                <Text color="gray.400">+1 (555) 123-4567</Text>
+              <HStack
+                as={Link}
+                href="tel:+56949932178"
+                _hover={{ color: 'white', transform: 'translateX(4px)' }}
+                transition="all 0.2s"
+                cursor="pointer"
+              >
+                <FaPhone fontSize="14px" />
+                <Text color="gray.400">+56949932178</Text>
               </HStack>
-              <HStack>
-                <Text fontSize="sm">✉️</Text>
-                <Text color="gray.400">info@vidriospremium.com</Text>
+              <HStack
+                as={Link}
+                href="mailto:Artecristales@gmail.com"
+                _hover={{ color: 'white', transform: 'translateX(4px)' }}
+                transition="all 0.2s"
+                cursor="pointer"
+              >
+                <FaEnvelope fontSize="14px" />
+                <Text color="gray.400">Artecristales@gmail.com</Text>
               </HStack>
-              <HStack>
-                <Text fontSize="sm">📍</Text>
-                <Text color="gray.400">Av. Principal 123, Ciudad</Text>
+              <HStack
+                as={Link}
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Coronel souper 4400, Estación Central, Chile')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                _hover={{ color: 'white', transform: 'translateX(4px)' }}
+                transition="all 0.2s"
+                cursor="pointer"
+              >
+                <FaMapMarkerAlt fontSize="14px" />
+                <Text color="gray.400">Coronel souper 4400 - Estacion central</Text>
               </HStack>
             </VStack>
           </VStack>
@@ -77,7 +101,7 @@ export default function Footer() {
           gap="4"
         >
           <Text color="gray.400" fontSize="sm">
-            © 2024 Vidrios Premium. Todos los derechos reservados.
+            © 2026 ARTECRISTAL. Todos los derechos reservados.
           </Text>
           <HStack spacing="6">
             <Text color="gray.400" fontSize="sm" _hover={{ color: 'white' }} cursor="pointer">
