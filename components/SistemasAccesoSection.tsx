@@ -25,7 +25,10 @@ interface SistemasAccesoSectionProps {
 }
 
 const galleryImages = [
-  '/img/ventarpt.jpg'
+  '/img/hermosos-detalles-de-informacion-sobre-hoteles.jpg',
+  '/img/edificio-de-japon-de-entrada-de-la-casa.jpg',
+  '/img/barandilla-de-metal-en-edificio-moderno.jpg',
+  '/img/ai-generado-de-entrada-de-estilo-moderno.jpg'
 ]
 
 export default function SistemasAccesoSection({ onOpenModal }: SistemasAccesoSectionProps) {
