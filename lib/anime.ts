@@ -1,41 +1,31 @@
 // Wrapper para animejs que funciona en Next.js
-// Usamos una función que carga animejs dinámicamente solo en el cliente
+// Cargamos animejs directamente, sin wrappers complejos
 
 // @ts-ignore
-let animeModule: any = null
+let anime: any
 
-function loadAnime() {
-  if (animeModule) return animeModule
-  
-  if (typeof window !== 'undefined') {
-    // Solo cargar en el cliente
-    // @ts-ignore
-    animeModule = require('animejs')
-    // animejs puede estar en default o directamente
-    return animeModule.default || animeModule
+if (typeof window !== 'undefined') {
+  // En el cliente, cargar animejs
+  // @ts-ignore
+  const animejs = require('animejs')
+  // animejs puede estar en default o directamente en el módulo
+  anime = animejs.default || animejs
+} else {
+  // En SSR, crear función no-op
+  anime = function() {
+    return {
+      play: () => {},
+      pause: () => {},
+      restart: () => {},
+      reverse: () => {},
+      seek: () => {},
+      remove: () => {}
+    }
   }
-  
-  // En SSR, retornar función vacía
-  return function() {}
+  // Agregar métodos estáticos
+  anime.stagger = function() { return 0 }
+  anime.remove = function() {}
 }
-
-// Crear objeto proxy que carga animejs cuando se accede
-const anime = function(...args: any[]) {
-  const animeFn = loadAnime()
-  return animeFn.apply(null, args)
-} as any
-
-// Copiar propiedades estáticas como stagger
-Object.setPrototypeOf(anime, {
-  get stagger() {
-    const animeFn = loadAnime()
-    return animeFn.stagger
-  },
-  get remove() {
-    const animeFn = loadAnime()
-    return animeFn.remove
-  }
-})
 
 export default anime
 
