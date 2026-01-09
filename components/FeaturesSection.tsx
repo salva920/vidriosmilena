@@ -1,6 +1,9 @@
 'use client'
 
 import { Box, Container, Heading, Text, VStack, SimpleGrid, Card, CardBody } from '@chakra-ui/react'
+import { useEffect, useRef } from 'react'
+// @ts-ignore
+import anime from 'animejs'
 import { FiShield, FiZap, FiTool, FiAward } from 'react-icons/fi'
 import { IconType } from 'react-icons'
 
@@ -34,13 +37,69 @@ const features: Feature[] = [
 ]
 
 export default function FeaturesSection() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Animación para el título
+            anime({
+              targets: '.features-title',
+              opacity: [0, 1],
+              translateY: [-30, 0],
+              duration: 800,
+              easing: 'easeOutExpo'
+            })
+
+            // Animación para las tarjetas de características
+            anime({
+              targets: '.feature-card',
+              opacity: [0, 1],
+              translateY: [50, 0],
+              scale: [0.9, 1],
+              duration: 700,
+              easing: 'easeOutExpo',
+              delay: anime.stagger(150)
+            })
+
+            // Animación para los iconos
+            anime({
+              targets: '.feature-icon',
+              scale: [0, 1],
+              rotate: [180, 0],
+              duration: 800,
+              easing: 'easeOutBack',
+              delay: anime.stagger(150, { start: 300 })
+            })
+
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
+
   return (
-    <Box id="nosotros" py="20" bg="white">
+    <Box id="nosotros" py="20" bg="white" ref={sectionRef}>
       <Container maxW="container.xl">
         <VStack spacing="12">
           {/* Header Section */}
           <Box textAlign="center" maxW="850px" mx="auto" px={{ base: '4', md: '6' }} w="100%">
             <Heading 
+              className="features-title"
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
               color="gray.900"
               fontWeight="800"
@@ -48,6 +107,7 @@ export default function FeaturesSection() {
               textTransform="uppercase"
               mb={{ base: '3', md: '4' }}
               lineHeight="1.1"
+              opacity={0}
             >
               ¿POR QUÉ ELEGIRNOS?
             </Heading>
@@ -77,12 +137,14 @@ export default function FeaturesSection() {
           <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={{ base: '6', md: '8' }} w="100%">
             {features.map((feature, index) => (
               <Card 
-                key={index} 
+                key={index}
+                className="feature-card"
                 bg="white" 
                 boxShadow="xl" 
                 borderRadius="xl"
                 border="1px solid"
                 borderColor="gray.100"
+                opacity={0}
                 _hover={{
                   transform: 'translateY(-4px)',
                   boxShadow: '2xl',
@@ -93,6 +155,7 @@ export default function FeaturesSection() {
                 <CardBody textAlign="center" p={{ base: '6', md: '8' }}>
                   {/* Icon in cyan square */}
                   <Box
+                    className="feature-icon"
                     w={{ base: '14', md: '16' }}
                     h={{ base: '14', md: '16' }}
                     bg="cyan.500"

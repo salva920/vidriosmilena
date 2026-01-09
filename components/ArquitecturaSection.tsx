@@ -13,6 +13,9 @@ import {
   Flex,
   HStack,
 } from '@chakra-ui/react'
+import { useEffect, useRef } from 'react'
+// @ts-ignore
+import anime from 'animejs'
 
 interface ArquitecturaSectionProps {
   onOpenModal?: () => void
@@ -131,8 +134,84 @@ const mobilePartners = [
 ]
 
 export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSectionProps) {
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Animación para las tarjetas de estadísticas
+            anime({
+              targets: '.stat-card',
+              opacity: [0, 1],
+              translateY: [50, 0],
+              scale: [0.8, 1],
+              duration: 800,
+              easing: 'easeOutExpo',
+              delay: anime.stagger(150)
+            })
+
+            // Animación para los logos de partners
+            anime({
+              targets: '.partner-logo',
+              opacity: [0, 1],
+              scale: [0.5, 1],
+              duration: 600,
+              easing: 'easeOutBack',
+              delay: anime.stagger(100)
+            })
+
+            // Animación para el título y descripción
+            anime({
+              targets: '.arch-title',
+              opacity: [0, 1],
+              translateY: [-30, 0],
+              duration: 800,
+              easing: 'easeOutExpo'
+            })
+
+            // Animación para las tarjetas de servicios
+            anime({
+              targets: '.service-card',
+              opacity: [0, 1],
+              translateY: [60, 0],
+              scale: [0.9, 1],
+              duration: 700,
+              easing: 'easeOutExpo',
+              delay: anime.stagger(100)
+            })
+
+            // Animación para el botón
+            anime({
+              targets: '.arch-button',
+              opacity: [0, 1],
+              scale: [0.8, 1],
+              duration: 600,
+              easing: 'easeOutBack',
+              delay: 1000
+            })
+
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
+
   return (
-    <Box id="arquitectura">
+    <Box id="arquitectura" ref={sectionRef}>
       {/* Stats and Partners Section */}
       <Box 
         bgGradient="linear(to-br, gray.50, yellow.50)"
@@ -147,11 +226,13 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
               {stats.map((stat, index) => (
                 <Box
                   key={index}
+                  className="stat-card"
                   textAlign="center"
                   p={{ base: '4', sm: '5', md: '8' }}
                   bg="blue.900"
                   borderRadius={{ base: 'md', md: 'lg' }}
                   boxShadow="lg"
+                  opacity={0}
                   _hover={{
                     transform: 'translateY(-4px)',
                     boxShadow: 'xl',
@@ -199,6 +280,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
               {mobilePartners.map((partner, index) => (
                 <Box
                   key={index}
+                  className="partner-logo"
                   flex="1"
                   minW={{ base: '90px', sm: '100px' }}
                   maxW={{ base: '110px', sm: '120px' }}
@@ -213,6 +295,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                   boxShadow="sm"
                   border="1px solid"
                   borderColor="gray.100"
+                  opacity={0}
                 >
                   <Image
                     src={partner.logo}
@@ -239,6 +322,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
               {partners.map((partner, index) => (
                 <Box
                   key={index}
+                  className="partner-logo"
                   flex="1"
                   minW={{ md: '160px', lg: '180px' }}
                   maxW={{ md: '200px', lg: '220px' }}
@@ -253,6 +337,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                   boxShadow="sm"
                   border="1px solid"
                   borderColor="gray.100"
+                  opacity={0}
                   _hover={{
                     transform: 'translateY(-4px)',
                     boxShadow: 'md',
@@ -286,6 +371,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
           <VStack spacing={{ base: '6', md: '8' }}>
             <Box textAlign="center" maxW="900px" mx="auto" px={{ base: '4', sm: '5', md: '6' }} w="100%">
             <Heading 
+              className="arch-title"
               fontSize={{ base: 'xl', sm: '2xl', md: '3xl', lg: '4xl' }}
               color="gray.900"
               fontWeight="800"
@@ -293,6 +379,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
               textTransform="uppercase"
               mb={{ base: '2', sm: '3', md: '4' }}
               lineHeight="1.1"
+              opacity={0}
             >
               ARQUITECTURA
             </Heading>
@@ -340,11 +427,13 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
               {services.map((service, index) => (
                 <Card
                   key={index}
+                  className="service-card"
                   overflow="hidden"
                   borderRadius="lg"
                   cursor="pointer"
                   bg="white"
                   boxShadow="md"
+                  opacity={0}
                   _hover={{
                     transform: 'translateY(-8px)',
                     boxShadow: 'xl',
@@ -404,6 +493,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
             />
               
               <Button
+                className="arch-button"
                 onClick={onOpenModal}
                 bg="cyan.500"
                 color="white"
@@ -414,6 +504,7 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
                 py={{ base: '5', md: '6' }}
                 borderRadius="md"
                 mt={{ base: '1', md: '2' }}
+                opacity={0}
                 boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
                 _hover={{
                   bg: 'cyan.600',

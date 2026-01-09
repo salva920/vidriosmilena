@@ -17,7 +17,9 @@ import {
   IconButton,
   HStack,
 } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+// @ts-ignore
+import anime from 'animejs'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 interface VentanasSectionProps {
@@ -38,6 +40,7 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const sectionRef = useRef<HTMLDivElement>(null)
 
   // Auto-play carousel
   useEffect(() => {
@@ -46,6 +49,56 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
         setCurrentIndex((prev) => (prev + 1) % galleryImages.length)
       }, 5000)
       return () => clearInterval(interval)
+    }
+  }, [])
+
+  // Animaciones al hacer scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            anime({
+              targets: '.ventanas-title',
+              opacity: [0, 1],
+              translateY: [-30, 0],
+              duration: 800,
+              easing: 'easeOutExpo'
+            })
+
+            anime({
+              targets: '.ventanas-carousel',
+              opacity: [0, 1],
+              scale: [0.95, 1],
+              duration: 1000,
+              easing: 'easeOutExpo',
+              delay: 300
+            })
+
+            anime({
+              targets: '.ventanas-button',
+              opacity: [0, 1],
+              scale: [0.8, 1],
+              duration: 600,
+              easing: 'easeOutBack',
+              delay: 600
+            })
+
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
     }
   }, [])
 
@@ -65,12 +118,13 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
   const additionalDescription = "Nuestras ventanas de PVC y aluminio están diseñadas para ofrecer la máxima calidad, eficiencia energética y durabilidad. Trabajamos con los mejores materiales y tecnologías del mercado, incluyendo sistemas de Rotura de Puente Térmico (RPT) que garantizan un aislamiento superior. Ofrecemos soluciones personalizadas para proyectos residenciales y comerciales, combinando estética moderna con funcionalidad excepcional. Cada ventana está fabricada con precisión para garantizar hermeticidad, resistencia a la intemperie y máximo confort térmico y acústico."
 
   return (
-    <Box id="ventanas" py={{ base: '4', md: '6', lg: '8' }} bg="gray.50">
+    <Box id="ventanas" py={{ base: '4', md: '6', lg: '8' }} bg="gray.50" ref={sectionRef}>
       <Container maxW="container.xl">
         <VStack spacing="8" align="stretch">
           {/* Header Section - Centered */}
           <Box textAlign="center" maxW="900px" mx="auto" w="100%">
             <Heading 
+              className="ventanas-title"
               fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
               color="gray.900"
               fontWeight="800"
@@ -78,6 +132,7 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
               textTransform="uppercase"
               lineHeight="1.1"
               mb="4"
+              opacity={0}
             >
               VENTANAS DE PVC Y ALUMINIO
             </Heading>
@@ -104,6 +159,7 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
 
           {/* Carousel - Centered */}
           <Box 
+            className="ventanas-carousel"
             position="relative"
             borderRadius="xl"
             overflow="hidden"
@@ -113,6 +169,7 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
             mx="auto"
             h={{ base: '350px', md: '450px', lg: '550px' }}
             cursor="pointer"
+            opacity={0}
             onClick={() => handleImageClick(galleryImages[currentIndex])}
           >
             {galleryImages.map((image, index) => (
@@ -206,6 +263,7 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
           {/* CTA Button - Centered */}
           <Box textAlign="center">
             <Button
+              className="ventanas-button"
               onClick={onOpenModal}
               bg="cyan.500"
               color="white"
@@ -215,6 +273,7 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
               px={{ base: '6', md: '8' }}
               py={{ base: '5', md: '6' }}
               borderRadius="md"
+              opacity={0}
               boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
               _hover={{
                 bg: 'cyan.600',
