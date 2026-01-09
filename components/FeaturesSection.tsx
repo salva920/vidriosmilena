@@ -1,31 +1,33 @@
 'use client'
 
 import { Box, Container, Heading, Text, VStack, SimpleGrid, Card, CardBody } from '@chakra-ui/react'
+import { FiShield, FiZap, FiTool, FiAward } from 'react-icons/fi'
+import { IconType } from 'react-icons'
 
 interface Feature {
-  icon: string
+  icon: IconType
   title: string
   description: string
 }
 
 const features: Feature[] = [
   {
-    icon: '🛡️',
+    icon: FiShield,
     title: 'Calidad Garantizada',
     description: 'Todos nuestros vidrios cumplen con los más altos estándares de calidad y seguridad.'
   },
   {
-    icon: '🚚',
+    icon: FiZap,
     title: 'Instalación Rápida',
     description: 'Servicio de instalación profesional y puntual en toda la ciudad.'
   },
   {
-    icon: '🔧',
+    icon: FiTool,
     title: 'Mantenimiento',
     description: 'Servicio de mantenimiento y reparación para mantener tus vidrios en perfecto estado.'
   },
   {
-    icon: '⭐',
+    icon: FiAward,
     title: 'Atención Premium',
     description: 'Atención personalizada y asesoramiento experto para cada proyecto.'
   }
@@ -53,11 +55,11 @@ export default function FeaturesSection() {
             <Box
               w={{ base: '60px', md: '80px' }}
               h="4px"
-              bgGradient="linear(to-r, red.400, red.600)"
+              bgGradient="linear(to-r, cyan.400, cyan.600)"
               borderRadius="full"
               mx="auto"
               mb={{ base: '6', md: '8' }}
-              boxShadow="0 2px 8px rgba(229, 62, 62, 0.3)"
+              boxShadow="0 2px 8px rgba(6, 182, 212, 0.3)"
             />
             
             <Text 
@@ -89,22 +91,24 @@ export default function FeaturesSection() {
                 transition="all 0.3s"
               >
                 <CardBody textAlign="center" p={{ base: '6', md: '8' }}>
-                  {/* Icon in red square */}
+                  {/* Icon in cyan square */}
                   <Box
                     w={{ base: '14', md: '16' }}
                     h={{ base: '14', md: '16' }}
-                    bg="red.600"
+                    bg="cyan.500"
                     borderRadius="lg"
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
                     mb="5"
                     mx="auto"
-                    boxShadow="0 4px 12px rgba(229, 62, 62, 0.3)"
+                    boxShadow="0 4px 12px rgba(6, 182, 212, 0.3)"
                   >
-                    <Text color="white" fontSize={{ base: '2xl', md: '3xl' }} fontWeight="bold">
-                      {feature.icon}
-                    </Text>
+                    <Box
+                      as={feature.icon}
+                      color="white"
+                      fontSize={{ base: '24px', md: '28px' }}
+                    />
                   </Box>
                   
                   <Heading 

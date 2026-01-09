@@ -25,7 +25,7 @@ interface WhyUsSectionProps {
 const whyUsItems = [
   {
     title: 'LEALTAD',
-    description: 'Somos la tercera generación en la industria de vidrios en Venezuela.',
+    description: 'Somos la tercera generación en la industria de vidrios en chile.',
     defaultIndex: 0
   },
   {
