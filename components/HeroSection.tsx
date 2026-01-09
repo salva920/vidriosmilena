@@ -1,8 +1,6 @@
 'use client'
 
 import { Box, Container, Button, VStack, Heading } from '@chakra-ui/react'
-import { useEffect, useRef } from 'react'
-import anime from '@/lib/anime'
 import TitleCarousel from './TitleCarousel'
 
 interface RotatingTitle {
@@ -24,36 +22,6 @@ export default function HeroSection({
   onScrollToContact, 
   onOpenModal 
 }: HeroSectionProps) {
-  const titleRef = useRef<HTMLDivElement>(null)
-  const buttonRef = useRef<HTMLButtonElement>(null)
-
-  useEffect(() => {
-    // Animación de entrada para el título
-    if (titleRef.current) {
-      anime({
-        targets: titleRef.current,
-        opacity: [0, 1],
-        translateX: [-50, 0],
-        duration: 1000,
-        easing: 'easeOutExpo',
-        delay: 300
-      })
-    }
-
-    // Animación de entrada para el botón
-    if (buttonRef.current) {
-      anime({
-        targets: buttonRef.current,
-        opacity: [0, 1],
-        translateY: [30, 0],
-        scale: [0.8, 1],
-        duration: 800,
-        easing: 'easeOutExpo',
-        delay: 800
-      })
-    }
-  }, [])
-
   return (
     <Box
       id="inicio"
@@ -131,28 +99,25 @@ export default function HeroSection({
             pl={{ base: "2", sm: "3", md: "4" }}
           >
             {/* Títulos totalmente a la izquierda */}
-            <Box ref={titleRef} opacity={0}>
-              <Heading
-                as="h1"
-                fontSize={{ base: "10px", sm: "xs", md: "2xl", lg: "3xl", xl: "4xl" }}
-                fontWeight="900"
-                lineHeight={{ base: "1.2", sm: "1.3", md: "1.2", lg: "1.1" }}
-                color="white"
-                letterSpacing={{ base: "-0.002em", sm: "-0.003em", md: "-0.02em" }}
-                textTransform="uppercase"
-                fontFamily="sans-serif"
-                w="100%"
-                maxW="100%"
-                wordBreak="break-word"
-                overflowWrap="break-word"
-              >
-                <TitleCarousel titles={rotatingTitles} />
-              </Heading>
-            </Box>
+            <Heading
+              as="h1"
+              fontSize={{ base: "10px", sm: "xs", md: "2xl", lg: "3xl", xl: "4xl" }}
+              fontWeight="900"
+              lineHeight={{ base: "1.2", sm: "1.3", md: "1.2", lg: "1.1" }}
+              color="white"
+              letterSpacing={{ base: "-0.002em", sm: "-0.003em", md: "-0.02em" }}
+              textTransform="uppercase"
+              fontFamily="sans-serif"
+              w="100%"
+              maxW="100%"
+              wordBreak="break-word"
+              overflowWrap="break-word"
+            >
+              <TitleCarousel titles={rotatingTitles} />
+            </Heading>
             
             {/* Botón CTA totalmente a la izquierda */}
             <Button
-              ref={buttonRef}
               size={{ base: "xs", sm: "sm", md: "lg" }}
               bg="white"
               color="blue.900"
@@ -161,7 +126,6 @@ export default function HeroSection({
               fontSize={{ base: "10px", sm: "xs", md: "md" }}
               fontWeight="bold"
               borderRadius="md"
-              opacity={0}
               _hover={{ 
                 bg: 'gray.100',
                 transform: 'translateY(-2px)',
