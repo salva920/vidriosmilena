@@ -2,7 +2,6 @@
 
 import { Box, Container, Button, VStack, Heading } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
-// @ts-ignore
 import anime from 'animejs'
 import TitleCarousel from './TitleCarousel'
 

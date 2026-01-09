@@ -2,7 +2,6 @@
 
 import { Box, Container, Heading, Text, VStack, SimpleGrid, Card, CardBody } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
-// @ts-ignore
 import anime from 'animejs'
 import { FiShield, FiZap, FiTool, FiAward } from 'react-icons/fi'
 import { IconType } from 'react-icons'

@@ -17,7 +17,7 @@ interface AnimeOptions {
 }
 
 export const useAnime = (options: AnimeOptions, deps: any[] = []) => {
-  const animationRef = useRef<anime.AnimeInstance | null>(null)
+  const animationRef = useRef<any>(null)
 
   useEffect(() => {
     if (options.targets) {

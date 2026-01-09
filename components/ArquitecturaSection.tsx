@@ -14,7 +14,6 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
-// @ts-ignore
 import anime from 'animejs'
 
 interface ArquitecturaSectionProps {

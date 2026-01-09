@@ -18,7 +18,6 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import { useState, useEffect, useRef } from 'react'
-// @ts-ignore
 import anime from 'animejs'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
