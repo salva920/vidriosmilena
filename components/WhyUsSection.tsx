@@ -45,8 +45,8 @@ const whyUsItems = [
 export default function WhyUsSection({ onScrollToContact }: WhyUsSectionProps) {
   return (
     <Box bg="gray.50">
-      {/* Red Header Bar */}
-      <Box bg="red.600" py={{ base: '4', md: '5' }}>
+      {/* Blue Header Bar */}
+      <Box bg="blue.600" py={{ base: '4', md: '5' }}>
         <Container maxW="container.xl">
           <Flex
             justify="space-between"
@@ -109,7 +109,7 @@ export default function WhyUsSection({ onScrollToContact }: WhyUsSectionProps) {
               boxShadow="2xl"
             >
               <Image
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                src="/img/Brown Macro Coffee Brand Guidelines Presentation.png"
                 alt="Maquinaria de vidrios"
                 objectFit="cover"
                 w="100%"
@@ -137,9 +137,9 @@ export default function WhyUsSection({ onScrollToContact }: WhyUsSectionProps) {
                   <Box
                     w={{ base: '60px', md: '80px' }}
                     h="4px"
-                    bgGradient="linear(to-r, red.400, red.600)"
+                    bgGradient="linear(to-r, cyan.400, cyan.600)"
                     borderRadius="full"
-                    boxShadow="0 2px 8px rgba(229, 62, 62, 0.3)"
+                    boxShadow="0 2px 8px rgba(6, 182, 212, 0.3)"
                   />
                 </Box>
 
@@ -158,15 +158,15 @@ export default function WhyUsSection({ onScrollToContact }: WhyUsSectionProps) {
                       }}
                       transition="all 0.3s"
                     >
-                      {({ isExpanded }) => (
+                      {({ isExpanded }: { isExpanded: boolean }) => (
                         <>
                           <AccordionButton
-                            bg={isExpanded ? 'red.600' : 'white'}
+                            bg={isExpanded ? 'cyan.500' : 'white'}
                             color={isExpanded ? 'white' : 'gray.800'}
                             py={{ base: '4', md: '5' }}
                             px={{ base: '4', md: '6' }}
                             _hover={{
-                              bg: isExpanded ? 'red.700' : 'gray.50'
+                              bg: isExpanded ? 'cyan.600' : 'gray.50'
                             }}
                             transition="all 0.3s"
                           >
