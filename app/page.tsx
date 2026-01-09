@@ -13,6 +13,7 @@ import EspejosSection from '@/components/EspejosSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import StatsSection from '@/components/StatsSection'
 import WhyUsSection from '@/components/WhyUsSection'
+import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 
@@ -113,6 +114,8 @@ export default function Home() {
       <StatsSection />
 
       <WhyUsSection onScrollToContact={scrollToContact} />
+
+      <ContactSection numeroWhatsApp={numeroWhatsApp} onOpenModal={onOpen} />
 
       <Footer />
 
