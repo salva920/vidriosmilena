@@ -51,12 +51,12 @@ const services: ServiceCard[] = [
     image: '/img/shower3.jpg'
   },
   {
-    id: 'ventanas',
+    id: 'sistemas-acceso',
     title: 'Sistemas de Acceso',
     image: '/img/ventarpt.jpg'
   },
   {
-    id: 'cierres',
+    id: 'barandas',
     title: 'Barandas',
     image: '/img/baranda3.jpg'
   },

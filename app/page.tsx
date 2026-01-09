@@ -10,6 +10,8 @@ import VentanasSection from '@/components/VentanasSection'
 import ShowerSection from '@/components/ShowerSection'
 import CierresSection from '@/components/CierresSection'
 import EspejosSection from '@/components/EspejosSection'
+import BarandasSection from '@/components/BarandasSection'
+import SistemasAccesoSection from '@/components/SistemasAccesoSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import StatsSection from '@/components/StatsSection'
 import WhyUsSection from '@/components/WhyUsSection'
@@ -106,6 +108,10 @@ export default function Home() {
       <ShowerSection onOpenModal={onOpen} />
 
       <CierresSection onOpenModal={onOpen} />
+
+      <BarandasSection onOpenModal={onOpen} />
+
+      <SistemasAccesoSection onOpenModal={onOpen} />
 
       <EspejosSection onOpenModal={onOpen} />
 
