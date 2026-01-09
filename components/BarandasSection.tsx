@@ -17,7 +17,7 @@ import {
   IconButton,
   HStack,
 } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 interface BarandasSectionProps {
@@ -32,23 +32,50 @@ interface GalleryItem {
 const galleryItems: GalleryItem[] = [
   { src: '/img/baranda.mp4', type: 'video' },
   { src: '/img/baranda2.mp4', type: 'video' },
-  { src: '/img/baranda3.jpg', type: 'image' }
+  { src: '/img/baranda3.jpg', type: 'image' },
+  { src: '/img/19.png', type: 'image' },
+  { src: '/img/20.png', type: 'image' },
+  { src: '/img/21.png', type: 'image' },
+  { src: '/img/22.png', type: 'image' },
+  { src: '/img/mujer-en-casa-usar-la-computadora-portatil.jpg', type: 'image' }
 ]
 
 export default function BarandasSection({ onOpenModal }: BarandasSectionProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
 
-  // Auto-play carousel
+  // Auto-play carousel con lógica diferenciada para videos e imágenes
   useEffect(() => {
     if (galleryItems.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % galleryItems.length)
-      }, 5000)
-      return () => clearInterval(interval)
+      const currentItem = galleryItems[currentIndex]
+      
+      // Si es una imagen, usar intervalo de 5 segundos
+      if (currentItem.type === 'image') {
+        const interval = setInterval(() => {
+          setCurrentIndex((prev) => (prev + 1) % galleryItems.length)
+        }, 5000)
+        return () => clearInterval(interval)
+      }
+      
+      // Si es un video, esperar a que termine
+      if (currentItem.type === 'video') {
+        const videoElement = videoRefs.current[currentIndex]
+        if (videoElement) {
+          const handleVideoEnd = () => {
+            setCurrentIndex((prev) => (prev + 1) % galleryItems.length)
+          }
+          
+          videoElement.addEventListener('ended', handleVideoEnd)
+          
+          return () => {
+            videoElement.removeEventListener('ended', handleVideoEnd)
+          }
+        }
+      }
     }
-  }, [])
+  }, [currentIndex])
 
   const nextItem = () => {
     setCurrentIndex((prev) => (prev + 1) % galleryItems.length)
@@ -132,13 +159,15 @@ export default function BarandasSection({ onOpenModal }: BarandasSectionProps) {
                 {item.type === 'video' ? (
                   <Box
                     as="video"
+                    ref={(el) => {
+                      if (el) videoRefs.current[index] = el as HTMLVideoElement
+                    }}
                     src={item.src}
                     w="100%"
                     h="100%"
                     objectFit="contain"
                     objectPosition="center"
                     autoPlay
-                    loop
                     muted
                     playsInline
                   />
