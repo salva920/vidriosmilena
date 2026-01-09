@@ -22,7 +22,7 @@ import {
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { EMAILJS_CONFIG } from '@/app/config/emailjs'
-import { FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa'
+import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaWhatsapp } from 'react-icons/fa'
 
 interface ContactModalProps {
   isOpen: boolean
@@ -148,38 +148,48 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
           <Flex
             direction={{ base: 'column', lg: 'row' }}
             align="stretch"
-            minH={{ base: 'auto', lg: '600px' }}
+            minH={{ base: 'auto', lg: '500px' }}
           >
             {/* Left Section - Blue Background */}
             <Box 
               flex="1" 
               bg="blue.500" 
               color="white"
-              p={{ base: '8', md: '10', lg: '12' }}
+              p={{ base: '6', md: '8', lg: '10' }}
               display="flex"
               flexDirection="column"
               justifyContent="center"
             >
-              <VStack align="start" spacing="6">
-                <Heading size="2xl" color="white">
+              <VStack align="start" spacing={{ base: '4', md: '5' }}>
+                <Heading 
+                  fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
+                  color="white"
+                  fontWeight="800"
+                  lineHeight="1.2"
+                >
                   ¿Listo para transformar tu espacio?
                 </Heading>
-                <Text fontSize="lg" color="blue.100" maxW="500px">
+                <Text 
+                  fontSize={{ base: 'sm', md: 'md' }}
+                  color="blue.100" 
+                  maxW="500px"
+                  lineHeight="1.6"
+                >
                   Contáctanos hoy mismo para una cotización gratuita. 
                   Nuestros expertos te ayudarán a encontrar la solución perfecta.
                 </Text>
                 
-                <VStack align="start" spacing="4" pt="4">
+                <VStack align="start" spacing="3" pt="2">
                   <HStack
                     as="button"
                     onClick={handlePhoneClick}
                     cursor="pointer"
                     _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
                     transition="all 0.2s"
-                    spacing="3"
+                    spacing="2.5"
                   >
-                    <FaPhone fontSize="20px" />
-                    <Text fontWeight="semibold">+56949932178</Text>
+                    <FaPhone fontSize="18px" />
+                    <Text fontSize={{ base: 'sm', md: 'md' }} fontWeight="semibold">+56949932178</Text>
                   </HStack>
                   <HStack
                     as="button"
@@ -187,10 +197,10 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
                     cursor="pointer"
                     _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
                     transition="all 0.2s"
-                    spacing="3"
+                    spacing="2.5"
                   >
-                    <FaEnvelope fontSize="20px" />
-                    <Text fontWeight="semibold">Artecristales@gmail.com</Text>
+                    <FaEnvelope fontSize="18px" />
+                    <Text fontSize={{ base: 'sm', md: 'md' }} fontWeight="semibold">Artecristales@gmail.com</Text>
                   </HStack>
                   <HStack
                     as="button"
@@ -198,10 +208,10 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
                     cursor="pointer"
                     _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
                     transition="all 0.2s"
-                    spacing="3"
+                    spacing="2.5"
                   >
-                    <FaMapMarkerAlt fontSize="20px" />
-                    <Text fontWeight="semibold">Coronel souper - Estacion central</Text>
+                    <FaMapMarkerAlt fontSize="18px" />
+                    <Text fontSize={{ base: 'sm', md: 'md' }} fontWeight="semibold">Coronel souper - Estacion central</Text>
                   </HStack>
                 </VStack>
               </VStack>
@@ -211,7 +221,7 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
             <Box 
               flex="1" 
               bg="white"
-              p={{ base: '8', md: '10', lg: '12' }}
+              p={{ base: '6', md: '8', lg: '10' }}
               display="flex"
               flexDirection="column"
               justifyContent="center"
@@ -222,15 +232,20 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
                 color="gray.800"
                 w="100%"
               >
-                <VStack spacing="6" align="stretch">
-                  <Heading size="lg" color="gray.800">
+                <VStack spacing={{ base: '4', md: '5' }} align="stretch">
+                  <Heading 
+                    fontSize={{ base: 'lg', md: 'xl' }}
+                    color="gray.800"
+                    fontWeight="700"
+                    mb="1"
+                  >
                     Contáctanos
                   </Heading>
                   
                   <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-                    <VStack spacing="4" width="full">
+                    <VStack spacing="3" width="full">
                       <Box width="full">
-                        <Text fontSize="sm" fontWeight="semibold" mb="2">
+                        <Text fontSize="xs" fontWeight="600" mb="1.5" color="gray.700" textTransform="uppercase" letterSpacing="0.5px">
                           Nombre Completo
                         </Text>
                         <Box
@@ -239,18 +254,21 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
                           value={formData.name}
                           onChange={handleInputChange}
                           width="full"
-                          p="3"
+                          p={{ base: '2.5', md: '3' }}
                           border="1px solid"
                           borderColor="gray.300"
                           borderRadius="md"
                           placeholder="Tu nombre completo"
-                          _focus={{ borderColor: 'blue.500', outline: 'none' }}
+                          fontSize={{ base: 'sm', md: 'md' }}
+                          _focus={{ borderColor: 'cyan.500', outline: 'none', boxShadow: '0 0 0 1px #06b6d4' }}
+                          _hover={{ borderColor: 'gray.400' }}
+                          transition="all 0.2s"
                           required
                         />
                       </Box>
                       
                       <Box width="full">
-                        <Text fontSize="sm" fontWeight="semibold" mb="2">
+                        <Text fontSize="xs" fontWeight="600" mb="1.5" color="gray.700" textTransform="uppercase" letterSpacing="0.5px">
                           Teléfono
                         </Text>
                         <Box
@@ -259,18 +277,21 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
                           value={formData.phone}
                           onChange={handleInputChange}
                           width="full"
-                          p="3"
+                          p={{ base: '2.5', md: '3' }}
                           border="1px solid"
                           borderColor="gray.300"
                           borderRadius="md"
                           placeholder="Tu número de teléfono"
-                          _focus={{ borderColor: 'blue.500', outline: 'none' }}
+                          fontSize={{ base: 'sm', md: 'md' }}
+                          _focus={{ borderColor: 'cyan.500', outline: 'none', boxShadow: '0 0 0 1px #06b6d4' }}
+                          _hover={{ borderColor: 'gray.400' }}
+                          transition="all 0.2s"
                           required
                         />
                       </Box>
                       
                       <Box width="full">
-                        <Text fontSize="sm" fontWeight="semibold" mb="2">
+                        <Text fontSize="xs" fontWeight="600" mb="1.5" color="gray.700" textTransform="uppercase" letterSpacing="0.5px">
                           Tipo de Servicio
                         </Text>
                         <Box
@@ -279,11 +300,14 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
                           value={formData.service}
                           onChange={handleInputChange}
                           width="full"
-                          p="3"
+                          p={{ base: '2.5', md: '3' }}
                           border="1px solid"
                           borderColor="gray.300"
                           borderRadius="md"
-                          _focus={{ borderColor: 'blue.500', outline: 'none' }}
+                          fontSize={{ base: 'sm', md: 'md' }}
+                          _focus={{ borderColor: 'cyan.500', outline: 'none', boxShadow: '0 0 0 1px #06b6d4' }}
+                          _hover={{ borderColor: 'gray.400' }}
+                          transition="all 0.2s"
                           required
                         >
                           <option value="">Selecciona un servicio</option>
@@ -301,7 +325,7 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
                       </Box>
                       
                       <Box width="full">
-                        <Text fontSize="sm" fontWeight="semibold" mb="2">
+                        <Text fontSize="xs" fontWeight="600" mb="1.5" color="gray.700" textTransform="uppercase" letterSpacing="0.5px">
                           Mensaje
                         </Text>
                         <Box
@@ -310,51 +334,73 @@ _Generado desde el formulario de contacto de ARTECRISTAL_`
                           value={formData.message}
                           onChange={handleInputChange}
                           width="full"
-                          p="3"
+                          p={{ base: '2.5', md: '3' }}
                           border="1px solid"
                           borderColor="gray.300"
                           borderRadius="md"
                           placeholder="Cuéntanos sobre tu proyecto..."
-                          rows={4}
-                          _focus={{ borderColor: 'blue.500', outline: 'none' }}
+                          rows={3}
+                          fontSize={{ base: 'sm', md: 'md' }}
+                          resize="vertical"
+                          _focus={{ borderColor: 'cyan.500', outline: 'none', boxShadow: '0 0 0 1px #06b6d4' }}
+                          _hover={{ borderColor: 'gray.400' }}
+                          transition="all 0.2s"
                           required
                         />
                       </Box>
 
                       {/* Mensajes de estado */}
                       {submitStatus === 'success' && (
-                        <Alert status="success" borderRadius="md">
+                        <Alert status="success" borderRadius="md" fontSize="sm">
                           <AlertIcon />
-                          <AlertTitle>¡Mensaje enviado exitosamente!</AlertTitle>
-                          <AlertDescription>
-                            Tu mensaje ha sido enviado por correo y se abrió WhatsApp para que puedas contactarnos directamente.
-                          </AlertDescription>
+                          <Box>
+                            <AlertTitle fontSize="sm">¡Mensaje enviado!</AlertTitle>
+                            <AlertDescription fontSize="xs">
+                              Se abrió WhatsApp para contactarnos directamente.
+                            </AlertDescription>
+                          </Box>
                         </Alert>
                       )}
                       
                       {submitStatus === 'error' && (
-                        <Alert status="error" borderRadius="md">
+                        <Alert status="error" borderRadius="md" fontSize="sm">
                           <AlertIcon />
-                          <AlertTitle>Error al enviar el mensaje</AlertTitle>
-                          <AlertDescription>
-                            Por favor, inténtalo de nuevo o contáctanos directamente.
-                          </AlertDescription>
+                          <Box>
+                            <AlertTitle fontSize="sm">Error al enviar</AlertTitle>
+                            <AlertDescription fontSize="xs">
+                              Inténtalo de nuevo o contáctanos directamente.
+                            </AlertDescription>
+                          </Box>
                         </Alert>
                       )}
                       
                       <Button
                         type="submit"
                         width="full"
-                        size="lg"
-                        colorScheme="blue"
-                        py="6"
-                        fontSize="lg"
+                        size={{ base: 'md', md: 'lg' }}
+                        bg="cyan.500"
+                        color="white"
+                        py={{ base: '4', md: '5' }}
+                        fontSize={{ base: 'sm', md: 'md' }}
                         fontWeight="semibold"
+                        borderRadius="md"
+                        boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
                         isLoading={isSubmitting}
                         loadingText="Enviando..."
                         disabled={isSubmitting}
+                        _hover={{
+                          bg: 'cyan.600',
+                          transform: 'translateY(-2px)',
+                          boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
+                        }}
+                        _active={{
+                          bg: 'cyan.700',
+                          transform: 'translateY(0px)'
+                        }}
+                        transition="all 0.2s ease"
+                        leftIcon={<FaWhatsapp />}
                       >
-                        💬 Enviar Mensaje y Abrir WhatsApp
+                        Enviar y Abrir WhatsApp
                       </Button>
                     </VStack>
                   </form>
