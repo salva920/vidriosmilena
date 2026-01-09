@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react'
 import { useState, useEffect, useRef } from 'react'
 // @ts-ignore
-import anime from 'animejs'
+const anime = require('animejs')
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 interface VentanasSectionProps {
@@ -96,8 +96,9 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+      const currentRef = sectionRef.current
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [])

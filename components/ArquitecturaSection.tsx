@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
 // @ts-ignore
-import anime from 'animejs'
+const anime = require('animejs')
 
 interface ArquitecturaSectionProps {
   onOpenModal?: () => void
@@ -204,8 +204,9 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+      const currentRef = sectionRef.current
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [])

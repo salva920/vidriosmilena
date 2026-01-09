@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import anime from 'animejs'
+// @ts-ignore
+const anime = require('animejs')
 
 interface AnimeOptions {
   targets: string | HTMLElement | HTMLElement[] | NodeList | null
@@ -17,7 +18,7 @@ interface AnimeOptions {
 }
 
 export const useAnime = (options: AnimeOptions, deps: any[] = []) => {
-  const animationRef = useRef<anime.AnimeInstance | null>(null)
+  const animationRef = useRef<any>(null)
 
   useEffect(() => {
     if (options.targets) {
