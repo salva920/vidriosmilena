@@ -274,7 +274,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 onOpenModal?.()
                 onClose() // Cerrar el drawer si está abierto
               }}
-              bg="red.600"
+              bg="cyan.500"
               color="white"
               fontWeight="bold"
               textTransform="uppercase"
@@ -282,12 +282,18 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
               px={{ base: '4', md: '6' }}
               py="6"
               borderRadius="md"
+              boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
               _hover={{
-                bg: 'red.700',
+                bg: 'cyan.600',
                 transform: 'translateY(-2px)',
-                boxShadow: 'lg'
+                boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
               }}
-              transition="all 0.3s"
+              _active={{
+                bg: 'cyan.700',
+                transform: 'translateY(0px)',
+                boxShadow: '0 2px 10px rgba(6, 182, 212, 0.4)'
+              }}
+              transition="all 0.2s ease"
               display={{ base: 'none', md: 'flex' }}
             >
               Cotiza
@@ -404,7 +410,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                   onOpenModal?.()
                   onClose() // Cerrar el drawer
                 }}
-                bg="red.600"
+                bg="cyan.500"
                 color="white"
                 fontWeight="bold"
                 textTransform="uppercase"
@@ -413,12 +419,18 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 py="6"
                 borderRadius="md"
                 mt="4"
+                boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
                 _hover={{
-                  bg: 'red.700',
+                  bg: 'cyan.600',
                   transform: 'translateY(-2px)',
-                  boxShadow: 'lg'
+                  boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
                 }}
-                transition="all 0.3s"
+                _active={{
+                  bg: 'cyan.700',
+                  transform: 'translateY(0px)',
+                  boxShadow: '0 2px 10px rgba(6, 182, 212, 0.4)'
+                }}
+                transition="all 0.2s ease"
               >
                 Cotiza
               </Button>
