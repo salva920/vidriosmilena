@@ -38,7 +38,7 @@ const services: ServiceCard[] = [
   {
     id: 'cierres',
     title: 'Cierres',
-    image: '/img/cierre.jpg'
+    image: '/img/cortinas5.webp'
   },
   {
     id: 'espejos',
@@ -58,7 +58,7 @@ const services: ServiceCard[] = [
   {
     id: 'cierres',
     title: 'Barandas',
-    image: '/img/cortinas5.webp'
+    image: '/img/baranda3.jpg'
   },
   {
     id: 'espejos',
