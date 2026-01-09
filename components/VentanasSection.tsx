@@ -26,7 +26,6 @@ interface VentanasSectionProps {
 
 const galleryImages = [
   '/ventana aluminio.png',
-  '/img/ventana2.jpg',
   '/img/ventana3.jpg',
   '/img/ventana4.jpg',
   '/img/ventana5.jpg',
