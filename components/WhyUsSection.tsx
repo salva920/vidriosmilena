@@ -102,11 +102,11 @@ export default function WhyUsSection({ onScrollToContact }: WhyUsSectionProps) {
             {/* Left Column - Image */}
             <Box
               flex="1"
-              display={{ base: 'none', lg: 'block' }}
               position="relative"
               borderRadius="xl"
               overflow="hidden"
               boxShadow="2xl"
+              order={{ base: 1, lg: 1 }}
             >
               <Image
                 src="/img/Brown Macro Coffee Brand Guidelines Presentation.png"
@@ -114,12 +114,12 @@ export default function WhyUsSection({ onScrollToContact }: WhyUsSectionProps) {
                 objectFit="cover"
                 w="100%"
                 h="100%"
-                minH="500px"
+                minH={{ base: '300px', md: '400px', lg: '500px' }}
               />
             </Box>
 
             {/* Right Column - Accordion */}
-            <Box flex="1" w="100%">
+            <Box flex="1" w="100%" order={{ base: 2, lg: 2 }}>
               <VStack spacing="8" align="stretch">
                 <Box>
                   <Heading
