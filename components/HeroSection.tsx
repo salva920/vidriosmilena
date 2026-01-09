@@ -2,6 +2,8 @@
 
 import { Box, Container, Button, VStack, Heading } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
+// @ts-ignore
+import anime from 'animejs'
 import TitleCarousel from './TitleCarousel'
 
 interface RotatingTitle {
@@ -27,37 +29,30 @@ export default function HeroSection({
   const buttonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    // Importación dinámica de anime.js
-    import('animejs').then((animeModule: any) => {
-      const anime = animeModule.default || animeModule
-      
-      // Animación de entrada para el título
-      if (titleRef.current) {
-        anime({
-          targets: titleRef.current,
-          opacity: [0, 1],
-          translateX: [-50, 0],
-          duration: 1000,
-          easing: 'easeOutExpo',
-          delay: 300
-        })
-      }
+    // Animación de entrada para el título
+    if (titleRef.current) {
+      anime({
+        targets: titleRef.current,
+        opacity: [0, 1],
+        translateX: [-50, 0],
+        duration: 1000,
+        easing: 'easeOutExpo',
+        delay: 300
+      })
+    }
 
-      // Animación de entrada para el botón
-      if (buttonRef.current) {
-        anime({
-          targets: buttonRef.current,
-          opacity: [0, 1],
-          translateY: [30, 0],
-          scale: [0.8, 1],
-          duration: 800,
-          easing: 'easeOutExpo',
-          delay: 800
-        })
-      }
-    }).catch(() => {
-      // Si falla la importación, simplemente no animamos
-    })
+    // Animación de entrada para el botón
+    if (buttonRef.current) {
+      anime({
+        targets: buttonRef.current,
+        opacity: [0, 1],
+        translateY: [30, 0],
+        scale: [0.8, 1],
+        duration: 800,
+        easing: 'easeOutExpo',
+        delay: 800
+      })
+    }
   }, [])
 
   return (

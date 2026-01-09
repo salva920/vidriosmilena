@@ -18,6 +18,8 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import { useState, useEffect, useRef } from 'react'
+// @ts-ignore
+import anime from 'animejs'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 interface VentanasSectionProps {
@@ -55,53 +57,46 @@ export default function VentanasSection({ onOpenModal }: VentanasSectionProps) {
     let observer: IntersectionObserver | null = null
     const currentRef = sectionRef.current
 
-    // Importación dinámica de anime.js
-    import('animejs').then((animeModule: any) => {
-      const anime = animeModule.default || animeModule
-      
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              anime({
-                targets: '.ventanas-title',
-                opacity: [0, 1],
-                translateY: [-30, 0],
-                duration: 800,
-                easing: 'easeOutExpo'
-              })
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            anime({
+              targets: '.ventanas-title',
+              opacity: [0, 1],
+              translateY: [-30, 0],
+              duration: 800,
+              easing: 'easeOutExpo'
+            })
 
-              anime({
-                targets: '.ventanas-carousel',
-                opacity: [0, 1],
-                scale: [0.95, 1],
-                duration: 1000,
-                easing: 'easeOutExpo',
-                delay: 300
-              })
+            anime({
+              targets: '.ventanas-carousel',
+              opacity: [0, 1],
+              scale: [0.95, 1],
+              duration: 1000,
+              easing: 'easeOutExpo',
+              delay: 300
+            })
 
-              anime({
-                targets: '.ventanas-button',
-                opacity: [0, 1],
-                scale: [0.8, 1],
-                duration: 600,
-                easing: 'easeOutBack',
-                delay: 600
-              })
+            anime({
+              targets: '.ventanas-button',
+              opacity: [0, 1],
+              scale: [0.8, 1],
+              duration: 600,
+              easing: 'easeOutBack',
+              delay: 600
+            })
 
-              observer?.unobserve(entry.target)
-            }
-          })
-        },
-        { threshold: 0.1 }
-      )
+            observer?.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
 
-      if (currentRef) {
-        observer.observe(currentRef)
-      }
-    }).catch(() => {
-      // Si falla la importación, simplemente no animamos
-    })
+    if (currentRef) {
+      observer.observe(currentRef)
+    }
 
     return () => {
       if (observer && currentRef) {

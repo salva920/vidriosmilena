@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import anime from 'animejs'
 
 interface AnimeOptions {
   targets: string | HTMLElement | HTMLElement[] | NodeList | null
@@ -16,28 +17,19 @@ interface AnimeOptions {
 }
 
 export const useAnime = (options: AnimeOptions, deps: any[] = []) => {
-  const animationRef = useRef<any>(null)
+  const animationRef = useRef<anime.AnimeInstance | null>(null)
 
   useEffect(() => {
-    import('animejs').then((animeModule: any) => {
-      const anime = animeModule.default || animeModule
-      
-      if (options.targets) {
-        animationRef.current = anime({
-          ...options,
-          autoplay: true
-        })
-      }
-    }).catch(() => {
-      // Si falla la importación, simplemente no animamos
-    })
+    if (options.targets) {
+      animationRef.current = anime({
+        ...options,
+        autoplay: true
+      })
+    }
 
     return () => {
       if (animationRef.current) {
-        import('animejs').then((animeModule: any) => {
-          const anime = animeModule.default || animeModule
-          anime.remove(options.targets)
-        }).catch(() => {})
+        anime.remove(options.targets)
       }
     }
   }, deps)
@@ -53,42 +45,35 @@ export const useAnimeOnScroll = (
   const observerRef = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
-    import('animejs').then((animeModule: any) => {
-      const anime = animeModule.default || animeModule
-      
-      const elements = document.querySelectorAll(selector)
-      
-      if (elements.length === 0) return
+    const elements = document.querySelectorAll(selector)
+    
+    if (elements.length === 0) return
 
-      observerRef.current = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              anime({
-                targets: entry.target,
-                ...options
-              })
-              observerRef.current?.unobserve(entry.target)
-            }
-          })
-        },
-        { threshold }
-      )
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            anime({
+              targets: entry.target,
+              ...options
+            })
+            observerRef.current?.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold }
+    )
 
-      elements.forEach((el) => {
-        observerRef.current?.observe(el)
-      })
-
-      return () => {
-        if (observerRef.current) {
-          elements.forEach((el) => {
-            observerRef.current?.unobserve(el)
-          })
-        }
-      }
-    }).catch(() => {
-      // Si falla la importación, simplemente no animamos
+    elements.forEach((el) => {
+      observerRef.current?.observe(el)
     })
+
+    return () => {
+      if (observerRef.current) {
+        elements.forEach((el) => {
+          observerRef.current?.unobserve(el)
+        })
+      }
+    }
   }, [selector, threshold])
 }
-

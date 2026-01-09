@@ -14,6 +14,8 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
+// @ts-ignore
+import anime from 'animejs'
 
 interface ArquitecturaSectionProps {
   onOpenModal?: () => void
@@ -138,78 +140,71 @@ export default function ArquitecturaSection({ onOpenModal }: ArquitecturaSection
     let observer: IntersectionObserver | null = null
     const currentRef = sectionRef.current
 
-    // Importación dinámica de anime.js
-    import('animejs').then((animeModule: any) => {
-      const anime = animeModule.default || animeModule
-      
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Animación para las tarjetas de estadísticas
-              anime({
-                targets: '.stat-card',
-                opacity: [0, 1],
-                translateY: [50, 0],
-                scale: [0.8, 1],
-                duration: 800,
-                easing: 'easeOutExpo',
-                delay: anime.stagger(150)
-              })
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Animación para las tarjetas de estadísticas
+            anime({
+              targets: '.stat-card',
+              opacity: [0, 1],
+              translateY: [50, 0],
+              scale: [0.8, 1],
+              duration: 800,
+              easing: 'easeOutExpo',
+              delay: anime.stagger(150)
+            })
 
-              // Animación para los logos de partners
-              anime({
-                targets: '.partner-logo',
-                opacity: [0, 1],
-                scale: [0.5, 1],
-                duration: 600,
-                easing: 'easeOutBack',
-                delay: anime.stagger(100)
-              })
+            // Animación para los logos de partners
+            anime({
+              targets: '.partner-logo',
+              opacity: [0, 1],
+              scale: [0.5, 1],
+              duration: 600,
+              easing: 'easeOutBack',
+              delay: anime.stagger(100)
+            })
 
-              // Animación para el título y descripción
-              anime({
-                targets: '.arch-title',
-                opacity: [0, 1],
-                translateY: [-30, 0],
-                duration: 800,
-                easing: 'easeOutExpo'
-              })
+            // Animación para el título y descripción
+            anime({
+              targets: '.arch-title',
+              opacity: [0, 1],
+              translateY: [-30, 0],
+              duration: 800,
+              easing: 'easeOutExpo'
+            })
 
-              // Animación para las tarjetas de servicios
-              anime({
-                targets: '.service-card',
-                opacity: [0, 1],
-                translateY: [60, 0],
-                scale: [0.9, 1],
-                duration: 700,
-                easing: 'easeOutExpo',
-                delay: anime.stagger(100)
-              })
+            // Animación para las tarjetas de servicios
+            anime({
+              targets: '.service-card',
+              opacity: [0, 1],
+              translateY: [60, 0],
+              scale: [0.9, 1],
+              duration: 700,
+              easing: 'easeOutExpo',
+              delay: anime.stagger(100)
+            })
 
-              // Animación para el botón
-              anime({
-                targets: '.arch-button',
-                opacity: [0, 1],
-                scale: [0.8, 1],
-                duration: 600,
-                easing: 'easeOutBack',
-                delay: 1000
-              })
+            // Animación para el botón
+            anime({
+              targets: '.arch-button',
+              opacity: [0, 1],
+              scale: [0.8, 1],
+              duration: 600,
+              easing: 'easeOutBack',
+              delay: 1000
+            })
 
-              observer?.unobserve(entry.target)
-            }
-          })
-        },
-        { threshold: 0.1 }
-      )
+            observer?.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
 
-      if (currentRef) {
-        observer.observe(currentRef)
-      }
-    }).catch(() => {
-      // Si falla la importación, simplemente no animamos
-    })
+    if (currentRef) {
+      observer.observe(currentRef)
+    }
 
     return () => {
       if (observer && currentRef) {

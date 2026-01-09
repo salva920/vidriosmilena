@@ -2,6 +2,8 @@
 
 import { Box, Container, Heading, Text, VStack, SimpleGrid, Card, CardBody } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
+// @ts-ignore
+import anime from 'animejs'
 import { FiShield, FiZap, FiTool, FiAward } from 'react-icons/fi'
 import { IconType } from 'react-icons'
 
@@ -41,57 +43,50 @@ export default function FeaturesSection() {
     let observer: IntersectionObserver | null = null
     const currentRef = sectionRef.current
 
-    // Importación dinámica de anime.js
-    import('animejs').then((animeModule: any) => {
-      const anime = animeModule.default || animeModule
-      
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Animación para el título
-              anime({
-                targets: '.features-title',
-                opacity: [0, 1],
-                translateY: [-30, 0],
-                duration: 800,
-                easing: 'easeOutExpo'
-              })
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Animación para el título
+            anime({
+              targets: '.features-title',
+              opacity: [0, 1],
+              translateY: [-30, 0],
+              duration: 800,
+              easing: 'easeOutExpo'
+            })
 
-              // Animación para las tarjetas de características
-              anime({
-                targets: '.feature-card',
-                opacity: [0, 1],
-                translateY: [50, 0],
-                scale: [0.9, 1],
-                duration: 700,
-                easing: 'easeOutExpo',
-                delay: anime.stagger(150)
-              })
+            // Animación para las tarjetas de características
+            anime({
+              targets: '.feature-card',
+              opacity: [0, 1],
+              translateY: [50, 0],
+              scale: [0.9, 1],
+              duration: 700,
+              easing: 'easeOutExpo',
+              delay: anime.stagger(150)
+            })
 
-              // Animación para los iconos
-              anime({
-                targets: '.feature-icon',
-                scale: [0, 1],
-                rotate: [180, 0],
-                duration: 800,
-                easing: 'easeOutBack',
-                delay: anime.stagger(150, { start: 300 })
-              })
+            // Animación para los iconos
+            anime({
+              targets: '.feature-icon',
+              scale: [0, 1],
+              rotate: [180, 0],
+              duration: 800,
+              easing: 'easeOutBack',
+              delay: anime.stagger(150, { start: 300 })
+            })
 
-              observer?.unobserve(entry.target)
-            }
-          })
-        },
-        { threshold: 0.1 }
-      )
+            observer?.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
 
-      if (currentRef) {
-        observer.observe(currentRef)
-      }
-    }).catch(() => {
-      // Si falla la importación, simplemente no animamos
-    })
+    if (currentRef) {
+      observer.observe(currentRef)
+    }
 
     return () => {
       if (observer && currentRef) {
