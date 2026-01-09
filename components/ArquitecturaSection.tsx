@@ -14,7 +14,7 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
-import anime from 'animejs'
+import anime from '@/lib/anime'
 
 interface ArquitecturaSectionProps {
   onOpenModal?: () => void

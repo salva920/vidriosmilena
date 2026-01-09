@@ -18,7 +18,7 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import { useState, useEffect, useRef } from 'react'
-import anime from 'animejs'
+import anime from '@/lib/anime'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 interface VentanasSectionProps {

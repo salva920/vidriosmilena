@@ -2,7 +2,7 @@
 
 import { Box, Container, Button, VStack, Heading } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
-import anime from 'animejs'
+import anime from '@/lib/anime'
 import TitleCarousel from './TitleCarousel'
 
 interface RotatingTitle {

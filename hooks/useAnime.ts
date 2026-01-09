@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import anime from 'animejs'
+import anime from '@/lib/anime'
 
 interface AnimeOptions {
   targets: string | HTMLElement | HTMLElement[] | NodeList | null
