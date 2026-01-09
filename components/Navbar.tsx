@@ -21,6 +21,7 @@ import {
   Image,
 } from '@chakra-ui/react'
 import { FiMenu } from 'react-icons/fi'
+import { FaInstagram, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 import { useState } from 'react'
 
 interface NavbarProps {
@@ -69,34 +70,42 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             gap="4"
           >
             <HStack spacing="6">
-              <HStack spacing="2">
-                <Text fontSize="lg" color="red.500">📍</Text>
+              <HStack
+                as={Link}
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Coronel souper 4400, Estación Central, Chile')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                spacing="2"
+                _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
+                transition="all 0.2s"
+                cursor="pointer"
+              >
+                <FaMapMarkerAlt fontSize="18px" />
                 <Text>Coronel souper 4400 - Estacion central</Text>
               </HStack>
-              <HStack spacing="2">
-                <Text fontSize="lg" color="red.500">📞</Text>
+              <HStack
+                as={Link}
+                href="tel:+56949932178"
+                spacing="2"
+                _hover={{ opacity: 0.8, transform: 'translateX(4px)' }}
+                transition="all 0.2s"
+                cursor="pointer"
+              >
+                <FaPhone fontSize="18px" />
                 <Text>+56949932178</Text>
               </HStack>
             </HStack>
             
             <HStack spacing="4">
               <Link
-                href="https://facebook.com"
+                href="https://www.instagram.com/artecristal.spa?igsh=MTFzb3B1bWtqOXFqdw=="
                 target="_blank"
                 rel="noopener noreferrer"
                 fontSize="xl"
-                _hover={{ color: 'blue.300' }}
+                _hover={{ color: 'blue.300', transform: 'scale(1.1)' }}
+                transition="all 0.2s"
               >
-                f
-              </Link>
-              <Link
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                fontSize="xl"
-                _hover={{ color: 'blue.300' }}
-              >
-                📷
+                <FaInstagram />
               </Link>
             </HStack>
           </Flex>
@@ -438,38 +447,45 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
               {/* Contact Info in Mobile Menu */}
               <Box pt="6" borderTopWidth="1px" borderColor="gray.200">
                 <VStack spacing="3" align="stretch">
-                  <HStack spacing="2">
-                    <Text fontSize="lg" color="red.500">📍</Text>
+                  <HStack
+                    as={Link}
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Coronel souper 4400, Estación Central, Chile')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    spacing="2"
+                    _hover={{ color: 'blue.600', transform: 'translateX(4px)' }}
+                    transition="all 0.2s"
+                    cursor="pointer"
+                  >
+                    <FaMapMarkerAlt fontSize="18px" color="red.500" />
                     <Text fontSize="sm" color="gray.600">
                       Coronel souper 4400 - Estacion central
                     </Text>
                   </HStack>
-                  <HStack spacing="2">
-                    <Text fontSize="lg" color="red.500">📞</Text>
+                  <HStack
+                    as={Link}
+                    href="tel:+56949932178"
+                    spacing="2"
+                    _hover={{ color: 'blue.600', transform: 'translateX(4px)' }}
+                    transition="all 0.2s"
+                    cursor="pointer"
+                  >
+                    <FaPhone fontSize="18px" color="red.500" />
                     <Text fontSize="sm" color="gray.600">
                       +56949932178
                     </Text>
                   </HStack>
                   <HStack spacing="4" pt="2">
                     <Link
-                      href="https://facebook.com"
+                      href="https://www.instagram.com/artecristal.spa?igsh=MTFzb3B1bWtqOXFqdw=="
                       target="_blank"
                       rel="noopener noreferrer"
                       fontSize="xl"
                       color="blue.600"
-                      _hover={{ color: 'blue.700' }}
+                      _hover={{ color: 'blue.700', transform: 'scale(1.1)' }}
+                      transition="all 0.2s"
                     >
-                      f
-                    </Link>
-                    <Link
-                      href="https://instagram.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      fontSize="xl"
-                      color="blue.600"
-                      _hover={{ color: 'blue.700' }}
-                    >
-                      📷
+                      <FaInstagram />
                     </Link>
                   </HStack>
                 </VStack>

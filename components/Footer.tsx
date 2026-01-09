@@ -1,7 +1,7 @@
 'use client'
 
 import { Box, Container, Heading, Text, VStack, HStack, Flex, Divider, Link } from '@chakra-ui/react'
-import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram } from 'react-icons/fa'
 
 export default function Footer() {
   return (
@@ -22,9 +22,17 @@ export default function Footer() {
               Transformamos tu espacio con productos y servicios profesionales.
             </Text>
             <HStack spacing="4">
-              <Text fontSize="xl" cursor="pointer" _hover={{ color: 'blue.400' }}>📘</Text>
-              <Text fontSize="xl" cursor="pointer" _hover={{ color: 'blue.400' }}>📷</Text>
-              <Text fontSize="xl" cursor="pointer" _hover={{ color: 'blue.400' }}>🐦</Text>
+              <Link
+                href="https://www.instagram.com/artecristal.spa?igsh=MTFzb3B1bWtqOXFqdw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                fontSize="xl"
+                color="gray.400"
+                _hover={{ color: 'blue.400', transform: 'scale(1.1)' }}
+                transition="all 0.2s"
+              >
+                <FaInstagram />
+              </Link>
             </HStack>
           </VStack>
           
