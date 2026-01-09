@@ -28,7 +28,11 @@ const galleryImages = [
   '/img/hermosos-detalles-de-informacion-sobre-hoteles.jpg',
   '/img/edificio-de-japon-de-entrada-de-la-casa.jpg',
   '/img/barandilla-de-metal-en-edificio-moderno.jpg',
-  '/img/ai-generado-de-entrada-de-estilo-moderno.jpg'
+  '/img/ai-generado-de-entrada-de-estilo-moderno.jpg',
+  '/img/5.png',
+  '/img/6.png',
+  '/img/7.png',
+  '/img/8.png'
 ]
 
 export default function SistemasAccesoSection({ onOpenModal }: SistemasAccesoSectionProps) {
