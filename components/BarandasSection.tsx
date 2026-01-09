@@ -159,8 +159,8 @@ export default function BarandasSection({ onOpenModal }: BarandasSectionProps) {
                 {item.type === 'video' ? (
                   <Box
                     as="video"
-                    ref={(el) => {
-                      if (el) videoRefs.current[index] = el as HTMLVideoElement
+                    ref={(el: HTMLVideoElement | null) => {
+                      if (el) videoRefs.current[index] = el
                     }}
                     src={item.src}
                     w="100%"
