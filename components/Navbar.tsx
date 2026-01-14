@@ -277,36 +277,63 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
               </Link>
             </HStack>
 
-            {/* Cotiza Button - Desktop */}
-            <Button
-              onClick={() => {
-                onOpenModal?.()
-                onClose() // Cerrar el drawer si está abierto
-              }}
-              bg="cyan.500"
-              color="white"
-              fontWeight="bold"
-              textTransform="uppercase"
-              fontSize="sm"
-              px={{ base: '4', md: '6' }}
-              py="6"
-              borderRadius="md"
-              boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
-              _hover={{
-                bg: 'cyan.600',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
-              }}
-              _active={{
-                bg: 'cyan.700',
-                transform: 'translateY(0px)',
-                boxShadow: '0 2px 10px rgba(6, 182, 212, 0.4)'
-              }}
-              transition="all 0.2s ease"
-              display={{ base: 'none', md: 'flex' }}
-            >
-              Cotiza
-            </Button>
+            {/* Action Buttons - Desktop */}
+            <HStack spacing="3" display={{ base: 'none', md: 'flex' }}>
+              <Button
+                as="a"
+                href="/tienda"
+                bg="blue.600"
+                color="white"
+                fontWeight="bold"
+                textTransform="uppercase"
+                fontSize="sm"
+                px={{ base: '4', md: '6' }}
+                py="6"
+                borderRadius="md"
+                boxShadow="0 4px 14px rgba(37, 99, 235, 0.4)"
+                _hover={{
+                  bg: 'blue.700',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 6px 20px rgba(37, 99, 235, 0.5)'
+                }}
+                _active={{
+                  bg: 'blue.800',
+                  transform: 'translateY(0px)',
+                  boxShadow: '0 2px 10px rgba(37, 99, 235, 0.4)'
+                }}
+                transition="all 0.2s ease"
+              >
+                Tienda Online
+              </Button>
+              <Button
+                onClick={() => {
+                  onOpenModal?.()
+                  onClose() // Cerrar el drawer si está abierto
+                }}
+                bg="cyan.500"
+                color="white"
+                fontWeight="bold"
+                textTransform="uppercase"
+                fontSize="sm"
+                px={{ base: '4', md: '6' }}
+                py="6"
+                borderRadius="md"
+                boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
+                _hover={{
+                  bg: 'cyan.600',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
+                }}
+                _active={{
+                  bg: 'cyan.700',
+                  transform: 'translateY(0px)',
+                  boxShadow: '0 2px 10px rgba(6, 182, 212, 0.4)'
+                }}
+                transition="all 0.2s ease"
+              >
+                Cotiza
+              </Button>
+            </HStack>
 
             {/* Mobile Menu Button */}
             <IconButton
@@ -413,36 +440,63 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 CONTACTO
               </Button>
 
-              {/* Cotiza Button - Mobile */}
-              <Button
-                onClick={() => {
-                  onOpenModal?.()
-                  onClose() // Cerrar el drawer
-                }}
-                bg="cyan.500"
-                color="white"
-                fontWeight="bold"
-                textTransform="uppercase"
-                fontSize="sm"
-                w="100%"
-                py="6"
-                borderRadius="md"
-                mt="4"
-                boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
-                _hover={{
-                  bg: 'cyan.600',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
-                }}
-                _active={{
-                  bg: 'cyan.700',
-                  transform: 'translateY(0px)',
-                  boxShadow: '0 2px 10px rgba(6, 182, 212, 0.4)'
-                }}
-                transition="all 0.2s ease"
-              >
-                Cotiza
-              </Button>
+              {/* Action Buttons - Mobile */}
+              <VStack spacing="3" w="100%" mt="4">
+                <Button
+                  as="a"
+                  href="/tienda"
+                  bg="blue.600"
+                  color="white"
+                  fontWeight="bold"
+                  textTransform="uppercase"
+                  fontSize="sm"
+                  w="100%"
+                  py="6"
+                  borderRadius="md"
+                  boxShadow="0 4px 14px rgba(37, 99, 235, 0.4)"
+                  _hover={{
+                    bg: 'blue.700',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 6px 20px rgba(37, 99, 235, 0.5)'
+                  }}
+                  _active={{
+                    bg: 'blue.800',
+                    transform: 'translateY(0px)',
+                    boxShadow: '0 2px 10px rgba(37, 99, 235, 0.4)'
+                  }}
+                  transition="all 0.2s ease"
+                >
+                  Tienda Online
+                </Button>
+                <Button
+                  onClick={() => {
+                    onOpenModal?.()
+                    onClose() // Cerrar el drawer
+                  }}
+                  bg="cyan.500"
+                  color="white"
+                  fontWeight="bold"
+                  textTransform="uppercase"
+                  fontSize="sm"
+                  w="100%"
+                  py="6"
+                  borderRadius="md"
+                  boxShadow="0 4px 14px rgba(6, 182, 212, 0.4)"
+                  _hover={{
+                    bg: 'cyan.600',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 6px 20px rgba(6, 182, 212, 0.5)'
+                  }}
+                  _active={{
+                    bg: 'cyan.700',
+                    transform: 'translateY(0px)',
+                    boxShadow: '0 2px 10px rgba(6, 182, 212, 0.4)'
+                  }}
+                  transition="all 0.2s ease"
+                >
+                  Cotiza
+                </Button>
+              </VStack>
 
               {/* Contact Info in Mobile Menu */}
               <Box pt="6" borderTopWidth="1px" borderColor="gray.200">
