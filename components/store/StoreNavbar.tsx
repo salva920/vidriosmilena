@@ -74,6 +74,8 @@ export default function StoreNavbar() {
             <Flex justify="space-between" align="center" gap="4" flexWrap="wrap">
               {/* Left: Tienda Empresas Button */}
               <Button
+                as={Link}
+                href="/"
                 bg="yellow.50"
                 color="blue.900"
                 size="sm"
