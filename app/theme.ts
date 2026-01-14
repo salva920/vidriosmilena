@@ -1,5 +1,6 @@
-// Tema simplificado para Chakra UI
-const theme = {
+import { extendTheme } from '@chakra-ui/react'
+
+const theme = extendTheme({
   colors: {
     brand: {
       50: '#e6f3ff',
@@ -26,6 +27,6 @@ const theme = {
       900: '#171923',
     }
   },
-}
+})
 
 export default theme
