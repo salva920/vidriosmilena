@@ -39,9 +39,8 @@ import ShoppingCart from './ShoppingCart'
 
 export default function StoreNavbar() {
   const [searchQuery, setSearchQuery] = useState('')
-  const { isOpen: isCartOpen, onOpen: onCartOpen, onClose: onCartClose } = useDisclosure()
   const { isOpen: isMobileOpen, onOpen: onMobileOpen, onClose: onMobileClose } = useDisclosure()
-  const { getItemCount, isOpen: cartIsOpen, openCart } = useCart()
+  const { getItemCount, isOpen: cartIsOpen, openCart, closeCart } = useCart()
   const { favorites } = useFavorites()
   const router = useRouter()
 
@@ -346,7 +345,7 @@ export default function StoreNavbar() {
       </Drawer>
 
       {/* Shopping Cart Sidebar */}
-      <ShoppingCart isOpen={cartIsOpen} onClose={onCartClose} />
+      <ShoppingCart isOpen={cartIsOpen} onClose={closeCart} />
     </>
   )
 }

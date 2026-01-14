@@ -48,10 +48,10 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
   const totalPrice = getTotalPrice()
 
   return (
-    <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="md">
+    <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="md" closeOnOverlayClick={true}>
       <DrawerOverlay />
       <DrawerContent>
-        <DrawerCloseButton />
+        <DrawerCloseButton onClick={onClose} />
         <DrawerHeader borderBottom="1px" borderColor="gray.200">
           <HStack>
             <Text fontSize="lg" fontWeight="bold">
