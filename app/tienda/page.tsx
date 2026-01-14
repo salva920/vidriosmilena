@@ -34,7 +34,7 @@ export default function TiendaPage() {
           {searchQuery ? (
             <VStack spacing="8" align="stretch">
               <Heading size="lg" color="gray.900">
-                Resultados de búsqueda: "{searchQuery}"
+                Resultados de búsqueda: &quot;{searchQuery}&quot;
               </Heading>
               <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing="6">
                 {displayProducts.map((product) => (
