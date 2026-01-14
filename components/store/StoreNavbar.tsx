@@ -7,7 +7,7 @@ import {
   HStack,
   Text,
   IconButton,
-  Link,
+  Link as ChakraLink,
   Heading,
   Input,
   InputGroup,
@@ -97,7 +97,7 @@ export default function StoreNavbar() {
                       placeholder="¿Qué buscas hoy?"
                       bg="white"
                       value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
                       borderRadius="md"
                     />
                   </InputGroup>
@@ -106,22 +106,23 @@ export default function StoreNavbar() {
 
               {/* Right: Navigation Links & Actions */}
               <HStack spacing={{ base: '2', md: '4' }} display={{ base: 'none', md: 'flex' }}>
-                <Link href="/tienda/proyectos" color="white" _hover={{ textDecoration: 'underline' }} fontSize="sm">
+                <ChakraLink as={Link} href="/tienda/proyectos" color="white" _hover={{ textDecoration: 'underline' }} fontSize="sm">
                   NUESTROS PROYECTOS
-                </Link>
-                <Link href="/tienda/nosotros" color="white" _hover={{ textDecoration: 'underline' }} fontSize="sm">
+                </ChakraLink>
+                <ChakraLink as={Link} href="/tienda/nosotros" color="white" _hover={{ textDecoration: 'underline' }} fontSize="sm">
                   QUIENES SOMOS
-                </Link>
-                <Link href="/tienda/ayuda" color="white" _hover={{ textDecoration: 'underline' }} fontSize="sm">
+                </ChakraLink>
+                <ChakraLink as={Link} href="/tienda/ayuda" color="white" _hover={{ textDecoration: 'underline' }} fontSize="sm">
                   CENTRO DE AYUDA
-                </Link>
+                </ChakraLink>
 
                 {/* Social Icons */}
                 <HStack spacing="2">
                   <IconButton
-                    as={Link}
+                    as="a"
                     href="https://www.facebook.com"
                     target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Facebook"
                     icon={<FaFacebook />}
                     size="sm"
@@ -131,9 +132,10 @@ export default function StoreNavbar() {
                     _hover={{ bg: 'green.700' }}
                   />
                   <IconButton
-                    as={Link}
+                    as="a"
                     href="https://www.pinterest.com"
                     target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Pinterest"
                     icon={<FaPinterest />}
                     size="sm"
@@ -143,9 +145,10 @@ export default function StoreNavbar() {
                     _hover={{ bg: 'blue.700' }}
                   />
                   <IconButton
-                    as={Link}
+                    as="a"
                     href="https://www.instagram.com/artecristal.spa?igsh=MTFzb3B1bWtqOXFqdw=="
                     target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Instagram"
                     icon={<FaInstagram />}
                     size="sm"
@@ -223,11 +226,11 @@ export default function StoreNavbar() {
           <Container maxW="container.xl">
             <Flex justify="space-between" align="center" py="3">
               {/* Logo */}
-              <Link href="/tienda" style={{ textDecoration: 'none' }}>
+              <ChakraLink as={Link} href="/tienda" style={{ textDecoration: 'none' }}>
                 <Heading size="md" color="blue.900" fontWeight="bold">
                   ARTECRISTAL
                 </Heading>
-              </Link>
+              </ChakraLink>
 
               {/* Category Links */}
               <HStack spacing="6" display={{ base: 'none', lg: 'flex' }}>
@@ -317,25 +320,26 @@ export default function StoreNavbar() {
           <DrawerBody>
             <VStack align="stretch" spacing="4">
               {categories.map((category) => (
-                <Link
+                <ChakraLink
                   key={category.id}
+                  as={Link}
                   href={`/tienda/${category.slug}`}
                   onClick={onMobileClose}
                   fontWeight="medium"
                   py="2"
                 >
                   {category.name}
-                </Link>
+                </ChakraLink>
               ))}
-              <Link href="/tienda/proyectos" onClick={onMobileClose} py="2">
+              <ChakraLink as={Link} href="/tienda/proyectos" onClick={onMobileClose} py="2">
                 Nuestros Proyectos
-              </Link>
-              <Link href="/tienda/nosotros" onClick={onMobileClose} py="2">
+              </ChakraLink>
+              <ChakraLink as={Link} href="/tienda/nosotros" onClick={onMobileClose} py="2">
                 Quienes Somos
-              </Link>
-              <Link href="/tienda/ayuda" onClick={onMobileClose} py="2">
+              </ChakraLink>
+              <ChakraLink as={Link} href="/tienda/ayuda" onClick={onMobileClose} py="2">
                 Centro de Ayuda
-              </Link>
+              </ChakraLink>
             </VStack>
           </DrawerBody>
         </DrawerContent>
