@@ -19,7 +19,7 @@ import Link from 'next/link'
 import { Product } from '@/types/product'
 import { useCart } from '@/contexts/CartContext'
 import { useFavorites } from '@/contexts/FavoritesContext'
-import { getImageUrl } from '@/lib/image-utils'
+import { getImageUrl, getImageUrlWithFallback } from '@/lib/image-utils'
 
 interface ProductCardProps {
   product: Product
@@ -147,7 +147,19 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           transition="transform 0.3s ease"
           _groupHover={{ transform: 'scale(1.05)' }}
           onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+            // Si falla la imagen, intentar con proxy de terceros
             const target = e.currentTarget
+            const originalUrl = product.images[0]
+            
+            if (originalUrl && originalUrl.startsWith('https://dellorto.cl/')) {
+              // Si aún no estamos usando el proxy de terceros, intentarlo
+              if (!target.src.includes('images.weserv.nl')) {
+                target.src = getImageUrlWithFallback(originalUrl)
+                return
+              }
+            }
+            
+            // Si todo falla, usar imagen local
             if (!target.src.includes('/img/shower2.jpg')) {
               target.src = '/img/shower2.jpg'
             }

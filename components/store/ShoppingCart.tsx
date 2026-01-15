@@ -21,7 +21,7 @@ import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import { useCart } from '@/contexts/CartContext'
 import Link from 'next/link'
-import { getImageUrl } from '@/lib/image-utils'
+import { getImageUrl, getImageUrlWithFallback } from '@/lib/image-utils'
 
 interface ShoppingCartProps {
   isOpen: boolean
@@ -143,7 +143,19 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                         borderRadius="md"
                         bg="gray.100"
                         onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                          // Si falla la imagen, intentar con proxy de terceros
                           const target = e.currentTarget
+                          const originalUrl = item.product.images[0]
+                          
+                          if (originalUrl && originalUrl.startsWith('https://dellorto.cl/')) {
+                            // Si aún no estamos usando el proxy de terceros, intentarlo
+                            if (!target.src.includes('images.weserv.nl')) {
+                              target.src = getImageUrlWithFallback(originalUrl)
+                              return
+                            }
+                          }
+                          
+                          // Si todo falla, usar imagen local
                           if (!target.src.includes('/img/shower2.jpg')) {
                             target.src = '/img/shower2.jpg'
                           }
