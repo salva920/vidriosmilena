@@ -23,6 +23,7 @@ function extractProductFromHTML(html, sourceUrl = '') {
     const name = nameMatch ? nameMatch[1]
       .replace(/&#8211;/g, '-')
       .replace(/&#8217;/g, "'")
+      .replace(/&#215;/g, '×')
       .replace(/&amp;/g, '&')
       .replace(/&quot;/g, '"')
       .replace(/&#8212;/g, '—')
@@ -234,11 +235,12 @@ function extractProductFromHTML(html, sourceUrl = '') {
       category = { name: 'Baños', slug: 'banos' };
     }
 
-    // Slug
+    // Slug - limpiar caracteres especiales y HTML entities
     const slug = name
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
+      .replace(/×/g, 'x') // Convertir × a x para el slug
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '')
       .substring(0, 100);

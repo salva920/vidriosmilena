@@ -209,6 +209,50 @@ export const products: Product[] = [
     description: 'Marco frontal de aluminio (Negro) Marco trasero de aluminio (Blanco) Espejo de plata sin cobre de 4 mm',
     stock: 'available'
   },
+  {
+    id: 'espejo-ovalado-marco-dorado-50x80-cm-spello',
+    name: 'Espejo ovalado Marco dorado 50×80 cm - Spello',
+    slug: 'espejo-ovalado-marco-dorado-50x80-cm-spello',
+    category: 'Baños',
+    categorySlug: 'banos',
+    price: 169990,
+    originalPrice: 227990,
+    discount: 25,
+    sku: 'N/A',
+    images: [
+      'https://dellorto.cl/wp-content/uploads/2025/08/YFR-03-VDto.jpg',
+      'https://dellorto.cl/wp-content/uploads/2025/04/w1500h1500fitpad-300x300.webp',
+      'https://dellorto.cl/wp-content/uploads/2025/04/w1500h1500fitpad-1-300x300.webp',
+      'https://dellorto.cl/wp-content/uploads/2025/04/w1500h1500fitpad-3-300x300.webp',
+      'https://dellorto.cl/wp-content/uploads/2025/04/w1500h1500fitpad-4-300x300.webp'
+    ],
+    description: 'Marco frontal de aluminio dorado. Marco trasero de aluminio (Blanco) Espejo de plata sin cobre de 4 mm',
+    stock: 'available'
+  },
+  {
+    id: 'espejo-circular-modelo-viso-con-bastidor',
+    name: 'Espejo circular modelo "Viso" con bastidor',
+    slug: 'espejo-circular-modelo-viso-con-bastidor',
+    category: 'Baños',
+    categorySlug: 'banos',
+    price: 39990,
+    sku: 'N/A',
+    images: [
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-03.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-01.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-02.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-04.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-05.png'
+    ],
+    description: 'Proceso de cristal: Fabricación / pulido / bastidor. Acabado: Espejo incoloro. Materialidad: Espejo incoloro 5 mm / Aluminio. Accesorios incluidos: Bastidor de aluminio 20/20',
+    specifications: [
+      { label: 'Proceso de cristal', value: 'Fabricación / pulido / bastidor' },
+      { label: 'Acabado', value: 'Espejo incoloro' },
+      { label: 'Materialidad', value: 'Espejo incoloro 5 mm / Aluminio' },
+      { label: 'Accesorios incluidos', value: 'Bastidor de aluminio 20/20' }
+    ],
+    stock: 'available'
+  },
   // Productos de Pergolas
   {
     id: 'pergola-3x3-manual',
