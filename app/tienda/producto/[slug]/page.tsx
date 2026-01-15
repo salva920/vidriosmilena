@@ -26,10 +26,11 @@ import { useParams } from 'next/navigation'
 import { FiHeart, FiMinus, FiPlus } from 'react-icons/fi'
 import { FaHeart } from 'react-icons/fa'
 import StoreNavbar from '@/components/store/StoreNavbar'
-import { getProductBySlug } from '@/data/products'
+import { getProductBySlug, getProductsByCategory } from '@/data/products'
 import { useCart } from '@/contexts/CartContext'
 import { useFavorites } from '@/contexts/FavoritesContext'
 import Footer from '@/components/Footer'
+import ProductCard from '@/components/store/ProductCard'
 import { getImageUrl, getImageUrlWithFallback } from '@/lib/image-utils'
 
 export default function ProductPage() {
@@ -38,7 +39,7 @@ export default function ProductPage() {
   const product = getProductBySlug(slug)
   const toast = useToast()
 
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  // Removido selectedImageIndex ya que solo mostramos la primera imagen
   const [quantity, setQuantity] = useState(1)
   const [selectedMeasurement, setSelectedMeasurement] = useState<string>('')
   const [selectedAccessories, setSelectedAccessories] = useState<string[]>([])
@@ -152,8 +153,9 @@ export default function ProductPage() {
                 justifyContent="center"
               >
                 <Box
+                  key={`product-main-image-${product.id}`}
                   as="img"
-                  src={getImageUrl(product.images[selectedImageIndex] || product.images[0] || '/img/shower2.jpg')}
+                  src={getImageUrl(product.images[0] || '/img/shower2.jpg')}
                   alt={product.name}
                   maxW="100%"
                   maxH="100%"
@@ -162,7 +164,12 @@ export default function ProductPage() {
                   onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                     // Si falla la imagen, intentar con proxy de terceros
                     const target = e.currentTarget
-                    const originalUrl = product.images[selectedImageIndex] || product.images[0]
+                    const originalUrl = product.images[0]
+                    
+                    // Prevenir loops infinitos de error
+                    if (target.src.includes('/img/shower2.jpg')) {
+                      return
+                    }
                     
                     if (originalUrl && originalUrl.startsWith('https://dellorto.cl/')) {
                       // Si aún no estamos usando el proxy de terceros, intentarlo
@@ -180,53 +187,8 @@ export default function ProductPage() {
                 />
               </Box>
 
-              {/* Thumbnails */}
-              {product.images.length > 1 && (
-                <HStack spacing="2" overflowX="auto" pb="2">
-                  {product.images.map((image, index) => (
-                    <Box
-                      key={index}
-                      w="80px"
-                      h="80px"
-                      borderRadius="md"
-                      overflow="hidden"
-                      border="2px"
-                      borderColor={selectedImageIndex === index ? 'cyan.500' : 'transparent'}
-                      cursor="pointer"
-                      onClick={() => setSelectedImageIndex(index)}
-                      bg="gray.100"
-                      flexShrink={0}
-                    >
-                      <Box
-                        as="img"
-                        src={getImageUrl(image)}
-                        alt={`${product.name} ${index + 1}`}
-                        w="100%"
-                        h="100%"
-                        objectFit="cover"
-                        loading="lazy"
-                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                          // Si falla la imagen, intentar con proxy de terceros
-                          const target = e.currentTarget
-                          
-                          if (image && image.startsWith('https://dellorto.cl/')) {
-                            // Si aún no estamos usando el proxy de terceros, intentarlo
-                            if (!target.src.includes('images.weserv.nl')) {
-                              target.src = getImageUrlWithFallback(image)
-                              return
-                            }
-                          }
-                          
-                          // Si todo falla, usar imagen local
-                          if (!target.src.includes('/img/shower2.jpg')) {
-                            target.src = '/img/shower2.jpg'
-                          }
-                        }}
-                      />
-                    </Box>
-                  ))}
-                </HStack>
-              )}
+              {/* Thumbnails - Ocultado según solicitud del usuario */}
+              {/* Solo mostrar la primera imagen, sin carrusel */}
             </VStack>
 
             {/* Información del producto */}
@@ -295,7 +257,7 @@ export default function ProductPage() {
                   <Select
                     placeholder="Elige una opción"
                     value={selectedMeasurement}
-                    onChange={(e) => setSelectedMeasurement(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedMeasurement(e.target.value)}
                     size="lg"
                   >
                     {product.measurements.map((measurement) => (
@@ -439,6 +401,21 @@ export default function ProductPage() {
               )}
             </TabPanels>
           </Tabs>
+
+          {/* Sección Descubre más productos */}
+          <Box mt="16">
+            <Heading size="lg" color="gray.900" mb="6">
+              Descubre más productos
+            </Heading>
+            <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing="6">
+              {getProductsByCategory(product.categorySlug)
+                .filter((p) => p.id !== product.id)
+                .slice(0, 4)
+                .map((relatedProduct) => (
+                  <ProductCard key={relatedProduct.id} product={relatedProduct} />
+                ))}
+            </SimpleGrid>
+          </Box>
         </Container>
       </Box>
 
