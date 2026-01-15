@@ -35,3 +35,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Archivos generados por scripts de scraping
+product-code.ts
+products-from-html.ts
+all-products-code.ts
+*-data.json
+*-from-html.json
+product-data.json
+all-products-data.json
+products-puppeteer.json
+products-puppeteer.ts
