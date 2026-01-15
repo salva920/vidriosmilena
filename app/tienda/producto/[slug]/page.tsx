@@ -21,7 +21,6 @@ import {
   IconButton,
   useToast,
 } from '@chakra-ui/react'
-import Image from 'next/image'
 import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import { FiHeart, FiMinus, FiPlus } from 'react-icons/fi'
@@ -147,13 +146,26 @@ export default function ProductPage() {
                 overflow="hidden"
                 bg="gray.100"
                 h={{ base: '300px', md: '500px' }}
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
               >
-                <Image
+                <Box
+                  as="img"
                   src={product.images[selectedImageIndex] || product.images[0] || '/img/shower2.jpg'}
                   alt={product.name}
-                  fill
-                  style={{ objectFit: 'contain' }}
-                  unoptimized={product.images[selectedImageIndex]?.startsWith('https://dellorto.cl')}
+                  maxW="100%"
+                  maxH="100%"
+                  objectFit="contain"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                    // Si falla la imagen externa, usar imagen local
+                    const target = e.currentTarget
+                    if (target.src.startsWith('https://dellorto.cl') && target.src !== '/img/shower2.jpg') {
+                      target.src = '/img/shower2.jpg'
+                    }
+                  }}
                 />
               </Box>
 
@@ -163,7 +175,6 @@ export default function ProductPage() {
                   {product.images.map((image, index) => (
                     <Box
                       key={index}
-                      position="relative"
                       w="80px"
                       h="80px"
                       borderRadius="md"
@@ -175,12 +186,23 @@ export default function ProductPage() {
                       bg="gray.100"
                       flexShrink={0}
                     >
-                      <Image
+                      <Box
+                        as="img"
                         src={image}
                         alt={`${product.name} ${index + 1}`}
-                        fill
-                        style={{ objectFit: 'cover' }}
-                        unoptimized={image.startsWith('https://dellorto.cl')}
+                        w="100%"
+                        h="100%"
+                        objectFit="cover"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        crossOrigin="anonymous"
+                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                          // Si falla la imagen externa, usar imagen local
+                          const target = e.currentTarget
+                          if (target.src.startsWith('https://dellorto.cl') && target.src !== '/img/shower2.jpg') {
+                            target.src = '/img/shower2.jpg'
+                          }
+                        }}
                       />
                     </Box>
                   ))}
