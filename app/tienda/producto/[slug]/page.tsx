@@ -30,6 +30,7 @@ import { getProductBySlug } from '@/data/products'
 import { useCart } from '@/contexts/CartContext'
 import { useFavorites } from '@/contexts/FavoritesContext'
 import Footer from '@/components/Footer'
+import { getImageUrl } from '@/lib/image-utils'
 
 export default function ProductPage() {
   const params = useParams()
@@ -152,17 +153,16 @@ export default function ProductPage() {
               >
                 <Box
                   as="img"
-                  src={product.images[selectedImageIndex] || product.images[0] || '/img/shower2.jpg'}
+                  src={getImageUrl(product.images[selectedImageIndex] || product.images[0] || '/img/shower2.jpg')}
                   alt={product.name}
                   maxW="100%"
                   maxH="100%"
                   objectFit="contain"
                   loading="lazy"
-                  referrerPolicy="no-referrer"
                   onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                    // Si falla la imagen externa, usar imagen local
+                    // Si falla la imagen, usar imagen local
                     const target = e.currentTarget
-                    if (target.src.startsWith('https://dellorto.cl') && target.src !== '/img/shower2.jpg') {
+                    if (!target.src.includes('/img/shower2.jpg')) {
                       target.src = '/img/shower2.jpg'
                     }
                   }}
@@ -188,18 +188,16 @@ export default function ProductPage() {
                     >
                       <Box
                         as="img"
-                        src={image}
+                        src={getImageUrl(image)}
                         alt={`${product.name} ${index + 1}`}
                         w="100%"
                         h="100%"
                         objectFit="cover"
                         loading="lazy"
-                        referrerPolicy="no-referrer"
-                        crossOrigin="anonymous"
                         onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                          // Si falla la imagen externa, usar imagen local
+                          // Si falla la imagen, usar imagen local
                           const target = e.currentTarget
-                          if (target.src.startsWith('https://dellorto.cl') && target.src !== '/img/shower2.jpg') {
+                          if (!target.src.includes('/img/shower2.jpg')) {
                             target.src = '/img/shower2.jpg'
                           }
                         }}

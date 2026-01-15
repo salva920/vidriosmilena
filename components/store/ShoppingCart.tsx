@@ -12,7 +12,6 @@ import {
   HStack,
   Text,
   Button,
-  Image,
   IconButton,
   Box,
   Divider,
@@ -22,6 +21,7 @@ import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import { useCart } from '@/contexts/CartContext'
 import Link from 'next/link'
+import { getImageUrl } from '@/lib/image-utils'
 
 interface ShoppingCartProps {
   isOpen: boolean
@@ -133,14 +133,21 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                   >
                     <HStack spacing="3" align="flex-start">
                       {/* Product Image */}
-                      <Image
-                        src={item.product.images[0] || '/img/shower2.jpg'}
+                      <Box
+                        as="img"
+                        src={getImageUrl(item.product.images[0] || '/img/shower2.jpg')}
                         alt={item.product.name}
                         w="80px"
                         h="80px"
                         objectFit="cover"
                         borderRadius="md"
                         bg="gray.100"
+                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                          const target = e.currentTarget
+                          if (!target.src.includes('/img/shower2.jpg')) {
+                            target.src = '/img/shower2.jpg'
+                          }
+                        }}
                       />
 
                       {/* Product Info */}

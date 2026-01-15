@@ -4,7 +4,6 @@ import {
   Box,
   Card,
   CardBody,
-  Image,
   Text,
   Heading,
   Button,
@@ -20,6 +19,7 @@ import Link from 'next/link'
 import { Product } from '@/types/product'
 import { useCart } from '@/contexts/CartContext'
 import { useFavorites } from '@/contexts/FavoritesContext'
+import { getImageUrl } from '@/lib/image-utils'
 
 interface ProductCardProps {
   product: Product
@@ -137,14 +137,21 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
       {/* Imagen del producto */}
       <Box position="relative" w="100%" h="200px" bg="gray.100" overflow="hidden">
-        <Image
-          src={product.images[0] || '/img/shower2.jpg'}
+        <Box
+          as="img"
+          src={getImageUrl(product.images[0] || '/img/shower2.jpg')}
           alt={product.name}
           w="100%"
           h="100%"
           objectFit="cover"
           transition="transform 0.3s ease"
           _groupHover={{ transform: 'scale(1.05)' }}
+          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+            const target = e.currentTarget
+            if (!target.src.includes('/img/shower2.jpg')) {
+              target.src = '/img/shower2.jpg'
+            }
+          }}
         />
       </Box>
 
@@ -211,7 +218,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
               bg: showPrice ? 'cyan.600' : 'red.600',
               transform: 'translateY(-2px)',
             }}
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.preventDefault()
               e.stopPropagation()
               handleAddToCart()
