@@ -1,0 +1,5 @@
+https://dellorto.cl/producto/mampara-corredera-vidrio-templado-8-mm-modelo-scala-con-herrajes-acero-cepillado/
+# Agrega más URLs de productos aquí, una por línea
+# Ejemplo:
+# https://dellorto.cl/producto/otro-producto/
+# https://dellorto.cl/producto/otro-producto-mas/

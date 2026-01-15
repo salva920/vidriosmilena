@@ -190,26 +190,24 @@ export const products: Product[] = [
   },
   // Productos de Espejos
   {
-    id: 'espejo-circular-lucca',
+    id: 'espejo-circular-marco-aluminio-negro-70-cm-lucca',
     name: 'Espejo circular Marco aluminio negro 70 cm - Lucca',
-    slug: 'espejo-circular-lucca',
+    slug: 'espejo-circular-marco-aluminio-negro-70-cm-lucca',
     category: 'Baños',
     categorySlug: 'banos',
     price: 169990,
     originalPrice: 227990,
     discount: 25,
-    sku: 'AZESPYFRO1',
+    sku: 'N/A',
     images: [
-      '/img/espejo decorativo.jpg',
-      '/img/espejo decorativo2.jpg',
-      '/img/espejo decorativo3.jpg'
+      'https://dellorto.cl/wp-content/uploads/2025/08/YFR-01-VDto.jpg',
+      'https://dellorto.cl/wp-content/uploads/2025/04/w1500h1500fitpad-300x300.webp',
+      'https://dellorto.cl/wp-content/uploads/2025/04/w1500h1500fitpad-1-300x300.webp',
+      'https://dellorto.cl/wp-content/uploads/2025/04/w1500h1500fitpad-3-300x300.webp',
+      'https://dellorto.cl/wp-content/uploads/2025/04/w1500h1500fitpad-4-300x300.webp'
     ],
-    description: 'Espejo circular con marco de aluminio negro. Perfecto para baños y espacios modernos.',
-    stock: 'available',
-    measurements: [
-      { id: '70cm', label: '70 cm', value: '70 cm', price: 169990 },
-      { id: '80cm', label: '80 cm', value: '80 cm', price: 199990 }
-    ]
+    description: 'Marco frontal de aluminio (Negro) Marco trasero de aluminio (Blanco) Espejo de plata sin cobre de 4 mm',
+    stock: 'available'
   },
   // Productos de Pergolas
   {
