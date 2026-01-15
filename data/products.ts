@@ -238,9 +238,9 @@ export const products: Product[] = [
     price: 39990,
     sku: 'N/A',
     images: [
-      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-03.png',
       'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-01.png',
       'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-02.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-03.png',
       'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-04.png',
       'https://dellorto.cl/wp-content/uploads/2023/04/espejos-viso-05.png'
     ],

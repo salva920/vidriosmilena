@@ -151,63 +151,103 @@ function extractProductFromHTML(html, sourceUrl = '') {
       });
     }
 
-    // Imágenes - buscar en data-src (lazy loading) y src
+    // Imágenes - buscar en múltiples lugares y obtener URLs completas
     const images = [];
     const seenImages = new Set();
     
-    // Buscar en data-src (lazy loading)
-    const dataSrcRegex = /<img[^>]+data-src="([^"]+)"[^>]*>/gi;
+    // Función para limpiar URL y obtener la versión completa (sin tamaños reducidos)
+    function cleanImageUrl(url) {
+      if (!url) return null;
+      
+      // Remover tamaños de WordPress (ej: imagen-300x300.png -> imagen.png)
+      url = url.replace(/-\d+x\d+\.(png|jpg|jpeg|webp)/gi, '.$1');
+      
+      // Remover parámetros de query
+      url = url.split('?')[0];
+      
+      // Asegurar URL completa
+      if (!url.startsWith('http')) {
+        url = url.startsWith('/') ? BASE_URL + url : BASE_URL + '/' + url;
+      }
+      
+      return url;
+    }
+    
+    // Método 1: Buscar en data-large (imágenes grandes de galería)
+    const dataLargeRegex = /data-large="([^"]+)"/gi;
     let imgMatch;
     
-    while ((imgMatch = dataSrcRegex.exec(html)) !== null) {
-      const src = imgMatch[1];
-      if (
-        (src.includes('wp-content/uploads') || src.includes('product')) &&
-        !src.includes('logo') &&
-        !src.includes('Logo_') &&
-        !src.includes('icon') &&
-        !src.includes('Falabella') &&
-        !src.includes('Mecado_Libre') &&
-        !src.includes('Paris') &&
-        !src.includes('Ripley') &&
-        !src.includes('placeholder') &&
-        !src.includes('100x100') && // Excluir thumbnails pequeños
-        !src.includes('150x150') &&
-        !src.includes('90x90')
-      ) {
-        const fullUrl = src.startsWith('http') ? src : BASE_URL + src;
-        if (!seenImages.has(fullUrl)) {
-          images.push(fullUrl);
-          seenImages.add(fullUrl);
+    while ((imgMatch = dataLargeRegex.exec(html)) !== null) {
+      const cleanedUrl = cleanImageUrl(imgMatch[1]);
+      if (cleanedUrl && 
+          cleanedUrl.includes('wp-content/uploads') &&
+          !cleanedUrl.includes('logo') &&
+          !cleanedUrl.includes('Logo_') &&
+          !cleanedUrl.includes('icon') &&
+          !cleanedUrl.includes('Falabella') &&
+          !cleanedUrl.includes('Mecado_Libre') &&
+          !cleanedUrl.includes('Paris') &&
+          !cleanedUrl.includes('Ripley') &&
+          !cleanedUrl.includes('placeholder')) {
+        if (!seenImages.has(cleanedUrl)) {
+          images.push(cleanedUrl);
+          seenImages.add(cleanedUrl);
         }
       }
     }
     
-    // Buscar en src normal si no hay suficientes imágenes
+    // Método 2: Buscar en href de enlaces de galería (imágenes principales)
+    const galleryHrefRegex = /<a[^>]+href="([^"]+)"[^>]*data-index[^>]*>/gi;
+    while ((imgMatch = galleryHrefRegex.exec(html)) !== null) {
+      const cleanedUrl = cleanImageUrl(imgMatch[1]);
+      if (cleanedUrl && 
+          cleanedUrl.includes('wp-content/uploads') &&
+          !cleanedUrl.includes('logo') &&
+          !cleanedUrl.includes('Logo_') &&
+          !cleanedUrl.includes('icon') &&
+          !cleanedUrl.includes('Falabella') &&
+          !cleanedUrl.includes('Mecado_Libre') &&
+          !cleanedUrl.includes('Paris') &&
+          !cleanedUrl.includes('Ripley') &&
+          !cleanedUrl.includes('placeholder')) {
+        if (!seenImages.has(cleanedUrl)) {
+          images.push(cleanedUrl);
+          seenImages.add(cleanedUrl);
+        }
+      }
+    }
+    
+    // Método 3: Buscar en data-src (lazy loading) - excluir thumbnails
     if (images.length < 3) {
-      const srcRegex = /<img[^>]+src="([^"]+)"[^>]*>/gi;
-      while ((imgMatch = srcRegex.exec(html)) !== null) {
-        const src = imgMatch[1];
-        if (
-          (src.includes('wp-content/uploads') || src.includes('product')) &&
-          !src.includes('logo') &&
-          !src.includes('Logo_') &&
-          !src.includes('icon') &&
-          !src.includes('Falabella') &&
-          !src.includes('Mecado_Libre') &&
-          !src.includes('Paris') &&
-          !src.includes('Ripley') &&
-          !src.includes('placeholder') &&
-          !src.includes('100x100') &&
-          !src.includes('150x150') &&
-          !src.includes('90x90')
-        ) {
-          const fullUrl = src.startsWith('http') ? src : BASE_URL + src;
-          if (!seenImages.has(fullUrl)) {
-            images.push(fullUrl);
-            seenImages.add(fullUrl);
+      const dataSrcRegex = /<img[^>]+data-src="([^"]+)"[^>]*>/gi;
+      while ((imgMatch = dataSrcRegex.exec(html)) !== null) {
+        const cleanedUrl = cleanImageUrl(imgMatch[1]);
+        if (cleanedUrl && 
+            cleanedUrl.includes('wp-content/uploads') &&
+            !cleanedUrl.includes('logo') &&
+            !cleanedUrl.includes('Logo_') &&
+            !cleanedUrl.includes('icon') &&
+            !cleanedUrl.includes('Falabella') &&
+            !cleanedUrl.includes('Mecado_Libre') &&
+            !cleanedUrl.includes('Paris') &&
+            !cleanedUrl.includes('Ripley') &&
+            !cleanedUrl.includes('placeholder') &&
+            !cleanedUrl.match(/-\d+x\d+\.(png|jpg|jpeg|webp)/i)) { // Excluir URLs con tamaños
+          if (!seenImages.has(cleanedUrl)) {
+            images.push(cleanedUrl);
+            seenImages.add(cleanedUrl);
           }
         }
+      }
+    }
+    
+    // Método 4: Buscar en og:image (imagen principal)
+    const ogImageMatch = html.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i);
+    if (ogImageMatch) {
+      const cleanedUrl = cleanImageUrl(ogImageMatch[1]);
+      if (cleanedUrl && !seenImages.has(cleanedUrl)) {
+        images.unshift(cleanedUrl); // Agregar al inicio como imagen principal
+        seenImages.add(cleanedUrl);
       }
     }
 
