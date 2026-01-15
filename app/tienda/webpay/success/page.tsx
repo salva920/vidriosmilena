@@ -9,8 +9,9 @@ import {
   Button,
   Alert,
   AlertIcon,
-  CheckCircleIcon,
+  Icon,
 } from '@chakra-ui/react'
+import { FiCheckCircle } from 'react-icons/fi'
 import { useRouter } from 'next/navigation'
 import StoreNavbar from '@/components/store/StoreNavbar'
 import Footer from '@/components/Footer'
@@ -23,7 +24,7 @@ export default function WebpaySuccessPage() {
       <StoreNavbar />
       <Container maxW="container.md" py="16">
         <VStack spacing="6">
-          <CheckCircleIcon boxSize="16" color="green.500" />
+          <Icon as={FiCheckCircle} boxSize="16" color="green.500" />
           <Heading size="xl" color="green.600">
             ¡Pago Realizado Exitosamente!
           </Heading>
