@@ -115,9 +115,11 @@ async function scrapeProductPage(url: string): Promise<ProductData | null> {
       const rows = tableMatch[1].match(/<tr[^>]*>([\s\S]*?)<\/tr>/gi) || []
       rows.forEach((row: string) => {
         const cells = row.match(/<t[dh][^>]*>([^<]+)<\/t[dh]>/gi) || []
-        if (cells.length >= 2) {
+        if (cells.length >= 2 && cells[0]) {
           const size = cells[0].replace(/<[^>]+>/g, '').trim()
-          measurements.push({ size, priceAdjustment: 0 })
+          if (size) {
+            measurements.push({ size, priceAdjustment: 0 })
+          }
         }
       })
     }
