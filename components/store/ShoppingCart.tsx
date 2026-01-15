@@ -19,8 +19,8 @@ import {
   Badge,
 } from '@chakra-ui/react'
 import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
+import { FaWhatsapp } from 'react-icons/fa'
 import { useCart } from '@/contexts/CartContext'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 interface ShoppingCartProps {
@@ -30,7 +30,6 @@ interface ShoppingCartProps {
 
 export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
   const { items, updateQuantity, removeFromCart, getTotalPrice, clearCart } = useCart()
-  const router = useRouter()
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-CL', {
@@ -41,8 +40,46 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
   }
 
   const handleCheckout = () => {
+    // Número de WhatsApp de la empresa
+    const numeroWhatsApp = '56949932178'
+    
+    // Formatear el mensaje con los productos del carrito
+    let mensaje = `🛒 *NUEVO PEDIDO - ARTECRISTAL*\n\n`
+    mensaje += `📋 *DETALLE DEL PEDIDO:*\n\n`
+    
+    items.forEach((item, index) => {
+      const productPrice = item.product.originalPrice || item.product.price
+      const itemTotal = productPrice * item.quantity
+      
+      mensaje += `${index + 1}. *${item.product.name}*\n`
+      mensaje += `   • Cantidad: ${item.quantity}\n`
+      if (item.selectedMeasurement) {
+        mensaje += `   • Medida: ${item.selectedMeasurement}\n`
+      }
+      if (item.selectedAccessories && item.selectedAccessories.length > 0) {
+        const accessories = item.selectedAccessories.map(accId => {
+          const accessory = item.product.accessories?.find(a => a.id === accId)
+          return accessory?.name || accId
+        }).join(', ')
+        mensaje += `   • Accesorios: ${accessories}\n`
+      }
+      mensaje += `   • Precio unitario: ${formatPrice(productPrice)}\n`
+      mensaje += `   • Subtotal: ${formatPrice(itemTotal)}\n\n`
+    })
+    
+    mensaje += `💰 *TOTAL: ${formatPrice(totalPrice)}*\n\n`
+    mensaje += `⏰ *Fecha:* ${new Date().toLocaleString('es-CL', { dateStyle: 'long', timeStyle: 'short' })}\n\n`
+    mensaje += `_Pedido generado desde la tienda online de ARTECRISTAL_`
+    
+    // Codificar el mensaje para la URL de WhatsApp
+    const mensajeCodificado = encodeURIComponent(mensaje)
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`
+    
+    // Abrir WhatsApp en una nueva ventana
+    window.open(urlWhatsApp, '_blank')
+    
+    // Cerrar el carrito
     onClose()
-    router.push('/tienda/checkout')
   }
 
   const totalPrice = getTotalPrice()
@@ -172,12 +209,13 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
               </Text>
             </HStack>
             <Button
-              colorScheme="cyan"
+              colorScheme="green"
               size="lg"
               w="100%"
               onClick={handleCheckout}
+              leftIcon={<FaWhatsapp />}
             >
-              FINALIZAR COMPRA
+              FINALIZAR COMPRA POR WHATSAPP
             </Button>
             <Button
               variant="ghost"
