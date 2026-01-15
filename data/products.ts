@@ -253,6 +253,30 @@ export const products: Product[] = [
     ],
     stock: 'available'
   },
+  {
+    id: 'espejo-con-forma-modelo-cecita-con-bastidor',
+    name: 'Espejo con forma modelo "Cecita" con bastidor',
+    slug: 'espejo-con-forma-modelo-cecita-con-bastidor',
+    category: 'Baños',
+    categorySlug: 'banos',
+    price: 67990,
+    sku: 'N/A',
+    images: [
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-cecita-01-1.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-cecita-02-1.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-cecita-03-1.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-cecita-04-1.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-cecita-05-1.png'
+    ],
+    description: 'Proceso de cristal: Fabricación / pulido / bastidor. Acabado: Espejo incoloro. Materialidad: Espejo incoloro 5 mm / Aluminio. Accesorios incluidos: Bastidor de aluminio 20/20',
+    specifications: [
+      { label: 'Proceso de cristal', value: 'Fabricación / pulido / bastidor' },
+      { label: 'Acabado', value: 'Espejo incoloro' },
+      { label: 'Materialidad', value: 'Espejo incoloro 5 mm / Aluminio' },
+      { label: 'Accesorios incluidos', value: 'Bastidor de aluminio 20/20' }
+    ],
+    stock: 'available'
+  },
   // Productos de Pergolas
   {
     id: 'pergola-3x3-manual',
