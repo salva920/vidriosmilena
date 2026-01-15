@@ -7,7 +7,6 @@ import {
   Text,
   VStack,
   HStack,
-  Image,
   Button,
   SimpleGrid,
   Select,
@@ -22,6 +21,7 @@ import {
   IconButton,
   useToast,
 } from '@chakra-ui/react'
+import Image from 'next/image'
 import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import { FiHeart, FiMinus, FiPlus } from 'react-icons/fi'
@@ -151,9 +151,9 @@ export default function ProductPage() {
                 <Image
                   src={product.images[selectedImageIndex] || product.images[0] || '/img/shower2.jpg'}
                   alt={product.name}
-                  w="100%"
-                  h="100%"
-                  objectFit="contain"
+                  fill
+                  style={{ objectFit: 'contain' }}
+                  unoptimized={product.images[selectedImageIndex]?.startsWith('https://dellorto.cl')}
                 />
               </Box>
 
@@ -163,6 +163,7 @@ export default function ProductPage() {
                   {product.images.map((image, index) => (
                     <Box
                       key={index}
+                      position="relative"
                       w="80px"
                       h="80px"
                       borderRadius="md"
@@ -177,9 +178,9 @@ export default function ProductPage() {
                       <Image
                         src={image}
                         alt={`${product.name} ${index + 1}`}
-                        w="100%"
-                        h="100%"
-                        objectFit="cover"
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        unoptimized={image.startsWith('https://dellorto.cl')}
                       />
                     </Box>
                   ))}
