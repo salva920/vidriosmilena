@@ -472,12 +472,17 @@ async function main() {
 
   console.log(`\n💾 Guardando resultados...\n`);
   
-  fs.writeFileSync('all-products-data.json', JSON.stringify(allProducts, null, 2));
-  console.log(`✅ JSON guardado en: all-products-data.json`);
+  const outputDir = path.join(__dirname, 'output');
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+  
+  fs.writeFileSync(path.join(outputDir, 'all-products-data.json'), JSON.stringify(allProducts, null, 2));
+  console.log(`✅ JSON guardado en: scripts/output/all-products-data.json`);
   
   const code = generateTypeScriptCode(allProducts);
-  fs.writeFileSync('all-products-code.ts', code);
-  console.log(`✅ Código TypeScript guardado en: all-products-code.ts`);
+  fs.writeFileSync(path.join(outputDir, 'all-products-code.ts'), code);
+  console.log(`✅ Código TypeScript guardado en: scripts/output/all-products-code.ts`);
 
   console.log(`\n📊 RESUMEN:`);
   console.log(`   ✅ Productos procesados: ${processedCount}`);

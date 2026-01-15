@@ -394,14 +394,19 @@ function main() {
 
   console.log(`\n💾 Guardando ${products.length} productos...\n`);
   
+  const outputDir = path.join(__dirname, 'output');
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+  
   // Guardar JSON
-  fs.writeFileSync('products-from-html.json', JSON.stringify(products, null, 2));
-  console.log('✅ JSON guardado en: products-from-html.json');
+  fs.writeFileSync(path.join(outputDir, 'products-from-html.json'), JSON.stringify(products, null, 2));
+  console.log('✅ JSON guardado en: scripts/output/products-from-html.json');
   
   // Guardar código TypeScript
   const code = convertToTypeScript(products);
-  fs.writeFileSync('products-from-html.ts', code);
-  console.log('✅ Código TypeScript guardado en: products-from-html.ts');
+  fs.writeFileSync(path.join(outputDir, 'products-from-html.ts'), code);
+  console.log('✅ Código TypeScript guardado en: scripts/output/products-from-html.ts');
   
   console.log(`\n📊 RESUMEN:`);
   console.log(`   ✅ Productos extraídos: ${successCount}`);

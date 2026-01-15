@@ -45,3 +45,4 @@ product-data.json
 all-products-data.json
 products-puppeteer.json
 products-puppeteer.ts
+scripts/output/

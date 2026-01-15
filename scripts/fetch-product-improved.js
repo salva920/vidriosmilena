@@ -23,8 +23,12 @@ https.get(productUrl, (res) => {
       console.log(JSON.stringify(productInfo, null, 2));
 
       // Guardar en archivo
-      fs.writeFileSync('product-data.json', JSON.stringify(productInfo, null, 2));
-      console.log('\n✅ Datos guardados en product-data.json');
+      const outputDir = path.join(__dirname, 'output');
+      if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+      }
+      fs.writeFileSync(path.join(outputDir, 'product-data.json'), JSON.stringify(productInfo, null, 2));
+      console.log('\n✅ Datos guardados en scripts/output/product-data.json');
       
       // También generar formato para agregar a products.ts
       generateProductCode(productInfo);
@@ -328,6 +332,10 @@ function generateProductCode(productInfo) {
 },
 `;
 
-  fs.writeFileSync('product-code.ts', code);
-  console.log('\n📝 Código para products.ts guardado en product-code.ts');
+  const outputDir = path.join(__dirname, 'output');
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+  fs.writeFileSync(path.join(outputDir, 'product-code.ts'), code);
+  console.log(`\n📝 Código para products.ts guardado en scripts/output/product-code.ts`);
 }
