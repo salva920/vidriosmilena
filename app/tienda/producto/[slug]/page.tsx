@@ -39,7 +39,7 @@ export default function ProductPage() {
   const product = getProductBySlug(slug)
   const toast = useToast()
 
-  // Removido selectedImageIndex ya que solo mostramos la primera imagen
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [quantity, setQuantity] = useState(1)
   const [selectedMeasurement, setSelectedMeasurement] = useState<string>('')
   const [selectedAccessories, setSelectedAccessories] = useState<string[]>([])
@@ -153,9 +153,9 @@ export default function ProductPage() {
                 justifyContent="center"
               >
                 <Box
-                  key={`product-main-image-${product.id}`}
+                  key={`product-main-image-${product.id}-${selectedImageIndex}`}
                   as="img"
-                  src={getImageUrl(product.images[0] || '/img/shower2.jpg')}
+                  src={getImageUrl(product.images[selectedImageIndex] || product.images[0] || '/img/shower2.jpg')}
                   alt={product.name}
                   maxW="100%"
                   maxH="100%"
@@ -164,7 +164,7 @@ export default function ProductPage() {
                   onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                     // Si falla la imagen, intentar con proxy de terceros
                     const target = e.currentTarget
-                    const originalUrl = product.images[0]
+                    const originalUrl = product.images[selectedImageIndex] || product.images[0]
                     
                     // Prevenir loops infinitos de error
                     if (target.src.includes('/img/shower2.jpg')) {
@@ -187,8 +187,51 @@ export default function ProductPage() {
                 />
               </Box>
 
-              {/* Thumbnails - Ocultado según solicitud del usuario */}
-              {/* Solo mostrar la primera imagen, sin carrusel */}
+              {/* Thumbnails */}
+              {product.images && product.images.length > 1 && (
+                <HStack spacing="2" overflowX="auto" pb="2">
+                  {product.images.map((image, index) => (
+                    <Box
+                      key={`thumbnail-${index}`}
+                      as="button"
+                      onClick={() => setSelectedImageIndex(index)}
+                      borderWidth="2px"
+                      borderColor={selectedImageIndex === index ? 'cyan.500' : 'gray.200'}
+                      borderRadius="md"
+                      overflow="hidden"
+                      p="1"
+                      bg={selectedImageIndex === index ? 'cyan.50' : 'white'}
+                      _hover={{ borderColor: 'cyan.400' }}
+                      transition="all 0.2s"
+                      flexShrink={0}
+                      w="80px"
+                      h="80px"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Box
+                        as="img"
+                        src={getImageUrl(image)}
+                        alt={`${product.name} - Vista ${index + 1}`}
+                        maxW="100%"
+                        maxH="100%"
+                        objectFit="contain"
+                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                          const target = e.currentTarget
+                          if (image && image.startsWith('https://dellorto.cl/')) {
+                            if (!target.src.includes('images.weserv.nl')) {
+                              target.src = getImageUrlWithFallback(image)
+                            } else if (!target.src.includes('/img/shower2.jpg')) {
+                              target.src = '/img/shower2.jpg'
+                            }
+                          }
+                        }}
+                      />
+                    </Box>
+                  ))}
+                </HStack>
+              )}
             </VStack>
 
             {/* Información del producto */}
