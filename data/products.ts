@@ -277,6 +277,30 @@ export const products: Product[] = [
     ],
     stock: 'available'
   },
+  {
+    id: 'espejo-con-forma-modelo-croce-con-bastidor',
+    name: 'Espejo con forma modelo "Croce" con bastidor',
+    slug: 'espejo-con-forma-modelo-croce-con-bastidor',
+    category: 'Baños',
+    categorySlug: 'banos',
+    price: 44990,
+    sku: 'N/A',
+    images: [
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-croce-02-1-2.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-croce-03-1-2.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-croce-04-1-2.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-croce-05-1-2.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-croce-06-1-2.png'
+    ],
+    description: 'Proceso de cristal: Fabricación / pulido / bastidor. Acabado: Espejo incoloro. Materialidad: Espejo incoloro 5 mm / Aluminio. Accesorios incluidos: Bastidor de aluminio 20/20',
+    specifications: [
+      { label: 'Proceso de cristal', value: 'Fabricación / pulido / bastidor' },
+      { label: 'Acabado', value: 'Espejo incoloro' },
+      { label: 'Materialidad', value: 'Espejo incoloro 5 mm / Aluminio' },
+      { label: 'Accesorios incluidos', value: 'Bastidor de aluminio 20/20' }
+    ],
+    stock: 'available'
+  },
   // Productos de Pergolas
   {
     id: 'pergola-3x3-manual',
