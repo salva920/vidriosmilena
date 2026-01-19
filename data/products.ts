@@ -301,6 +301,78 @@ export const products: Product[] = [
     ],
     stock: 'available'
   },
+  {
+    id: 'espejo-con-forma-modelo-liscia-con-bastidor',
+    name: 'Espejo con forma modelo "Liscia" con bastidor',
+    slug: 'espejo-con-forma-modelo-liscia-con-bastidor',
+    category: 'Baños',
+    categorySlug: 'banos',
+    price: 49990,
+    sku: 'N/A',
+    images: [
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-liscia-01.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-liscia-02.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-liscia-03.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-liscia-04.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-liscia-05.png'
+    ],
+    description: 'Proceso de cristal: Fabricación / pulido / bastidor. Acabado: Espejo incoloro. Materialidad: Espejo incoloro 5 mm / Aluminio. Accesorios incluidos: Bastidor de aluminio 20/20',
+    specifications: [
+      { label: 'Proceso de cristal', value: 'Fabricación / pulido / bastidor' },
+      { label: 'Acabado', value: 'Espejo incoloro' },
+      { label: 'Materialidad', value: 'Espejo incoloro 5 mm / Aluminio' },
+      { label: 'Accesorios incluidos', value: 'Bastidor de aluminio 20/20' }
+    ],
+    stock: 'available'
+  },
+  {
+    id: 'espejo-con-forma-modelo-locone-con-bastidor',
+    name: 'Espejo con forma modelo "Locone" con bastidor',
+    slug: 'espejo-con-forma-modelo-locone-con-bastidor',
+    category: 'Baños',
+    categorySlug: 'banos',
+    price: 59990,
+    sku: 'N/A',
+    images: [
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-locone-01.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-locone-02.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-locone-03.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-locone-04.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-locone-05.png'
+    ],
+    description: 'Proceso de cristal: Fabricación / pulido / bastidor. Acabado: Espejo incoloro. Materialidad: Espejo incoloro 5 mm / Aluminio. Accesorios incluidos: Bastidor de aluminio 20/20',
+    specifications: [
+      { label: 'Proceso de cristal', value: 'Fabricación / pulido / bastidor' },
+      { label: 'Acabado', value: 'Espejo incoloro' },
+      { label: 'Materialidad', value: 'Espejo incoloro 5 mm / Aluminio' },
+      { label: 'Accesorios incluidos', value: 'Bastidor de aluminio 20/20' }
+    ],
+    stock: 'available'
+  },
+  {
+    id: 'espejo-con-forma-modelo-resia-con-bastidor',
+    name: 'Espejo con forma modelo "Resia" con bastidor',
+    slug: 'espejo-con-forma-modelo-resia-con-bastidor',
+    category: 'Baños',
+    categorySlug: 'banos',
+    price: 44990,
+    sku: 'N/A',
+    images: [
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-resia-01.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-resia-02.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-resia-03.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-resia-04.png',
+      'https://dellorto.cl/wp-content/uploads/2023/04/espejos-resia-05.png'
+    ],
+    description: 'Proceso de cristal: Fabricación / pulido / bastidor. Acabado: Espejo incoloro. Materialidad: Espejo incoloro 5 mm / Aluminio. Accesorios incluidos: Bastidor de aluminio 20/20',
+    specifications: [
+      { label: 'Proceso de cristal', value: 'Fabricación / pulido / bastidor' },
+      { label: 'Acabado', value: 'Espejo incoloro' },
+      { label: 'Materialidad', value: 'Espejo incoloro 5 mm / Aluminio' },
+      { label: 'Accesorios incluidos', value: 'Bastidor de aluminio 20/20' }
+    ],
+    stock: 'available'
+  },
   // Productos de Pergolas
   {
     id: 'pergola-3x3-manual',
