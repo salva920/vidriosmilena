@@ -1,4 +1,5 @@
 import { Product, Category } from '@/types/product'
+import { espejosLedProducts } from './products-espejos-led'
 
 export const categories: Category[] = [
   {
@@ -461,7 +462,9 @@ export const products: Product[] = [
     ],
     description: 'Splashback de vidrio para cocinas.',
     stock: 'available'
-  }
+  },
+  // Combinar productos de espejos LED
+  ...espejosLedProducts
 ]
 
 // Función helper para obtener productos por categoría
