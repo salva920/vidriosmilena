@@ -263,11 +263,11 @@ export default function CategoryPage() {
 
               {/* Call to Action final */}
               <Box
-                bg="linear-gradient(135deg, #0BC5EA 0%, #00B5D8 100%)"
+                bg="linear-gradient(135deg, #1A365D 0%, #2B6CB0 50%, #0BC5EA 100%)"
                 borderRadius="2xl"
                 p={{ base: '8', md: '12' }}
                 textAlign="center"
-                boxShadow="xl"
+                boxShadow="2xl"
                 position="relative"
                 overflow="hidden"
               >
@@ -277,8 +277,8 @@ export default function CategoryPage() {
                   left="0"
                   right="0"
                   bottom="0"
-                  bg="rgba(255, 255, 255, 0.1)"
-                  opacity="0.2"
+                  bg="rgba(0, 0, 0, 0.25)"
+                  opacity="0.7"
                 />
                 <VStack spacing="6" position="relative" zIndex="1">
                   <Heading 
@@ -298,15 +298,15 @@ export default function CategoryPage() {
                   </Text>
                   <Button
                     size="lg"
-                    bg="white"
-                    color="cyan.600"
+                    bg="cyan.300"
+                    color="blue.900"
                     fontSize={{ base: 'md', md: 'lg' }}
                     px="10"
                     py="7"
                     borderRadius="md"
                     fontWeight="bold"
                     _hover={{ 
-                      bg: 'gray.50', 
+                      bg: 'cyan.400', 
                       transform: 'translateY(-2px)', 
                       boxShadow: '2xl' 
                     }}
