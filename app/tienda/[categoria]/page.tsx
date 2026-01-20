@@ -93,8 +93,9 @@ export default function CategoryPage() {
               overflow="hidden"
               h={{ base: '220px', md: '320px' }}
               mb="8"
-              bg="blue.900"
+              bg={isCocinasLanding ? 'transparent' : 'blue.900'}
             >
+              {/* Imagen de fondo: para Cocinas usamos directamente el Splashback */}
               {(
                 isCocinasLanding
                   ? 'https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg'
@@ -111,39 +112,38 @@ export default function CategoryPage() {
                   w="100%"
                   h="100%"
                   objectFit="cover"
-                  opacity="0.3"
+                  opacity={isCocinasLanding ? 1 : 0.3}
                 />
               )}
-              <Box
-                position="absolute"
-                top="0"
-                left="0"
-                right="0"
-                bottom="0"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                color="white"
-                textAlign="center"
-                px="4"
-              >
-                <VStack spacing="3">
-                  <Heading size="2xl">
-                    {category.name}
-                    {tipo === 'mamparas' && ' - Mamparas'}
-                    {tipo === 'espejos' && ' - Espejos'}
-                    {tipo === 'espejos-led' && ' - Espejos LED'}
-                  </Heading>
-                  {category.description && !isCocinasLanding && (
-                    <Text fontSize="lg">{category.description}</Text>
-                  )}
-                  {isCocinasLanding && (
-                    <Text fontSize={{ base: 'md', md: 'lg' }}>
-                      Personaliza tu cocina con Splashback de vidrio templado. Diseños únicos, fáciles de limpiar y resistentes.
-                    </Text>
-                  )}
-                </VStack>
-              </Box>
+
+              {/* Overlay con título sólo para categorías distintas de Cocinas */}
+              {!isCocinasLanding && (
+                <Box
+                  position="absolute"
+                  top="0"
+                  left="0"
+                  right="0"
+                  bottom="0"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  color="white"
+                  textAlign="center"
+                  px="4"
+                >
+                  <VStack spacing="3">
+                    <Heading size="2xl">
+                      {category.name}
+                      {tipo === 'mamparas' && ' - Mamparas'}
+                      {tipo === 'espejos' && ' - Espejos'}
+                      {tipo === 'espejos-led' && ' - Espejos LED'}
+                    </Heading>
+                    {category.description && (
+                      <Text fontSize="lg">{category.description}</Text>
+                    )}
+                  </VStack>
+                </Box>
+              )}
             </Box>
           )}
 
