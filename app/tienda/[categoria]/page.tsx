@@ -95,10 +95,18 @@ export default function CategoryPage() {
               mb="8"
               bg="blue.900"
             >
-              {category.image && (
+              {(
+                isCocinasLanding
+                  ? 'https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg'
+                  : category.image
+              ) && (
                 <Box
                   as="img"
-                  src={category.image}
+                  src={
+                    isCocinasLanding
+                      ? 'https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg'
+                      : category.image
+                  }
                   alt={category.name}
                   w="100%"
                   h="100%"
