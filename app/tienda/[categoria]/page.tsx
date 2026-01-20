@@ -203,8 +203,8 @@ export default function CategoryPage() {
                 >
                   <Box
                     as="img"
-                    src="https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg"
-                    alt="Splashback de cocina personalizado"
+                    src="/Brown Macro Coffee Brand Guidelines Presentation.png"
+                    alt="Proyecto de cocina Artecristal"
                     w="100%"
                     h="100%"
                     objectFit="cover"
