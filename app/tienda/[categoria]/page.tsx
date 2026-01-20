@@ -94,26 +94,30 @@ export default function CategoryPage() {
               overflow="hidden"
               h={{ base: '220px', md: '320px' }}
               mb="8"
-              bg={isCocinasLanding ? 'transparent' : 'blue.900'}
+              bg={isCocinasLanding || isPergolasLanding ? 'transparent' : 'blue.900'}
             >
               {/* Imagen de fondo: para Cocinas usamos directamente el Splashback */}
               {(
                 isCocinasLanding
                   ? 'https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg'
-                  : category.image
+                  : isPergolasLanding
+                    ? 'https://dellorto.cl/wp-content/uploads/2025/08/ENVIAR_ERICK-02-1024x385.jpg'
+                    : category.image
               ) && (
                 <Box
                   as="img"
                   src={
                     isCocinasLanding
                       ? 'https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg'
-                      : category.image
+                      : isPergolasLanding
+                        ? 'https://dellorto.cl/wp-content/uploads/2025/08/ENVIAR_ERICK-02-1024x385.jpg'
+                        : category.image
                   }
                   alt={category.name}
                   w="100%"
                   h="100%"
                   objectFit="cover"
-                  opacity={isCocinasLanding ? 1 : 0.3}
+                  opacity={isCocinasLanding || isPergolasLanding ? 1 : 0.3}
                 />
               )}
 
