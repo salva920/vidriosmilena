@@ -349,9 +349,18 @@ export const products: Product[] = [
     price: 0, // Precio a cotizar
     sku: 'SPLASH-001',
     images: [
-      '/img/ventana pvc.jpg'
+      'https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg',
+      'https://dellorto.cl/wp-content/uploads/2023/05/LCD-1.jpg',
+      'https://dellorto.cl/wp-content/uploads/2023/03/Molymet.png',
+      'https://dellorto.cl/wp-content/uploads/2024/11/Energia-Andina-11.png',
+      'https://dellorto.cl/wp-content/uploads/2024/11/San-Alberto-de-Sicilia-1-1.jpg'
     ],
-    description: 'Splashback de vidrio para cocinas.',
+    description: 'Personaliza tu cocina con Splashback de vidrio templado. Diseños únicos, fáciles de limpiar y resistentes. Cotiza tus Splashback con Dellorto',
+    specifications: [
+      { label: 'Material', value: 'Vidrio templado' },
+      { label: 'Aplicación', value: 'Cocinas' },
+      { label: 'Características', value: 'Diseños personalizados, fácil limpieza, resistencia' }
+    ],
     stock: 'available'
   },
   // Combinar productos de mamparas de Baños
