@@ -2,7 +2,7 @@
 
 import { Box, Container, Heading, Text, VStack, SimpleGrid, HStack, Button, Select, Flex } from '@chakra-ui/react'
 import { useState, useMemo } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useSearchParams } from 'next/navigation'
 import StoreNavbar from '@/components/store/StoreNavbar'
 import ProductCard from '@/components/store/ProductCard'
 import { getProductsByCategory, categories } from '@/data/products'
@@ -11,7 +11,9 @@ import Footer from '@/components/Footer'
 
 export default function CategoryPage() {
   const params = useParams()
+  const searchParams = useSearchParams()
   const categorySlug = params.categoria as string
+  const tipo = searchParams.get('tipo')
   
   const category = categories.find(c => c.slug === categorySlug)
   const allProducts = getProductsByCategory(categorySlug)
@@ -23,6 +25,21 @@ export default function CategoryPage() {
 
   const filteredProducts = useMemo(() => {
     let filtered = [...allProducts]
+
+    // Filtrar por tipo si estamos en la categoría Baños
+    if (categorySlug === 'banos' && tipo) {
+      filtered = filtered.filter(p => {
+        const nameLower = p.name.toLowerCase()
+        if (tipo === 'mamparas') {
+          return nameLower.includes('shower door') || nameLower.includes('mampara') || nameLower.includes('corredera')
+        } else if (tipo === 'espejos') {
+          return nameLower.includes('espejo') && !nameLower.includes('led')
+        } else if (tipo === 'espejos-led') {
+          return nameLower.includes('led') || nameLower.includes('espejo led')
+        }
+        return true
+      })
+    }
 
     // Filtrar por rango de precio
     filtered = filtered.filter(p => {
@@ -47,7 +64,7 @@ export default function CategoryPage() {
     })
 
     return filtered
-  }, [allProducts, filters])
+  }, [allProducts, filters, categorySlug, tipo])
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-CL', {
@@ -101,7 +118,12 @@ export default function CategoryPage() {
                 px="4"
               >
                 <VStack spacing="2">
-                  <Heading size="2xl">{category.name}</Heading>
+                  <Heading size="2xl">
+                    {category.name}
+                    {tipo === 'mamparas' && ' - Mamparas'}
+                    {tipo === 'espejos' && ' - Espejos'}
+                    {tipo === 'espejos-led' && ' - Espejos LED'}
+                  </Heading>
                   {category.description && (
                     <Text fontSize="lg">{category.description}</Text>
                   )}

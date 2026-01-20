@@ -248,9 +248,26 @@ export default function StoreNavbar() {
                       {category.name}
                     </MenuButton>
                     <MenuList>
-                      <MenuItem as={Link} href={`/tienda/${category.slug}`}>
-                        Ver todos los productos
-                      </MenuItem>
+                      {category.slug === 'banos' ? (
+                        <>
+                          <MenuItem as={Link} href="/tienda/banos?tipo=mamparas">
+                            Mamparas
+                          </MenuItem>
+                          <MenuItem as={Link} href="/tienda/banos?tipo=espejos">
+                            Espejos
+                          </MenuItem>
+                          <MenuItem as={Link} href="/tienda/banos?tipo=espejos-led">
+                            Espejos LED
+                          </MenuItem>
+                          <MenuItem as={Link} href={`/tienda/${category.slug}`}>
+                            Ver todos los productos
+                          </MenuItem>
+                        </>
+                      ) : (
+                        <MenuItem as={Link} href={`/tienda/${category.slug}`}>
+                          Ver todos los productos
+                        </MenuItem>
+                      )}
                     </MenuList>
                   </Menu>
                 ))}
@@ -321,16 +338,67 @@ export default function StoreNavbar() {
           <DrawerBody>
             <VStack align="stretch" spacing="4">
               {categories.map((category) => (
-                <ChakraLink
-                  key={category.id}
-                  as={Link}
-                  href={`/tienda/${category.slug}`}
-                  onClick={onMobileClose}
-                  fontWeight="medium"
-                  py="2"
-                >
-                  {category.name}
-                </ChakraLink>
+                <Box key={category.id}>
+                  {category.slug === 'banos' ? (
+                    <VStack align="stretch" spacing="2" pl="4">
+                      <ChakraLink
+                        as={Link}
+                        href={`/tienda/${category.slug}`}
+                        onClick={onMobileClose}
+                        fontWeight="bold"
+                        py="2"
+                      >
+                        {category.name}
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/banos?tipo=mamparas"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Mamparas
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/banos?tipo=espejos"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Espejos
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/banos?tipo=espejos-led"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Espejos LED
+                      </ChakraLink>
+                    </VStack>
+                  ) : (
+                    <ChakraLink
+                      as={Link}
+                      href={`/tienda/${category.slug}`}
+                      onClick={onMobileClose}
+                      fontWeight="medium"
+                      py="2"
+                    >
+                      {category.name}
+                    </ChakraLink>
+                  )}
+                </Box>
               ))}
               <ChakraLink as={Link} href="/tienda/proyectos" onClick={onMobileClose} py="2">
                 Nuestros Proyectos
