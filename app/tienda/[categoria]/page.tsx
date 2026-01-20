@@ -438,6 +438,132 @@ export default function CategoryPage() {
                 </Box>
               </SimpleGrid>
 
+              {/* Pérgolas estándar */}
+              <Box mt="4">
+                <Flex
+                  direction={{ base: 'column', lg: 'row' }}
+                  gap={{ base: '6', lg: '12' }}
+                  align={{ base: 'stretch', lg: 'center' }}
+                >
+                  <Box flex="1">
+                    <Heading
+                      size={{ base: 'lg', md: 'xl' }}
+                      mb="4"
+                      color="gray.900"
+                      fontWeight="bold"
+                    >
+                      Pérgolas estándar
+                    </Heading>
+                    <VStack align="stretch" spacing="3">
+                      <Text fontSize={{ base: 'sm', md: 'md' }} color="gray.700" lineHeight="tall">
+                        Pérgola bioclimática en blanco o grafito, con accionamiento motorizado o manual,
+                        lamas con cámara de aire y opción de luz LED.
+                      </Text>
+                      <Text fontSize={{ base: 'sm', md: 'md' }} color="gray.700" lineHeight="tall">
+                        Disponible en versión autoportante (4 apoyos) o adosada a muro, con altura adaptable
+                        y fácil instalación, ideal para disfrutar tu espacio exterior todo el año con estilo y confort.
+                      </Text>
+                    </VStack>
+                  </Box>
+                  <Box
+                    flex="1"
+                    borderRadius="2xl"
+                    overflow="hidden"
+                    boxShadow="lg"
+                    bg="gray.100"
+                    h={{ base: '260px', md: '320px' }}
+                  >
+                    <Box
+                      as="img"
+                      src="https://dellorto.cl/wp-content/uploads/2025/08/ESTANDAR.png"
+                      alt="Esquema de pérgola bioclimática estándar"
+                      w="100%"
+                      h="100%"
+                      objectFit="cover"
+                    />
+                  </Box>
+                </Flex>
+
+                {/* Galería de imágenes de proyectos */}
+                <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing="6" mt="8">
+                  <Box borderRadius="xl" overflow="hidden" boxShadow="md" bg="gray.100">
+                    <Box
+                      as="img"
+                      src="https://dellorto.cl/wp-content/uploads/2025/08/ENVIAR_ERICK-03-1024x385.jpg"
+                      alt="Pérgola bioclimática en terraza residencial"
+                      w="100%"
+                      h="200px"
+                      objectFit="cover"
+                    />
+                    <Box p="4">
+                      <Text fontSize="sm" fontWeight="semibold" color="gray.800">
+                        Terraza residencial
+                      </Text>
+                      <Text fontSize="xs" color="gray.600">
+                        Pérgola bioclimática integrada a zona de quincho.
+                      </Text>
+                    </Box>
+                  </Box>
+
+                  <Box borderRadius="xl" overflow="hidden" boxShadow="md" bg="gray.100">
+                    <Box
+                      as="img"
+                      src="https://dellorto.cl/wp-content/uploads/2025/08/3x3-1024x919.png"
+                      alt="Pérgola bioclimática 3x3"
+                      w="100%"
+                      h="200px"
+                      objectFit="cover"
+                    />
+                    <Box p="4">
+                      <Text fontSize="sm" fontWeight="semibold" color="gray.800">
+                        Módulo 3x3
+                      </Text>
+                      <Text fontSize="xs" color="gray.600">
+                        Formato compacto ideal para patios pequeños.
+                      </Text>
+                    </Box>
+                  </Box>
+
+                  <Box borderRadius="xl" overflow="hidden" boxShadow="md" bg="gray.100">
+                    <Box
+                      as="img"
+                      src="https://dellorto.cl/wp-content/uploads/2025/08/3x4-1024x919.png"
+                      alt="Pérgola bioclimática 3x4"
+                      w="100%"
+                      h="200px"
+                      objectFit="cover"
+                    />
+                    <Box p="4">
+                      <Text fontSize="sm" fontWeight="semibold" color="gray.800">
+                        Módulo 3x4
+                      </Text>
+                      <Text fontSize="xs" color="gray.600">
+                        Más superficie útil para comedor o estar exterior.
+                      </Text>
+                    </Box>
+                  </Box>
+
+                  <Box borderRadius="xl" overflow="hidden" boxShadow="md" bg="gray.100" display={{ base: 'none', md: 'block' }}>
+                    <Box
+                      as="img"
+                      src="https://dellorto.cl/wp-content/uploads/2025/08/4x4-1024x919.png"
+                      alt="Pérgola bioclimática 4x4"
+                      w="100%"
+                      h="200px"
+                      objectFit="cover"
+                    />
+                    <Box p="4">
+                      <Text fontSize="sm" fontWeight="semibold" color="gray.800">
+                        Módulo 4x4
+                      </Text>
+                      <Text fontSize="xs" color="gray.600">
+                        Máxima amplitud para grandes reuniones y eventos.
+                      </Text>
+                    </Box>
+                  </Box>
+                </SimpleGrid>
+              </Box>
+
               {/* Call to Action final pérgolas */}
               <Box
                 bg="linear-gradient(135deg, #2D3748 0%, #4A5568 40%, #2B6CB0 100%)"
