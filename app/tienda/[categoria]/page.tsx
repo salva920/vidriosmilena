@@ -78,6 +78,7 @@ export default function CategoryPage() {
   const maxPrice = Math.max(...allProducts.map(p => p.originalPrice || p.price))
 
   const isCocinasLanding = categorySlug === 'cocinas'
+  const isPergolasLanding = categorySlug === 'pergolas-bioclimaticas'
 
   return (
     <Box minH="100vh" bg="gray.50">
@@ -147,7 +148,7 @@ export default function CategoryPage() {
             </Box>
           )}
 
-          {/* Landing especial para Cocinas (Splashback) */}
+          {/* Landings especiales por categoría */}
           {isCocinasLanding ? (
             <VStack align="stretch" spacing="16">
               {/* Sección principal con imagen y texto */}
@@ -321,6 +322,183 @@ export default function CategoryPage() {
                 </VStack>
               </Box>
             </VStack>
+          ) : isPergolasLanding ? (
+            <VStack align="stretch" spacing="16">
+              {/* Sección principal pérgolas */}
+              <Flex
+                direction={{ base: 'column', lg: 'row' }}
+                gap={{ base: '6', lg: '12' }}
+                align={{ base: 'stretch', lg: 'center' }}
+              >
+                <Box flex="1" order={{ base: 2, lg: 1 }}>
+                  <Heading
+                    size={{ base: 'xl', md: '2xl' }}
+                    mb="6"
+                    color="gray.900"
+                    fontWeight="bold"
+                  >
+                    ¿Qué son las pérgolas bioclimáticas?
+                  </Heading>
+                  <VStack align="stretch" spacing="4" mb="8">
+                    <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.700" lineHeight="tall">
+                      Son estructuras de aluminio con lamas orientables que regulan el sol, la sombra,
+                      la ventilación y la lluvia. Se instalan rápidamente y pueden personalizarse con
+                      cierres de vidrio, iluminación LED y calefactores.
+                    </Text>
+                    <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.700" lineHeight="tall">
+                      Son ideales para disfrutar tu terraza o quincho todo el año, creando un espacio
+                      cómodo y elegante que protege del clima sin perder luz natural.
+                    </Text>
+                  </VStack>
+                  <Button
+                    size="lg"
+                    colorScheme="cyan"
+                    bg="cyan.500"
+                    color="white"
+                    fontSize={{ base: 'md', md: 'lg' }}
+                    px="8"
+                    py="6"
+                    borderRadius="md"
+                    _hover={{ bg: 'cyan.600', transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                    transition="all 0.2s"
+                    as="a"
+                    href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de pérgola bioclimática')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Cotizar pérgola bioclimática
+                  </Button>
+                </Box>
+                <Box
+                  flex="1"
+                  borderRadius="2xl"
+                  overflow="hidden"
+                  boxShadow="xl"
+                  bg="gray.100"
+                  order={{ base: 1, lg: 2 }}
+                  h={{ base: '300px', md: '400px', lg: '500px' }}
+                >
+                  <Box
+                    as="img"
+                    src="https://dellorto.cl/wp-content/uploads/2025/08/ENVIAR_ERICK-02-1024x385.jpg"
+                    alt="Pérgola bioclimática instalada en terraza"
+                    w="100%"
+                    h="100%"
+                    objectFit="cover"
+                  />
+                </Box>
+              </Flex>
+
+              {/* Características clave de pérgolas */}
+              <SimpleGrid columns={{ base: 1, md: 3 }} spacing="6" mb="8">
+                <Box
+                  bg="white"
+                  p="6"
+                  borderRadius="xl"
+                  boxShadow="md"
+                  textAlign="center"
+                >
+                  <Text fontSize="4xl" mb="3">☀️</Text>
+                  <Heading size="sm" mb="2" color="gray.900">
+                    Control del clima
+                  </Heading>
+                  <Text fontSize="sm" color="gray.600">
+                    Lamas orientables que regulan sol, sombra, ventilación y lluvia.
+                  </Text>
+                </Box>
+                <Box
+                  bg="white"
+                  p="6"
+                  borderRadius="xl"
+                  boxShadow="md"
+                  textAlign="center"
+                >
+                  <Text fontSize="4xl" mb="3">🛠️</Text>
+                  <Heading size="sm" mb="2" color="gray.900">
+                    100% personalizables
+                  </Heading>
+                  <Text fontSize="sm" color="gray.600">
+                    Opciones de cierres, luz LED y calefactores para tu proyecto.
+                  </Text>
+                </Box>
+                <Box
+                  bg="white"
+                  p="6"
+                  borderRadius="xl"
+                  boxShadow="md"
+                  textAlign="center"
+                >
+                  <Text fontSize="4xl" mb="3">🏡</Text>
+                  <Heading size="sm" mb="2" color="gray.900">
+                    Disfruta todo el año
+                  </Heading>
+                  <Text fontSize="sm" color="gray.600">
+                    Crea terrazas cómodas y elegantes para uso residencial o comercial.
+                  </Text>
+                </Box>
+              </SimpleGrid>
+
+              {/* Call to Action final pérgolas */}
+              <Box
+                bg="linear-gradient(135deg, #2D3748 0%, #4A5568 40%, #2B6CB0 100%)"
+                borderRadius="2xl"
+                p={{ base: '8', md: '12' }}
+                textAlign="center"
+                boxShadow="2xl"
+                position="relative"
+                overflow="hidden"
+              >
+                <Box
+                  position="absolute"
+                  top="0"
+                  left="0"
+                  right="0"
+                  bottom="0"
+                  bg="rgba(0, 0, 0, 0.35)"
+                  opacity="0.8"
+                />
+                <VStack spacing="6" position="relative" zIndex="1">
+                  <Heading
+                    size={{ base: 'xl', md: '2xl' }}
+                    color="white"
+                    fontWeight="bold"
+                  >
+                    ¿Listo para tu pérgola bioclimática?
+                  </Heading>
+                  <Text
+                    fontSize={{ base: 'md', md: 'lg' }}
+                    color="white"
+                    maxW="700px"
+                    opacity="0.95"
+                  >
+                    Cuéntanos tu idea y te ayudamos a definir medidas, configuración de lamas,
+                    colores y complementos para tu terraza o quincho.
+                  </Text>
+                  <Button
+                    size="lg"
+                    bg="cyan.300"
+                    color="blue.900"
+                    fontSize={{ base: 'md', md: 'lg' }}
+                    px="10"
+                    py="7"
+                    borderRadius="md"
+                    fontWeight="bold"
+                    _hover={{
+                      bg: 'cyan.400',
+                      transform: 'translateY(-2px)',
+                      boxShadow: '2xl'
+                    }}
+                    transition="all 0.2s"
+                    as="a"
+                    href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de pérgola bioclimática')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Cotizar pérgola ahora
+                  </Button>
+                </VStack>
+              </Box>
+            </VStack>
           ) : (
             <Flex gap="6" direction={{ base: 'column', lg: 'row' }}>
               {/* Sidebar de filtros */}
@@ -347,17 +525,17 @@ export default function CategoryPage() {
                     <VStack spacing="2">
                       <HStack w="100%" justify="space-between">
                         <Text fontSize="xs">{formatPrice(filters.priceRange[0])}</Text>
-                        <Text fontSize="xs">{formatPrice(filters.priceRange[1])}</Text>
+                      <Text fontSize="xs">{formatPrice(filters.priceRange[1])}</Text>
                       </HStack>
                       <input
                         type="range"
                         min={minPrice}
                         max={maxPrice}
                         value={filters.priceRange[1]}
-                        onChange={(e) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setFilters({
                             ...filters,
-                            priceRange: [filters.priceRange[0], parseInt(e.target.value)],
+                            priceRange: [filters.priceRange[0], parseInt(e.target.value, 10)],
                           })
                         }
                         style={{ width: '100%' }}
