@@ -62,8 +62,8 @@ export default function TerrazasLanding() {
         >
           <Box
             as="img"
-            src="https://dellorto.cl/wp-content/uploads/2025/03/CIERRES_DE_TERRAZA.jpg"
-            alt="Cierre de terraza en vidrio Openglass"
+            src="https://dellorto.cl/wp-content/uploads/2025/08/ENVIAR_ERICK-03-1024x385.jpg"
+            alt="Proyecto de cierre de terraza con vidrio Openglass"
             w="100%"
             h="100%"
             objectFit="cover"
