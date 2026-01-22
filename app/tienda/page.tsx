@@ -3,8 +3,7 @@
 import { Box, Container, Heading, Text, VStack, SimpleGrid, Button, Image, HStack, Badge, Flex, Icon, List, ListItem, ListIcon, Link as ChakraLink } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { FiCheckCircle, FiPhone, FiMail } from 'react-icons/fi'
-import { FaWhatsapp } from 'react-icons/fa'
+import { FiCheckCircle } from 'react-icons/fi'
 import StoreNavbar from '@/components/store/StoreNavbar'
 import ProductCard from '@/components/store/ProductCard'
 import { products, categories, searchProducts } from '@/data/products'
@@ -83,7 +82,7 @@ export default function TiendaPage() {
                   bgGradient="linear(to-b, rgba(0,0,0,0.3), rgba(0,0,0,0.6))"
                 >
                   <Heading size={{ base: 'xl', md: '2xl' }} mb="4" fontWeight="bold">
-                    Bienvenido a VIDRIOS DELLORTO
+                    Bienvenido a ARTECRISTAL
                   </Heading>
                   <Text fontSize={{ base: 'lg', md: 'xl' }} mb="6" maxW="2xl">
                     Soluciones en vidrios, aluminio y acero inoxidable
@@ -127,44 +126,56 @@ export default function TiendaPage() {
                   Categorías
                 </Heading>
                 <SimpleGrid columns={{ base: 2, md: 3, lg: 6 }} spacing="4">
-                  {categories.map((category) => (
-                    <Box
-                      key={category.id}
-                      as="a"
-                      href={`/tienda/${category.slug}`}
-                      position="relative"
-                      borderRadius="lg"
-                      overflow="hidden"
-                      h="150px"
-                      bg="gray.200"
-                      _hover={{ transform: 'translateY(-4px)', boxShadow: 'xl' }}
-                      transition="all 0.3s"
-                    >
-                      {category.image && (
+                  {categories.map((category) => {
+                    // Mapear imágenes de Dellorto para cada categoría
+                    const categoryImages: Record<string, string> = {
+                      'banos': 'https://dellorto.cl/wp-content/uploads/2023/04/garda-tensor-negro-1.png',
+                      'cocinas': 'https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg',
+                      'pergolas-bioclimaticas': 'https://dellorto.cl/wp-content/uploads/2025/08/ENVIAR_ERICK-02-1024x385.jpg',
+                      'terrazas-quinchos': 'https://dellorto.cl/wp-content/uploads/2025/03/CIERRES_DE_TERRAZA.jpg',
+                      'habitaciones-oficinas': 'https://dellorto.cl/wp-content/uploads/2023/04/Portada-soluciones-9.png',
+                      'fachadas': 'https://dellorto.cl/wp-content/uploads/2023/04/Portada-soluciones.png'
+                    }
+                    
+                    const imageUrl = categoryImages[category.slug] || category.image
+                    
+                    return (
+                      <Box
+                        key={category.id}
+                        as="a"
+                        href={`/tienda/${category.slug}`}
+                        position="relative"
+                        borderRadius="lg"
+                        overflow="hidden"
+                        h="150px"
+                        bg="gray.200"
+                        _hover={{ transform: 'translateY(-4px)', boxShadow: 'xl' }}
+                        transition="all 0.3s"
+                      >
                         <Image
-                          src={category.image}
+                          src={imageUrl}
                           alt={category.name}
                           w="100%"
                           h="100%"
                           objectFit="cover"
                           opacity="0.8"
                         />
-                      )}
-                      <Box
-                        position="absolute"
-                        bottom="0"
-                        left="0"
-                        right="0"
-                        bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
-                        p="3"
-                        color="white"
-                      >
-                        <Text fontWeight="bold" fontSize="sm">
-                          {category.name}
-                        </Text>
+                        <Box
+                          position="absolute"
+                          bottom="0"
+                          left="0"
+                          right="0"
+                          bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
+                          p="3"
+                          color="white"
+                        >
+                          <Text fontWeight="bold" fontSize="sm">
+                            {category.name}
+                          </Text>
+                        </Box>
                       </Box>
-                    </Box>
-                  ))}
+                    )
+                  })}
                 </SimpleGrid>
               </Box>
 
@@ -195,7 +206,7 @@ export default function TiendaPage() {
               <Box>
                 <HStack justify="space-between" mb="6">
                   <Heading size="lg" color="gray.900">
-                    TUS PRÓXIMOS FAVORITOS
+                    PRODUCTOS DESTACADOS
                   </Heading>
                 </HStack>
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing="6">
@@ -246,64 +257,6 @@ export default function TiendaPage() {
                 </VStack>
               </Box>
 
-              {/* Sección: Contacto Directo */}
-              <Box
-                bg="white"
-                borderRadius="xl"
-                p={{ base: '8', md: '12' }}
-                boxShadow="lg"
-                mt="8"
-              >
-                <VStack spacing="6" align="stretch">
-                  <Heading size={{ base: 'xl', md: '2xl' }} textAlign="center" color="gray.900" fontWeight="bold">
-                    CONTACTO DIRECTO
-                  </Heading>
-                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6" mt="4">
-                    <Box
-                      as={ChakraLink}
-                      href="https://wa.link/9fj5se"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      p="6"
-                      bg="green.50"
-                      borderRadius="lg"
-                      border="2px solid"
-                      borderColor="green.200"
-                      _hover={{ bg: 'green.100', borderColor: 'green.400', transform: 'translateY(-2px)' }}
-                      transition="all 0.3s"
-                      textAlign="center"
-                    >
-                      <Icon as={FaWhatsapp} boxSize="8" mb="3" color="green.500" />
-                      <Heading size="md" mb="2" color="gray.900">
-                        WhatsApp
-                      </Heading>
-                      <Text fontSize="lg" fontWeight="semibold" color="green.600">
-                        +56 9 5212 8807
-                      </Text>
-                    </Box>
-                    <Box
-                      as={ChakraLink}
-                      href="mailto:info@dellorto.cl"
-                      p="6"
-                      bg="blue.50"
-                      borderRadius="lg"
-                      border="2px solid"
-                      borderColor="blue.200"
-                      _hover={{ bg: 'blue.100', borderColor: 'blue.400', transform: 'translateY(-2px)' }}
-                      transition="all 0.3s"
-                      textAlign="center"
-                    >
-                      <Icon as={FiMail} boxSize="8" mb="3" color="blue.500" />
-                      <Heading size="md" mb="2" color="gray.900">
-                        Email
-                      </Heading>
-                      <Text fontSize="lg" fontWeight="semibold" color="blue.600">
-                        info@dellorto.cl
-                      </Text>
-                    </Box>
-                  </SimpleGrid>
-                </VStack>
-              </Box>
 
               {/* Promociones */}
               <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="6">
