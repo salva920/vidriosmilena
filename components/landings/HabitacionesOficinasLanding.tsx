@@ -1,7 +1,10 @@
 'use client'
 
 import { Box, Heading, Text, VStack, SimpleGrid, Button, Flex } from '@chakra-ui/react'
-import { useState } from 'react'
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
+import Link from 'next/link'
 import CubiertasLanding from './CubiertasLanding'
 import EspejosLanding from './EspejosLanding'
 import PisosEscalerasLanding from './PisosEscalerasLanding'
@@ -12,15 +15,124 @@ import TabiqueriasLanding from './TabiqueriasLanding'
 type Subcategory = 'cubiertas' | 'espejos' | 'pisos-escaleras' | 'pizzarras' | 'puertas-ventanas' | 'tabiquerias' | null
 
 export default function HabitacionesOficinasLanding() {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const subcategoriaParam = searchParams.get('subcategoria')
   const [selectedSubcategory, setSelectedSubcategory] = useState<Subcategory>(null)
 
-  // Si hay una subcategoría seleccionada, mostrar su landing
-  if (selectedSubcategory === 'cubiertas') return <CubiertasLanding />
-  if (selectedSubcategory === 'espejos') return <EspejosLanding />
-  if (selectedSubcategory === 'pisos-escaleras') return <PisosEscalerasLanding />
-  if (selectedSubcategory === 'pizzarras') return <PizzarrasLanding />
-  if (selectedSubcategory === 'puertas-ventanas') return <PuertasVentanasLanding />
-  if (selectedSubcategory === 'tabiquerias') return <TabiqueriasLanding />
+  // Leer query param al cargar el componente
+  useEffect(() => {
+    if (subcategoriaParam) {
+      const validSubcategories: Subcategory[] = ['cubiertas', 'espejos', 'pisos-escaleras', 'pizzarras', 'puertas-ventanas', 'tabiquerias']
+      if (validSubcategories.includes(subcategoriaParam as Subcategory)) {
+        setSelectedSubcategory(subcategoriaParam as Subcategory)
+      }
+    }
+  }, [subcategoriaParam])
+
+  // Función para volver a la vista principal
+  const handleBack = () => {
+    router.push('/tienda/habitaciones-oficinas')
+    setSelectedSubcategory(null)
+  }
+
+  // Si hay una subcategoría seleccionada, mostrar su landing con botón volver
+  if (selectedSubcategory === 'cubiertas') {
+    return (
+      <VStack align="stretch" spacing="4">
+        <Button
+          onClick={handleBack}
+          variant="ghost"
+          size="sm"
+          alignSelf="flex-start"
+          colorScheme="blue"
+        >
+          ← Volver a Habitaciones & Oficinas
+        </Button>
+        <CubiertasLanding />
+      </VStack>
+    )
+  }
+  if (selectedSubcategory === 'espejos') {
+    return (
+      <VStack align="stretch" spacing="4">
+        <Button
+          onClick={handleBack}
+          variant="ghost"
+          size="sm"
+          alignSelf="flex-start"
+          colorScheme="blue"
+        >
+          ← Volver a Habitaciones & Oficinas
+        </Button>
+        <EspejosLanding />
+      </VStack>
+    )
+  }
+  if (selectedSubcategory === 'pisos-escaleras') {
+    return (
+      <VStack align="stretch" spacing="4">
+        <Button
+          onClick={handleBack}
+          variant="ghost"
+          size="sm"
+          alignSelf="flex-start"
+          colorScheme="blue"
+        >
+          ← Volver a Habitaciones & Oficinas
+        </Button>
+        <PisosEscalerasLanding />
+      </VStack>
+    )
+  }
+  if (selectedSubcategory === 'pizzarras') {
+    return (
+      <VStack align="stretch" spacing="4">
+        <Button
+          onClick={handleBack}
+          variant="ghost"
+          size="sm"
+          alignSelf="flex-start"
+          colorScheme="blue"
+        >
+          ← Volver a Habitaciones & Oficinas
+        </Button>
+        <PizzarrasLanding />
+      </VStack>
+    )
+  }
+  if (selectedSubcategory === 'puertas-ventanas') {
+    return (
+      <VStack align="stretch" spacing="4">
+        <Button
+          onClick={handleBack}
+          variant="ghost"
+          size="sm"
+          alignSelf="flex-start"
+          colorScheme="blue"
+        >
+          ← Volver a Habitaciones & Oficinas
+        </Button>
+        <PuertasVentanasLanding />
+      </VStack>
+    )
+  }
+  if (selectedSubcategory === 'tabiquerias') {
+    return (
+      <VStack align="stretch" spacing="4">
+        <Button
+          onClick={handleBack}
+          variant="ghost"
+          size="sm"
+          alignSelf="flex-start"
+          colorScheme="blue"
+        >
+          ← Volver a Habitaciones & Oficinas
+        </Button>
+        <TabiqueriasLanding />
+      </VStack>
+    )
+  }
 
   // Vista principal con todas las subcategorías
   return (
@@ -64,13 +176,14 @@ export default function HabitacionesOficinasLanding() {
             Cubiertas de vidrio templado para mesas, escritorios y superficies de trabajo
           </Text>
           <Button
+            as={Link}
+            href="/tienda/habitaciones-oficinas?subcategoria=cubiertas"
             size="sm"
             colorScheme="blue"
             borderRadius="full"
             w="100%"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.stopPropagation()
-              setSelectedSubcategory('cubiertas')
             }}
           >
             Ver más
@@ -105,13 +218,14 @@ export default function HabitacionesOficinasLanding() {
             Espejos con luz LED, antiempañantes y diseños personalizados
           </Text>
           <Button
+            as={Link}
+            href="/tienda/habitaciones-oficinas?subcategoria=espejos"
             size="sm"
             colorScheme="blue"
             borderRadius="full"
             w="100%"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.stopPropagation()
-              setSelectedSubcategory('espejos')
             }}
           >
             Ver más
@@ -146,13 +260,14 @@ export default function HabitacionesOficinasLanding() {
             Pisos y escaleras de vidrio para espacios modernos y luminosos
           </Text>
           <Button
+            as={Link}
+            href="/tienda/habitaciones-oficinas?subcategoria=pisos-escaleras"
             size="sm"
             colorScheme="blue"
             borderRadius="full"
             w="100%"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.stopPropagation()
-              setSelectedSubcategory('pisos-escaleras')
             }}
           >
             Ver más
@@ -187,13 +302,14 @@ export default function HabitacionesOficinasLanding() {
             Pizarras de vidrio templado para oficinas y espacios educativos
           </Text>
           <Button
+            as={Link}
+            href="/tienda/habitaciones-oficinas?subcategoria=pizzarras"
             size="sm"
             colorScheme="blue"
             borderRadius="full"
             w="100%"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.stopPropagation()
-              setSelectedSubcategory('pizzarras')
             }}
           >
             Ver más
@@ -228,13 +344,14 @@ export default function HabitacionesOficinasLanding() {
             Puertas y ventanas eficientes con perfiles PVC o aluminio
           </Text>
           <Button
+            as={Link}
+            href="/tienda/habitaciones-oficinas?subcategoria=puertas-ventanas"
             size="sm"
             colorScheme="blue"
             borderRadius="full"
             w="100%"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.stopPropagation()
-              setSelectedSubcategory('puertas-ventanas')
             }}
           >
             Ver más
@@ -269,13 +386,14 @@ export default function HabitacionesOficinasLanding() {
             Divisiones de cristal con impresión digital personalizable
           </Text>
           <Button
+            as={Link}
+            href="/tienda/habitaciones-oficinas?subcategoria=tabiquerias"
             size="sm"
             colorScheme="blue"
             borderRadius="full"
             w="100%"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.stopPropagation()
-              setSelectedSubcategory('tabiquerias')
             }}
           >
             Ver más

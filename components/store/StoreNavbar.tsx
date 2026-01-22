@@ -265,22 +265,22 @@ export default function StoreNavbar() {
                         </>
                       ) : category.slug === 'habitaciones-oficinas' ? (
                         <>
-                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas?subcategoria=cubiertas">
                             Cubiertas
                           </MenuItem>
-                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas?subcategoria=espejos">
                             Espejos
                           </MenuItem>
-                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas?subcategoria=pisos-escaleras">
                             Pisos y Escaleras
                           </MenuItem>
-                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas?subcategoria=pizzarras">
                             Pizzarras
                           </MenuItem>
-                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas?subcategoria=puertas-ventanas">
                             Puertas y Ventanas
                           </MenuItem>
-                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas?subcategoria=tabiquerias">
                             Tabiquerías
                           </MenuItem>
                           <MenuItem as={Link} href={`/tienda/${category.slug}`}>
@@ -424,7 +424,7 @@ export default function StoreNavbar() {
                       </ChakraLink>
                       <ChakraLink
                         as={Link}
-                        href="/tienda/habitaciones-oficinas"
+                        href="/tienda/habitaciones-oficinas?subcategoria=cubiertas"
                         onClick={onMobileClose}
                         fontWeight="medium"
                         py="1"
@@ -436,7 +436,7 @@ export default function StoreNavbar() {
                       </ChakraLink>
                       <ChakraLink
                         as={Link}
-                        href="/tienda/habitaciones-oficinas"
+                        href="/tienda/habitaciones-oficinas?subcategoria=espejos"
                         onClick={onMobileClose}
                         fontWeight="medium"
                         py="1"
@@ -448,7 +448,7 @@ export default function StoreNavbar() {
                       </ChakraLink>
                       <ChakraLink
                         as={Link}
-                        href="/tienda/habitaciones-oficinas"
+                        href="/tienda/habitaciones-oficinas?subcategoria=pisos-escaleras"
                         onClick={onMobileClose}
                         fontWeight="medium"
                         py="1"
@@ -460,7 +460,7 @@ export default function StoreNavbar() {
                       </ChakraLink>
                       <ChakraLink
                         as={Link}
-                        href="/tienda/habitaciones-oficinas"
+                        href="/tienda/habitaciones-oficinas?subcategoria=pizzarras"
                         onClick={onMobileClose}
                         fontWeight="medium"
                         py="1"
@@ -472,7 +472,7 @@ export default function StoreNavbar() {
                       </ChakraLink>
                       <ChakraLink
                         as={Link}
-                        href="/tienda/habitaciones-oficinas"
+                        href="/tienda/habitaciones-oficinas?subcategoria=puertas-ventanas"
                         onClick={onMobileClose}
                         fontWeight="medium"
                         py="1"
@@ -484,7 +484,7 @@ export default function StoreNavbar() {
                       </ChakraLink>
                       <ChakraLink
                         as={Link}
-                        href="/tienda/habitaciones-oficinas"
+                        href="/tienda/habitaciones-oficinas?subcategoria=tabiquerias"
                         onClick={onMobileClose}
                         fontWeight="medium"
                         py="1"
