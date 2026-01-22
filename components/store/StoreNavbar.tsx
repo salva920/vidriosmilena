@@ -287,6 +287,18 @@ export default function StoreNavbar() {
                             Ver todas las categorías
                           </MenuItem>
                         </>
+                      ) : category.slug === 'fachadas' ? (
+                        <>
+                          <MenuItem as={Link} href="/tienda/fachadas?subcategoria=antibalas">
+                            Vidrios Antibalas
+                          </MenuItem>
+                          <MenuItem as={Link} href="/tienda/fachadas?subcategoria=frentes-templados">
+                            Frentes Templados
+                          </MenuItem>
+                          <MenuItem as={Link} href={`/tienda/${category.slug}`}>
+                            Ver todas las categorías
+                          </MenuItem>
+                        </>
                       ) : (
                         <MenuItem as={Link} href={`/tienda/${category.slug}`}>
                           Ver todos los productos
@@ -493,6 +505,42 @@ export default function StoreNavbar() {
                         color="gray.600"
                       >
                         • Tabiquerías
+                      </ChakraLink>
+                    </VStack>
+                  ) : category.slug === 'fachadas' ? (
+                    <VStack align="stretch" spacing="2" pl="4">
+                      <ChakraLink
+                        as={Link}
+                        href={`/tienda/${category.slug}`}
+                        onClick={onMobileClose}
+                        fontWeight="bold"
+                        py="2"
+                      >
+                        {category.name}
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/fachadas?subcategoria=antibalas"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Vidrios Antibalas
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/fachadas?subcategoria=frentes-templados"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Frentes Templados
                       </ChakraLink>
                     </VStack>
                   ) : (

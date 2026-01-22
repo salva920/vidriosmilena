@@ -11,6 +11,7 @@ import CocinasLanding from '@/components/landings/CocinasLanding'
 import PergolasLanding from '@/components/landings/PergolasLanding'
 import TerrazasLanding from '@/components/landings/TerrazasLanding'
 import HabitacionesOficinasLanding from '@/components/landings/HabitacionesOficinasLanding'
+import FachadasLanding from '@/components/landings/FachadasLanding'
 import { getProductsByCategory, categories } from '@/data/products'
 import { FilterOptions } from '@/types/product'
 import Footer from '@/components/Footer'
@@ -87,7 +88,8 @@ export default function CategoryPage() {
   const isPergolasLanding = categorySlug === 'pergolas-bioclimaticas'
   const isTerrazasLanding = categorySlug === 'terrazas-quinchos'
   const isHabitacionesLanding = categorySlug === 'habitaciones-oficinas'
-  const isLandingPage = isCocinasLanding || isPergolasLanding || isTerrazasLanding || isHabitacionesLanding
+  const isFachadasLanding = categorySlug === 'fachadas'
+  const isLandingPage = isCocinasLanding || isPergolasLanding || isTerrazasLanding || isHabitacionesLanding || isFachadasLanding
 
   // Determinar imagen del banner según la categoría
   const getBannerImage = () => {
@@ -95,6 +97,7 @@ export default function CategoryPage() {
     if (isPergolasLanding) return 'https://dellorto.cl/wp-content/uploads/2025/08/ENVIAR_ERICK-02-1024x385.jpg'
     if (isTerrazasLanding) return 'https://dellorto.cl/wp-content/uploads/2025/03/CIERRES_DE_TERRAZA.jpg'
     if (isHabitacionesLanding) return 'https://dellorto.cl/wp-content/uploads/2023/04/Portada-soluciones-9.png'
+    if (isFachadasLanding) return 'https://dellorto.cl/wp-content/uploads/2023/04/Portada-soluciones.png'
     return category?.image
   }
 
@@ -125,6 +128,8 @@ export default function CategoryPage() {
             <TerrazasLanding />
           ) : isHabitacionesLanding ? (
             <HabitacionesOficinasLanding />
+          ) : isFachadasLanding ? (
+            <FachadasLanding />
           ) : (
             <Flex gap="6" direction={{ base: 'column', lg: 'row' }}>
               {/* Sidebar de filtros */}
