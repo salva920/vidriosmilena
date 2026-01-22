@@ -100,16 +100,11 @@ export default function TiendaPage() {
 
               {/* Banner B2B Promocional */}
               <Box
-                as="a"
-                href="/expertos"
                 position="relative"
                 borderRadius="xl"
                 overflow="hidden"
                 h={{ base: '120px', md: '150px' }}
                 bg="gray.200"
-                _hover={{ transform: 'translateY(-4px)', boxShadow: 'xl' }}
-                transition="all 0.3s"
-                cursor="pointer"
               >
                 <Image
                   src="https://dellorto.cl/wp-content/uploads/2025/07/B2b_Promo-1-scaled.png"
