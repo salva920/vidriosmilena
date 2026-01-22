@@ -1,8 +1,10 @@
 'use client'
 
-import { Box, Container, Heading, Text, VStack, SimpleGrid, Button, Image, HStack, Badge } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, SimpleGrid, Button, Image, HStack, Badge, Flex, Icon, List, ListItem, ListIcon, Link as ChakraLink } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { FiCheckCircle, FiPhone, FiMail } from 'react-icons/fi'
+import { FaWhatsapp } from 'react-icons/fa'
 import StoreNavbar from '@/components/store/StoreNavbar'
 import ProductCard from '@/components/store/ProductCard'
 import { products, categories, searchProducts } from '@/data/products'
@@ -54,16 +56,16 @@ export default function TiendaPage() {
                 position="relative"
                 borderRadius="xl"
                 overflow="hidden"
-                h={{ base: '300px', md: '400px' }}
+                h={{ base: '400px', md: '500px' }}
                 bg="blue.900"
               >
                 <Image
-                  src="/img/shower2.jpg"
-                  alt="Banner"
+                  src="https://dellorto.cl/wp-content/uploads/2025/06/Foto_Albert.jpg"
+                  alt="Banner Principal"
                   w="100%"
                   h="100%"
                   objectFit="cover"
-                  opacity="0.3"
+                  opacity="0.4"
                 />
                 <Box
                   position="absolute"
@@ -78,21 +80,49 @@ export default function TiendaPage() {
                   color="white"
                   textAlign="center"
                   px="4"
+                  bgGradient="linear(to-b, rgba(0,0,0,0.3), rgba(0,0,0,0.6))"
                 >
-                  <Heading size="2xl" mb="4">
-                    Bienvenido a ARTECRISTAL
+                  <Heading size={{ base: 'xl', md: '2xl' }} mb="4" fontWeight="bold">
+                    Bienvenido a VIDRIOS DELLORTO
                   </Heading>
-                  <Text fontSize="xl" mb="6">
+                  <Text fontSize={{ base: 'lg', md: 'xl' }} mb="6" maxW="2xl">
                     Soluciones en vidrios, aluminio y acero inoxidable
                   </Text>
-                  <Button size="lg" colorScheme="cyan" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                  <Button 
+                    size="lg" 
+                    colorScheme="cyan" 
+                    onClick={() => window.scrollTo({ top: document.getElementById('categorias')?.offsetTop || 0, behavior: 'smooth' })}
+                    _hover={{ transform: 'translateY(-2px)', boxShadow: 'xl' }}
+                  >
                     Explorar Productos
                   </Button>
                 </Box>
               </Box>
 
+              {/* Banner B2B Promocional */}
+              <Box
+                as="a"
+                href="/expertos"
+                position="relative"
+                borderRadius="xl"
+                overflow="hidden"
+                h={{ base: '120px', md: '150px' }}
+                bg="gray.200"
+                _hover={{ transform: 'translateY(-4px)', boxShadow: 'xl' }}
+                transition="all 0.3s"
+                cursor="pointer"
+              >
+                <Image
+                  src="https://dellorto.cl/wp-content/uploads/2025/07/B2b_Promo-1-scaled.png"
+                  alt="B2B Promocional"
+                  w="100%"
+                  h="100%"
+                  objectFit="cover"
+                />
+              </Box>
+
               {/* Categorías destacadas */}
-              <Box>
+              <Box id="categorias">
                 <Heading size="lg" mb="6" color="gray.900">
                   Categorías
                 </Heading>
@@ -138,6 +168,29 @@ export default function TiendaPage() {
                 </SimpleGrid>
               </Box>
 
+              {/* Sección: Nuestra Línea de Mamparas */}
+              {products.filter(p => {
+                const nameLower = p.name.toLowerCase()
+                return nameLower.includes('mampara') || nameLower.includes('shower door')
+              }).length > 0 && (
+                <Box>
+                  <Heading size="lg" mb="6" color="gray.900" textAlign="center">
+                    NUESTRA LÍNEA DE MAMPARAS
+                  </Heading>
+                  <SimpleGrid columns={{ base: 2, sm: 3, md: 4, lg: 5 }} spacing="4">
+                    {products
+                      .filter(p => {
+                        const nameLower = p.name.toLowerCase()
+                        return nameLower.includes('mampara') || nameLower.includes('shower door')
+                      })
+                      .slice(0, 5)
+                      .map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                      ))}
+                  </SimpleGrid>
+                </Box>
+              )}
+
               {/* Productos destacados */}
               <Box>
                 <HStack justify="space-between" mb="6">
@@ -150,6 +203,106 @@ export default function TiendaPage() {
                     <ProductCard key={product.id} product={product} />
                   ))}
                 </SimpleGrid>
+              </Box>
+
+              {/* Sección: Expertos en Cristal y Arquitectura */}
+              <Box
+                bgGradient="linear(to-r, blue.900, blue.800)"
+                color="white"
+                borderRadius="xl"
+                p={{ base: '8', md: '12' }}
+                mt="8"
+              >
+                <VStack spacing="6" align="stretch">
+                  <Heading size={{ base: 'xl', md: '2xl' }} textAlign="center" fontWeight="bold">
+                    Expertos en Cristal y Arquitectura
+                  </Heading>
+                  <Text fontSize={{ base: 'md', md: 'lg' }} textAlign="center" maxW="3xl" mx="auto" opacity="0.95">
+                    Más de 145 años respaldan la calidad de nuestros proyectos B2B. Solicitud de cotización exclusiva para empresas
+                  </Text>
+                  <SimpleGrid columns={{ base: 1, md: 3 }} spacing="6" mt="4">
+                    <Box textAlign="center" p="4" bg="rgba(255,255,255,0.1)" borderRadius="lg">
+                      <Icon as={FiCheckCircle} boxSize="6" mb="2" color="cyan.300" />
+                      <Text fontWeight="semibold" mb="2">Proyectos a medida</Text>
+                      <Text fontSize="sm" opacity="0.9">
+                        Soluciones personalizadas para cada necesidad
+                      </Text>
+                    </Box>
+                    <Box textAlign="center" p="4" bg="rgba(255,255,255,0.1)" borderRadius="lg">
+                      <Icon as={FiCheckCircle} boxSize="6" mb="2" color="cyan.300" />
+                      <Text fontWeight="semibold" mb="2">Asesoría técnica especializada</Text>
+                      <Text fontSize="sm" opacity="0.9">
+                        Expertos en cristal y arquitectura a tu servicio
+                      </Text>
+                    </Box>
+                    <Box textAlign="center" p="4" bg="rgba(255,255,255,0.1)" borderRadius="lg">
+                      <Icon as={FiCheckCircle} boxSize="6" mb="2" color="cyan.300" />
+                      <Text fontWeight="semibold" mb="2">Garantía y respaldo</Text>
+                      <Text fontSize="sm" opacity="0.9">
+                        Más de 145 años de experiencia y calidad
+                      </Text>
+                    </Box>
+                  </SimpleGrid>
+                </VStack>
+              </Box>
+
+              {/* Sección: Contacto Directo */}
+              <Box
+                bg="white"
+                borderRadius="xl"
+                p={{ base: '8', md: '12' }}
+                boxShadow="lg"
+                mt="8"
+              >
+                <VStack spacing="6" align="stretch">
+                  <Heading size={{ base: 'xl', md: '2xl' }} textAlign="center" color="gray.900" fontWeight="bold">
+                    CONTACTO DIRECTO
+                  </Heading>
+                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing="6" mt="4">
+                    <Box
+                      as={ChakraLink}
+                      href="https://wa.link/9fj5se"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      p="6"
+                      bg="green.50"
+                      borderRadius="lg"
+                      border="2px solid"
+                      borderColor="green.200"
+                      _hover={{ bg: 'green.100', borderColor: 'green.400', transform: 'translateY(-2px)' }}
+                      transition="all 0.3s"
+                      textAlign="center"
+                    >
+                      <Icon as={FaWhatsapp} boxSize="8" mb="3" color="green.500" />
+                      <Heading size="md" mb="2" color="gray.900">
+                        WhatsApp
+                      </Heading>
+                      <Text fontSize="lg" fontWeight="semibold" color="green.600">
+                        +56 9 5212 8807
+                      </Text>
+                    </Box>
+                    <Box
+                      as={ChakraLink}
+                      href="mailto:info@dellorto.cl"
+                      p="6"
+                      bg="blue.50"
+                      borderRadius="lg"
+                      border="2px solid"
+                      borderColor="blue.200"
+                      _hover={{ bg: 'blue.100', borderColor: 'blue.400', transform: 'translateY(-2px)' }}
+                      transition="all 0.3s"
+                      textAlign="center"
+                    >
+                      <Icon as={FiMail} boxSize="8" mb="3" color="blue.500" />
+                      <Heading size="md" mb="2" color="gray.900">
+                        Email
+                      </Heading>
+                      <Text fontSize="lg" fontWeight="semibold" color="blue.600">
+                        info@dellorto.cl
+                      </Text>
+                    </Box>
+                  </SimpleGrid>
+                </VStack>
               </Box>
 
               {/* Promociones */}
