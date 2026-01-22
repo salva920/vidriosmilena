@@ -263,6 +263,30 @@ export default function StoreNavbar() {
                             Ver todos los productos
                           </MenuItem>
                         </>
+                      ) : category.slug === 'habitaciones-oficinas' ? (
+                        <>
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                            Cubiertas
+                          </MenuItem>
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                            Espejos
+                          </MenuItem>
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                            Pisos y Escaleras
+                          </MenuItem>
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                            Pizzarras
+                          </MenuItem>
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                            Puertas y Ventanas
+                          </MenuItem>
+                          <MenuItem as={Link} href="/tienda/habitaciones-oficinas">
+                            Tabiquerías
+                          </MenuItem>
+                          <MenuItem as={Link} href={`/tienda/${category.slug}`}>
+                            Ver todas las categorías
+                          </MenuItem>
+                        </>
                       ) : (
                         <MenuItem as={Link} href={`/tienda/${category.slug}`}>
                           Ver todos los productos
@@ -385,6 +409,90 @@ export default function StoreNavbar() {
                         color="gray.600"
                       >
                         • Espejos LED
+                      </ChakraLink>
+                    </VStack>
+                  ) : category.slug === 'habitaciones-oficinas' ? (
+                    <VStack align="stretch" spacing="2" pl="4">
+                      <ChakraLink
+                        as={Link}
+                        href={`/tienda/${category.slug}`}
+                        onClick={onMobileClose}
+                        fontWeight="bold"
+                        py="2"
+                      >
+                        {category.name}
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/habitaciones-oficinas"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Cubiertas
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/habitaciones-oficinas"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Espejos
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/habitaciones-oficinas"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Pisos y Escaleras
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/habitaciones-oficinas"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Pizzarras
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/habitaciones-oficinas"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Puertas y Ventanas
+                      </ChakraLink>
+                      <ChakraLink
+                        as={Link}
+                        href="/tienda/habitaciones-oficinas"
+                        onClick={onMobileClose}
+                        fontWeight="medium"
+                        py="1"
+                        pl="4"
+                        fontSize="sm"
+                        color="gray.600"
+                      >
+                        • Tabiquerías
                       </ChakraLink>
                     </VStack>
                   ) : (
