@@ -197,11 +197,11 @@ export default function TiendaPage() {
                 </Box>
               )}
 
-              {/* Productos destacados */}
+              {/* Tus próximos favoritos */}
               <Box>
                 <HStack justify="space-between" mb="6">
                   <Heading size="lg" color="gray.900">
-                    PRODUCTOS DESTACADOS
+                    TUS PRÓXIMOS FAVORITOS
                   </Heading>
                 </HStack>
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing="6">
