@@ -59,7 +59,7 @@ export default function TiendaPage() {
                 bg="blue.900"
               >
                 <Image
-                  src="https://dellorto.cl/wp-content/uploads/2025/06/Foto_Albert.jpg"
+                  src="https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-01.jpg"
                   alt="Banner Principal"
                   w="100%"
                   h="100%"
