@@ -3,6 +3,7 @@
 import { Box, Container, Heading, Text, VStack, SimpleGrid, Button, Image, HStack, Badge, Flex, Icon, List, ListItem, ListIcon, Link as ChakraLink } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { FiCheckCircle } from 'react-icons/fi'
 import StoreNavbar from '@/components/store/StoreNavbar'
 import ProductCard from '@/components/store/ProductCard'
@@ -102,7 +103,7 @@ export default function TiendaPage() {
                 _hover={{ textDecoration: 'none' }}
               >
                 <Box
-                  position="relative"
+                  position="relative"s
                   borderRadius="xl"
                   overflow="hidden"
                   h={{ base: '120px', md: '150px' }}
@@ -267,107 +268,128 @@ export default function TiendaPage() {
 
               {/* Promociones */}
               <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="6">
-                <Box
-                  position="relative"
-                  borderRadius="xl"
-                  overflow="hidden"
-                  h="300px"
-                  bg="gray.200"
-                  _hover={{ transform: 'scale(1.02)' }}
-                  transition="all 0.3s"
+                <ChakraLink
+                  as={Link}
+                  href="/tienda/habitaciones-oficinas?subcategoria=cubiertas"
+                  _hover={{ textDecoration: 'none' }}
                 >
-                  <Image
-                    src={getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/07/Cubierta_Vidrio-1.jpg')}
-                    alt="Cubiertas De Mesa"
-                    w="100%"
-                    h="100%"
-                    objectFit="cover"
-                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                      const target = e.currentTarget
-                      if (!target.src.includes('/img/')) {
-                        target.src = '/img/ventana pvc.jpg'
-                      }
-                    }}
-                  />
                   <Box
-                    position="absolute"
-                    bottom="0"
-                    left="0"
-                    right="0"
-                    bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
-                    p="6"
-                    color="white"
+                    position="relative"
+                    borderRadius="xl"
+                    overflow="hidden"
+                    h="300px"
+                    bg="gray.200"
+                    cursor="pointer"
+                    _hover={{ transform: 'scale(1.02)' }}
+                    transition="all 0.3s"
                   >
-                    <Heading size="md" mb="3">Cubiertas De Mesa</Heading>
-                    <Button colorScheme="red" size="sm">Comprar</Button>
+                    <Image
+                      src={getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/07/Cubierta_Vidrio-1.jpg')}
+                      alt="Cubiertas De Mesa"
+                      w="100%"
+                      h="100%"
+                      objectFit="cover"
+                      onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                        const target = e.currentTarget
+                        if (!target.src.includes('/img/')) {
+                          target.src = '/img/ventana pvc.jpg'
+                        }
+                      }}
+                    />
+                    <Box
+                      position="absolute"
+                      bottom="0"
+                      left="0"
+                      right="0"
+                      bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
+                      p="6"
+                      color="white"
+                    >
+                      <Heading size="md" mb="3">Cubiertas De Mesa</Heading>
+                      <Button colorScheme="red" size="sm">Comprar</Button>
+                    </Box>
                   </Box>
-                </Box>
+                </ChakraLink>
 
-                <Box
-                  position="relative"
-                  borderRadius="xl"
-                  overflow="hidden"
-                  h="300px"
-                  bg="gray.200"
-                  _hover={{ transform: 'scale(1.02)' }}
-                  transition="all 0.3s"
+                <ChakraLink
+                  as={Link}
+                  href="/tienda/cocinas"
+                  _hover={{ textDecoration: 'none' }}
                 >
-                  <Image
-                    src={getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/07/Splash_Cocina-1-1.jpg')}
-                    alt="Splashback"
-                    w="100%"
-                    h="100%"
-                    objectFit="cover"
-                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                      const target = e.currentTarget
-                      if (!target.src.includes('/img/')) {
-                        target.src = '/img/ventana pvc.jpg'
-                      }
-                    }}
-                  />
                   <Box
-                    position="absolute"
-                    bottom="0"
-                    left="0"
-                    right="0"
-                    bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
-                    p="6"
-                    color="white"
+                    position="relative"
+                    borderRadius="xl"
+                    overflow="hidden"
+                    h="300px"
+                    bg="gray.200"
+                    cursor="pointer"
+                    _hover={{ transform: 'scale(1.02)' }}
+                    transition="all 0.3s"
                   >
-                    <Heading size="md" mb="3">Splashback</Heading>
-                    <Button colorScheme="red" size="sm">Comprar</Button>
+                    <Image
+                      src={getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/07/Splash_Cocina-1-1.jpg')}
+                      alt="Splashback"
+                      w="100%"
+                      h="100%"
+                      objectFit="cover"
+                      onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                        const target = e.currentTarget
+                        if (!target.src.includes('/img/')) {
+                          target.src = '/img/ventana pvc.jpg'
+                        }
+                      }}
+                    />
+                    <Box
+                      position="absolute"
+                      bottom="0"
+                      left="0"
+                      right="0"
+                      bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
+                      p="6"
+                      color="white"
+                    >
+                      <Heading size="md" mb="3">Splashback</Heading>
+                      <Button colorScheme="red" size="sm">Comprar</Button>
+                    </Box>
                   </Box>
-                </Box>
+                </ChakraLink>
 
-                <Box
-                  position="relative"
-                  borderRadius="xl"
-                  overflow="hidden"
-                  h="300px"
-                  bg="gray.200"
-                  _hover={{ transform: 'scale(1.02)' }}
-                  transition="all 0.3s"
+                <ChakraLink
+                  as={Link}
+                  href="/tienda/terrazas-quinchos"
+                  _hover={{ textDecoration: 'none' }}
                 >
-                  <Image
-                    src="/img/cortinas-de-cristal-neulam.jpg"
-                    alt="Cortina De Cristal"
-                    w="100%"
-                    h="100%"
-                    objectFit="cover"
-                  />
                   <Box
-                    position="absolute"
-                    bottom="0"
-                    left="0"
-                    right="0"
-                    bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
-                    p="6"
-                    color="white"
+                    position="relative"
+                    borderRadius="xl"
+                    overflow="hidden"
+                    h="300px"
+                    bg="gray.200"
+                    cursor="pointer"
+                    _hover={{ transform: 'scale(1.02)' }}
+                    transition="all 0.3s"
                   >
-                    <Heading size="md" mb="3">Cortina De Cristal</Heading>
-                    <Button colorScheme="red" size="sm">Cotiza Aqui</Button>
+                    <Image
+                      src="/img/cortinas-de-cristal-neulam.jpg"
+                      alt="Cortina De Cristal"
+                      w="100%"
+                      h="100%"
+                      objectFit="cover"
+                    />
+                    <Box
+                      position="absolute"
+                      bottom="0"
+                      left="0"
+                      right="0"
+                      bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
+                      p="6"
+                      color="white"
+                    >
+                      <Heading size="md" mb="3">Cortina De Cristal</Heading>
+                      <Button colorScheme="red" size="sm">Cotiza Aqui</Button>
+                    </Box>
                   </Box>
-                </Box>
+                </ChakraLink>
               </SimpleGrid>
             </VStack>
           )}
