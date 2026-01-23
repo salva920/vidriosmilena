@@ -9,6 +9,7 @@ import ProductCard from '@/components/store/ProductCard'
 import { products, categories, searchProducts } from '@/data/products'
 import { Product } from '@/types/product'
 import Footer from '@/components/Footer'
+import ImageCarousel from '@/components/ImageCarousel'
 
 export default function TiendaPage() {
   const searchParams = useSearchParams()
@@ -26,9 +27,28 @@ export default function TiendaPage() {
     }
   }, [searchQuery])
 
+  // Imágenes del carrusel del dashboard de Dellorto
+  const bannerImages = [
+    'https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-01.jpg',
+    'https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-02.jpg',
+    'https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-03.jpg',
+    'https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-04.jpg',
+  ]
+
   return (
     <Box minH="100vh" bg="gray.50">
       <StoreNavbar />
+      
+      {!searchQuery && (
+        <Box
+          position="relative"
+          w="100%"
+          h={{ base: '400px', md: '500px' }}
+          overflow="hidden"
+        >
+          <ImageCarousel images={bannerImages} />
+        </Box>
+      )}
       
       <Box pt="8" pb="16">
         <Container maxW="container.xl">
@@ -50,53 +70,6 @@ export default function TiendaPage() {
             </VStack>
           ) : (
             <VStack spacing="12" align="stretch">
-              {/* Hero Banner */}
-              <Box
-                position="relative"
-                borderRadius="xl"
-                overflow="hidden"
-                h={{ base: '400px', md: '500px' }}
-                bg="blue.900"
-              >
-                <Image
-                  src="https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-01.jpg"
-                  alt="Banner Principal"
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                  opacity="0.4"
-                />
-                <Box
-                  position="absolute"
-                  top="0"
-                  left="0"
-                  right="0"
-                  bottom="0"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  flexDirection="column"
-                  color="white"
-                  textAlign="center"
-                  px="4"
-                  bgGradient="linear(to-b, rgba(0,0,0,0.3), rgba(0,0,0,0.6))"
-                >
-                  <Heading size={{ base: 'xl', md: '2xl' }} mb="4" fontWeight="bold">
-                    Bienvenido a ARTECRISTAL
-                  </Heading>
-                  <Text fontSize={{ base: 'lg', md: 'xl' }} mb="6" maxW="2xl">
-                    Soluciones en vidrios, aluminio y acero inoxidable
-                  </Text>
-                  <Button 
-                    size="lg" 
-                    colorScheme="cyan" 
-                    onClick={() => window.scrollTo({ top: document.getElementById('categorias')?.offsetTop || 0, behavior: 'smooth' })}
-                    _hover={{ transform: 'translateY(-2px)', boxShadow: 'xl' }}
-                  >
-                    Explorar Productos
-                  </Button>
-                </Box>
-              </Box>
 
               {/* Banner B2B Promocional */}
               <Box
