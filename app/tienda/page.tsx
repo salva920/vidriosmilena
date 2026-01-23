@@ -103,7 +103,7 @@ export default function TiendaPage() {
                 _hover={{ textDecoration: 'none' }}
               >
                 <Box
-                  position="relative"s
+                  position="relative"
                   borderRadius="xl"
                   overflow="hidden"
                   h={{ base: '120px', md: '150px' }}
