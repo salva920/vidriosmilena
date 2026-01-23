@@ -1,13 +1,15 @@
 'use client'
 
-import { Box, Image } from '@chakra-ui/react'
+import { Box, Image, Link as ChakraLink } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 interface ImageCarouselProps {
   images: string[]
+  links?: string[]
 }
 
-export default function ImageCarousel({ images }: ImageCarouselProps) {
+export default function ImageCarousel({ images, links = [] }: ImageCarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   // Carrusel automático de imágenes
@@ -42,24 +44,9 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
         alignItems="center"
         justifyContent="center"
       >
-        {images.map((src, index) => (
-          <Box
-            key={index}
-            position="absolute"
-            top="0"
-            left="0"
-            width="100%"
-            height="100%"
-            maxW="100%"
-            maxH="100%"
-            opacity={index === currentImageIndex ? 1 : 0}
-            transition="opacity 0.8s ease-in-out"
-            pointerEvents={index === currentImageIndex ? 'auto' : 'none'}
-            overflow="hidden"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
+        {images.map((src, index) => {
+          const link = links[index]
+          const imageContent = (
             <Image
               src={src}
               alt={`Banner ${index + 1}`}
@@ -75,7 +62,8 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 width: '100%',
                 height: '100%',
                 objectFit: 'contain',
-                objectPosition: 'center'
+                objectPosition: 'center',
+                cursor: link ? 'pointer' : 'default'
               }}
               onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                 const target = e.currentTarget
@@ -85,8 +73,45 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 }
               }}
             />
-          </Box>
-        ))}
+          )
+
+          return (
+            <Box
+              key={index}
+              position="absolute"
+              top="0"
+              left="0"
+              width="100%"
+              height="100%"
+              maxW="100%"
+              maxH="100%"
+              opacity={index === currentImageIndex ? 1 : 0}
+              transition="opacity 0.8s ease-in-out"
+              pointerEvents={index === currentImageIndex ? 'auto' : 'none'}
+              overflow="hidden"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              {link ? (
+                <ChakraLink
+                  as={Link}
+                  href={link}
+                  width="100%"
+                  height="100%"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  {imageContent}
+                </ChakraLink>
+              ) : (
+                imageContent
+              )}
+            </Box>
+          )
+        })}
       </Box>
 
     </Box>

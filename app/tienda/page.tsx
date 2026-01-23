@@ -36,6 +36,14 @@ export default function TiendaPage() {
     getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-04.jpg'),
   ]
 
+  // Links para cada imagen del banner
+  const bannerLinks = [
+    '/tienda/banos?tipo=espejos', // Imagen 1: Baños - Espejos
+    '/tienda/banos?tipo=mamparas', // Imagen 2: Baños - Mamparas
+    '/tienda/habitaciones-oficinas?subcategoria=pizzarras', // Imagen 3: Habitaciones & Oficinas - Pizarras
+    '/tienda/pergolas-bioclimaticas', // Imagen 4: Pergolas Bioclimáticas
+  ]
+
   return (
     <Box minH="100vh" bg="gray.50" w="100%" overflowX="hidden" position="relative">
       <StoreNavbar />
@@ -59,7 +67,7 @@ export default function TiendaPage() {
           alignItems="center"
           justifyContent="center"
         >
-          <ImageCarousel images={bannerImages} />
+          <ImageCarousel images={bannerImages} links={bannerLinks} />
         </Box>
       )}
       
