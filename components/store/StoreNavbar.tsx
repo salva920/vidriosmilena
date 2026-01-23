@@ -161,6 +161,10 @@ export default function StoreNavbar() {
                 </HStack>
 
                 <Button
+                  as="a"
+                  href="https://wa.me/56949932178"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   bg="red.500"
                   color="white"
                   size="sm"
@@ -201,6 +205,10 @@ export default function StoreNavbar() {
                 </IconButton>
 
                 <IconButton
+                  as="a"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Coronel souper 4400, Estación Central, Chile')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Ubicación"
                   icon={<FaMapMarkerAlt />}
                   size="sm"
