@@ -27,6 +27,9 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
       height="100%"
       overflow="hidden"
       maxW="100%"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
     >
       {/* Carrusel de imágenes */}
       <Box
@@ -35,6 +38,9 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
         height="100%"
         overflow="hidden"
         maxW="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
       >
         {images.map((src, index) => (
           <Box
@@ -45,19 +51,32 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
             width="100%"
             height="100%"
             maxW="100%"
+            maxH="100%"
             opacity={index === currentImageIndex ? 1 : 0}
             transition="opacity 0.8s ease-in-out"
             pointerEvents={index === currentImageIndex ? 'auto' : 'none'}
+            overflow="hidden"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
           >
             <Image
               src={src}
               alt={`Banner ${index + 1}`}
               width="100%"
               height="100%"
+              maxW="100%"
+              maxH="100%"
               objectFit="cover"
               objectPosition="center"
-              maxW="100%"
+              display="block"
               loading={index === 0 ? 'eager' : 'lazy'}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }}
             />
           </Box>
         ))}

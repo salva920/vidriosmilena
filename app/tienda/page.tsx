@@ -52,6 +52,9 @@ export default function TiendaPage() {
           maxW="100%"
           left="0"
           right="0"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
         >
           <ImageCarousel images={bannerImages} />
         </Box>
