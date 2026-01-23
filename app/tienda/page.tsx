@@ -266,11 +266,17 @@ export default function TiendaPage() {
                   transition="all 0.3s"
                 >
                   <Image
-                    src="/img/ventana pvc.jpg"
+                    src={getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/07/Cubierta_Vidrio-1.jpg')}
                     alt="Cubiertas De Mesa"
                     w="100%"
                     h="100%"
                     objectFit="cover"
+                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                      const target = e.currentTarget
+                      if (!target.src.includes('/img/')) {
+                        target.src = '/img/ventana pvc.jpg'
+                      }
+                    }}
                   />
                   <Box
                     position="absolute"
@@ -296,11 +302,17 @@ export default function TiendaPage() {
                   transition="all 0.3s"
                 >
                   <Image
-                    src="/img/ventana pvc.jpg"
+                    src={getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/07/Splash_Cocina-1-1.jpg')}
                     alt="Splashback"
                     w="100%"
                     h="100%"
                     objectFit="cover"
+                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                      const target = e.currentTarget
+                      if (!target.src.includes('/img/')) {
+                        target.src = '/img/ventana pvc.jpg'
+                      }
+                    }}
                   />
                   <Box
                     position="absolute"
