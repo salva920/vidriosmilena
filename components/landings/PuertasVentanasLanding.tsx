@@ -34,7 +34,7 @@ export default function PuertasVentanasLanding() {
           </VStack>
           <Button
             as="a"
-            href="https://wa.me/56912345678?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20puertas%20y%20ventanas"
+            href="https://wa.me/56949932178?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20puertas%20y%20ventanas"
             target="_blank"
             colorScheme="whatsapp"
             size="lg"
@@ -121,7 +121,7 @@ export default function PuertasVentanasLanding() {
         </Text>
         <Button
           as="a"
-          href="https://wa.me/56912345678?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20puertas%20y%20ventanas"
+          href="https://wa.me/56949932178?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20puertas%20y%20ventanas"
           target="_blank"
           colorScheme="whatsapp"
           size="lg"

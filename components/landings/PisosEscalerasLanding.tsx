@@ -35,7 +35,7 @@ export default function PisosEscalerasLanding() {
           </VStack>
           <Button
             as="a"
-            href="https://wa.me/56912345678?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20pisos%20y%20escaleras"
+            href="https://wa.me/56949932178?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20pisos%20y%20escaleras"
             target="_blank"
             colorScheme="whatsapp"
             size="lg"
@@ -122,7 +122,7 @@ export default function PisosEscalerasLanding() {
         </Text>
         <Button
           as="a"
-          href="https://wa.me/56912345678?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20pisos%20y%20escaleras"
+          href="https://wa.me/56949932178?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20pisos%20y%20escaleras"
           target="_blank"
           colorScheme="whatsapp"
           size="lg"

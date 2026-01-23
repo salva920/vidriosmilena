@@ -48,7 +48,7 @@ export default function FrentesTempladosLanding() {
           </VStack>
           <Button
             as="a"
-            href="https://wa.me/56912345678?text=Hola!%20Estoy%20interesado%20en%20frentes%20templados%20para%20fachadas."
+            href="https://wa.me/56949932178?text=Hola!%20Estoy%20interesado%20en%20frentes%20templados%20para%20fachadas."
             target="_blank"
             rel="noopener noreferrer"
             size="lg"
@@ -141,7 +141,7 @@ export default function FrentesTempladosLanding() {
         </Box>
         <Button
           as="a"
-          href="https://wa.me/56912345678?text=Hola!%20Estoy%20interesado%20en%20frentes%20templados%20para%20fachadas."
+          href="https://wa.me/56949932178?text=Hola!%20Estoy%20interesado%20en%20frentes%20templados%20para%20fachadas."
           target="_blank"
           rel="noopener noreferrer"
           size="lg"

@@ -40,7 +40,7 @@ export default function CocinasLanding() {
             _hover={{ bg: 'cyan.600', transform: 'translateY(-2px)', boxShadow: 'lg' }}
             transition="all 0.2s"
             as="a"
-            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de cocina')}`}
+            href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de cocina')}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -167,7 +167,7 @@ export default function CocinasLanding() {
             }}
             transition="all 0.2s"
             as="a"
-            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de cocina')}`}
+            href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de cocina')}`}
             target="_blank"
             rel="noopener noreferrer"
           >

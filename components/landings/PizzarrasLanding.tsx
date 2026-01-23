@@ -34,7 +34,7 @@ export default function PizzarrasLanding() {
           </VStack>
           <Button
             as="a"
-            href="https://wa.me/56912345678?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20pizarras"
+            href="https://wa.me/56949932178?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20pizarras"
             target="_blank"
             colorScheme="whatsapp"
             size="lg"
@@ -109,7 +109,7 @@ export default function PizzarrasLanding() {
         </Text>
         <Button
           as="a"
-          href="https://wa.me/56912345678?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20pizarras"
+          href="https://wa.me/56949932178?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20pizarras"
           target="_blank"
           colorScheme="whatsapp"
           size="lg"

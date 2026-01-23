@@ -43,7 +43,7 @@ export default function PergolasLanding() {
             _hover={{ bg: 'cyan.600', transform: 'translateY(-2px)', boxShadow: 'lg' }}
             transition="all 0.2s"
             as="a"
-            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de pérgola bioclimática')}`}
+            href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de pérgola bioclimática')}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -297,7 +297,7 @@ export default function PergolasLanding() {
             }}
             transition="all 0.2s"
             as="a"
-            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de pérgola bioclimática')}`}
+            href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de pérgola bioclimática')}`}
             target="_blank"
             rel="noopener noreferrer"
           >

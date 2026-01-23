@@ -44,7 +44,7 @@ export default function TerrazasLanding() {
             _hover={{ bg: 'cyan.600', transform: 'translateY(-2px)', boxShadow: 'lg' }}
             transition="all 0.2s"
             as="a"
-            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de cierre de terraza')}`}
+            href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de cierre de terraza')}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -175,7 +175,7 @@ export default function TerrazasLanding() {
             _hover={{ bg: 'cyan.600', transform: 'translateY(-2px)', boxShadow: 'lg' }}
             transition="all 0.2s"
             as="a"
-            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de barandas para terraza o quincho')}`}
+            href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de barandas para terraza o quincho')}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -296,7 +296,7 @@ export default function TerrazasLanding() {
             }}
             transition="all 0.2s"
             as="a"
-            href={`https://wa.me/56912345678?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de terraza o quincho (cierres y barandas)')}`}
+            href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de terraza o quincho (cierres y barandas)')}`}
             target="_blank"
             rel="noopener noreferrer"
           >
