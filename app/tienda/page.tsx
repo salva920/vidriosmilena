@@ -93,25 +93,36 @@ export default function TiendaPage() {
             <VStack spacing="12" align="stretch">
 
               {/* Banner B2B Promocional */}
-              <Box
-                position="relative"
-                borderRadius="xl"
-                overflow="hidden"
-                h={{ base: '120px', md: '150px' }}
-                bg="gray.200"
+              <ChakraLink
+                as="a"
+                href="https://wa.me/56949932178"
+                target="_blank"
+                rel="noopener noreferrer"
+                display="block"
+                _hover={{ textDecoration: 'none' }}
               >
-                <Image
-                  src={getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/07/B2b_Promo-1-scaled.png')}
-                  alt="B2B Promocional"
-                  w="100%"
-                  h="100%"
-                  objectFit="cover"
-                  onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                    const target = e.currentTarget
-                    target.src = '/img/shower2.jpg' // Imagen de respaldo local
-                  }}
-                />
-              </Box>
+                <Box
+                  position="relative"
+                  borderRadius="xl"
+                  overflow="hidden"
+                  h={{ base: '120px', md: '150px' }}
+                  bg="gray.200"
+                  cursor="pointer"
+                  _hover={{ transform: 'scale(1.01)', transition: 'transform 0.2s' }}
+                >
+                  <Image
+                    src={getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/07/B2b_Promo-1-scaled.png')}
+                    alt="B2B Promocional"
+                    w="100%"
+                    h="100%"
+                    objectFit="cover"
+                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                      const target = e.currentTarget
+                      target.src = '/img/shower2.jpg' // Imagen de respaldo local
+                    }}
+                  />
+                </Box>
+              </ChakraLink>
 
               {/* Categorías destacadas */}
               <Box id="categorias">
