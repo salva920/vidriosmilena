@@ -44,7 +44,8 @@ export default function TiendaPage() {
           as="section"
           position="relative"
           w="100%"
-          h={{ base: '400px', md: '500px', lg: '600px' }}
+          minH={{ base: "60vh", sm: "65vh", md: "70vh", lg: "75vh" }}
+          h={{ base: "60vh", sm: "65vh", md: "70vh", lg: "75vh" }}
           overflow="hidden"
           mx="0"
           px="0"
