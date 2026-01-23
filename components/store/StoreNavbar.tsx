@@ -55,7 +55,7 @@ export default function StoreNavbar() {
 
   return (
     <>
-      <Box position="sticky" top="0" zIndex="1000" bg="white" boxShadow="sm">
+      <Box position="sticky" top="0" zIndex="1000" bg="white" boxShadow="sm" mb="0" pb="0">
         {/* Top Bar - Green */}
         <Box bg="green.500" py="1" display={{ base: 'none', md: 'block' }}>
           <Container maxW="container.xl">

@@ -50,6 +50,8 @@ export default function TiendaPage() {
           overflow="hidden"
           mx="0"
           px="0"
+          mt="0"
+          pt="0"
           maxW="100%"
           left="0"
           right="0"
