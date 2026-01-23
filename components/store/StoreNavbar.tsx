@@ -71,7 +71,7 @@ export default function StoreNavbar() {
         {/* Main Header - Dark Blue */}
         <Box bg="blue.900" py={{ base: '2', md: '3' }}>
           <Container maxW="container.xl">
-            <Flex justify="space-between" align="center" gap="4" flexWrap="wrap">
+            <Flex justify="space-between" align="center" gap={{ base: '2', md: '4' }} flexWrap="wrap">
               {/* Left: Tienda Empresas Button */}
               <Button
                 as={Link}
@@ -81,18 +81,21 @@ export default function StoreNavbar() {
                 size="sm"
                 fontSize="xs"
                 fontWeight="bold"
-                _hover={{ bg: 'yellow.100' }}
-                display={{ base: 'none', md: 'block' }}
+                borderRadius="md"
+                px="4"
+                _hover={{ bg: 'yellow.100', transform: 'translateY(-1px)' }}
+                transition="all 0.2s"
+                display={{ base: 'none', md: 'flex' }}
               >
                 TIENDA EMPRESAS
               </Button>
 
               {/* Center: Search Bar */}
-              <Box flex="1" maxW={{ base: '100%', md: '400px' }}>
+              <Box flex="1" maxW={{ base: '100%', md: '450px', lg: '500px' }} order={{ base: 3, md: 2 }}>
                 <form onSubmit={handleSearch}>
-                  <InputGroup>
-                    <InputLeftElement pointerEvents="none">
-                      <FiSearch color="gray.400" />
+                  <InputGroup size="md">
+                    <InputLeftElement pointerEvents="none" h="100%">
+                      <FiSearch color="gray.400" size="18px" />
                     </InputLeftElement>
                     <Input
                       placeholder="¿Qué buscas hoy?"
@@ -100,22 +103,60 @@ export default function StoreNavbar() {
                       value={searchQuery}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
                       borderRadius="md"
+                      h={{ base: '36px', md: '40px' }}
+                      fontSize={{ base: 'sm', md: 'md' }}
+                      _focus={{ borderColor: 'blue.400', boxShadow: '0 0 0 1px #3182CE' }}
                     />
                   </InputGroup>
                 </form>
               </Box>
 
               {/* Right: Navigation Links & Actions */}
-              <HStack spacing={{ base: '2', md: '4' }} display={{ base: 'none', md: 'flex' }}>
-                <ChakraLink as={Link} href="/tienda/proyectos" color="white" _hover={{ textDecoration: 'underline' }} fontSize="sm">
-                  NUESTROS PROYECTOS
-                </ChakraLink>
-                <ChakraLink as={Link} href="/tienda/nosotros" color="white" _hover={{ textDecoration: 'underline' }} fontSize="sm">
-                  QUIENES SOMOS
-                </ChakraLink>
-                <ChakraLink as={Link} href="/tienda/ayuda" color="white" _hover={{ textDecoration: 'underline' }} fontSize="sm">
-                  CENTRO DE AYUDA
-                </ChakraLink>
+              <HStack spacing={{ base: '1', md: '3', lg: '4' }} display={{ base: 'none', md: 'flex' }} order={{ base: 2, md: 3 }}>
+                {/* Navigation Links */}
+                <HStack spacing={{ base: '2', md: '3', lg: '4' }} display={{ base: 'none', lg: 'flex' }}>
+                  <ChakraLink 
+                    as={Link} 
+                    href="/tienda/proyectos" 
+                    color="white" 
+                    fontSize="sm"
+                    fontWeight="medium"
+                    _hover={{ textDecoration: 'underline', opacity: 0.9 }}
+                    transition="all 0.2s"
+                  >
+                    NUESTROS PROYECTOS
+                  </ChakraLink>
+                  <ChakraLink 
+                    as={Link} 
+                    href="/tienda/nosotros" 
+                    color="white" 
+                    fontSize="sm"
+                    fontWeight="medium"
+                    _hover={{ textDecoration: 'underline', opacity: 0.9 }}
+                    transition="all 0.2s"
+                  >
+                    QUIENES SOMOS
+                  </ChakraLink>
+                  <ChakraLink 
+                    as={Link} 
+                    href="/tienda/ayuda" 
+                    color="white" 
+                    fontSize="sm"
+                    fontWeight="medium"
+                    _hover={{ textDecoration: 'underline', opacity: 0.9 }}
+                    transition="all 0.2s"
+                  >
+                    CENTRO DE AYUDA
+                  </ChakraLink>
+                </HStack>
+
+                {/* Separator */}
+                <Box 
+                  w="1px" 
+                  h="24px" 
+                  bg="rgba(255,255,255,0.3)" 
+                  display={{ base: 'none', lg: 'block' }}
+                />
 
                 {/* Social Icons */}
                 <HStack spacing="2">
@@ -125,12 +166,13 @@ export default function StoreNavbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook"
-                    icon={<FaFacebook />}
-                    size="sm"
+                    icon={<FaFacebook size="16px" />}
+                    size="md"
                     bg="green.600"
                     color="white"
                     borderRadius="full"
-                    _hover={{ bg: 'green.700' }}
+                    _hover={{ bg: 'green.700', transform: 'scale(1.1)' }}
+                    transition="all 0.2s"
                   />
                   <IconButton
                     as="a"
@@ -138,12 +180,13 @@ export default function StoreNavbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Pinterest"
-                    icon={<FaPinterest />}
-                    size="sm"
+                    icon={<FaPinterest size="16px" />}
+                    size="md"
                     bg="blue.600"
                     color="white"
                     borderRadius="full"
-                    _hover={{ bg: 'blue.700' }}
+                    _hover={{ bg: 'blue.700', transform: 'scale(1.1)' }}
+                    transition="all 0.2s"
                   />
                   <IconButton
                     as="a"
@@ -151,15 +194,24 @@ export default function StoreNavbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"
-                    icon={<FaInstagram />}
-                    size="sm"
+                    icon={<FaInstagram size="16px" />}
+                    size="md"
                     bg="pink.500"
                     color="white"
                     borderRadius="full"
-                    _hover={{ bg: 'pink.600' }}
+                    _hover={{ bg: 'pink.600', transform: 'scale(1.1)' }}
+                    transition="all 0.2s"
                   />
                 </HStack>
 
+                {/* Separator */}
+                <Box 
+                  w="1px" 
+                  h="24px" 
+                  bg="rgba(255,255,255,0.3)" 
+                />
+
+                {/* Cotizar Button */}
                 <Button
                   as="a"
                   href="https://wa.me/56949932178"
@@ -170,19 +222,25 @@ export default function StoreNavbar() {
                   size="sm"
                   fontSize="xs"
                   fontWeight="bold"
-                  _hover={{ bg: 'red.600' }}
+                  borderRadius="md"
+                  px="4"
+                  _hover={{ bg: 'red.600', transform: 'translateY(-1px)', boxShadow: 'md' }}
+                  transition="all 0.2s"
                 >
                   Cotizar
                 </Button>
 
+                {/* Cart Icon */}
                 <IconButton
                   aria-label="Carrito de compras"
-                  icon={<FiShoppingCart />}
-                  size="sm"
+                  icon={<FiShoppingCart size="18px" />}
+                  size="md"
+                  bg="transparent"
                   color="white"
                   position="relative"
                   onClick={openCart}
-                  _hover={{ bg: 'blue.800' }}
+                  _hover={{ bg: 'blue.800', transform: 'scale(1.1)' }}
+                  transition="all 0.2s"
                 >
                   {cartItemCount > 0 && (
                     <Badge
@@ -198,60 +256,83 @@ export default function StoreNavbar() {
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
+                      fontWeight="bold"
                     >
                       {cartItemCount}
                     </Badge>
                   )}
                 </IconButton>
 
+                {/* Location Icon */}
                 <IconButton
                   as="a"
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Coronel souper 4400, Estación Central, Chile')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Ubicación"
-                  icon={<FaMapMarkerAlt />}
-                  size="sm"
+                  icon={<FaMapMarkerAlt size="18px" />}
+                  size="md"
+                  bg="transparent"
                   color="white"
-                  _hover={{ bg: 'blue.800' }}
+                  _hover={{ bg: 'blue.800', transform: 'scale(1.1)' }}
+                  transition="all 0.2s"
                 />
               </HStack>
 
               {/* Mobile Menu Button */}
               <IconButton
                 aria-label="Menú"
-                icon={<FiMenu />}
-                display={{ base: 'block', md: 'none' }}
+                icon={<FiMenu size="20px" />}
+                display={{ base: 'flex', md: 'none' }}
                 color="white"
+                bg="transparent"
+                size="md"
                 onClick={onMobileOpen}
                 _hover={{ bg: 'blue.800' }}
+                order={{ base: 1, md: 4 }}
               />
             </Flex>
           </Container>
         </Box>
 
         {/* Secondary Navigation - White */}
-        <Box bg="white" borderBottom="1px" borderColor="gray.200">
+        <Box bg="white" borderBottom="1px" borderColor="gray.200" boxShadow="sm">
           <Container maxW="container.xl">
-            <Flex justify="space-between" align="center" py="3">
+            <Flex justify="space-between" align="center" py={{ base: '2', md: '3' }}>
               {/* Logo */}
-              <ChakraLink as={Link} href="/tienda" style={{ textDecoration: 'none' }}>
-                <Heading size="md" color="blue.900" fontWeight="bold">
+              <ChakraLink 
+                as={Link} 
+                href="/tienda" 
+                style={{ textDecoration: 'none' }}
+                _hover={{ opacity: 0.8 }}
+                transition="opacity 0.2s"
+              >
+                <Heading 
+                  size={{ base: 'sm', md: 'md' }} 
+                  color="blue.900" 
+                  fontWeight="bold"
+                  letterSpacing="wide"
+                >
                   ARTECRISTAL
                 </Heading>
               </ChakraLink>
 
               {/* Category Links */}
-              <HStack spacing="6" display={{ base: 'none', lg: 'flex' }}>
+              <HStack spacing={{ base: '2', md: '4', lg: '6' }} display={{ base: 'none', lg: 'flex' }} flexWrap="wrap">
                 {categories.map((category) => (
                   <Menu key={category.id}>
                     <MenuButton
                       as={Button}
-                      rightIcon={<FiChevronDown />}
+                      rightIcon={<FiChevronDown size="14px" />}
                       variant="ghost"
                       color="gray.700"
                       fontWeight="medium"
-                      _hover={{ color: 'blue.600' }}
+                      fontSize="sm"
+                      px="3"
+                      py="2"
+                      _hover={{ color: 'blue.600', bg: 'blue.50' }}
+                      _active={{ bg: 'blue.100' }}
+                      transition="all 0.2s"
                     >
                       {category.name}
                     </MenuButton>
