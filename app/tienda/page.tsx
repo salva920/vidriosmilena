@@ -36,18 +36,21 @@ export default function TiendaPage() {
   ]
 
   return (
-    <Box minH="100vh" bg="gray.50" w="100%" maxW="100vw" overflowX="hidden">
+    <Box minH="100vh" bg="gray.50" w="100%" overflowX="hidden" position="relative">
       <StoreNavbar />
       
       {!searchQuery && (
         <Box
+          as="section"
           position="relative"
-          w="100vw"
-          maxW="100%"
-          h={{ base: '400px', md: '500px' }}
+          w="100%"
+          h={{ base: '400px', md: '500px', lg: '600px' }}
           overflow="hidden"
           mx="0"
           px="0"
+          maxW="100%"
+          left="0"
+          right="0"
         >
           <ImageCarousel images={bannerImages} />
         </Box>
