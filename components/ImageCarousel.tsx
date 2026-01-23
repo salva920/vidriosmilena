@@ -67,14 +67,14 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
               height="100%"
               maxW="100%"
               maxH="100%"
-              objectFit="cover"
+              objectFit="contain"
               objectPosition="center"
               display="block"
               loading={index === 0 ? 'eager' : 'lazy'}
               style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'cover',
+                objectFit: 'contain',
                 objectPosition: 'center'
               }}
               onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
