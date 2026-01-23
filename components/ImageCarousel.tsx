@@ -77,6 +77,13 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 objectFit: 'cover',
                 objectPosition: 'center'
               }}
+              onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                const target = e.currentTarget
+                // Si falla la imagen, usar una imagen local de respaldo
+                if (!target.src.includes('/img/')) {
+                  target.src = '/img/shower2.jpg'
+                }
+              }}
             />
           </Box>
         ))}

@@ -10,6 +10,7 @@ import { products, categories, searchProducts } from '@/data/products'
 import { Product } from '@/types/product'
 import Footer from '@/components/Footer'
 import ImageCarousel from '@/components/ImageCarousel'
+import { getImageUrlWithFallback } from '@/lib/image-utils'
 
 export default function TiendaPage() {
   const searchParams = useSearchParams()
@@ -27,12 +28,12 @@ export default function TiendaPage() {
     }
   }, [searchQuery])
 
-  // Imágenes del carrusel del dashboard de Dellorto
+  // Imágenes del carrusel del dashboard de Dellorto - usando proxy para evitar bloqueos 403
   const bannerImages = [
-    'https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-01.jpg',
-    'https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-02.jpg',
-    'https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-03.jpg',
-    'https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-04.jpg',
+    getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-01.jpg'),
+    getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-02.jpg'),
+    getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-03.jpg'),
+    getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/12/BANNERS_FIJOS_2026-04.jpg'),
   ]
 
   return (
@@ -90,11 +91,15 @@ export default function TiendaPage() {
                 bg="gray.200"
               >
                 <Image
-                  src="https://dellorto.cl/wp-content/uploads/2025/07/B2b_Promo-1-scaled.png"
+                  src={getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/07/B2b_Promo-1-scaled.png')}
                   alt="B2B Promocional"
                   w="100%"
                   h="100%"
                   objectFit="cover"
+                  onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                    const target = e.currentTarget
+                    target.src = '/img/shower2.jpg' // Imagen de respaldo local
+                  }}
                 />
               </Box>
 
@@ -105,17 +110,28 @@ export default function TiendaPage() {
                 </Heading>
                 <SimpleGrid columns={{ base: 2, md: 3, lg: 6 }} spacing="4">
                   {categories.map((category) => {
-                    // Mapear imágenes de Dellorto para cada categoría
+                    // Mapear imágenes de Dellorto para cada categoría - usando proxy
                     const categoryImages: Record<string, string> = {
-                      'banos': 'https://dellorto.cl/wp-content/uploads/2023/04/garda-tensor-negro-1.png',
-                      'cocinas': 'https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg',
-                      'pergolas-bioclimaticas': 'https://dellorto.cl/wp-content/uploads/2025/08/ENVIAR_ERICK-02-1024x385.jpg',
-                      'terrazas-quinchos': 'https://dellorto.cl/wp-content/uploads/2025/03/CIERRES_DE_TERRAZA.jpg',
-                      'habitaciones-oficinas': 'https://dellorto.cl/wp-content/uploads/2023/04/Portada-soluciones-9.png',
-                      'fachadas': 'https://dellorto.cl/wp-content/uploads/2023/04/Portada-soluciones.png'
+                      'banos': getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2023/04/garda-tensor-negro-1.png'),
+                      'cocinas': getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/03/SPLASHBACK_01.jpg'),
+                      'pergolas-bioclimaticas': getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/08/ENVIAR_ERICK-02-1024x385.jpg'),
+                      'terrazas-quinchos': getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2025/03/CIERRES_DE_TERRAZA.jpg'),
+                      'habitaciones-oficinas': getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2023/04/Portada-soluciones-9.png'),
+                      'fachadas': getImageUrlWithFallback('https://dellorto.cl/wp-content/uploads/2023/04/Portada-soluciones.png')
+                    }
+                    
+                    // Mapear imágenes locales de respaldo
+                    const fallbackImages: Record<string, string> = {
+                      'banos': '/img/shower2.jpg',
+                      'cocinas': '/img/ventana pvc.jpg',
+                      'pergolas-bioclimaticas': '/img/ventana2.jpg',
+                      'terrazas-quinchos': '/img/cierre.jpg',
+                      'habitaciones-oficinas': '/img/espejo decorativo.jpg',
+                      'fachadas': '/img/ventana3.jpg'
                     }
                     
                     const imageUrl = categoryImages[category.slug] || category.image
+                    const fallbackUrl = fallbackImages[category.slug] || '/img/shower2.jpg'
                     
                     return (
                       <Box
@@ -137,6 +153,12 @@ export default function TiendaPage() {
                           h="100%"
                           objectFit="cover"
                           opacity="0.8"
+                          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                            const target = e.currentTarget
+                            if (!target.src.includes(fallbackUrl)) {
+                              target.src = fallbackUrl
+                            }
+                          }}
                         />
                         <Box
                           position="absolute"
