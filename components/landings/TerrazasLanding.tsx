@@ -1,6 +1,7 @@
 'use client'
 
 import { Box, Heading, Text, VStack, SimpleGrid, Button, Flex } from '@chakra-ui/react'
+import { FaWhatsapp } from 'react-icons/fa'
 
 export default function TerrazasLanding() {
   return (
@@ -244,66 +245,48 @@ export default function TerrazasLanding() {
         </Box>
       </SimpleGrid>
 
-      {/* Call to Action final Terrazas & Quinchos */}
-      <Box
-        bg="linear-gradient(135deg, #1A365D 0%, #2C5282 50%, #319795 100%)"
-        borderRadius="2xl"
-        p={{ base: '8', md: '12' }}
-        textAlign="center"
-        boxShadow="2xl"
-        position="relative"
-        overflow="hidden"
+      {/* CTA Final */}
+      <Flex
+        direction={{ base: 'column', md: 'row' }}
+        align="center"
+        justify="space-between"
+        bgGradient="linear(to-r, blue.800, cyan.600)"
+        color="white"
+        p={{ base: '6', md: '10' }}
+        borderRadius="xl"
+        mt="16"
+        textAlign={{ base: 'center', md: 'left' }}
+        gap="6"
       >
-        <Box
-          position="absolute"
-          top="0"
-          left="0"
-          right="0"
-          bottom="0"
-          bg="rgba(0, 0, 0, 0.35)"
-          opacity="0.85"
-        />
-        <VStack spacing="6" position="relative" zIndex="1">
-          <Heading
-            size={{ base: 'xl', md: '2xl' }}
-            color="white"
-            fontWeight="bold"
-          >
+        <Box>
+          <Heading size={{ base: 'lg', md: 'xl' }} mb="2">
             ¿Listo para tu proyecto de terraza o quincho?
           </Heading>
-          <Text
-            fontSize={{ base: 'md', md: 'lg' }}
-            color="white"
-            maxW="700px"
-            opacity="0.95"
-          >
+          <Text fontSize={{ base: 'md', md: 'lg' }}>
             Te asesoramos en el diseño de cierres de terraza y barandas de vidrio para que tu
             espacio exterior sea seguro, cómodo y lleno de luz.
           </Text>
-          <Button
-            size="lg"
-            bg="cyan.300"
-            color="blue.900"
-            fontSize={{ base: 'md', md: 'lg' }}
-            px="10"
-            py="7"
-            borderRadius="md"
-            fontWeight="bold"
-            _hover={{
-              bg: 'cyan.400',
-              transform: 'translateY(-2px)',
-              boxShadow: '2xl'
-            }}
-            transition="all 0.2s"
-            as="a"
-            href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de terraza o quincho (cierres y barandas)')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Cotizar Terrazas & Quinchos
-          </Button>
-        </VStack>
-      </Box>
+        </Box>
+        <Button
+          as="a"
+          href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de terraza o quincho (cierres y barandas)')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="lg"
+          colorScheme="yellow"
+          px="8"
+          py="6"
+          fontSize="md"
+          fontWeight="bold"
+          borderRadius="full"
+          boxShadow="lg"
+          leftIcon={<FaWhatsapp />}
+          _hover={{ bg: 'yellow.300', transform: 'translateY(-2px)' }}
+          _active={{ bg: 'yellow.500', transform: 'translateY(0)' }}
+        >
+          Cotizar por WhatsApp
+        </Button>
+      </Flex>
     </VStack>
   )
 }

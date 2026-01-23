@@ -1,6 +1,7 @@
 'use client'
 
 import { Box, Heading, Text, VStack, SimpleGrid, Button, Flex } from '@chakra-ui/react'
+import { FaWhatsapp } from 'react-icons/fa'
 
 export default function PergolasLanding() {
   return (
@@ -245,66 +246,48 @@ export default function PergolasLanding() {
         </SimpleGrid>
       </Box>
 
-      {/* Call to Action final pérgolas */}
-      <Box
-        bg="linear-gradient(135deg, #2D3748 0%, #4A5568 40%, #2B6CB0 100%)"
-        borderRadius="2xl"
-        p={{ base: '8', md: '12' }}
-        textAlign="center"
-        boxShadow="2xl"
-        position="relative"
-        overflow="hidden"
+      {/* CTA Final */}
+      <Flex
+        direction={{ base: 'column', md: 'row' }}
+        align="center"
+        justify="space-between"
+        bgGradient="linear(to-r, blue.800, cyan.600)"
+        color="white"
+        p={{ base: '6', md: '10' }}
+        borderRadius="xl"
+        mt="16"
+        textAlign={{ base: 'center', md: 'left' }}
+        gap="6"
       >
-        <Box
-          position="absolute"
-          top="0"
-          left="0"
-          right="0"
-          bottom="0"
-          bg="rgba(0, 0, 0, 0.35)"
-          opacity="0.8"
-        />
-        <VStack spacing="6" position="relative" zIndex="1">
-          <Heading
-            size={{ base: 'xl', md: '2xl' }}
-            color="white"
-            fontWeight="bold"
-          >
+        <Box>
+          <Heading size={{ base: 'lg', md: 'xl' }} mb="2">
             ¿Listo para tu pérgola bioclimática?
           </Heading>
-          <Text
-            fontSize={{ base: 'md', md: 'lg' }}
-            color="white"
-            maxW="700px"
-            opacity="0.95"
-          >
+          <Text fontSize={{ base: 'md', md: 'lg' }}>
             Cuéntanos tu idea y te ayudamos a definir medidas, configuración de lamas,
             colores y complementos para tu terraza o quincho.
           </Text>
-          <Button
-            size="lg"
-            bg="cyan.300"
-            color="blue.900"
-            fontSize={{ base: 'md', md: 'lg' }}
-            px="10"
-            py="7"
-            borderRadius="md"
-            fontWeight="bold"
-            _hover={{
-              bg: 'cyan.400',
-              transform: 'translateY(-2px)',
-              boxShadow: '2xl'
-            }}
-            transition="all 0.2s"
-            as="a"
-            href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de pérgola bioclimática')}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Cotizar pérgola ahora
-          </Button>
-        </VStack>
-      </Box>
+        </Box>
+        <Button
+          as="a"
+          href={`https://wa.me/56949932178?text=${encodeURIComponent('Hola, estoy interesado en un proyecto de pérgola bioclimática')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="lg"
+          colorScheme="yellow"
+          px="8"
+          py="6"
+          fontSize="md"
+          fontWeight="bold"
+          borderRadius="full"
+          boxShadow="lg"
+          leftIcon={<FaWhatsapp />}
+          _hover={{ bg: 'yellow.300', transform: 'translateY(-2px)' }}
+          _active={{ bg: 'yellow.500', transform: 'translateY(0)' }}
+        >
+          Cotizar por WhatsApp
+        </Button>
+      </Flex>
     </VStack>
   )
 }

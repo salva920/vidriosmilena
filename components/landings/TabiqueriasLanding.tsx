@@ -1,6 +1,7 @@
 'use client'
 
 import { Box, Heading, Text, VStack, SimpleGrid, Button, Flex } from '@chakra-ui/react'
+import { FaWhatsapp } from 'react-icons/fa'
 
 export default function TabiqueriasLanding() {
   return (
@@ -104,32 +105,46 @@ export default function TabiqueriasLanding() {
       </SimpleGrid>
 
       {/* CTA Final */}
-      <Box
-        bgGradient="linear(to-r, blue.900, cyan.600)"
-        borderRadius="2xl"
-        p={{ base: '8', md: '12' }}
-        textAlign="center"
+      <Flex
+        direction={{ base: 'column', md: 'row' }}
+        align="center"
+        justify="space-between"
+        bgGradient="linear(to-r, blue.800, cyan.600)"
         color="white"
-        mt="12"
+        p={{ base: '6', md: '10' }}
+        borderRadius="xl"
+        mt="16"
+        textAlign={{ base: 'center', md: 'left' }}
+        gap="6"
       >
-        <Heading size={{ base: 'lg', md: 'xl' }} mb="4">
-          ¿Te interesa? ¡Diseño hecho a tu medida!
-        </Heading>
-        <Text fontSize={{ base: 'md', md: 'lg' }} mb="6" opacity={0.9}>
-          Solicita tu cotización y comienza a planificar con nosotros
-        </Text>
+        <Box>
+          <Heading size={{ base: 'lg', md: 'xl' }} mb="2">
+            ¿Te interesa? ¡Diseño hecho a tu medida!
+          </Heading>
+          <Text fontSize={{ base: 'md', md: 'lg' }}>
+            Solicita tu cotización y comienza a planificar con nosotros
+          </Text>
+        </Box>
         <Button
           as="a"
           href="https://wa.me/56949932178?text=Hola%20estoy%20interesado%20en%20un%20proyecto%20de%20tabiquerias"
           target="_blank"
-          colorScheme="whatsapp"
+          rel="noopener noreferrer"
           size="lg"
-          borderRadius="full"
+          colorScheme="yellow"
           px="8"
+          py="6"
+          fontSize="md"
+          fontWeight="bold"
+          borderRadius="full"
+          boxShadow="lg"
+          leftIcon={<FaWhatsapp />}
+          _hover={{ bg: 'yellow.300', transform: 'translateY(-2px)' }}
+          _active={{ bg: 'yellow.500', transform: 'translateY(0)' }}
         >
-          Cotizar Ahora
+          Cotizar por WhatsApp
         </Button>
-      </Box>
+      </Flex>
     </VStack>
   )
 }

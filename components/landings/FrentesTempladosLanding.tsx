@@ -2,6 +2,7 @@
 
 import { Box, Heading, Text, VStack, SimpleGrid, Button, Flex } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
+import { FaWhatsapp } from 'react-icons/fa'
 
 export default function FrentesTempladosLanding() {
   const router = useRouter()
@@ -152,6 +153,7 @@ export default function FrentesTempladosLanding() {
           fontWeight="bold"
           borderRadius="full"
           boxShadow="lg"
+          leftIcon={<FaWhatsapp />}
           _hover={{ bg: 'yellow.300', transform: 'translateY(-2px)' }}
           _active={{ bg: 'yellow.500', transform: 'translateY(0)' }}
         >
