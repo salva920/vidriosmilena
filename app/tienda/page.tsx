@@ -212,20 +212,6 @@ export default function TiendaPage() {
                 </Box>
               )}
 
-              {/* Tus próximos favoritos */}
-              <Box>
-                <HStack justify="space-between" mb="6">
-                  <Heading size="lg" color="gray.900">
-                    TUS PRÓXIMOS FAVORITOS
-                  </Heading>
-                </HStack>
-                <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing="6">
-                  {displayProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </SimpleGrid>
-              </Box>
-
               {/* Sección: Expertos en Cristal y Arquitectura */}
               <Box
                 bgGradient="linear(to-r, blue.900, blue.800)"
