@@ -87,9 +87,12 @@ export async function POST(request: NextRequest) {
     // En producción, guardar la sesión de compra en base de datos
     // con el buy_order, session_id, items, customer, etc.
 
+    // URL del formulario de Webpay (usar la URL específica proporcionada)
+    const webpayFormUrl = process.env.WEBPAY_FORM_URL || 'https://www.webpay.cl/form-pay/319759'
+    
     return NextResponse.json({
       token: webpayResponse.token,
-      url: webpayResponse.url,
+      url: webpayFormUrl, // Usar la URL del formulario de Webpay
       buyOrder,
       sessionId,
     })

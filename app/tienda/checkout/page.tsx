@@ -88,16 +88,18 @@ export default function CheckoutPage() {
 
         const data = await response.json()
 
-        if (data.url && data.token) {
-          // Redirigir al formulario de Webpay
+        if (data.token) {
+          // Redirigir al formulario de Webpay usando la URL específica
+          const webpayFormUrl = data.url || 'https://www.webpay.cl/form-pay/319759'
+          
           const form = document.createElement('form')
           form.method = 'POST'
-          form.action = data.url
+          form.action = webpayFormUrl
           form.innerHTML = `<input type="hidden" name="token_ws" value="${data.token}">`
           document.body.appendChild(form)
           form.submit()
         } else {
-          throw new Error('Error al crear la transacción')
+          throw new Error('Error al crear la transacción: No se recibió el token de Webpay')
         }
       } else {
         // Otros métodos de pago (transferencia, etc.)
@@ -144,16 +146,21 @@ export default function CheckoutPage() {
     <Box minH="100vh" bg="gray.50">
       <StoreNavbar />
       <Container maxW="container.xl" py="8">
-        <Heading size="xl" mb="8">
-          Finalizar Compra
-        </Heading>
+        <VStack spacing="4" mb="8" align="flex-start">
+          <Heading size="xl">
+            Finalizar Compra
+          </Heading>
+          <Text color="gray.600" fontSize="sm">
+            Completa tus datos y elige tu método de pago para finalizar tu compra
+          </Text>
+        </VStack>
 
         <form onSubmit={handleSubmit}>
           <SimpleGrid columns={{ base: 1, lg: 2 }} spacing="8">
             {/* Información del Cliente */}
             <VStack spacing="6" align="stretch">
-              <Box bg="white" p="6" borderRadius="lg" boxShadow="sm">
-                <Heading size="md" mb="4">
+              <Box bg="white" p="6" borderRadius="lg" boxShadow="sm" borderWidth="1px" borderColor="gray.200">
+                <Heading size="md" mb="4" color="gray.800">
                   Información de Contacto
                 </Heading>
                 <VStack spacing="4">
@@ -189,8 +196,8 @@ export default function CheckoutPage() {
                 </VStack>
               </Box>
 
-              <Box bg="white" p="6" borderRadius="lg" boxShadow="sm">
-                <Heading size="md" mb="4">
+              <Box bg="white" p="6" borderRadius="lg" boxShadow="sm" borderWidth="1px" borderColor="gray.200">
+                <Heading size="md" mb="4" color="gray.800">
                   Dirección de Entrega
                 </Heading>
                 <VStack spacing="4">
@@ -245,35 +252,59 @@ export default function CheckoutPage() {
                 </VStack>
               </Box>
 
-              <Box bg="white" p="6" borderRadius="lg" boxShadow="sm">
-                <Heading size="md" mb="4">
+              <Box bg="white" p="6" borderRadius="lg" boxShadow="sm" borderWidth="1px" borderColor="gray.200">
+                <Heading size="md" mb="4" color="gray.800">
                   Método de Pago
                 </Heading>
-                <RadioGroup value={paymentMethod} onChange={setPaymentMethod}>
-                  <Stack spacing="3">
-                    <Radio value="webpay" isDisabled>
-                      <HStack>
-                        <Text fontWeight="semibold">Webpay</Text>
-                        <Text fontSize="sm" color="gray.500">
-                          (Tarjetas de crédito y débito)
+                <VStack spacing="4" align="stretch">
+                  <Box
+                    p="4"
+                    borderWidth="2px"
+                    borderColor="cyan.500"
+                    borderRadius="md"
+                    bg="cyan.50"
+                  >
+                    <HStack spacing="3">
+                      <Box
+                        w="40px"
+                        h="40px"
+                        bg="cyan.500"
+                        borderRadius="full"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        color="white"
+                        fontWeight="bold"
+                      >
+                        ✓
+                      </Box>
+                      <VStack align="flex-start" spacing="1" flex="1">
+                        <Text fontWeight="bold" fontSize="md">
+                          Webpay
                         </Text>
-                      </HStack>
-                    </Radio>
-                    <Radio value="transfer" isDisabled>
-                      <Text fontWeight="semibold">Transferencia Bancaria</Text>
-                      <Text fontSize="xs" color="gray.500">
-                        (Próximamente)
-                      </Text>
-                    </Radio>
-                  </Stack>
-                </RadioGroup>
+                        <Text fontSize="sm" color="gray.600">
+                          Pago seguro con tarjetas de crédito y débito
+                        </Text>
+                        <Text fontSize="xs" color="gray.500" mt="2">
+                          Serás redirigido a Webpay para completar el pago de forma segura
+                        </Text>
+                      </VStack>
+                    </HStack>
+                  </Box>
+                  <Alert status="info" borderRadius="md" fontSize="sm">
+                    <AlertIcon />
+                    <Text>
+                      Aceptamos todas las tarjetas de crédito y débito a través de Webpay
+                    </Text>
+                  </Alert>
+                </VStack>
               </Box>
             </VStack>
 
             {/* Resumen del Pedido */}
             <VStack spacing="6" align="stretch">
-              <Box bg="white" p="6" borderRadius="lg" boxShadow="sm" position="sticky" top="120px">
-                <Heading size="md" mb="4">
+              <Box bg="white" p="6" borderRadius="lg" boxShadow="sm" position="sticky" top="120px" borderWidth="1px" borderColor="gray.200">
+                <Heading size="md" mb="4" color="gray.800">
                   Resumen del Pedido
                 </Heading>
                 <VStack spacing="4" align="stretch">
@@ -319,10 +350,23 @@ export default function CheckoutPage() {
                   Pagar con Webpay
                 </Button>
 
+                <Box mt="4" p="4" bg="gray.50" borderRadius="md" borderWidth="1px" borderColor="gray.200">
+                  <VStack align="flex-start" spacing="2">
+                    <Text fontSize="sm" fontWeight="semibold" color="gray.700">
+                      Resumen de tu pedido:
+                    </Text>
+                    <VStack align="flex-start" spacing="1" fontSize="xs" color="gray.600">
+                      <Text>• {items.length} {items.length === 1 ? 'producto' : 'productos'}</Text>
+                      <Text>• Total: {formatPrice(totalPrice)}</Text>
+                      <Text>• Método: Webpay (Tarjetas de crédito/débito)</Text>
+                    </VStack>
+                  </VStack>
+                </Box>
+                
                 <Alert status="info" mt="4" borderRadius="md">
                   <AlertIcon />
                   <Text fontSize="sm">
-                    Serás redirigido a Webpay para completar el pago de forma segura.
+                    Al hacer clic en "Pagar con Webpay", serás redirigido a la plataforma segura de Webpay para completar tu pago.
                   </Text>
                 </Alert>
               </Box>
