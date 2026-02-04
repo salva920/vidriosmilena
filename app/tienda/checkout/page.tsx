@@ -366,7 +366,7 @@ export default function CheckoutPage() {
                 <Alert status="info" mt="4" borderRadius="md">
                   <AlertIcon />
                   <Text fontSize="sm">
-                    Al hacer clic en "Pagar con Webpay", serás redirigido a la plataforma segura de Webpay para completar tu pago.
+                    Al hacer clic en &quot;Pagar con Webpay&quot;, serás redirigido a la plataforma segura de Webpay para completar tu pago.
                   </Text>
                 </Alert>
               </Box>
