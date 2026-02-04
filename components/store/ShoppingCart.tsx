@@ -17,10 +17,11 @@ import {
   Divider,
   Badge,
 } from '@chakra-ui/react'
-import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
+import { FiMinus, FiPlus, FiTrash2, FiShoppingCart } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import { useCart } from '@/contexts/CartContext'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { getImageUrl, getImageUrlWithFallback } from '@/lib/image-utils'
 
 interface ShoppingCartProps {
@@ -30,6 +31,7 @@ interface ShoppingCartProps {
 
 export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
   const { items, updateQuantity, removeFromCart, getTotalPrice, clearCart } = useCart()
+  const router = useRouter()
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-CL', {
@@ -40,6 +42,13 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
   }
 
   const handleCheckout = () => {
+    // Cerrar el carrito
+    onClose()
+    // Redirigir al checkout con los productos del carrito
+    router.push('/tienda/checkout')
+  }
+
+  const handleWhatsAppCheckout = () => {
     // Número de WhatsApp de la empresa
     const numeroWhatsApp = '56949932178'
     
@@ -221,25 +230,36 @@ export default function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
           <DrawerFooter borderTop="1px" borderColor="gray.200" flexDirection="column" gap="3">
             <HStack justify="space-between" w="100%">
               <Text fontSize="lg" fontWeight="bold">
-                TOTAL PARCIAL:
+                TOTAL:
               </Text>
               <Text fontSize="xl" fontWeight="bold" color="blue.900">
                 {formatPrice(totalPrice)}
               </Text>
             </HStack>
             <Button
-              colorScheme="green"
+              colorScheme="cyan"
               size="lg"
               w="100%"
               onClick={handleCheckout}
-              leftIcon={<FaWhatsapp />}
+              leftIcon={<FiShoppingCart />}
             >
-              FINALIZAR COMPRA POR WHATSAPP
+              FINALIZAR COMPRA
+            </Button>
+            <Button
+              colorScheme="green"
+              size="md"
+              w="100%"
+              onClick={handleWhatsAppCheckout}
+              leftIcon={<FaWhatsapp />}
+              variant="outline"
+            >
+              Completar por WhatsApp
             </Button>
             <Button
               variant="ghost"
               size="sm"
               onClick={clearCart}
+              colorScheme="red"
             >
               Vaciar carrito
             </Button>
