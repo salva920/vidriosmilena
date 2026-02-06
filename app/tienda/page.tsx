@@ -54,13 +54,15 @@ export default function TiendaPage() {
           as="section"
           position="relative"
           w="100%"
-          minH={{ base: "60vh", sm: "65vh", md: "70vh", lg: "75vh" }}
-          h={{ base: "60vh", sm: "65vh", md: "70vh", lg: "75vh" }}
+          minH={{ base: "45vh", sm: "55vh", md: "70vh", lg: "75vh" }}
+          h={{ base: "45vh", sm: "55vh", md: "70vh", lg: "75vh" }}
           overflow="hidden"
           mx="0"
           px="0"
           mt="0"
           pt="0"
+          mb="0"
+          pb="0"
           maxW="100%"
           left="0"
           right="0"
@@ -72,7 +74,7 @@ export default function TiendaPage() {
         </Box>
       )}
       
-      <Box pt="8" pb="16">
+      <Box pt={{ base: "4", md: "8" }} pb="16">
         <Container maxW="container.xl">
           {searchQuery ? (
             <VStack spacing="8" align="stretch">

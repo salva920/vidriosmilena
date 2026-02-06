@@ -86,7 +86,18 @@ export default function CheckoutPage() {
           }),
         })
 
+        // Verificar si la respuesta es exitosa
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({ error: 'Error desconocido' }))
+          throw new Error(errorData.error || errorData.details || 'Error al crear la transacción en Webpay')
+        }
+
         const data = await response.json()
+
+        // Verificar si hay un error en la respuesta
+        if (data.error) {
+          throw new Error(data.error + (data.details ? `: ${data.details}` : ''))
+        }
 
         if (data.token) {
           // Redirigir al formulario de Webpay usando la URL específica
@@ -99,7 +110,7 @@ export default function CheckoutPage() {
           document.body.appendChild(form)
           form.submit()
         } else {
-          throw new Error('Error al crear la transacción: No se recibió el token de Webpay')
+          throw new Error('Error al crear la transacción: No se recibió el token de Webpay. ' + (data.details || ''))
         }
       } else {
         // Otros métodos de pago (transferencia, etc.)
@@ -114,11 +125,12 @@ export default function CheckoutPage() {
       }
     } catch (error) {
       console.error('Error en el checkout:', error)
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido'
       toast({
         title: 'Error al procesar el pago',
-        description: 'Hubo un problema al procesar tu pedido. Por favor, intenta nuevamente.',
+        description: errorMessage || 'Hubo un problema al procesar tu pedido. Por favor, intenta nuevamente.',
         status: 'error',
-        duration: 5000,
+        duration: 7000,
         isClosable: true,
       })
       setIsProcessing(false)

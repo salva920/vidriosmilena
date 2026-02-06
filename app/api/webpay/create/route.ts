@@ -73,16 +73,60 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(webpayData),
     })
 
+    // Verificar el Content-Type de la respuesta
+    const contentType = response.headers.get('content-type')
+    const isJson = contentType && contentType.includes('application/json')
+
     if (!response.ok) {
-      const errorData = await response.text()
+      const errorData = isJson ? await response.json() : await response.text()
       console.error('Error de Webpay:', errorData)
+      
+      // Si la respuesta es HTML, extraer información útil si es posible
+      if (!isJson) {
+        return NextResponse.json(
+          { 
+            error: 'Error al crear la transacción en Webpay. La respuesta no es válida.',
+            details: 'La API de Webpay devolvió una respuesta HTML en lugar de JSON. Verifica las credenciales y la configuración.'
+          },
+          { status: 500 }
+        )
+      }
+      
       return NextResponse.json(
-        { error: 'Error al crear la transacción en Webpay' },
+        { 
+          error: 'Error al crear la transacción en Webpay',
+          details: errorData.error || errorData.message || 'Error desconocido'
+        },
+        { status: 500 }
+      )
+    }
+
+    // Verificar que la respuesta sea JSON antes de parsear
+    if (!isJson) {
+      const htmlResponse = await response.text()
+      console.error('Webpay devolvió HTML en lugar de JSON:', htmlResponse.substring(0, 500))
+      return NextResponse.json(
+        { 
+          error: 'Error al crear la transacción en Webpay',
+          details: 'La API de Webpay devolvió una respuesta HTML. Verifica las credenciales, el código de comercio y la configuración del ambiente.'
+        },
         { status: 500 }
       )
     }
 
     const webpayResponse = await response.json()
+
+    // Validar que la respuesta tenga el token
+    if (!webpayResponse.token) {
+      console.error('Respuesta de Webpay sin token:', webpayResponse)
+      return NextResponse.json(
+        { 
+          error: 'Error al crear la transacción en Webpay',
+          details: 'La respuesta de Webpay no contiene el token necesario. Verifica la configuración.'
+        },
+        { status: 500 }
+      )
+    }
 
     // En producción, guardar la sesión de compra en base de datos
     // con el buy_order, session_id, items, customer, etc.

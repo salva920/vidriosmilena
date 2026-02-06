@@ -54,14 +54,13 @@ export default function ImageCarousel({ images, links = [] }: ImageCarouselProps
               height="100%"
               maxW="100%"
               maxH="100%"
-              objectFit="contain"
+              objectFit={{ base: 'cover', md: 'contain' }}
               objectPosition="center"
               display="block"
               loading={index === 0 ? 'eager' : 'lazy'}
               style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'contain',
                 objectPosition: 'center',
                 cursor: link ? 'pointer' : 'default'
               }}

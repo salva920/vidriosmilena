@@ -18,6 +18,9 @@ WEBPAY_COMMERCE_CODE=tu_codigo_comercio
 # API Key (obtener de Transbank)
 WEBPAY_API_KEY=tu_api_key
 
+# URL del formulario de Webpay (ya la tienes)
+WEBPAY_FORM_URL=https://www.webpay.cl/form-pay/319759
+
 # URL base de tu aplicación
 NEXT_PUBLIC_BASE_URL=https://artecristal.vercel.app
 
